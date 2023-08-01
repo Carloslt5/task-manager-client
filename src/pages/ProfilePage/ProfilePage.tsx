@@ -12,7 +12,7 @@ const ProfilePage = () => {
   return (
     <>
       <div>ProfilePage</div>
-      <TodoList items={todos} />
+      <TodoList todolist={todos} />
     </>
   )
 }

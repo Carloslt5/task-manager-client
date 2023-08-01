@@ -1,20 +1,14 @@
 import TodoEach from "../TodoEach/TodoEach"
+import { TodoListProps } from './../../types/TodoListProps.type'
 
-
-interface TodoListProps {
-  items: { id: number, text: string }[]
-}
-
-const TodoList: React.FC<TodoListProps> = props => {
+const TodoList = ({ todolist }: TodoListProps) => {
 
   return (
     <>
       <div>TodoList</div>
 
       {<ul>
-        {props.items.map(todo => {
-          return <TodoEach {...todo} key={todo.id} />
-        })}
+        {todolist.map(todo => <TodoEach {...todo} key={todo.id} />)}
       </ul>}
     </>
 

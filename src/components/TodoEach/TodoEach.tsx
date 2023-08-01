@@ -1,8 +1,4 @@
-
-interface Todo {
-  id: number,
-  text: string
-}
+import { Todo } from './../../types/Todo.type'
 
 const TodoEach = ({ id, text }: Todo) => {
   return (
