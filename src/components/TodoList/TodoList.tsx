@@ -6,16 +6,13 @@ const TodoList = ({ todolist }: TodoListProps) => {
 
   return (
     <>
-      <div>TodoList</div>
-      <div className="container px-2">
+      <div className="container px-2 mx-auto">
         <NewTodo />
         {<ul>
           {todolist.map(todo => <EachTodo {...todo} key={todo.id} />)}
         </ul>}
       </div>
-
     </>
-
   )
 }
 

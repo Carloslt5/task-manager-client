@@ -38,7 +38,7 @@ const Navigation = () => {
         </div>
 
         <div className={mobileMenuOpen
-          ? 'flex flex-col justify-center absolute bg-gray-800 w-full left-0 origin-top-right min-h-screen'
+          ? 'flex flex-col justify-center absolute bg-gray-800 w-full left-0 origin-top-right min-h-screen z-10'
           : 'hidden sm:hidden'}
           id="mobile-menu"
         >

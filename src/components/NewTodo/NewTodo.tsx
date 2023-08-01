@@ -17,11 +17,12 @@ const NewTodo = () => {
   const { title } = newTodo
 
   return (
+
     <form onSubmit={todoSubmithandler} className="my-4">
       <input
         className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
-        placeholder="Todo"
+        placeholder="Insert Task..."
         name='title'
         value={title}
         onChange={handlerInputChange}
