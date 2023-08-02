@@ -1,6 +1,9 @@
 import { TodoData } from './Todo.type'
 
-export interface TodoListProps {
+export interface TodoList {
   todolist: TodoData[],
-  DeleteTodo: React.MouseEventHandler<HTMLButtonElement>
+}
+
+export interface TodoListProps extends TodoList {
+  DeleteTodo: (todoID: number) => void
 }

@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { Todo } from '../../types/Todo.type'
+import { TodoData } from '../../types/Todo.type'
 
 interface NewTodoProps {
-  AddTodo: (todo: Todo) => void
+  AddTodo: (todo: TodoData) => void
 }
 
 const NewTodo = (props: NewTodoProps) => {
@@ -26,17 +26,17 @@ const NewTodo = (props: NewTodoProps) => {
 
   return (
 
-    <form onSubmit={todoSubmithandler} className="my-4">
+    <form onSubmit={todoSubmithandler} className="my-4 flex justify-center gap-2">
       <input
-        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        className="shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         type="text"
         name='title'
         value={title}
         placeholder="Insert Task..."
         onChange={handlerInputChange}
       />
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold my-2 py-2 px-4 rounded" type="submit">
-        Add todo
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold  py-2 px-4 rounded" type="submit">
+        Add
       </button>
     </form>
   )

@@ -15,12 +15,11 @@ const ProfilePage = () => {
   const [todoData, setTodoData] = useState<TodoData[]>(todos)
 
   const addTodoHandler = (newTodo: TodoData) => {
-    console.log('este es el nuevo todo', newTodo)
     setTodoData([...todoData, newTodo])
   }
 
-  const deleteTodoHandler = () => {
-    console.log('deleted todo')
+  const deleteTodoHandler = (todoID: number) => {
+    return setTodoData(todoData.filter(todo => todo.id !== todoID))
   }
 
   return (
