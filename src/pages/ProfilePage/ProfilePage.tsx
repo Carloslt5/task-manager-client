@@ -5,7 +5,7 @@ import { TodoData } from '../../types/Todo.type'
 
 
 const todos: TodoData[] = [
-  { id: 1, title: 'Finish the course', completed: false, },
+  { id: 1, title: 'Finish the course', completed: true, },
   { id: 2, title: 'Typescript', completed: false },
   { id: 3, title: 'React', completed: false }
 ]
@@ -18,16 +18,24 @@ const ProfilePage = () => {
     setTodoData([...todoData, newTodo])
   }
 
+  const updateTodoHandler = (todoID: number) => {
+    setTodoData(todoData.map(todo => todo.id === todoID
+      ? { ...todo, completed: !todo.completed }
+      : todo
+    ))
+  }
+
+
   const deleteTodoHandler = (todoID: number) => {
     return setTodoData(todoData.filter(todo => todo.id !== todoID))
   }
 
   return (
     <>
-      <div className="container px-2 mx-auto">
+      <div className="container px-2 mx-auto max-w-screen-lg ">
         <div>ProfilePage</div>
         <NewTodo AddTodo={addTodoHandler} />
-        <TodoList todolist={todoData} DeleteTodo={deleteTodoHandler} />
+        <TodoList todolist={todoData} UpdateTodo={updateTodoHandler} DeleteTodo={deleteTodoHandler} />
       </div>
     </>
   )
