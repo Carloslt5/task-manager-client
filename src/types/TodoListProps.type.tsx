@@ -1,3 +1,7 @@
 export interface TodoListProps {
-  todolist: { id: number, text: string }[]
+  todolist: {
+    id: number,
+    title: string,
+    completed: boolean
+  }[]
 }

@@ -1,8 +1,8 @@
 import { Todo } from '../../types/Todo.type'
 
-const EachTodo = ({ id, text }: Todo) => {
+const EachTodo = ({ id, title }: Todo) => {
   return (
-    <li key={id}>·{text} </li>
+    <li key={id}>·{title} </li>
   )
 }
 
