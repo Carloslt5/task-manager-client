@@ -25,9 +25,12 @@ const ProfilePage = () => {
     ))
   }
 
-
   const deleteTodoHandler = (todoID: number) => {
-    return setTodoData(todoData.filter(todo => todo.id !== todoID))
+    setTodoData(todoData.filter(todo => todo.id !== todoID))
+  }
+
+  const clearCompleted = () => {
+    setTodoData(todoData.filter(todo => !todo.completed))
   }
 
   return (
@@ -35,7 +38,7 @@ const ProfilePage = () => {
       <div className="container px-2 mx-auto max-w-screen-lg ">
         <div>ProfilePage</div>
         <NewTodo AddTodo={addTodoHandler} />
-        <TodoList todolist={todoData} UpdateTodo={updateTodoHandler} DeleteTodo={deleteTodoHandler} />
+        <TodoList todolist={todoData} UpdateTodo={updateTodoHandler} DeleteTodo={deleteTodoHandler} ClearCompleted={clearCompleted} />
       </div>
     </>
   )

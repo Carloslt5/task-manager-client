@@ -1,7 +1,7 @@
 import EachTodo from "../EachTodo/EachTodo"
 import { TodoListProps } from './../../types/TodoListProps.type'
 
-const TodoList = ({ todolist, UpdateTodo, DeleteTodo }: TodoListProps) => {
+const TodoList = ({ todolist, UpdateTodo, DeleteTodo, ClearCompleted }: TodoListProps) => {
 
   return (
     <>
@@ -23,7 +23,7 @@ const TodoList = ({ todolist, UpdateTodo, DeleteTodo }: TodoListProps) => {
             <li className="py-1">Completed</li>
           </ul>
           <ul>
-            <li>Clear Completed</li>
+            <li onClick={ClearCompleted}>Clear Completed</li>
           </ul>
         </div>
       </div>
