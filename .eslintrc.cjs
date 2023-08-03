@@ -15,6 +15,8 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "semi": [1, "never"],
-    "no-multi-spaces": "error"
+    "no-multi-spaces": "error",
+    "quotes": [2, "single"],
+    'jsx-quotes': [2, 'prefer-single'],
   },
 }

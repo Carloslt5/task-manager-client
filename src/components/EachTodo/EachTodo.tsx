@@ -4,7 +4,7 @@ import Check from '../icons/Check'
 const EachTodo = ({ id, title, completed, UpdateTodo, DeleteTodo }: TodoProps) => {
 
   return (
-    <article className='flex justify-between items-center py-2 border-bgap-2'>
+    <article className='flex justify-between items-center py-2 border-b gap-2'>
       <div className='flex gap-2 items-center'>
 
         <button
@@ -21,7 +21,7 @@ const EachTodo = ({ id, title, completed, UpdateTodo, DeleteTodo }: TodoProps) =
 
       </div>
       <button
-        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
         onClick={DeleteTodo.bind(null, id)} >
         X
       </button>
