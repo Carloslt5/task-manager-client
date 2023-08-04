@@ -48,9 +48,7 @@ const ProfilePage = () => {
     <>
       <div className='container px-2 mx-auto max-w-screen-lg '>
         <div>ProfilePage</div>
-        <NewTodo
-          AddTodo={addTodoHandler}
-        />
+        <NewTodo AddTodo={addTodoHandler} />
         <TodoList
           todolist={todoData}
           UpdateTodo={updateTodoHandler}
