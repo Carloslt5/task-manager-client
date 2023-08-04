@@ -18,5 +18,6 @@ module.exports = {
     "no-multi-spaces": "error",
     "quotes": [2, "single"],
     'jsx-quotes': [2, 'prefer-single'],
+    'no-multiple-empty-lines': ['error', { max: 1 }],
   },
 }
