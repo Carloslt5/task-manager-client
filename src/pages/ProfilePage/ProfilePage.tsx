@@ -3,15 +3,9 @@ import NewTodo from '../../components/NewTodo/NewTodo'
 import TodoList from '../../components/TodoList/TodoList'
 import { TodoData } from '../../types/Todo.type'
 
-const todos: TodoData[] = [
-  { id: 1, title: 'Finish the course', completed: true, },
-  { id: 2, title: 'Typescript', completed: false },
-  { id: 3, title: 'React', completed: false }
-]
-
 const ProfilePage = () => {
 
-  const [todoData, setTodoData] = useState<TodoData[]>(todos)
+  const [todoData, setTodoData] = useState<TodoData[]>([])
 
   const addTodoHandler = (newTodo: TodoData) => {
     setTodoData([...todoData, newTodo])

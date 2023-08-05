@@ -1,15 +1,14 @@
 import { useState } from 'react'
-import { TodoData } from '../../types/Todo.type'
 
-interface NewTodoProps {
-  AddTodo: (todo: TodoData) => void
-}
+import todoservices from './../../services/ToDo.services'
 
-const NewTodo = (props: NewTodoProps) => {
+// interface NewTodoProps {
+//   AddTodo: (todo) => void
+// }
+
+const NewTodo = () => {
   const [newTodo, setNewTodo] = useState({
-    id: Math.random(),
     title: '',
-    completed: false
   })
 
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +18,13 @@ const NewTodo = (props: NewTodoProps) => {
 
   const todoSubmithandler = (event: React.FormEvent) => {
     event.preventDefault()
-    props.AddTodo(newTodo)
+    todoservices
+      .createToDo(newTodo)
+      .then(({ data }) => {
+        console.log('esto es el todo creado en el front', data)
+      })
+      .catch(err => console.log(err))
+
   }
 
   const { title } = newTodo
