@@ -22,6 +22,7 @@ const NewTodo = () => {
       .createToDo(newTodo)
       .then(({ data }) => {
         console.log('esto es el todo creado en el front', data)
+        setNewTodo({ title: '' })
       })
       .catch(err => console.log(err))
 

@@ -1,26 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import NewTodo from '../../components/NewTodo/NewTodo'
 import TodoList from '../../components/TodoList/TodoList'
 import { TodoData } from '../../types/Todo.type'
+import todoservices from '../../services/ToDo.services'
 
 const ProfilePage = () => {
 
-  const [todoData, setTodoData] = useState<TodoData[]>([])
+  const [todoData, setTodoData] = useState<TodoData[]>()
 
-  const addTodoHandler = (newTodo: TodoData) => {
-    setTodoData([...todoData, newTodo])
+  const loadToDos = async () => {
+    try {
+      const { data } = await todoservices.getAllToDos()
+      setTodoData(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  const updateTodoHandler = (todoID: number) => {
-    setTodoData(todoData.map(todo => todo.id === todoID
-      ? { ...todo, completed: !todo.completed }
-      : todo
-    ))
-  }
+  useEffect(() => {
+    loadToDos()
+  }, [])
 
-  const deleteTodoHandler = (todoID: number) => {
-    setTodoData(todoData.filter(todo => todo.id !== todoID))
-  }
+  // const addTodoHandler = (newTodo: TodoData) => {
+  //   setTodoData([...todoData, newTodo])
+  // }
+
+  // const updateTodoHandler = (todoID: number) => {
+  //   setTodoData(todoData.map(todo => todo.id === todoID
+  //     ? { ...todo, completed: !todo.completed }
+  //     : todo
+  //   ))
+  // }
+
+  // const deleteTodoHandler = (todoID: number) => {
+  //   setTodoData(todoData.filter(todo => todo.id !== todoID))
+  // }
 
   // const fileredTodo = (filter: string) => {
   //   switch (filter) {
@@ -34,21 +48,31 @@ const ProfilePage = () => {
 
   // }
 
-  const clearCompleted = () => {
-    setTodoData(todoData.filter(todo => !todo.completed))
-  }
+  // const clearCompleted = () => {
+  //   setTodoData(todoData.filter(todo => !todo.completed))
+  // }
 
   return (
     <>
       <div className='container px-2 mx-auto max-w-screen-lg '>
         <div>ProfilePage</div>
-        <NewTodo AddTodo={addTodoHandler} />
-        <TodoList
-          todolist={todoData}
-          UpdateTodo={updateTodoHandler}
-          DeleteTodo={deleteTodoHandler}
-          ClearCompleted={clearCompleted}
-        />
+        <NewTodo />
+        {!todoData
+          ? <h1>Loading...</h1>
+          : <TodoList
+            todoslist={todoData}
+          />
+        }
+        {/* {!todoData
+          ? <h1>Loading...</h1>
+          : <TodoList
+            todolist={todoData}
+          // UpdateTodo={updateTodoHandler}
+          // DeleteTodo={deleteTodoHandler}
+          // ClearCompleted={clearCompleted}
+          />
+        } */}
+
       </div>
     </>
   )
