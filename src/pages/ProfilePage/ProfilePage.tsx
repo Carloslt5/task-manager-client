@@ -16,7 +16,6 @@ const ProfilePage = () => {
       console.log(error)
     }
   }
-
   useEffect(() => {
     loadToDos()
   }, [])
@@ -25,15 +24,20 @@ const ProfilePage = () => {
     setTodoData([...todoData ?? [], todo])
   }
 
+  const deleteTodoHandler = async (todoID: number) => {
+    try {
+      await todoservices.deleteToDo(todoID)
+      loadToDos()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   // const updateTodoHandler = (todoID: number) => {
   //   // setTodoData(todoData?.map(todo => todo.id === todoID
   //   //   ? { ...todo, completed: !todo.completed }
   //   //   : todo
   //   // ))
-  // }
-
-  // const deleteTodoHandler = (todoID: number) => {
-  //   setTodoData(todoData.filter(todo => todo.id !== todoID))
   // }
 
   // const fileredTodo = (filter: string) => {
@@ -62,6 +66,7 @@ const ProfilePage = () => {
           ? <h1>Loading...</h1>
           : <TodoList
             todoslist={todoData}
+            DeleteTodo={deleteTodoHandler}
           />
         }
         {/* {!todoData

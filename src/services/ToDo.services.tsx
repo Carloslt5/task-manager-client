@@ -19,6 +19,10 @@ class ToDoServices {
     return this.instance.post('/todos/createdTodo', newTodo)
   }
 
+  deleteToDo(_id: number) {
+    return this.instance.delete(`/todos/deleteTodo/${_id}`)
+  }
+
 }
 
 const todoservices = new ToDoServices()

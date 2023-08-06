@@ -1,7 +1,7 @@
 import { TodoProps } from '../../types/Todo.type'
 import Check from '../icons/Check'
 
-const EachTodo = ({ title, completed }: TodoProps) => {
+const EachTodo = ({ _id, title, completed, DeleteTodo }: TodoProps) => {
 
   return (
     <article className='flex justify-between items-center py-2 border-b gap-2'>
@@ -22,7 +22,7 @@ const EachTodo = ({ title, completed }: TodoProps) => {
       </div>
       <button
         className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
-      // onClick={DeleteTodo.bind(null, id)} 
+        onClick={() => DeleteTodo(_id)}
       >
         X
       </button>

@@ -1,6 +1,6 @@
 
 export interface TodoData {
-  id: number,
+  _id: number,
   title: string,
   completed: boolean,
   createdAt: string
@@ -8,7 +8,7 @@ export interface TodoData {
 }
 
 export interface TodoProps extends TodoData {
-  // DeleteTodo: (React.MouseEventHandler<HTMLButtonElement>)
+  DeleteTodo: (todoID: number) => void
   // UpdateTodo: (todoID: number) => void
   // DeleteTodo: (todoID: number) => void
 }
