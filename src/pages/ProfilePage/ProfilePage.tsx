@@ -21,15 +21,15 @@ const ProfilePage = () => {
     loadToDos()
   }, [])
 
-  // const addTodoHandler = (newTodo: TodoData) => {
-  //   setTodoData([...todoData, newTodo])
-  // }
+  const addTodoHandler = ({ todo }: { todo: TodoData }) => {
+    setTodoData([...todoData ?? [], todo])
+  }
 
   // const updateTodoHandler = (todoID: number) => {
-  //   setTodoData(todoData.map(todo => todo.id === todoID
-  //     ? { ...todo, completed: !todo.completed }
-  //     : todo
-  //   ))
+  //   // setTodoData(todoData?.map(todo => todo.id === todoID
+  //   //   ? { ...todo, completed: !todo.completed }
+  //   //   : todo
+  //   // ))
   // }
 
   // const deleteTodoHandler = (todoID: number) => {
@@ -56,7 +56,8 @@ const ProfilePage = () => {
     <>
       <div className='container px-2 mx-auto max-w-screen-lg '>
         <div>ProfilePage</div>
-        <NewTodo />
+        <NewTodo AddTodo={addTodoHandler} />
+
         {!todoData
           ? <h1>Loading...</h1>
           : <TodoList

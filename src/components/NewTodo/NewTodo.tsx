@@ -1,12 +1,13 @@
 import { useState } from 'react'
 
 import todoservices from './../../services/ToDo.services'
+import { TodoData } from '../../types/Todo.type'
 
-// interface NewTodoProps {
-//   AddTodo: (todo) => void
-// }
+interface NewTodoProps {
+  AddTodo: (todo: { todo: TodoData }) => void
+}
 
-const NewTodo = () => {
+const NewTodo = ({ AddTodo }: NewTodoProps) => {
   const [newTodo, setNewTodo] = useState({
     title: '',
   })
@@ -21,7 +22,7 @@ const NewTodo = () => {
     todoservices
       .createToDo(newTodo)
       .then(({ data }) => {
-        console.log('esto es el todo creado en el front', data)
+        AddTodo(data)
         setNewTodo({ title: '' })
       })
       .catch(err => console.log(err))
