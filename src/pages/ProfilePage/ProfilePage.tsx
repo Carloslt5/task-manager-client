@@ -26,7 +26,6 @@ const ProfilePage = () => {
   }
 
   const updateTodoHandler = async (todoID: number, completed: boolean) => {
-
     try {
       await todoservices.updateToDo(todoID, completed)
       loadToDos()
