@@ -6,7 +6,7 @@ class ToDoServices {
 
   constructor() {
     this.instance = axios.create({
-      baseURL: import.meta.env.REACT_APP_API_URL
+      baseURL: import.meta.env.VITE_REACT_API_URL
     })
   }
 

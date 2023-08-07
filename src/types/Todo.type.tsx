@@ -8,7 +8,7 @@ export interface TodoData {
 }
 
 export interface TodoProps extends TodoData {
-  DeleteTodo: (todoID: number) => void
   UpdateTodo: (todoID: number, completed: boolean) => void
+  DeleteTodo: (todoID: number) => void
   // DeleteTodo: (todoID: number) => void
 }
