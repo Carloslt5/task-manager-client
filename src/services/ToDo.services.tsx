@@ -19,6 +19,10 @@ class ToDoServices {
     return this.instance.post('/todos/createdTodo', newTodo)
   }
 
+  updateToDo(_id: number, completed: boolean) {
+    return this.instance.put('/todos/updateTodo', { _id, completed })
+  }
+
   deleteToDo(_id: number) {
     return this.instance.delete(`/todos/deleteTodo/${_id}`)
   }

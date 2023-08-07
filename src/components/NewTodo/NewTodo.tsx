@@ -35,7 +35,7 @@ const NewTodo = ({ AddTodo }: NewTodoProps) => {
 
     <form
       onSubmit={todoSubmithandler}
-      className='my-4 flex flex-col gap-2 md:flex-row'
+      className='my-4 flex flex-col gap-3 md:flex-row'
     >
       <input
         className='shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'

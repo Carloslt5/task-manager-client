@@ -1,14 +1,14 @@
 import EachTodo from '../EachTodo/EachTodo'
 import { TodoListProps } from './../../types/TodoListProps.type'
 
-const TodoList = ({ todoslist, DeleteTodo }: TodoListProps) => {
+const TodoList = ({ todoslist, UpdateTodo, DeleteTodo }: TodoListProps) => {
 
   return (
     <div className='shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'>
       {<ul>
         {todoslist?.map((todo, idx) =>
           <li key={idx}>
-            <EachTodo {...todo} DeleteTodo={DeleteTodo} />
+            <EachTodo {...todo} UpdateTodo={UpdateTodo} DeleteTodo={DeleteTodo} />
           </li>
         )}
       </ul>}

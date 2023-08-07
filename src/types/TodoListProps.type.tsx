@@ -5,7 +5,7 @@ export interface TodoList {
 }
 
 export interface TodoListProps extends TodoList {
-  // UpdateTodo: (todoID: number) => void
+  UpdateTodo: (todoID: number, completed: boolean) => void
   DeleteTodo: (todoID: number) => void
   // ClearCompleted: () => void
   // FilteredTodo: (filter: string) => void
