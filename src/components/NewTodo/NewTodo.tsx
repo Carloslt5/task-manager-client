@@ -26,7 +26,6 @@ const NewTodo = ({ AddTodo }: NewTodoProps) => {
         setNewTodo({ title: '' })
       })
       .catch(err => console.log(err))
-
   }
 
   const { title } = newTodo
