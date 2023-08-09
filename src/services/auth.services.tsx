@@ -17,6 +17,10 @@ class AuthServices {
   login(userData: object) {
     return this.instance.post('/auth/login', userData)
   }
+
+  verify(userData: string) {
+    return this.instance.get('/auth/verify', { headers: { Authorization: `Bearer ${userData}` } })
+  }
 }
 
 const authservices = new AuthServices()

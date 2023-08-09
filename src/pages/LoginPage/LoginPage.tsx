@@ -21,8 +21,9 @@ const LoginPage = () => {
 
     try {
       const { data } = await authservices.login(loginData)
-      console.log('esto recibo en el front', { data })
-      // navigate('/')
+      localStorage.setItem('authToken', data.authToken)
+      authservices.verify(data.authToken)
+      navigate('/')
     } catch (error) {
       console.log(error)
     }
