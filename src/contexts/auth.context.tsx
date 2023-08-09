@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 
 import authService from '../services/auth.services'
 
@@ -9,7 +9,7 @@ interface UserData {
 }
 
 interface AuthContextType {
-  userContext: UserData[] | null
+  userContext: UserData | null
   isLoading: boolean
   storeToken: (token: string) => void
   authenticateUser: () => Promise<void>
@@ -24,7 +24,7 @@ export const AuthContext = createContext<AuthContextType | null>(null)
 
 export function AuthProviderWrapper({ children }: UserProviderProps) {
 
-  const [userContext, setUserContext] = useState<UserData[] | null>(null)
+  const [userContext, setUserContext] = useState<UserData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   const storeToken = async (token: string) => {
@@ -36,8 +36,8 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
   }
 
   const logout = () => {
-    setIsLoading(false)
     setUserContext(null)
+    setIsLoading(false)
     removeToken()
   }
 
@@ -54,6 +54,10 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
     }
 
   }
+
+  useEffect(() => {
+    authenticateUser()
+  }, [])
 
   return (
     <AuthContext.Provider value={{ userContext, isLoading, authenticateUser, storeToken, logout }}>

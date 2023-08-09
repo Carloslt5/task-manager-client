@@ -12,11 +12,13 @@ const LoginPage = () => {
 
   const navigate = useNavigate()
 
-  const authContext = useContext(AuthContext)
-  if (authContext === null) {
-    return
-  }
-  const { storeToken, authenticateUser } = authContext
+  const { storeToken, authenticateUser } = useContext(AuthContext)!
+
+  // const authContext = useContext(AuthContext)
+  // if (authContext === null) {
+  //   return
+  // }
+  // const { storeToken, authenticateUser } = authContext
 
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
