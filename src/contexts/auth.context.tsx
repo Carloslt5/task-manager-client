@@ -1,27 +1,8 @@
-import { createContext, useEffect, useState } from 'react'
-
+import { createContext, useCallback, useEffect, useState } from 'react'
 import authService from '../services/auth.services'
-
-interface UserData {
-  _id: string
-  firstName: string
-  lastName: string
-}
-
-interface AuthContextType {
-  userContext: UserData | null
-  isLoading: boolean
-  storeToken: (token: string) => void
-  authenticateUser: () => Promise<void>
-  logout: () => void
-}
-
-interface UserProviderProps {
-  children: React.ReactNode
-}
+import { UserData, AuthContextType, UserProviderProps } from './Types/AuthContext.types'
 
 export const AuthContext = createContext<AuthContextType | null>(null)
-
 export function AuthProviderWrapper({ children }: UserProviderProps) {
 
   const [userContext, setUserContext] = useState<UserData | null>(null)
@@ -31,17 +12,17 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
     await localStorage.setItem('authToken', token)
   }
 
-  const removeToken = () => {
+  const removeToken = useCallback(async () => {
     localStorage.removeItem('authToken')
-  }
+  }, [])
 
-  const logout = () => {
+  const logout = useCallback(() => {
     setUserContext(null)
     setIsLoading(false)
     removeToken()
-  }
+  }, [removeToken])
 
-  const authenticateUser = async () => {
+  const authenticateUser = useCallback(async () => {
     const token = localStorage.getItem('authToken')
 
     try {
@@ -50,19 +31,17 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
         setUserContext(data)
       }
     } catch {
-      console.log('error')
+      logout()
     }
-
-  }
+  }, [logout])
 
   useEffect(() => {
     authenticateUser()
-  }, [])
+  }, [authenticateUser])
 
   return (
     <AuthContext.Provider value={{ userContext, isLoading, authenticateUser, storeToken, logout }}>
       {children}
     </AuthContext.Provider >
   )
-
 }

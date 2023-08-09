@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-// import { AuthContext } from '../../contexts/auth.context'
+import { AuthContext } from '../../contexts/auth.context'
 
 const Navigation = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  // const { logout } = useContext(AuthContext)
+  const { logout } = useContext(AuthContext)!
 
   const mobileMenuHandler = () => {
     setMobileMenuOpen(!mobileMenuOpen)
@@ -35,7 +35,7 @@ const Navigation = () => {
               <Link to='/' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium' aria-current='page'>HOME</Link>
               <Link to='/about' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>ABOUT</Link>
               <Link to='/profile' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>PROFILE</Link>
-              {/* <Link onClick={logout} className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>DISCONECT</Link> */}
+              <button onClick={logout} className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>DISCONECT</button>
             </div>
           </div>
         </div>
@@ -48,6 +48,7 @@ const Navigation = () => {
           <Link to='/' onClick={mobileMenuHandler} className='text-center text-white hover:underline focus:underline block rounded-md px-3 py-2 text-base font-medium' aria-current='page'>HOME</Link>
           <Link to='/about' onClick={mobileMenuHandler} className='text-center text-gray-300 hover:underline focus:underline block rounded-md px-3 py-2 text-base font-medium'>ABOUT</Link>
           <Link to='/profile' onClick={mobileMenuHandler} className='text-center text-gray-300 hover:underline focus:underline block rounded-md px-3 py-2 text-base font-medium'>PROFILE</Link>
+          <button onClick={logout} className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>DISCONECT</button>
         </div>
       </nav >
     </>
