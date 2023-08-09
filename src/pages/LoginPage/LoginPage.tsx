@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import authservices from '../../services/auth.services'
+import { AuthContext } from '../../contexts/auth.context'
 
 const LoginPage = () => {
 
@@ -10,6 +11,12 @@ const LoginPage = () => {
   })
 
   const navigate = useNavigate()
+
+  const authContext = useContext(AuthContext)
+  if (authContext === null) {
+    return
+  }
+  const { storeToken, authenticateUser } = authContext
 
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -21,8 +28,8 @@ const LoginPage = () => {
 
     try {
       const { data } = await authservices.login(loginData)
-      localStorage.setItem('authToken', data.authToken)
-      authservices.verify(data.authToken)
+      storeToken(data.authToken)
+      authenticateUser()
       navigate('/')
     } catch (error) {
       console.log(error)
@@ -58,7 +65,9 @@ const LoginPage = () => {
           />
         </div>
         <div className='flex items-center justify-between'>
-          <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>
+          <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'
+          // disabled={!authContext}
+          >
             Log in
           </button>
         </div>

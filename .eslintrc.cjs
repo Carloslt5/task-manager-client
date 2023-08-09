@@ -14,10 +14,20 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    "semi": [1, "never"],
+    "semi": [2, "never"],
     "no-multi-spaces": "error",
     "quotes": [2, "single"],
     'jsx-quotes': [2, 'prefer-single'],
     'no-multiple-empty-lines': ['error', { max: 1 }],
+    "@typescript-eslint/member-delimiter-style": ["error", {
+      "multiline": {
+        "delimiter": "none",
+        "requireLast": true
+      },
+      "singleline": {
+        "delimiter": "semi",
+        "requireLast": false
+      }
+    }]
   },
 }
