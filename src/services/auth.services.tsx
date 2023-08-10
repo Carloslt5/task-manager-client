@@ -8,6 +8,18 @@ class AuthServices {
     this.instance = axios.create({
       baseURL: import.meta.env.VITE_REACT_API_URL
     })
+
+    this.instance.interceptors.request.use((config) => {
+      const storedToken = localStorage.getItem('authToken')
+
+      if (storedToken) {
+        config.headers['Authorization'] = `Bearer ${storedToken}`
+      }
+
+      return config
+    }, (error) => {
+      return Promise.reject(error)
+    })
   }
 
   signup(userData: object) {
@@ -18,8 +30,8 @@ class AuthServices {
     return this.instance.post('/auth/login', userData)
   }
 
-  verify(userData: string) {
-    return this.instance.get('/auth/verify', { headers: { Authorization: `Bearer ${userData}` } })
+  verify(token: string) {
+    return this.instance.get('/auth/verify', { headers: { Authorization: `Bearer ${token}` } })
   }
 }
 

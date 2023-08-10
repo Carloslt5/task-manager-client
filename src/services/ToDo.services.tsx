@@ -8,6 +8,17 @@ class ToDoServices {
     this.instance = axios.create({
       baseURL: import.meta.env.VITE_REACT_API_URL
     })
+    this.instance.interceptors.request.use((config) => {
+      const storedToken = localStorage.getItem('authToken')
+
+      if (storedToken) {
+        config.headers['Authorization'] = `Bearer ${storedToken}`
+      }
+
+      return config
+    }, (error) => {
+      return Promise.reject(error)
+    })
   }
 
   getAllToDos() {

@@ -8,8 +8,6 @@ const ProfilePage = () => {
 
   const [todoData, setTodoData] = useState<TodoData[]>()
 
-  // const { user } = useContext(AuthContext) as AuthContextType
-
   const loadToDos = async () => {
     try {
       const { data } = await todoservices.getAllToDos()
@@ -75,16 +73,6 @@ const ProfilePage = () => {
             DeleteTodo={deleteTodoHandler}
           />
         }
-
-        {/* {!todoData
-          ? <h1>Loading...</h1>
-          : <TodoList
-            todolist={todoData}
-          // UpdateTodo={updateTodoHandler}
-          // DeleteTodo={deleteTodoHandler}
-          // ClearCompleted={clearCompleted}
-          />
-        } */}
 
       </div>
     </>
