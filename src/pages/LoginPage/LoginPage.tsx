@@ -42,8 +42,8 @@ const LoginPage = () => {
   const { email, password } = loginData
 
   return (
-    <div className='container mx-auto px-2 my-4 max-w-screen-sm'>
-      <form className='px-8 py-8 mb-4'
+    <div className='container mx-auto p-6 my-4 max-w-screen-sm'>
+      <form className='w-full mx-auto'
         onSubmit={submitHandler}
       >
         <div className='mb-4'>
@@ -79,10 +79,7 @@ const LoginPage = () => {
           <Link to='/signup' className='ml-2 text-blue-500 hover:underline' aria-current='page'>Sign up</Link>
         </h5>
       </form>
-      <p className='text-center text-gray-500 text-xs'>
-        &copy; All rights reserved.
-      </p>
-    </div>
+    </div >
   )
 }
 export default LoginPage
