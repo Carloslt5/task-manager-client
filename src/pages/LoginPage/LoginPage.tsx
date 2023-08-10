@@ -2,6 +2,7 @@ import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import authservices from '../../services/auth.services'
 import { AuthContext } from '../../contexts/auth.context'
+import { AuthContextType } from '../../contexts/Types/AuthContext.types'
 
 const LoginPage = () => {
 
@@ -12,7 +13,7 @@ const LoginPage = () => {
 
   const navigate = useNavigate()
 
-  const { storeToken, authenticateUser } = useContext(AuthContext)!
+  const { storeToken, authenticateUser } = useContext(AuthContext) as AuthContextType
 
   // const authContext = useContext(AuthContext)
   // if (authContext === null) {

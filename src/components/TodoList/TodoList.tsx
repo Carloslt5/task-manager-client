@@ -4,7 +4,7 @@ import { TodoListProps } from './../../types/TodoListProps.type'
 const TodoList = ({ todoslist, UpdateTodo, DeleteTodo }: TodoListProps) => {
 
   return (
-    <div className='shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'>
+    <div className='shadow appearance-none border rounded w-full mb-4 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'>
       {<ul>
         {todoslist?.map((todo, idx) =>
           <li key={idx}>

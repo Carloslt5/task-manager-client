@@ -8,6 +8,8 @@ const ProfilePage = () => {
 
   const [todoData, setTodoData] = useState<TodoData[]>()
 
+  // const { user } = useContext(AuthContext) as AuthContextType
+
   const loadToDos = async () => {
     try {
       const { data } = await todoservices.getAllToDos()
@@ -61,8 +63,8 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className='container px-2 mx-auto max-w-screen-lg'>
-        <div>ProfilePage</div>
+      <div className='container px-2 mx-auto mt-8 max-w-screen-lg'>
+        <h1 className='text-3xl'>Your Task List...</h1>
         <NewTodo AddTodo={addTodoHandler} />
 
         {!todoData
@@ -73,6 +75,7 @@ const ProfilePage = () => {
             DeleteTodo={deleteTodoHandler}
           />
         }
+
         {/* {!todoData
           ? <h1>Loading...</h1>
           : <TodoList

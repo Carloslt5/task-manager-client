@@ -5,7 +5,7 @@ export interface UserData {
 }
 
 export interface AuthContextType {
-  userContext: UserData | null
+  user: UserData | null
   isLoading: boolean
   storeToken: (token: string) => void
   authenticateUser: () => Promise<void>

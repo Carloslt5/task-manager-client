@@ -5,7 +5,7 @@ import { UserData, AuthContextType, UserProviderProps } from './Types/AuthContex
 export const AuthContext = createContext<AuthContextType | null>(null)
 export function AuthProviderWrapper({ children }: UserProviderProps) {
 
-  const [userContext, setUserContext] = useState<UserData | null>(null)
+  const [user, setUser] = useState<UserData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
   const storeToken = async (token: string) => {
@@ -17,7 +17,7 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
   }, [])
 
   const logout = useCallback(() => {
-    setUserContext(null)
+    setUser(null)
     setIsLoading(false)
     removeToken()
   }, [removeToken])
@@ -28,7 +28,7 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
     try {
       if (token) {
         const { data } = await authService.verify(token)
-        setUserContext(data)
+        setUser(data)
       }
     } catch {
       logout()
@@ -40,7 +40,7 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
   }, [authenticateUser])
 
   return (
-    <AuthContext.Provider value={{ userContext, isLoading, authenticateUser, storeToken, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, authenticateUser, storeToken, logout }}>
       {children}
     </AuthContext.Provider >
   )

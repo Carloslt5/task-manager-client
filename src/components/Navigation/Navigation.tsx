@@ -1,11 +1,12 @@
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
+import { AuthContextType } from '../../contexts/Types/AuthContext.types'
 
 const Navigation = () => {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { logout } = useContext(AuthContext)!
+  const { user, logout } = useContext(AuthContext) as AuthContextType
 
   const mobileMenuHandler = () => {
     setMobileMenuOpen(!mobileMenuOpen)
@@ -35,7 +36,15 @@ const Navigation = () => {
               <Link to='/' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium' aria-current='page'>HOME</Link>
               <Link to='/about' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>ABOUT</Link>
               <Link to='/profile' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>PROFILE</Link>
-              <button onClick={logout} className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>DISCONECT</button>
+              {!user
+                ? <>
+                  <Link to='/login' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>LOGIN</Link>
+                  <Link to='/signup' className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>SIGNUP</Link>
+                </>
+                : <button onClick={logout} className='text-white hover:underline focus:underline rounded-md px-3 py-2 text-sm font-medium'>DISCONECT</button>
+
+              }
+
             </div>
           </div>
         </div>
