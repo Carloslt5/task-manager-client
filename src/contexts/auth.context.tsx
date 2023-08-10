@@ -1,4 +1,5 @@
-import { createContext, useCallback, useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { createContext, useEffect, useState } from 'react'
 import authService from '../services/auth.services'
 import { UserData, AuthContextType, UserProviderProps } from './Types/AuthContext.types'
 
@@ -8,36 +9,39 @@ export function AuthProviderWrapper({ children }: UserProviderProps) {
   const [user, setUser] = useState<UserData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
+  useEffect(() => {
+    authenticateUser()
+  }, [])
+
   const storeToken = async (token: string) => {
     await localStorage.setItem('authToken', token)
   }
 
-  const removeToken = useCallback(async () => {
+  const removeToken = async () => {
     localStorage.removeItem('authToken')
-  }, [])
+  }
 
-  const logout = useCallback(() => {
+  const logout = () => {
     setUser(null)
     setIsLoading(false)
     removeToken()
-  }, [removeToken])
+  }
 
-  const authenticateUser = useCallback(async () => {
+  const authenticateUser = async () => {
     const token = localStorage.getItem('authToken')
 
     try {
       if (token) {
         const { data } = await authService.verify(token)
         setUser(data)
+        setIsLoading(false)
+      } else {
+        logout()
       }
-    } catch {
-      logout()
+    } catch (error) {
+      console.error('Error during authentication:', error)
     }
-  }, [logout])
-
-  useEffect(() => {
-    authenticateUser()
-  }, [authenticateUser])
+  }
 
   return (
     <AuthContext.Provider value={{ user, isLoading, authenticateUser, storeToken, logout }}>
