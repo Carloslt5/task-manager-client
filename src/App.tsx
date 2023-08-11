@@ -5,9 +5,16 @@ import Footer from './components/Footer/Footer'
 function App() {
   return (
     <>
-      <Navigation />
-      <AppRoutes />
-      <Footer />
+      <div className='block md:flex md:h-screen'>
+        <div id='navbar'>
+          <Navigation />
+        </div>
+        <div className='content w-full'>
+          <AppRoutes />
+          <Footer />
+        </div>
+      </div>
+
     </>
   )
 }

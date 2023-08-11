@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer
-      className='bg-gray-800 p-1 text-white text-center text-xs w-full '
+      className='bg-gray-800 p-1 text-white text-center text-xs w-full'
       id='footer'
     >
       <p>Todo-App-Ts.</p>
