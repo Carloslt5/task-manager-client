@@ -11,7 +11,3 @@ export interface AuthContextType {
   authenticateUser: () => Promise<void>
   logout: () => void
 }
-
-export interface UserProviderProps {
-  children: React.ReactNode
-}
