@@ -1,7 +1,8 @@
 import { useContext } from 'react'
 import { TodoData } from '../../types/Todo.type'
 import Check from '../icons/Check'
-import { ToDoContext, ToDoContextType } from '../../contexts/todo.context'
+import { ToDoContext } from '../../contexts/todo.context'
+import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 
 const EachTodo = ({ _id, title, completed }: TodoData) => {
 

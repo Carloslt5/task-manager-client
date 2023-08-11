@@ -1,8 +1,9 @@
-// import { useEffect, useState } from 'react'
-import { useContext } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useContext, useEffect } from 'react'
 import NewTodo from '../../components/NewTodo/NewTodo'
 import TodoList from '../../components/TodoList/TodoList'
-import { ToDoContext, ToDoContextType } from '../../contexts/todo.context'
+import { ToDoContext, } from '../../contexts/todo.context'
+import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 
 const ProfilePage = () => {
 
@@ -22,7 +23,11 @@ const ProfilePage = () => {
   //   setTodoData(todoData.filter(todo => !todo.completed))
   // }
 
-  const { todoData } = useContext(ToDoContext) as ToDoContextType
+  const { todoData, loadToDos } = useContext(ToDoContext) as ToDoContextType
+
+  useEffect(() => {
+    loadToDos()
+  }, [])
 
   return (
     <>

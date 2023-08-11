@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react'
 import todoservices from './../../services/ToDo.services'
-import { ToDoContext, ToDoContextType } from '../../contexts/todo.context'
+import { ToDoContext } from '../../contexts/todo.context'
+import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 
 const NewTodo = () => {
 

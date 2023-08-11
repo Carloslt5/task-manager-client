@@ -1,15 +1,8 @@
 
-import { ReactNode, createContext, useEffect, useState, } from 'react'
+import { ReactNode, createContext, useState } from 'react'
 import { TodoData } from '../types/Todo.type'
 import todoservices from '../services/ToDo.services'
-
-export interface ToDoContextType {
-  todoData: TodoData[] | null
-  loadToDos: () => Promise<void>
-  addTodoHandler: (todo: TodoData) => Promise<void>
-  updateTodoHandler: (todoID: number, completed: boolean) => Promise<void>
-  deleteTodoHandler: (todoID: number) => Promise<void>
-}
+import { ToDoContextType } from './Types/ToDoContext.types'
 
 export const ToDoContext = createContext<ToDoContextType | null>(null)
 export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
@@ -24,9 +17,6 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
       console.log(error)
     }
   }
-  useEffect(() => {
-    loadToDos()
-  }, [])
 
   const addTodoHandler = async (todo: TodoData) => {
     try {
