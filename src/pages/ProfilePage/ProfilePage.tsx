@@ -31,7 +31,7 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className='container px-2 mx-auto mt-8 max-w-screen-lg'>
+      <div className='container px-2 mx-auto mt-8 max-w-screen-sm'>
         <h1 className='text-3xl'>Your Task List...</h1>
         <NewTodo />
         {!todoData

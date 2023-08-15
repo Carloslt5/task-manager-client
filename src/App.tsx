@@ -4,7 +4,7 @@ import Footer from './components/Footer/Footer'
 
 function App() {
   return (
-    <div className='block md:flex md:h-screen'>
+    <div className='flex h-screen'>
       <div id='navbar'>
         <Navigation />
       </div>
