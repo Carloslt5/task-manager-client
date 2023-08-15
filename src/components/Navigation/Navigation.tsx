@@ -59,7 +59,7 @@ const Navigation = () => {
           {user
             ? <>
               <li className={' rounded px-2 py-1 cursor-pointer hover:bg-light-white text-gray-300  hover:bg-gray-500 '} >
-                <Link to={'/profile'} className='flex items-center gap-x-4'>
+                <Link to={`/${user._id}`} className='flex items-center gap-x-4'>
                   <span><MdDashboard /></span>
                   <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Dashboard</p>
                 </Link>
