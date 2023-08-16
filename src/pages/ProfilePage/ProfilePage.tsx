@@ -1,29 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect } from 'react'
-import NewTodo from '../../components/NewTodo/NewTodo'
-import TodoList from '../../components/TodoList/TodoList'
-import { ToDoContext, } from '../../contexts/todo.context'
-import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
+import Dashboard from '../../components/Dashboard/Dashboard'
 
 const ProfilePage = () => {
 
-  const { todoDataBackup, loadToDos } = useContext(ToDoContext) as ToDoContextType
-
-  useEffect(() => {
-    loadToDos()
-  }, [])
-
   return (
-    <>
-      <div className='container px-2 mx-auto mt-8 max-w-screen-sm'>
-        <h1 className='text-3xl'>Your Task List...</h1>
-        <NewTodo />
-        {!todoDataBackup
-          ? <h1>Loading...</h1>
-          : <TodoList />
-        }
-      </div>
-    </>
+    <div className='container px-4 mx-auto mt-8 w-100'>
+      <Dashboard />
+    </div>
   )
 }
 

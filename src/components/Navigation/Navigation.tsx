@@ -13,20 +13,6 @@ const Navigation = () => {
   const [toggleMenuOpen, setToggleMenuOpen] = useState(true)
   const { user, logout } = useContext(AuthContext) as AuthContextType
 
-  // const MenuList = [
-  //   { title: 'Home', src: '/', icon: MdHome },
-  //   { title: 'Dashboard', src: '/profile', icon: MdDashboard },
-  //   { title: 'Task', src: '/', icon: MdOutlineListAlt },
-  //   { title: 'Login / Singup ', src: '/login', icon: MdOutlineLogin },
-  //   { title: 'Logout ', src: null, icon: MdOutlineLogin, action: logout },
-  //   // { title: 'Inbox', src: 'Chat', icon: MdOutlineListAlt },
-  //   // { title: 'Accounts', src: 'User', icon: MdOutlineListAlt },
-  //   // { title: 'Schedule ', src: 'Calendar', icon: MdOutlineListAlt },
-  //   // { title: 'Search', src: 'Search', icon: MdOutlineListAlt },
-  //   // { title: 'Analytics', src: 'Chart', icon: MdOutlineListAlt },
-
-  // ]
-
   // // const mobileMenuHandler = () => {
   // //   setMobileMenuOpen(!mobileMenuOpen)
   // // }
@@ -65,7 +51,7 @@ const Navigation = () => {
                 </Link>
               </li>
               <li className={' rounded px-2 py-1 cursor-pointer hover:bg-light-white text-gray-300  hover:bg-gray-500 '} >
-                <Link to={'/'} className='flex items-center gap-x-4'>
+                <Link to={`/${user._id}/task`} className='flex items-center gap-x-4'>
                   <span><MdOutlineListAlt /></span>
                   <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Task</p>
                 </Link>
