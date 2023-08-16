@@ -8,11 +8,13 @@ export const ToDoContext = createContext<ToDoContextType | null>(null)
 export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
 
   const [todoData, setTodoData] = useState<TodoData[] | null>(null)
+  const [todoDataBackup, setTodoDataBackup] = useState(todoData)
 
   const loadToDos = async () => {
     try {
       const { data } = await todoservices.getAllToDos()
       setTodoData(data)
+      setTodoDataBackup(data)
     } catch (error) {
       console.log(error)
     }
@@ -45,8 +47,32 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
     }
   }
 
+  const changeFilter = (filter: string) => {
+    if (todoDataBackup) {
+      switch (filter) {
+        case ('All'):
+          return setTodoDataBackup(todoData)
+        case ('Active'):
+          return setTodoDataBackup(todoData!.filter(todo => !todo.completed))
+        case ('Completed'):
+          return setTodoDataBackup(todoData!.filter(todo => todo.completed))
+        default:
+          return setTodoDataBackup(todoData)
+      }
+    }
+  }
+
+  const clearCompleted = async () => {
+    try {
+      await todoservices.clearCompleted()
+      loadToDos()
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
-    <ToDoContext.Provider value={{ todoData, loadToDos, addTodoHandler, updateTodoHandler, deleteTodoHandler }}>
+    <ToDoContext.Provider value={{ todoData, todoDataBackup, loadToDos, addTodoHandler, updateTodoHandler, deleteTodoHandler, changeFilter, clearCompleted }}>
       {children}
     </ToDoContext.Provider >
   )

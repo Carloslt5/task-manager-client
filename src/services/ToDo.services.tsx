@@ -37,6 +37,10 @@ class ToDoServices {
     return this.instance.delete(`/todos/deleteTodo/${_id}`)
   }
 
+  clearCompleted() {
+    return this.instance.delete('/todos/deleteCompletedTodos')
+  }
+
 }
 
 const todoservices = new ToDoServices()
