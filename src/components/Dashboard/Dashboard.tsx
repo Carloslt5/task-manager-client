@@ -29,7 +29,7 @@ const Dashboard = () => {
         {!boardData
           ? <h1>Loading...</h1>
           : boardData.map((board, idx) =>
-            <li key={idx} className=''>
+            <li key={idx} >
               <Link to={`/${user?._id}/${board._id}`}>
                 <h1>{board.title}</h1>
               </Link>
