@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { IKanbanBoardData, INewKanbanBoard } from '../components/Dashboard/Dashboard'
+import { IKanbanBoardData, INewKanbanBoard } from '../pages/DashboardPage/DashboardPage'
 
 class KanbanServices {
 

@@ -18,7 +18,7 @@ export interface INewKanbanBoard {
   title: string
 }
 
-const Dashboard = () => {
+const KanbanPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
   const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData[] | null>(null)
 
@@ -109,4 +109,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default KanbanPage

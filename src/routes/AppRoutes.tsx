@@ -6,7 +6,7 @@ import LoginPage from '../pages/LoginPage/LoginPage'
 import SignupPage from '../pages/SignupPage/SignupPage'
 import PrivateRoutes from './PrivateRoutes'
 import TaskPage from '../pages/TaskPage/TaskPage'
-import ProjectPage from '../pages/ProjectPage/ProjectPage'
+import KanbanBoardPage from '../pages/KanbanBoardPage/KanbanBoardPage'
 
 const AppRoutes = () => {
   return (
@@ -18,8 +18,9 @@ const AppRoutes = () => {
 
       <Route element={<PrivateRoutes />}>
         <Route path='/:id' element={<ProfilePage />} />
+        <Route path='/:id/:kanbanBoardId' element={<KanbanBoardPage />} />
+        <Route path='/:id/:kanbanBoardId/:projectId' element={<h1>Projecto</h1>} />
         <Route path='/:id/task' element={<TaskPage />} />
-        <Route path='/:id/:kanbanBoardId' element={<ProjectPage />} />
       </Route>
 
     </Routes>
