@@ -30,7 +30,6 @@ const NewTodo = () => {
   const { title } = newTodo
 
   return (
-
     <form
       onSubmit={todoSubmithandler}
       className='my-4 flex flex-col gap-3 md:flex-row'

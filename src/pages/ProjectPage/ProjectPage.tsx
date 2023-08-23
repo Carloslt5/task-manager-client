@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useCallback, useEffect, useState } from 'react'
 import { MdArrowDropDownCircle, MdModeEdit } from 'react-icons/md'
 import { IKanbanBoardData } from '../../components/Dashboard/Dashboard'
+import ProjectForm from '../../components/ProjectForm/ProjectForm'
 
 const ProjectPage = () => {
   const { kanbanBoardId } = useParams()
@@ -58,7 +59,7 @@ const ProjectPage = () => {
   //   setShowInput(!showInput)
   // }
 
-  if (!kanbanBoardData) {
+  if (!kanbanBoardData || !kanbanBoardId) {
     return <h1>Loading...</h1>
   }
 
@@ -98,6 +99,7 @@ const ProjectPage = () => {
               <MdArrowDropDownCircle />
             </article>
           ))}
+          <ProjectForm kanbanID={kanbanBoardId} />
         </section>
       </div>
 
