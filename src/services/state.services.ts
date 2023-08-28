@@ -1,7 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { ProjectData } from '../types/Project.type'
 
-class ProjectServices {
+class StateServices {
 
   instance: AxiosInstance
 
@@ -22,16 +21,15 @@ class ProjectServices {
       return Promise.reject(error)
     })
   }
-
-  getOneProject(projectId: string): Promise<AxiosResponse<ProjectData>> {
-    return this.instance.get(`/project/getOneProject/${projectId}`)
+  getStates(projectId: string) {
+    return this.instance.get(`/state/getStates/${projectId}`)
   }
 
-  createProject(newProjectData: object, kanbanID: string): Promise<AxiosResponse<ProjectData>> {
-    return this.instance.post(`/project/createProject/${kanbanID}`, newProjectData)
+  createState(projectId: string, newProjectData: object) {
+    return this.instance.post(`/state/createState/${projectId}`, newProjectData)
   }
-
 }
 
-const projectservices = new ProjectServices()
-export default projectservices
+const stateservices = new StateServices()
+export default stateservices
+

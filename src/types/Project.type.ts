@@ -1,7 +1,9 @@
+import { IStateData } from '../pages/ProjectPage/ProjectPage'
 
 export interface ProjectData {
   _id: number
-  title: string
   description: boolean
   owner: string
+  state: IStateData[]
+  title: string
 }
