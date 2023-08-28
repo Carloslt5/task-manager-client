@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { ProjectData } from '../../types/Project.type'
 import { MdPostAdd, MdClose } from 'react-icons/md'
 import stateservices from '../../services/state.services'
+import ticketservices from '../../services/ticket.services'
+import { ITicketData } from '../../types/Ticket.type'
 
 export interface IStateData {
   id: string
@@ -18,13 +20,15 @@ const ProjectPage = () => {
     stateName: '',
   })
 
+  const [ticketData, setTicketData] = useState<ITicketData[] | null>(null)
+
   const [showInput, setShowInput] = useState(false)
 
   const loadProject = useCallback(async () => {
     try {
       if (projectId) {
         const { data } = await projectservices.getOneProject(projectId)
-        console.log(data)
+        // console.log(data)
         setProjectData(data)
       }
     } catch (error) {
@@ -32,9 +36,22 @@ const ProjectPage = () => {
     }
   }, [projectId])
 
+  const loadTicket = useCallback(async () => {
+    try {
+      if (projectId) {
+        const { data } = await ticketservices.getTicket(projectId)
+        setTicketData(data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+  }, [projectId])
+
   useEffect(() => {
     loadProject()
-  }, [loadProject])
+    loadTicket()
+  }, [loadProject, loadTicket])
 
   if (projectData === null) {
     return <h1>Loading</h1>
@@ -73,6 +90,12 @@ const ProjectPage = () => {
             {projectData.state.map((state, idx) => (
               <li key={idx} className='h-60 w-52 border p-2 bg-slate-400 rounded'>
                 {state.stateName}
+                {!ticketData
+                  ? <h1>Loading...</h1>
+                  : ticketData.filter(ticket => ticket.state.stateName === state.stateName).map((ticket, idx) => (
+                    <h1 key={idx}>{ticket.title}</h1>
+                  ))
+                }
               </li>
 
             ))}
