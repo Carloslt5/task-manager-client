@@ -10,7 +10,7 @@ import { ITicketData } from '../../types/Ticket.type'
 export interface IStateData {
   id: string
   stateName: string
-  ticket: string[]
+  ticket: ITicketData[]
 }
 
 const ProjectPage = () => {
@@ -21,6 +21,9 @@ const ProjectPage = () => {
   })
 
   const [ticketData, setTicketData] = useState<ITicketData[] | null>(null)
+  const [newTicket, setNewTicket] = useState({
+    title: ''
+  })
 
   const [showInput, setShowInput] = useState(false)
 
@@ -62,11 +65,30 @@ const ProjectPage = () => {
     setNewStateData({ ...newStateData, [name]: value })
   }
 
+  const ticketInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setNewTicket({ ...newTicket, [name]: value })
+  }
+
   const todoSubmithandler = async (event: React.FormEvent) => {
     event.preventDefault()
     try {
       if (projectId) {
         await stateservices.createState(projectId, newStateData)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const addTicket = async (event: React.FormEvent, state: IStateData): Promise<void> => {
+    event.preventDefault()
+    try {
+      if (projectId && newTicket) {
+        const { data } = await ticketservices.createdTicket(projectId, state, newTicket)
+        console.log('datos del ticket creado en el front createdTicket', data)
+
+        setNewTicket({ title: '' }) // Limpiar el campo después de agregar el ticket
       }
     } catch (error) {
       console.log(error)
@@ -86,27 +108,49 @@ const ProjectPage = () => {
         <p className='text-sm'>{description}</p>
 
         <div className='bg-orange-200 mt-2 overflow-x-scroll'>
-          <ul className='flex flex-wrap py-2 gap-2 justify-between '>
+          <ul className='flex flex-wrap py-2 gap-2 justify-between  bg-orange-200'>
             {projectData.state.map((state, idx) => (
-              <li key={idx} className='h-60 w-52 border p-2 bg-slate-400 rounded'>
+              <li key={idx} className='w-52 border p-2 bg-slate-400 rounded'>
                 {state.stateName}
                 {!ticketData
                   ? <h1>Loading...</h1>
                   : ticketData.filter(ticket => ticket.state.stateName === state.stateName).map((ticket, idx) => (
                     <h1 key={idx}>{ticket.title}</h1>
-                  ))
-                }
-              </li>
+                  ))}
 
+                <form
+                  onSubmit={(event) => addTicket(event, state)}
+                  className='border p-4'>
+                  <input
+                    className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
+                    type='text'
+                    placeholder='Add ticket..'
+                    name='title'
+                    // value={newTicket.title}
+                    onChange={ticketInputChange}
+                  />
+                  <div className='listAdd-Controls flex gap-2 items-center mt-2'>
+                    <button
+                      className='border px-4 py-2 flex gap-2'
+                      type='submit'>
+                      <MdPostAdd />
+                      <span>Add Ticket...</span>
+                    </button>
+                  </div>
+                </form>
+              </li>
             ))}
 
           </ul>
           {!showInput
-            ? <button className='border px-4 py-2 flex gap-2 items-center h-fit rounded bg-slate-500' onClick={toggleInput}>
+            ? <button
+              className='border px-4 py-2 flex gap-2 items-center h-fit rounded bg-slate-500'
+              onClick={toggleInput}>
               <MdPostAdd />
               <span>Add State</span>
             </button>
-            : <form className='border p-4'
+            : <form
+              className='border p-4'
               onSubmit={todoSubmithandler}
             >
               <input
