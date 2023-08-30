@@ -4,25 +4,13 @@ import { AuthContextType } from '../../contexts/Types/AuthContext.types'
 import { Link } from 'react-router-dom'
 import { MdPostAdd, MdClose } from 'react-icons/md'
 import kanbanservices from '../../services/kanban.services'
-import { ProjectData } from '../../types/Project.type'
-
-export interface IKanbanBoardData {
-  _id: string
-  title: string
-  project: ProjectData[]
-  archived: boolean
-  owner: string
-}
-
-export interface INewKanbanBoard {
-  title: string
-}
+import { IKanbanBoardData } from '../../types/KanbanBoard.type'
 
 const KanbanPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
   const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData[] | null>(null)
 
-  const [newKanbanBoard, setNewKanbanBoard] = useState<INewKanbanBoard>({
+  const [newKanbanBoard, setNewKanbanBoard] = useState<Partial<IKanbanBoardData>>({
     title: '',
   })
   const [showInput, setShowInput] = useState(false)

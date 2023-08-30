@@ -1,15 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import kanbanservices from '../../services/kanban.services'
 import { Link, useParams } from 'react-router-dom'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { MdModeEdit } from 'react-icons/md'
 import ProjectForm from '../../components/ProjectForm/ProjectForm'
-import { IKanbanBoardData } from '../KanbanPage/KanbanPage'
-import { AuthContext } from '../../contexts/auth.context'
-import { AuthContextType } from '../../contexts/Types/AuthContext.types'
+import { IKanbanBoardData } from '../../types/KanbanBoard.type'
 
 const KanbanBoardPage = () => {
-  const { user } = useContext(AuthContext) as AuthContextType
 
   const { kanbanBoardId } = useParams()
   const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData | null>(null)
@@ -94,7 +91,7 @@ const KanbanBoardPage = () => {
       <div>
         <section className='flex flex-wrap flex-col gap-2'>
           {kanbanBoardData.project.map((project, idx) => (
-            <Link to={`/${user?._id}/${kanbanBoardId}/${project._id}`} key={idx}>
+            <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
               <article className='flex rounded border p-2 justify-between items-center' >
                 <h2>{project.title}</h2>
               </article>

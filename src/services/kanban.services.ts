@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
-import { IKanbanBoardData, INewKanbanBoard } from '../pages/DashboardPage/DashboardPage'
+import { IKanbanBoardData } from '../types/KanbanBoard.type'
 
 class KanbanServices {
 
@@ -31,7 +31,7 @@ class KanbanServices {
     return this.instance.get(`/kanbanboard/getOneKanbanBoard/${kanbanBoardId}`)
   }
 
-  createKanbanBoard(newKanbanBoard: INewKanbanBoard): Promise<AxiosResponse<IKanbanBoardData[]>> {
+  createKanbanBoard(newKanbanBoard: Partial<IKanbanBoardData>): Promise<AxiosResponse<IKanbanBoardData[]>> {
     return this.instance.post('/kanbanboard/createKanbanBoard', newKanbanBoard)
   }
 

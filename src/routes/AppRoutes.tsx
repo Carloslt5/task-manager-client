@@ -20,7 +20,7 @@ const AppRoutes = () => {
       <Route element={<PrivateRoutes />}>
         <Route path='/:id' element={<ProfilePage />} />
         <Route path='/:id/:kanbanBoardId' element={<KanbanBoardPage />} />
-        <Route path='/:id/:kanbanBoardId/:projectId' element={<ProjectPage />} />
+        <Route path='/project/:kanbanBoardId/:projectId' element={<ProjectPage />} />
         <Route path='/:id/task' element={<TaskPage />} />
       </Route>
 

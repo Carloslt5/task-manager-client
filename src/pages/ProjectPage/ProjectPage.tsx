@@ -20,7 +20,7 @@ const ProjectPage = () => {
     stateName: '',
   })
 
-  const [ticketData, setTicketData] = useState<ITicketData[] | null>(null)
+  // const [ticketData, setTicketData] = useState<ITicketData[] | null>(null)
   const [newTicket, setNewTicket] = useState({
     title: ''
   })
@@ -39,22 +39,24 @@ const ProjectPage = () => {
     }
   }, [projectId])
 
-  const loadTicket = useCallback(async () => {
-    try {
-      if (projectId) {
-        const { data } = await ticketservices.getTicket(projectId)
-        setTicketData(data)
-      }
-    } catch (error) {
-      console.log(error)
-    }
+  // const loadTicket = useCallback(async () => {
+  //   try {
+  //     if (projectId) {
+  //       const { data } = await ticketservices.getTicket(projectId)
+  //       setTicketData(data)
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
 
-  }, [projectId])
+  // }, [projectId])
 
   useEffect(() => {
     loadProject()
-    loadTicket()
-  }, [loadProject, loadTicket])
+    // loadTicket()
+  }, [loadProject
+    // loadTicket
+  ])
 
   if (projectData === null) {
     return <h1>Loading</h1>
@@ -112,11 +114,11 @@ const ProjectPage = () => {
             {projectData.state.map((state, idx) => (
               <li key={idx} className='w-52 border p-2 bg-slate-400 rounded'>
                 {state.stateName}
-                {!ticketData
+                {/* {!ticketData
                   ? <h1>Loading...</h1>
                   : ticketData.filter(ticket => ticket.state.stateName === state.stateName).map((ticket, idx) => (
                     <h1 key={idx}>{ticket.title}</h1>
-                  ))}
+                  ))} */}
 
                 <form
                   onSubmit={(event) => addTicket(event, state)}
