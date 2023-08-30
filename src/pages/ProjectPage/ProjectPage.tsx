@@ -20,7 +20,7 @@ const ProjectPage = () => {
     stateName: '',
   })
 
-  // const [ticketData, setTicketData] = useState<ITicketData[] | null>(null)
+  const [ticketData, setTicketData] = useState<ITicketData[] | null>(null)
   const [newTicket, setNewTicket] = useState({
     title: ''
   })
@@ -39,24 +39,22 @@ const ProjectPage = () => {
     }
   }, [projectId])
 
-  // const loadTicket = useCallback(async () => {
-  //   try {
-  //     if (projectId) {
-  //       const { data } = await ticketservices.getTicket(projectId)
-  //       setTicketData(data)
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
+  const loadTicket = useCallback(async () => {
+    try {
+      if (projectId) {
+        const { data } = await ticketservices.getTicket(projectId)
+        setTicketData(data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
 
-  // }, [projectId])
+  }, [projectId])
 
   useEffect(() => {
     loadProject()
-    // loadTicket()
-  }, [loadProject
-    // loadTicket
-  ])
+    loadTicket()
+  }, [loadProject, loadTicket])
 
   if (projectData === null) {
     return <h1>Loading</h1>
@@ -89,8 +87,7 @@ const ProjectPage = () => {
       if (projectId && newTicket) {
         const { data } = await ticketservices.createdTicket(projectId, state, newTicket)
         console.log('datos del ticket creado en el front createdTicket', data)
-
-        setNewTicket({ title: '' }) // Limpiar el campo después de agregar el ticket
+        setNewTicket({ title: '' })
       }
     } catch (error) {
       console.log(error)
@@ -105,35 +102,35 @@ const ProjectPage = () => {
 
   return (
     <>
-      <div className='text-gray-700 bg-green-200 p-4 border rounded'>
-        <h1 className='text-3xl mb-2 underline'>{title}</h1>
+      <div className='p-4 text-gray-700 bg-green-200 border rounded'>
+        <h1 className='mb-2 text-3xl underline'>{title}</h1>
         <p className='text-sm'>{description}</p>
 
-        <div className='bg-orange-200 mt-2 overflow-x-scroll'>
-          <ul className='flex flex-wrap py-2 gap-2 justify-between  bg-orange-200'>
+        <div className='mt-2 bg-orange-200'>
+          <ul className='flex flex-wrap py-2 bg-orange-200'>
             {projectData.state.map((state, idx) => (
-              <li key={idx} className='w-52 border p-2 bg-slate-400 rounded'>
+              <li key={idx} className='p-2 border rounded w-52 bg-slate-400'>
                 {state.stateName}
-                {/* {!ticketData
+                {!ticketData
                   ? <h1>Loading...</h1>
                   : ticketData.filter(ticket => ticket.state.stateName === state.stateName).map((ticket, idx) => (
                     <h1 key={idx}>{ticket.title}</h1>
-                  ))} */}
+                  ))}
 
                 <form
                   onSubmit={(event) => addTicket(event, state)}
-                  className='border p-4'>
+                  className='p-4 border'>
                   <input
-                    className='appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white'
+                    className='block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-red-500 rounded appearance-none focus:outline-none focus:bg-white'
                     type='text'
                     placeholder='Add ticket..'
                     name='title'
                     // value={newTicket.title}
                     onChange={ticketInputChange}
                   />
-                  <div className='listAdd-Controls flex gap-2 items-center mt-2'>
+                  <div className='flex items-center gap-2 mt-2 listAdd-Controls'>
                     <button
-                      className='border px-4 py-2 flex gap-2'
+                      className='flex gap-2 px-4 py-2 border'
                       type='submit'>
                       <MdPostAdd />
                       <span>Add Ticket...</span>
@@ -146,25 +143,25 @@ const ProjectPage = () => {
           </ul>
           {!showInput
             ? <button
-              className='border px-4 py-2 flex gap-2 items-center h-fit rounded bg-slate-500'
+              className='flex items-center gap-2 px-4 py-2 border rounded h-fit bg-slate-500'
               onClick={toggleInput}>
               <MdPostAdd />
               <span>Add State</span>
             </button>
             : <form
-              className='border p-4'
+              className='p-4 border'
               onSubmit={todoSubmithandler}
             >
               <input
-                className='shadow appearance-none border rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                className='px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
                 type='text'
                 name='stateName'
                 placeholder='Insert State...'
                 onChange={handlerInputChange}
               />
-              <div className='listAdd-Controls flex gap-2 items-center mt-2'>
+              <div className='flex items-center gap-2 mt-2 listAdd-Controls'>
                 <button
-                  className='border px-4 py-2 flex gap-2'
+                  className='flex gap-2 px-4 py-2 border'
                   type='submit'>
                   <MdPostAdd />
                   <span>Add State</span>

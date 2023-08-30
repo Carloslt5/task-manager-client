@@ -1,35 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import kanbanservices from '../../services/kanban.services'
 import { Link, useParams } from 'react-router-dom'
-import { useCallback, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { MdModeEdit } from 'react-icons/md'
 import ProjectForm from '../../components/ProjectForm/ProjectForm'
-import { IKanbanBoardData } from '../../types/KanbanBoard.type'
+import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
+import EachKanbanBoard from '../../components/EachKanbanBoard/EachKanbanBoard'
 
 const KanbanBoardPage = () => {
-
   const { kanbanBoardId } = useParams()
-  const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData | null>(null)
+  const { kanbanBoardData, loadKanbanBoard } = useContext(KanbanContext) as KanbanContextType
 
   const [isEditing, setEditing] = useState(false)
   const [editedContent, setEditedContent] = useState({
     title: '',
   })
 
-  const loadKanbanBoard = useCallback(async () => {
-    try {
-      if (kanbanBoardId) {
-        const { data } = await kanbanservices.getOneKanbanBoard(kanbanBoardId)
-        setKanbanBoardData(data)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }, [kanbanBoardId])
-
   useEffect(() => {
-    loadKanbanBoard()
-  }, [loadKanbanBoard])
+    if (kanbanBoardId) {
+      loadKanbanBoard(kanbanBoardId)
+    }
+  }, [])
 
   const handlerEditClick = () => {
     setEditing(!isEditing)
@@ -48,7 +39,7 @@ const KanbanBoardPage = () => {
       if (kanbanBoardId) {
         await kanbanservices.updateKanbanBoard(kanbanBoardId, editedContent)
         setEditedContent({ title: '' })
-        loadKanbanBoard()
+        loadKanbanBoard(kanbanBoardId)
         setEditing(false)
       }
     } catch (error) {
@@ -63,11 +54,11 @@ const KanbanBoardPage = () => {
   const { title } = kanbanBoardData
 
   return (
-    <div className='shadow appearance-none border rounded w-100 m-4 py-2 px-2 text-gray-700 leading-tight'>
-      <div className='cardTitle mb-2 flex justify-between items-center gap-4'>
-
+    <div className='px-2 py-2 m-4 text-gray-700 border rounded shadow appearance-none w-100'>
+      <div className='flex items-center justify-between gap-4 mb-2 cardTitle'>
+        {/* change title */}
         {!isEditing
-          ? <h1 className='text-2xl p-2 border border-transparent rounded w-full'>{title}</h1>
+          ? <h1 className='w-full p-2 text-2xl border border-transparent rounded'>{title}</h1>
           :
           <form
             onSubmit={todoSubmithandler}
@@ -77,26 +68,22 @@ const KanbanBoardPage = () => {
               name='title'
               value={editedContent.title}
               onChange={handlerInputChange}
-              className='text-2xl p-2 bg-gray-50 border text-gray-900 rounded focus:ring-blue-500 block w-full'
+              className='block w-full p-2 text-2xl text-gray-900 border rounded bg-gray-50 focus:ring-blue-500'
               placeholder={title}
               required />
           </form>
         }
-
-        <div className='board-controls flex gap-2 items-center'>
+        <div className='flex items-center gap-2 board-controls'>
           <button onClick={handlerEditClick}><MdModeEdit /></button>
         </div>
       </div>
 
       <div>
-        <section className='flex flex-wrap flex-col gap-2'>
+        <section className='flex flex-col flex-wrap gap-2'>
           {kanbanBoardData.project.map((project, idx) => (
             <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
-              <article className='flex rounded border p-2 justify-between items-center' >
-                <h2>{project.title}</h2>
-              </article>
+              <EachKanbanBoard {...project} />
             </Link>
-
           ))}
           <ProjectForm kanbanID={kanbanBoardId} />
         </section>

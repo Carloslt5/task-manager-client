@@ -1,0 +1,32 @@
+import { ReactNode, createContext, useState } from 'react'
+import { IKanbanBoardData } from '../types/KanbanBoard.type'
+import kanbanservices from '../services/kanban.services'
+
+export interface KanbanContextType {
+  kanbanBoardData: IKanbanBoardData | null
+  loadKanbanBoard: (kanbanBoardId: string) => Promise<void>
+}
+
+export const KanbanContext = createContext<KanbanContextType | null>(null)
+
+export function KanbanProviderWrapper({ children }: { children: ReactNode }) {
+
+  const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData | null>(null)
+
+  const loadKanbanBoard = async (kanbanBoardId: string) => {
+    try {
+      if (kanbanBoardId) {
+        const { data } = await kanbanservices.getOneKanbanBoard(kanbanBoardId)
+        setKanbanBoardData(data)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  return (
+    <KanbanContext.Provider value={{ kanbanBoardData, loadKanbanBoard }}>
+      {children}
+    </KanbanContext.Provider >
+  )
+}

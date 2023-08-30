@@ -18,14 +18,14 @@ const Navigation = () => {
   // // }
 
   return (
-    <nav className={`bg-gray-900 h-screen flex flex-col p-4 pt-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
+    <nav className={`bg-gray-900 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
 
-      <div className='toggleMenu p-2 rounded-full bg-gray-900 border border-white absolute top-3 -right-3' onClick={() => setToggleMenuOpen(!toggleMenuOpen)}>
+      <div className='absolute p-2 bg-gray-900 border border-white rounded-full toggleMenu top-3 -right-3' onClick={() => setToggleMenuOpen(!toggleMenuOpen)}>
         {toggleMenuOpen ? <ArrowLeftIcon /> : <ArrowRigthIcon />}
       </div>
 
       <Link to={'/'}>
-        <div className='navBarTop flex gap-x-2 items-center bg-gray-500 rounded'>
+        <div className='flex items-center bg-gray-500 rounded navBarTop gap-x-2'>
           <span>
             <Logo />
           </span>

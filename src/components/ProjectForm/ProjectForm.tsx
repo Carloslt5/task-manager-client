@@ -1,8 +1,12 @@
 import { MdPostAdd, MdClose } from 'react-icons/md'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import projectservices from '../../services/project.services'
+import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
+import { useParams } from 'react-router-dom'
 
 const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
+  const { kanbanBoardId } = useParams()
+  const { loadKanbanBoard } = useContext(KanbanContext) as KanbanContextType
 
   const [newProjectData, setNewProjectData] = useState({
     title: '',
@@ -21,6 +25,8 @@ const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
     try {
       await projectservices.createProject(newProjectData, kanbanID)
       setNewProjectData({ title: '', description: '' })
+      loadKanbanBoard(kanbanBoardId!)
+      setShowInput(false)
     } catch (error) {
       console.log(error)
     }
@@ -29,19 +35,21 @@ const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
   const toggleInput = () => {
     setShowInput(!showInput)
   }
+
   const { title, description } = newProjectData
+
   return (
     <>
       {!showInput
-        ? <button className='border px-4 py-2 flex gap-2 items-center h-fit rounded' onClick={toggleInput}>
+        ? <button className='flex items-center gap-2 px-4 py-2 border rounded h-fit' onClick={toggleInput}>
           <MdPostAdd />
           <span>Add Proyect</span>
         </button>
-        : <form className='border p-4'
+        : <form className='flex flex-col gap-2 p-4 border rounded'
           onSubmit={todoSubmithandler}
         >
           <input
-            className='shadow appearance-none border rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
             type='text'
             name='title'
             value={title}
@@ -49,15 +57,15 @@ const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
             onChange={handlerInputChange}
           />
           <input
-            className='shadow appearance-none border rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            className='px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
             type='text'
             name='description'
             value={description}
             placeholder='Insert description...'
             onChange={handlerInputChange}
           />
-          <div className='listAdd-Controls flex gap-2 items-center mt-2'>
-            <button className='border px-4 py-2 flex gap-2'>
+          <div className='flex items-center gap-2 mt-2 listAdd-Controls'>
+            <button className='flex gap-2 px-4 py-2 border'>
               <MdPostAdd />
               <span>Add Board</span>
             </button>

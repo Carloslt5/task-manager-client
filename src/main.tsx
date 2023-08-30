@@ -5,15 +5,18 @@ import App from './App.tsx'
 import './index.css'
 import { AuthProviderWrapper } from './contexts/auth.context'
 import { ToDoProviderWrapper } from './contexts/todo.context.tsx'
+import { KanbanProviderWrapper } from './contexts/kanban.context.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProviderWrapper>
-      <ToDoProviderWrapper>
-        <Router>
-          <App />
-        </Router>
-      </ToDoProviderWrapper>
+      <KanbanProviderWrapper>
+        <ToDoProviderWrapper>
+          <Router>
+            <App />
+          </Router>
+        </ToDoProviderWrapper>
+      </KanbanProviderWrapper>
     </AuthProviderWrapper>
   </React.StrictMode>
 )

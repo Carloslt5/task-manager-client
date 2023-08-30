@@ -4,15 +4,15 @@ import AppRoutes from './routes/AppRoutes'
 
 function App() {
   return (
-    <div className='flex h-screen'>
-      <>
+    <div className='flex h-screen min-w-screen'>
+      <div className='h-screen navigation'>
         <Navigation />
-      </>
-      <div className='flex-grow p-2'>
+      </div>
+      <div className='w-full p-4 dark:bg-slate-200'>
         <AppRoutes />
         {/* <Footer /> */}
       </div>
-    </div>
+    </div >
   )
 }
 

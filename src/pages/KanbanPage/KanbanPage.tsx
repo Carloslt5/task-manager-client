@@ -51,49 +51,56 @@ const KanbanPage = () => {
   const { title } = newKanbanBoard
 
   return (
-    <>
-      <h1 className='text-3xl mb-4'>Welcome {user?.firstName} {user?.lastName} 🫂</h1>
-      <div className='flex flex-wrap gap-2 mb-2 w-100'>
+    <div className='container max-w-6xl mx-auto'>
+
+      <h1 className='mb-4 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>Boards</h1>
+      <div className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'>
         {!kanbanBoardData
           ? <h1>Loading...</h1>
           : kanbanBoardData.map((kanbanBoard, idx) => (
             <Link to={`/${user?._id}/${kanbanBoard._id}`} key={idx}>
-              <article className=' w-60 h-32 p-4 rounded border'>
+              <article className='flex items-center justify-center h-32 p-4 text-white bg-gray-800 border rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'>
                 <h2>{kanbanBoard.title}</h2>
               </article>
             </Link>)
           )}
+      </div >
 
-        {!showInput
-          ? <button className='border px-4 py-2 flex gap-2 items-center h-fit rounded' onClick={toggleInput}>
+      {!showInput
+        ? <form className='text-white bg-gray-800 border rounded h-fit hover:bg-gradient-to-b from-emerald-500 to-emerald-900 w-fit'>
+          <button
+            className='flex items-center gap-2 px-4 py-2'
+            onClick={toggleInput}>
             <MdPostAdd />
             <span>Add Board</span>
           </button>
-          : <form className='border p-4'
-            onSubmit={todoSubmithandler}>
-            <input
-              className='shadow appearance-none border rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              type='text'
-              name='title'
-              value={title}
-              placeholder='Insert Task...'
-              onChange={handlerInputChange}
-            />
-            <div className='listAdd-Controls flex gap-2 items-center mt-2'>
-              <button
-                className='border px-4 py-2 flex gap-2'
-                type='submit'>
-                <MdPostAdd />
-                <span>Add Board</span>
-              </button>
-              <button onClick={toggleInput}>
-                <MdClose />
-              </button>
-            </div>
-          </form>
-        }
-      </div >
-    </>
+        </form>
+        : <form className='flex flex-col gap-4 p-4 text-white bg-gray-800 border rounded h-fit w-fit'
+          onSubmit={todoSubmithandler}>
+          <input
+            className='px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+            type='text'
+            name='title'
+            value={title}
+            placeholder='Insert Task...'
+            onChange={handlerInputChange}
+          />
+          <div className='flex items-center gap-2 listAdd-Controls'>
+            <button
+              className='flex items-center gap-2 px-4 py-2 bg-gray-800 border rounded hover:border-transparent hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+              type='submit'>
+              <MdPostAdd />
+              <span>Add Board</span>
+            </button>
+            <button
+              className='flex justify-center flex-1 h-full py-3 rounded hover:border hover:border-red-500 hover:bg-gray-900'
+              onClick={toggleInput}>
+              <MdClose />
+            </button>
+          </div>
+        </form >
+      }
+    </div>
   )
 }
 
