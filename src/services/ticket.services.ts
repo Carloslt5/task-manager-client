@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios'
-import { IStateData } from '../pages/ProjectPage/ProjectPage'
 
 class TicketServices {
 
@@ -26,8 +25,8 @@ class TicketServices {
     return this.instance.get(`/ticket/getTicket/${projectId}`)
   }
 
-  createdTicket(projectId: string, state: IStateData, newTicket: object) {
-    return this.instance.post(`/ticket/createdTicket/${projectId}`, { state, newTicket })
+  createdTicket(projectId: string, stateId: string, newTicket: object) {
+    return this.instance.post(`/ticket/createdTicket/${projectId}`, { stateId, newTicket })
   }
 
 }

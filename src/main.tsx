@@ -6,16 +6,19 @@ import './index.css'
 import { AuthProviderWrapper } from './contexts/auth.context'
 import { ToDoProviderWrapper } from './contexts/todo.context.tsx'
 import { KanbanProviderWrapper } from './contexts/kanban.context.tsx'
+import { ProjectProviderWrapper } from './contexts/project.context.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProviderWrapper>
       <KanbanProviderWrapper>
-        <ToDoProviderWrapper>
-          <Router>
-            <App />
-          </Router>
-        </ToDoProviderWrapper>
+        <ProjectProviderWrapper>
+          <ToDoProviderWrapper>
+            <Router>
+              <App />
+            </Router>
+          </ToDoProviderWrapper>
+        </ProjectProviderWrapper>
       </KanbanProviderWrapper>
     </AuthProviderWrapper>
   </React.StrictMode>
