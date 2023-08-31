@@ -67,19 +67,23 @@ const ProjectPage = () => {
   const { title } = projectData
 
   return (
-    <>
+    <div className='container max-w-6xl mx-auto'>
       <h1 className='py-2 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200 '>{title}</h1>
-      <div className='mt-2 bg-orange-200'>
-        <ul className='flex flex-wrap gap-2 text-white bg-slate-800'>
+      <div className='mt-2 overflow-y-auto'>
+        <ul className='flex flex-row gap-2 pb-4 mb-2 overflow-y-scroll text-white'>
           {projectData.state.map((state, idx) => (
-            <li key={idx} className='flex flex-col justify-between p-2 border'>
+            <li key={idx} className='flex flex-col gap-2 justify-between p-2 border min-w-[13rem] bg-slate-800 rounded'>
               <article className='stateContent'>
                 <EachState {...state} />
-                <ul className='mb-2 stateTickets'>
+                <ul className='flex flex-col gap-2 py-4 mb-2 stateTickets'>
                   {!ticketData
                     ? <Loading />
                     : ticketData.filter(ticket => ticket.state?.stateName === state.stateName).map((ticket, idx) => (
-                      <li key={idx}>{ticket.title}</li>
+                      <li
+                        className='p-1 bg-gray-700 rounded cursor-pointer hover:bg-gray-900'
+                        key={idx}>
+                        {ticket.title}
+                      </li>
                     ))
                   }
                 </ul>
@@ -91,14 +95,16 @@ const ProjectPage = () => {
         </ul>
 
         {!showInput
-          ? <button
-            className='flex items-center gap-2 px-4 py-2 border rounded h-fit bg-slate-500'
-            onClick={toggleInput}>
-            <MdPostAdd />
-            <span>Add State</span>
-          </button>
+          ? <form className='text-white bg-gray-800 border rounded h-fit hover:bg-gradient-to-b from-emerald-500 to-emerald-900 w-fit'>
+            <button
+              className='flex items-center gap-2 px-4 py-2 h-fit'
+              onClick={toggleInput}>
+              <MdPostAdd />
+              <span>Add State</span>
+            </button>
+          </form>
           : <form
-            className='p-4 border'
+            className='flex flex-col gap-2 p-4 text-white bg-gray-800 border rounded h-fit w-fit'
             onSubmit={todoSubmithandler}
           >
             <input
@@ -108,14 +114,16 @@ const ProjectPage = () => {
               placeholder='Insert State...'
               onChange={handlerInputChange}
             />
-            <div className='flex items-center gap-2 mt-2 listAdd-Controls'>
+            <div className='flex justify-between gap-2 mt-2 items-strech'>
               <button
-                className='flex gap-2 px-4 py-2 border'
-                type='submit'>
+                className='flex items-center gap-2 px-4 py-2 bg-gray-800 border rounded flex-2 hover:border-transparent hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+              >
                 <MdPostAdd />
                 <span>Add State</span>
               </button>
-              <button onClick={toggleInput}>
+              <button
+                className='flex items-center justify-center flex-1 rounded hover:border hover:border-red-500 hover:bg-gray-900'
+                onClick={toggleInput}>
                 <MdClose />
               </button>
             </div>
@@ -123,7 +131,7 @@ const ProjectPage = () => {
         }
       </div >
 
-    </>
+    </div >
 
   )
 

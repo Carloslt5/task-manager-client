@@ -40,6 +40,7 @@ const BoardPage = () => {
     try {
       await kanbanservices.createKanbanBoard(newKanbanBoard)
       setNewKanbanBoard({ title: '' })
+      setShowInput(false)
       loadBoard()
     } catch (error) {
       console.log(error)
@@ -54,9 +55,11 @@ const BoardPage = () => {
 
   return (
     <div className='container max-w-6xl mx-auto'>
-
-      <h1 className='py-2 mb-4 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>Boards</h1>
-      <div className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'>
+      <h1
+        className='py-2 mb-4 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>
+        My Boards
+      </h1>
+      <div className='grid w-full gap-2 mb-4 overflow-y-auto lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[70vh]'>
         {!kanbanBoardData
           ? <Loading />
           : kanbanBoardData.map((kanbanBoard, idx) => (

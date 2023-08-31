@@ -49,7 +49,8 @@ const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
             <span>Add Proyect</span>
           </button>
         </form>
-        : <form className='flex flex-col gap-4 p-4 text-white bg-gray-800 border rounded h-fit w-fit'
+        : <form
+          className='flex flex-col gap-4 p-4 text-white bg-gray-800 border rounded h-fit w-fit'
           onSubmit={todoSubmithandler}
         >
           <input
@@ -68,7 +69,7 @@ const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
             placeholder='Insert description...'
             onChange={handlerInputChange}
           />
-          <div className='flex justify-between gap-2 mt-2 items-strech listAdd-Controls'>
+          <div className='flex justify-between gap-2 mt-2 items-strech'>
             <button
               className='flex items-center gap-2 px-4 py-2 bg-gray-800 border rounded flex-2 hover:border-transparent hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
             >

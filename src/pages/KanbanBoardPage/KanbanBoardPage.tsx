@@ -55,7 +55,7 @@ const KanbanBoardPage = () => {
   const { title } = kanbanBoardData
 
   return (
-    <>
+    <div className='container max-w-6xl mx-auto'>
       <div className='flex items-stretch justify-between gap-2 mb-2'>
         {/* change title */}
         {!isEditing
@@ -81,7 +81,7 @@ const KanbanBoardPage = () => {
         </div>
       </div>
 
-      <div className=''>
+      <div >
         <section className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[500px] overflow-y-auto'>
           {kanbanBoardData.project.map((project, idx) => (
             <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
@@ -91,7 +91,7 @@ const KanbanBoardPage = () => {
         </section>
         <ProjectForm kanbanID={kanbanBoardId} />
       </div>
-    </>
+    </div >
 
   )
 }
