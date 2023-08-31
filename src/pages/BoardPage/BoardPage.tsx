@@ -55,7 +55,7 @@ const BoardPage = () => {
   return (
     <div className='container max-w-6xl mx-auto'>
 
-      <h1 className='mb-4 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>Boards</h1>
+      <h1 className='py-2 mb-4 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>Boards</h1>
       <div className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'>
         {!kanbanBoardData
           ? <Loading />

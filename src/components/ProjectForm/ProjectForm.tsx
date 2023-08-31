@@ -41,11 +41,15 @@ const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
   return (
     <>
       {!showInput
-        ? <button className='flex items-center gap-2 px-4 py-2 border rounded h-fit' onClick={toggleInput}>
-          <MdPostAdd />
-          <span>Add Proyect</span>
-        </button>
-        : <form className='flex flex-col gap-2 p-4 border rounded'
+        ? <form className='text-white bg-gray-800 border rounded h-fit hover:bg-gradient-to-b from-emerald-500 to-emerald-900 w-fit'>
+          <button
+            className='flex items-center gap-2 px-4 py-2 h-fit'
+            onClick={toggleInput}>
+            <MdPostAdd />
+            <span>Add Proyect</span>
+          </button>
+        </form>
+        : <form className='flex flex-col gap-4 p-4 text-white bg-gray-800 border rounded h-fit w-fit'
           onSubmit={todoSubmithandler}
         >
           <input
@@ -64,12 +68,16 @@ const ProjectForm = ({ kanbanID }: { kanbanID: string }) => {
             placeholder='Insert description...'
             onChange={handlerInputChange}
           />
-          <div className='flex items-center gap-2 mt-2 listAdd-Controls'>
-            <button className='flex gap-2 px-4 py-2 border'>
+          <div className='flex justify-between gap-2 mt-2 items-strech listAdd-Controls'>
+            <button
+              className='flex items-center gap-2 px-4 py-2 bg-gray-800 border rounded flex-2 hover:border-transparent hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+            >
               <MdPostAdd />
-              <span>Add Board</span>
+              <span>Add Project</span>
             </button>
-            <button onClick={toggleInput}>
+            <button
+              className='flex items-center justify-center flex-1 rounded hover:border hover:border-red-500 hover:bg-gray-900'
+              onClick={toggleInput}>
               <MdClose />
             </button>
           </div>

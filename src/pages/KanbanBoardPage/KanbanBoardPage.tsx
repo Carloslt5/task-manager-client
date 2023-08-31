@@ -55,43 +55,44 @@ const KanbanBoardPage = () => {
   const { title } = kanbanBoardData
 
   return (
-    <div className='px-2 py-2 m-4 text-gray-700 border rounded shadow appearance-none w-100'>
-      <div className='flex items-center justify-between gap-4 mb-2 cardTitle'>
+    <>
+      <div className='flex items-stretch justify-between gap-2 mb-2'>
         {/* change title */}
         {!isEditing
-          ? <h1 className='w-full p-2 text-2xl border border-transparent rounded'>{title}</h1>
-          :
-          <form
+          ? <h1 className='py-2 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200 '>{title}</h1>
+          : <form
             onSubmit={todoSubmithandler}
-            className='w-full'>
+            className='flex w-full text-5xl'>
             <input
               type='text'
               name='title'
               value={editedContent.title}
               onChange={handlerInputChange}
-              className='block w-full p-2 text-2xl text-gray-900 border rounded bg-gray-50 focus:ring-blue-500'
+              className='w-full font-bold text-gray-900 uppercase border rounded bg-gray-50 focus:ring-blue-500'
               placeholder={title}
               required />
           </form>
         }
-        <div className='flex items-center gap-2 board-controls'>
-          <button onClick={handlerEditClick}><MdModeEdit /></button>
+        <div className='flex items-center rounded board-controls hover:bg-gray-300'>
+          <button
+            className='w-full h-full p-6'
+            onClick={handlerEditClick}><MdModeEdit />
+          </button>
         </div>
       </div>
 
-      <div>
-        <section className='flex flex-col flex-wrap gap-2'>
+      <div className=''>
+        <section className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[500px] overflow-y-auto'>
           {kanbanBoardData.project.map((project, idx) => (
             <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
               <EachKanbanBoard {...project} />
             </Link>
           ))}
-          <ProjectForm kanbanID={kanbanBoardId} />
         </section>
+        <ProjectForm kanbanID={kanbanBoardId} />
       </div>
-      <Loading />
+    </>
 
-    </div >
   )
 }
 
