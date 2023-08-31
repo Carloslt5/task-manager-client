@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom'
 import { MdPostAdd, MdClose } from 'react-icons/md'
 import kanbanservices from '../../services/kanban.services'
 import { IKanbanBoardData } from '../../types/KanbanBoard.type'
+import EachBoard from '../../components/EachBoard/EachBoard'
 
-const KanbanPage = () => {
+const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
   const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData[] | null>(null)
 
@@ -59,9 +60,7 @@ const KanbanPage = () => {
           ? <h1>Loading...</h1>
           : kanbanBoardData.map((kanbanBoard, idx) => (
             <Link to={`/${user?._id}/${kanbanBoard._id}`} key={idx}>
-              <article className='flex items-center justify-center h-32 p-4 text-white bg-gray-800 border rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'>
-                <h2>{kanbanBoard.title}</h2>
-              </article>
+              <EachBoard {...kanbanBoard} />
             </Link>)
           )}
       </div >
@@ -104,4 +103,4 @@ const KanbanPage = () => {
   )
 }
 
-export default KanbanPage
+export default BoardPage
