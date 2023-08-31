@@ -6,6 +6,7 @@ import { MdModeEdit } from 'react-icons/md'
 import ProjectForm from '../../components/ProjectForm/ProjectForm'
 import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
 import EachKanbanBoard from '../../components/EachKanbanBoard/EachKanbanBoard'
+import Loading from '../../components/Loading/Loading'
 
 const KanbanBoardPage = () => {
   const { kanbanBoardId } = useParams()
@@ -48,7 +49,7 @@ const KanbanBoardPage = () => {
   }
 
   if (!kanbanBoardData || !kanbanBoardId) {
-    return <h1>Loading...</h1>
+    return <Loading />
   }
 
   const { title } = kanbanBoardData
@@ -88,6 +89,7 @@ const KanbanBoardPage = () => {
           <ProjectForm kanbanID={kanbanBoardId} />
         </section>
       </div>
+      <Loading />
 
     </div >
   )

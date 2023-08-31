@@ -6,6 +6,7 @@ import { MdPostAdd, MdClose } from 'react-icons/md'
 import kanbanservices from '../../services/kanban.services'
 import { IKanbanBoardData } from '../../types/KanbanBoard.type'
 import EachBoard from '../../components/EachBoard/EachBoard'
+import Loading from '../../components/Loading/Loading'
 
 const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
@@ -57,7 +58,7 @@ const BoardPage = () => {
       <h1 className='mb-4 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>Boards</h1>
       <div className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'>
         {!kanbanBoardData
-          ? <h1>Loading...</h1>
+          ? <Loading />
           : kanbanBoardData.map((kanbanBoard, idx) => (
             <Link to={`/${user?._id}/${kanbanBoard._id}`} key={idx}>
               <EachBoard {...kanbanBoard} />

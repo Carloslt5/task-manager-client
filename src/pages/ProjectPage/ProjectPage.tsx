@@ -6,6 +6,7 @@ import { MdPostAdd, MdClose } from 'react-icons/md'
 import stateservices from '../../services/state.services'
 import ticketservices from '../../services/ticket.services'
 import { ITicketData } from '../../types/Ticket.type'
+import Loading from '../../components/Loading/Loading'
 
 export interface IStateData {
   id: string
@@ -57,7 +58,7 @@ const ProjectPage = () => {
   }, [loadProject, loadTicket])
 
   if (projectData === null) {
-    return <h1>Loading</h1>
+    return <Loading />
   }
 
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
