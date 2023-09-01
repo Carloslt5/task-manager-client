@@ -38,15 +38,15 @@ const ProjectPage = () => {
         className='py-2 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200 '>
         {title}
       </h1>
-      <div className='h-full mt-2 overflow-y-auto'>
-        <ul className='flex flex-row gap-2 pb-4 mb-2 overflow-y-scroll text-white bg-red-400 h-[70%]'>
+      <div className='h-full mt-2'>
+        <ul className='flex flex-row items-start gap-2 pb-4 mb-2 overflow-y-auto text-white h-[70%]'>
           {projectData.state.map((state, idx) => (
-            <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[13rem] bg-slate-800 rounded h-fit max-h-[100%]' >
-              <article className='flex-2'>
-                <article className='flex-1 bg-orange-400'>
-                  <EachState {...state} />
-                </article>
-                <ul className='flex flex-col gap-2 py-2 mb-2 overflow-y-scroll flex-2 bg-lime-900'>
+            <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[13rem] bg-slate-800 rounded max-h-[100%]' >
+              <div className=''>
+                <EachState {...state} />
+              </div>
+              <article className='overflow-y-scroll'>
+                <ul className='flex flex-col gap-2 overflow-y-hidden'>
                   {!ticketData
                     ? <Loading />
                     : ticketData.filter(ticket => ticket.state?.stateName === state.stateName).map((ticket, idx) => (
@@ -55,9 +55,9 @@ const ProjectPage = () => {
                   }
                 </ul>
               </article>
-              <article className='flex-1 bg-lime-300'>
+              <div className=''>
                 < AddNewTicket {...state} />
-              </article>
+              </div>
             </li >
           ))}
         </ul>
