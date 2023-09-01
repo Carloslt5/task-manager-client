@@ -2,15 +2,19 @@
 import kanbanservices from '../../services/kanban.services'
 import { Link, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
-import { MdModeEdit } from 'react-icons/md'
+import { MdModeEdit, MdPostAdd } from 'react-icons/md'
 import ProjectForm from '../../components/ProjectForm/ProjectForm'
 import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
 import EachKanbanBoard from '../../components/EachKanbanBoard/EachKanbanBoard'
 import Loading from '../../components/Loading/Loading'
+import ModalForm from '../../components/ModalForm/ModalForm'
 
 const KanbanBoardPage = () => {
   const { kanbanBoardId } = useParams()
   const { kanbanBoardData, loadKanbanBoard } = useContext(KanbanContext) as KanbanContextType
+
+  const [showModal, setShowModal] = useState(false)
+  const toggleModal = () => setShowModal(!showModal)
 
   const [isEditing, setEditing] = useState(false)
   const [editedContent, setEditedContent] = useState({
@@ -84,16 +88,28 @@ const KanbanBoardPage = () => {
         </div>
       </div>
 
-      <div >
-        <section className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[500px] overflow-y-auto'>
+      <section>
+        <div className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[500px] overflow-y-auto'>
           {kanbanBoardData.project.map((project, idx) => (
             <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
               <EachKanbanBoard {...project} />
             </Link>
           ))}
-        </section>
-        <ProjectForm kanbanID={kanbanBoardId} />
-      </div>
+        </div>
+        <button
+          className='flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+          onClick={toggleModal}>
+          <MdPostAdd />
+          <span>Add Project</span>
+        </button>
+
+        {
+          showModal &&
+          <ModalForm toggleModal={toggleModal} >
+            <ProjectForm kanbanID={kanbanBoardId} toggleModal={toggleModal} />
+          </ModalForm>
+        }
+      </section>
     </div >
 
   )

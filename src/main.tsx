@@ -11,18 +11,18 @@ import { TicketProviderWrapper } from './contexts/ticket.context.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AuthProviderWrapper>
-      <KanbanProviderWrapper>
-        <ProjectProviderWrapper>
-          <TicketProviderWrapper>
-            <ToDoProviderWrapper>
-              <Router>
+    <Router>
+      <AuthProviderWrapper>
+        <KanbanProviderWrapper>
+          <ProjectProviderWrapper>
+            <TicketProviderWrapper>
+              <ToDoProviderWrapper>
                 <App />
-              </Router>
-            </ToDoProviderWrapper>
-          </TicketProviderWrapper>
-        </ProjectProviderWrapper>
-      </KanbanProviderWrapper>
-    </AuthProviderWrapper>
+              </ToDoProviderWrapper>
+            </TicketProviderWrapper>
+          </ProjectProviderWrapper>
+        </KanbanProviderWrapper>
+      </AuthProviderWrapper>
+    </Router>
   </React.StrictMode>
 )
