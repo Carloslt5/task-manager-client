@@ -61,7 +61,8 @@ const KanbanBoardPage = () => {
         {!isEditing
           ? <h1
             className='py-2 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>
-            {title}</h1>
+            {title}
+          </h1>
           : <form
             onSubmit={todoSubmithandler}
             className='flex w-full text-5xl'>
