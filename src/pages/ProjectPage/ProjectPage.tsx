@@ -1,42 +1,30 @@
 import { useParams } from 'react-router-dom'
-import { useCallback, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { MdPostAdd, MdClose } from 'react-icons/md'
 import stateservices from '../../services/state.services'
-import ticketservices from '../../services/ticket.services'
-import { ITicketData } from '../../types/Ticket.type'
 import Loading from '../../components/Loading/Loading'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 import AddNewTicket from '../../components/AddNewTicket/AddNewTicket'
 import EachState from '../../components/EachState/EachState'
+import EachTicket from '../../components/EachTicket/EachTicket'
+import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 
 const ProjectPage = () => {
   const { projectId } = useParams()
+
   const { projectData, loadProject } = useContext(ProjectContext) as ProjectContextType
+  const { ticketData, loadTicket } = useContext(TicketContext) as TicketContextType
 
   const [newStateData, setNewStateData] = useState({
     stateName: '',
   })
 
-  const [ticketData, setTicketData] = useState<ITicketData[] | null>(null)
-
   const [showInput, setShowInput] = useState(false)
-
-  const loadTicket = useCallback(async () => {
-    try {
-      if (projectId) {
-        const { data } = await ticketservices.getTicket(projectId)
-        setTicketData(data)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-
-  }, [projectId])
 
   useEffect(() => {
     if (projectId) {
       loadProject(projectId)
-      loadTicket()
+      loadTicket(projectId)
     }
   }, [projectId, loadProject, loadTicket])
 
@@ -79,11 +67,7 @@ const ProjectPage = () => {
                   {!ticketData
                     ? <Loading />
                     : ticketData.filter(ticket => ticket.state?.stateName === state.stateName).map((ticket, idx) => (
-                      <li
-                        className='p-1 bg-gray-700 rounded cursor-pointer hover:bg-gray-900'
-                        key={idx}>
-                        {ticket.title}
-                      </li>
+                      <EachTicket {...ticket} key={idx} />
                     ))
                   }
                 </ul>
@@ -130,9 +114,7 @@ const ProjectPage = () => {
           </form>
         }
       </div >
-
     </div >
-
   )
 
 }

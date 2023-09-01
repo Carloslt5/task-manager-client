@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { MdPostAdd } from 'react-icons/md'
 import ticketservices from '../../services/ticket.services'
 import { useParams } from 'react-router-dom'
 import { IState } from '../../types/State.type'
+import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 
 const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
   const { projectId } = useParams()
+
+  const { loadTicket } = useContext(TicketContext) as TicketContextType
   const [newTicket, setNewTicket] = useState({
     title: ''
   })
@@ -20,6 +23,7 @@ const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
     try {
       if (projectId && newTicket) {
         await ticketservices.createdTicket(projectId, stateId, newTicket)
+        loadTicket(projectId)
         setNewTicket({ title: '' })
       }
     } catch (error) {
@@ -37,7 +41,7 @@ const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
         type='text'
         placeholder='Add ticket..'
         name='title'
-        // value={newTicket.title}
+        value={newTicket.title}
         onChange={ticketInputChange}
       />
       <div className='flex items-center gap-2 mt-2 listAdd-Controls'>

@@ -10,7 +10,7 @@ import { MdDashboard, MdOutlineListAlt, MdOutlineLogin, MdHome, MdLogout } from 
 const Navigation = () => {
 
   // const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [toggleMenuOpen, setToggleMenuOpen] = useState(true)
+  const [toggleMenuOpen, setToggleMenuOpen] = useState(false)
   const { user, logout } = useContext(AuthContext) as AuthContextType
 
   // // const mobileMenuHandler = () => {

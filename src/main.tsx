@@ -7,17 +7,20 @@ import { AuthProviderWrapper } from './contexts/auth.context'
 import { ToDoProviderWrapper } from './contexts/todo.context.tsx'
 import { KanbanProviderWrapper } from './contexts/kanban.context.tsx'
 import { ProjectProviderWrapper } from './contexts/project.context.tsx'
+import { TicketProviderWrapper } from './contexts/ticket.context.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <AuthProviderWrapper>
       <KanbanProviderWrapper>
         <ProjectProviderWrapper>
-          <ToDoProviderWrapper>
-            <Router>
-              <App />
-            </Router>
-          </ToDoProviderWrapper>
+          <TicketProviderWrapper>
+            <ToDoProviderWrapper>
+              <Router>
+                <App />
+              </Router>
+            </ToDoProviderWrapper>
+          </TicketProviderWrapper>
         </ProjectProviderWrapper>
       </KanbanProviderWrapper>
     </AuthProviderWrapper>
