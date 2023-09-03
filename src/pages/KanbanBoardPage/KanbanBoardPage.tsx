@@ -88,30 +88,29 @@ const KanbanBoardPage = () => {
         </div>
       </div>
 
-      <section>
-        <div className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[500px] overflow-y-auto'>
-          {kanbanBoardData.project.map((project, idx) => (
-            <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
-              <EachKanbanBoard {...project} />
-            </Link>
-          ))}
-        </div>
-        <button
-          className='flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
-          onClick={toggleModal}>
-          <MdPostAdd />
-          <span>Add Project</span>
-        </button>
+      <button
+        className='flex items-center gap-2 px-4 py-2 mb-4 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+        onClick={toggleModal}>
+        <MdPostAdd />
+        <span>Add Project</span>
+      </button>
 
-        {
-          showModal &&
-          <ModalForm toggleModal={toggleModal} >
-            <ProjectForm kanbanID={kanbanBoardId} toggleModal={toggleModal} />
-          </ModalForm>
-        }
+      <section className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[500px] overflow-y-auto'>
+        {kanbanBoardData.project.map((project, idx) => (
+          <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
+            <EachKanbanBoard {...project} />
+          </Link>
+        ))}
       </section>
-    </div >
 
+      {
+        showModal &&
+        <ModalForm>
+          <ProjectForm kanbanID={kanbanBoardId} toggleModal={toggleModal} />
+        </ModalForm>
+      }
+
+    </div >
   )
 }
 

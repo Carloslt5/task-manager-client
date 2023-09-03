@@ -38,7 +38,15 @@ const ProjectPage = () => {
         className='py-2 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200 '>
         {title}
       </h1>
-      <div className='h-full mt-2'>
+
+      <button
+        className='flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+        onClick={toggleModal}>
+        <MdPostAdd />
+        <span>Add State</span>
+      </button>
+
+      <section className='h-full mt-2'>
         <ul className='flex flex-row items-start gap-2 pb-4 mb-2 overflow-y-auto text-white h-[70%]'>
           {projectData.state.map((state, idx) => (
             <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[13rem] bg-slate-800 rounded max-h-[100%]' >
@@ -61,20 +69,15 @@ const ProjectPage = () => {
             </li >
           ))}
         </ul>
-        <button
-          className='flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
-          onClick={toggleModal}>
-          <MdPostAdd />
-          <span>Add State</span>
-        </button>
-      </div >
+      </section >
 
       {
         showModal &&
-        <ModalForm toggleModal={toggleModal} >
+        <ModalForm >
           <AddNewState toggleModal={toggleModal} />
         </ModalForm>
       }
+
     </div >
   )
 }
