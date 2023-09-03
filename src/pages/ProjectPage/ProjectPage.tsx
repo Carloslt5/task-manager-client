@@ -44,7 +44,7 @@ const ProjectPage = () => {
           {!projectData
             ? <Loading />
             : projectData.state.map((state, idx) => (
-              <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[13rem] bg-slate-800 rounded max-h-[100%]' >
+              <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[15rem] bg-slate-800 rounded max-h-[100%]' >
                 <div className=''>
                   <EachState {...state} />
                 </div>
