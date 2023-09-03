@@ -27,10 +27,6 @@ const ProjectPage = () => {
     }
   }, [projectId, loadProject, loadTicket])
 
-  if (projectData === null) {
-    return <Loading />
-  }
-
   return (
     <div className='container h-full max-w-6xl mx-auto'>
 
@@ -45,26 +41,28 @@ const ProjectPage = () => {
 
       <section className='h-[80%] mt-2'>
         <ul className='flex flex-row items-start h-full gap-2 pb-4 mb-2 overflow-y-auto text-white'>
-          {projectData.state.map((state, idx) => (
-            <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[13rem] bg-slate-800 rounded max-h-[100%]' >
-              <div className=''>
-                <EachState {...state} />
-              </div>
-              <article className='overflow-y-scroll'>
-                <ul className='flex flex-col gap-2 overflow-y-hidden'>
-                  {!ticketData
-                    ? <Loading />
-                    : ticketData.filter(ticket => ticket.state?.stateName === state.stateName).map((ticket, idx) => (
-                      <EachTicket {...ticket} key={idx} />
-                    ))
-                  }
-                </ul>
-              </article>
-              <div className=''>
-                < AddNewTicket {...state} />
-              </div>
-            </li >
-          ))}
+          {!projectData
+            ? <Loading />
+            : projectData.state.map((state, idx) => (
+              <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[13rem] bg-slate-800 rounded max-h-[100%]' >
+                <div className=''>
+                  <EachState {...state} />
+                </div>
+                <article className='overflow-y-scroll'>
+                  <ul className='flex flex-col gap-2 overflow-y-hidden'>
+                    {!ticketData
+                      ? <Loading />
+                      : ticketData.filter(ticket => ticket.state?.stateName === state.stateName).map((ticket, idx) => (
+                        <EachTicket {...ticket} key={idx} />
+                      ))
+                    }
+                  </ul>
+                </article>
+                <div className=''>
+                  < AddNewTicket {...state} />
+                </div>
+              </li >
+            ))}
         </ul>
       </section >
 
