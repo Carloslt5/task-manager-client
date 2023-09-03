@@ -9,6 +9,7 @@ import EachTicket from '../../components/EachTicket/EachTicket'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 import ModalForm from '../../components/ModalForm/ModalForm'
 import AddNewState from '../../components/AddNewState/AddNewState'
+import ChangeProjectTitle from '../../components/ChangeProjectTitle/ChangeProjectTitle'
 
 const ProjectPage = () => {
   const { projectId } = useParams()
@@ -30,24 +31,20 @@ const ProjectPage = () => {
     return <Loading />
   }
 
-  const { title } = projectData
-
   return (
-    <div className='container h-screen max-w-6xl mx-auto'>
-      <h1
-        className='py-2 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200 '>
-        {title}
-      </h1>
+    <div className='container h-full max-w-6xl mx-auto'>
+
+      <ChangeProjectTitle />
 
       <button
-        className='flex items-center gap-2 px-4 py-2 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+        className='flex items-center gap-2 px-4 py-2 mb-4 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add State</span>
       </button>
 
-      <section className='h-full mt-2'>
-        <ul className='flex flex-row items-start gap-2 pb-4 mb-2 overflow-y-auto text-white h-[70%]'>
+      <section className='h-[80%] mt-2'>
+        <ul className='flex flex-row items-start h-full gap-2 pb-4 mb-2 overflow-y-auto text-white'>
           {projectData.state.map((state, idx) => (
             <li key={idx} className='flex flex-col gap-2 p-2 border min-w-[13rem] bg-slate-800 rounded max-h-[100%]' >
               <div className=''>

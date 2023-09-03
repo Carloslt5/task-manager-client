@@ -31,6 +31,10 @@ class ProjectServices {
     return this.instance.post(`/project/createProject/${kanbanID}`, newProjectData)
   }
 
+  updateProject(projectId: string, editedContent: object): Promise<AxiosResponse<ProjectData>> {
+    return this.instance.put(`/project/updateProject/${projectId}`, editedContent)
+  }
+
 }
 
 const projectservices = new ProjectServices()
