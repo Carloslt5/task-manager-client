@@ -9,10 +9,6 @@ export function AuthProviderWrapper({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<UserData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    authenticateUser()
-  }, [])
-
   const storeToken = async (token: string) => {
     await localStorage.setItem('authToken', token)
   }
@@ -42,6 +38,10 @@ export function AuthProviderWrapper({ children }: { children: ReactNode }) {
       console.error('Error during authentication:', error)
     }
   }
+
+  useEffect(() => {
+    authenticateUser()
+  }, [])
 
   return (
     <AuthContext.Provider value={{ user, isLoading, authenticateUser, storeToken, logout }}>
