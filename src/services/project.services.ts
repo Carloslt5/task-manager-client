@@ -35,6 +35,10 @@ class ProjectServices {
     return this.instance.put(`/project/updateProject/${projectId}`, editedContent)
   }
 
+  updateOrderSates(projectId: string, orderInfo: object) {
+    return this.instance.put(`/project/updateOrderSates/${projectId}`, orderInfo)
+  }
+
 }
 
 const projectservices = new ProjectServices()

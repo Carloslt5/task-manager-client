@@ -40,14 +40,12 @@ const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
   return (
     <>
       {!showInput
-        ? <form className='w-full text-white bg-gray-800 rounded h-fit hover:bg-gray-900'>
-          <button
-            className='flex items-center w-full gap-2 p-1 h-fit'
-            onClick={toggleInput}>
-            <MdAdd />
-            <p >Add Ticket...</p>
-          </button>
-        </form>
+        ? <button
+          className='flex items-center w-full gap-2 p-1 rounded h-fit hover:bg-gray-900'
+          onClick={toggleInput}>
+          <MdAdd />
+          <p >Add Ticket...</p>
+        </button>
         : <form
           onSubmit={(event) => addTicket(event, stateId)}
           className=''>

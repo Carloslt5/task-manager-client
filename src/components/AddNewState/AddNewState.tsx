@@ -68,11 +68,6 @@ const AddNewState: React.FC<AddNewStateProps> = ({ toggleModal }) => {
               <MdPostAdd />
               <span>Add State</span>
             </button>
-            <button
-              className='absolute flex items-center justify-center p-4 rounded hover:border hover:border-red-500 hover:bg-gray-900'
-              onClick={toggleModal}>
-              <MdClose />
-            </button>
           </div>
         </form>
       </div>

@@ -4,8 +4,8 @@ import projectservices from '../services/project.services'
 
 export interface ProjectContextType {
   projectData: ProjectData | null
+  // setProjectData: React.Dispatch<React.SetStateAction<ProjectData | null>>
   loadProject: (projectId: string) => Promise<void>
-
 }
 
 export const ProjectContext = createContext<ProjectContextType | null>(null)
