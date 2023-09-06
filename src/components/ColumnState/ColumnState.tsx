@@ -6,6 +6,7 @@ import EachTicket from '../EachTicket/EachTicket'
 import Loading from '../Loading/Loading'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 import { useDrop } from 'react-dnd'
+import ticketservices from '../../services/ticket.services'
 
 const ColumnState: React.FC<IState> = (state) => {
   const { ticketData, setTicketData } = useContext(TicketContext) as TicketContextType
@@ -19,15 +20,22 @@ const ColumnState: React.FC<IState> = (state) => {
   }))
 
   const addTicketToState = (ticketID: string) => {
-    setTicketData(prev => {
-
-      const orderTicket = prev?.map(ticket => {
+    setTicketData(tickets => {
+      if (!tickets) {
+        return tickets
+      }
+      const orderTicket = tickets?.map(ticket => {
         if (ticket._id == ticketID) {
           return { ...ticket, state: state }
         }
         return ticket
       })
-
+      try {
+        const infoupdate = { ticketID, state }
+        ticketservices.updateStateTicket(infoupdate)
+      } catch (error) {
+        console.error('Error al cambiar el ticket en la base de datos', error)
+      }
       return orderTicket
     })
   }

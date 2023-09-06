@@ -29,6 +29,10 @@ class TicketServices {
     return this.instance.post(`/ticket/createdTicket/${projectId}`, { stateId, newTicket })
   }
 
+  updateStateTicket(infoupdate: object) {
+    return this.instance.put('/ticket/updateStateTicket', infoupdate)
+  }
+
 }
 
 const ticketservices = new TicketServices()
