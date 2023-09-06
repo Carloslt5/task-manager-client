@@ -5,19 +5,45 @@ import EachState from '../EachState/EachState'
 import EachTicket from '../EachTicket/EachTicket'
 import Loading from '../Loading/Loading'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
+import { useDrop } from 'react-dnd'
 
 const ColumnState: React.FC<IState> = (state) => {
-  const { ticketData } = useContext(TicketContext) as TicketContextType
+  const { ticketData, setTicketData } = useContext(TicketContext) as TicketContextType
+
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: 'EachTicket',
+    drop: (ticket: { id: string }) => addTicketToState(ticket.id),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver()
+    })
+  }))
+
+  const addTicketToState = (ticketID: string) => {
+    setTicketData(prev => {
+
+      const orderTicket = prev?.map(ticket => {
+        if (ticket._id == ticketID) {
+          return { ...ticket, state: state }
+        }
+        return ticket
+      })
+
+      return orderTicket
+    })
+  }
 
   return (
-    <li>
+    <li
+    >
       <article
-        className='flex flex-col gap-2 p-2 border min-w-[15rem] bg-slate-800 rounded max-h-[100%]'
+        className={`flex flex-col gap-2 p-2 border min-w-[15rem] bg-slate-800 rounded max-h-[100%]  ${isOver ? 'bg-slate-900' : ''}`}
       >
         <EachState {...state} />
 
-        <article className='overflow-y-scroll'>
-          <ul className='flex flex-col gap-2 overflow-y-hidden'>
+        <article className='p-1 overflow-y-scroll'>
+          <ul
+            ref={drop}
+            className='flex flex-col gap-2 overflow-y-hidden'>
             {!ticketData
               ? <Loading />
               : ticketData.filter(ticket => ticket.state?.stateName === state.stateName).map((ticket, idx) => (

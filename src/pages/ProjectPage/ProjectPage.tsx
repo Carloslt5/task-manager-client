@@ -8,6 +8,8 @@ import ModalForm from '../../components/ModalForm/ModalForm'
 import AddNewState from '../../components/AddNewState/AddNewState'
 import ChangeProjectTitle from '../../components/ChangeProjectTitle/ChangeProjectTitle'
 import ColumnState from '../../components/ColumnState/ColumnState'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const ProjectPage = () => {
   const { projectId } = useParams()
@@ -39,15 +41,15 @@ const ProjectPage = () => {
         <MdPostAdd />
         <span>Add State</span>
       </button>
-
-      <section className='h-[80%] mt-2'>
-        <ul className='flex flex-row items-stretch h-full gap-2 pb-4 mb-2 overflow-y-auto text-white'>
-          {projectData.state.map((state, idx) => (
-            <ColumnState {...state} key={idx} />
-          ))}
-        </ul>
-      </section >
-
+      <DndProvider backend={HTML5Backend}>
+        <section className='h-[80%] mt-2'>
+          <ul className='flex flex-row items-stretch h-full gap-2 pb-4 mb-2 overflow-y-auto text-white'>
+            {projectData.state.map((state, idx) => (
+              <ColumnState {...state} key={idx} />
+            ))}
+          </ul>
+        </section >
+      </DndProvider>
       {
         showModal &&
         <ModalForm >

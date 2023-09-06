@@ -4,6 +4,7 @@ import ticketservices from '../services/ticket.services'
 
 export interface TicketContextType {
   ticketData: ITicketData[] | null
+  setTicketData: React.Dispatch<React.SetStateAction<ITicketData[] | null>>
   loadTicket: (projectId: string) => Promise<void>
 
 }
@@ -25,7 +26,7 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <TicketContext.Provider value={{ ticketData, loadTicket }}>
+    <TicketContext.Provider value={{ ticketData, setTicketData, loadTicket }}>
       {children}
     </TicketContext.Provider >
   )
