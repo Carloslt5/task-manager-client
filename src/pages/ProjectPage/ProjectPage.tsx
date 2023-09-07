@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from 'react'
 import { MdPostAdd } from 'react-icons/md'
 import Loading from '../../components/Loading/Loading'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
-import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 import ModalForm from '../../components/ModalForm/ModalForm'
 import AddNewState from '../../components/AddNewState/AddNewState'
 import ChangeProjectTitle from '../../components/ChangeProjectTitle/ChangeProjectTitle'
@@ -15,7 +14,6 @@ const ProjectPage = () => {
   const { projectId } = useParams()
 
   const { projectData, loadProject } = useContext(ProjectContext) as ProjectContextType
-  const { loadTicket } = useContext(TicketContext) as TicketContextType
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
@@ -23,9 +21,8 @@ const ProjectPage = () => {
   useEffect(() => {
     if (projectId) {
       loadProject(projectId)
-      loadTicket(projectId)
     }
-  }, [projectId, loadProject, loadTicket])
+  }, [projectId, loadProject])
 
   if (!projectData || !projectId || !projectData.state) {
     return <Loading />

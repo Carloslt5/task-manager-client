@@ -4,11 +4,13 @@ import ticketservices from '../../services/ticket.services'
 import { useParams } from 'react-router-dom'
 import { IState } from '../../types/State.type'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
+import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 
 const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
   const { projectId } = useParams()
 
   const [showInput, setShowInput] = useState(false)
+  const { loadProject } = useContext(ProjectContext) as ProjectContextType
 
   const { loadTicket } = useContext(TicketContext) as TicketContextType
   const [newTicket, setNewTicket] = useState({
@@ -31,6 +33,8 @@ const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
         await ticketservices.createdTicket(projectId, stateId, newTicket)
         loadTicket(projectId)
         setNewTicket({ title: '' })
+        toggleInput()
+        loadProject(projectId)
       }
     } catch (error) {
       console.log(error)
