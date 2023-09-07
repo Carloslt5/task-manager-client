@@ -12,7 +12,6 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const ProjectPage = () => {
   const { projectId } = useParams()
-
   const { projectData, loadProject } = useContext(ProjectContext) as ProjectContextType
 
   const [showModal, setShowModal] = useState(false)
