@@ -1,13 +1,14 @@
 import { useDrag } from 'react-dnd'
 import { ITicketData } from '../../types/Ticket.type'
 
-const EachTicket: React.FC<ITicketData> = ({ _id, title, completed, projectId, owner }) => {
+const EachTicket: React.FC<ITicketData> = ({ _id, title, state, completed, projectId, owner }) => {
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'Ticket',
     item: {
       _id: _id,
       title: title,
+      state: state,
       completed: completed,
       projectId: projectId,
       owner: owner
