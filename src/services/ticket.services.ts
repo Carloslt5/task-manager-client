@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { ITicketData } from '../types/Ticket.type'
 
 class TicketServices {
 
@@ -29,8 +30,8 @@ class TicketServices {
     return this.instance.post(`/ticket/createdTicket/${projectId}`, { stateId, newTicket })
   }
 
-  updateStateTicket(infoupdate: object) {
-    return this.instance.put('/ticket/updateStateTicket', infoupdate)
+  updateStateTicket(ticketId: string, stateId: string): Promise<AxiosResponse<ITicketData>> {
+    return this.instance.put('/ticket/updateStateTicket', { ticketId, stateId })
   }
 
 }

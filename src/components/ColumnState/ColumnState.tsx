@@ -8,6 +8,7 @@ import { useContext, useEffect } from 'react'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 import { useParams } from 'react-router-dom'
 import { ITicketData } from '../../types/Ticket.type'
+import ticketservices from '../../services/ticket.services'
 
 const ColumnState: React.FC<IState> = (state) => {
   const { projectId } = useParams()
@@ -33,6 +34,8 @@ const ColumnState: React.FC<IState> = (state) => {
 
       return updateTicket || null
     })
+
+    ticketservices.updateStateTicket(ticketToAdd._id, state._id)
   }
 
   useEffect(() => {
