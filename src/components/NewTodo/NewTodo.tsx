@@ -32,10 +32,10 @@ const NewTodo = () => {
   return (
     <form
       onSubmit={todoSubmithandler}
-      className='my-4 flex flex-col gap-3 md:flex-row'
+      className='flex flex-col gap-3 my-4 md:flex-row'
     >
       <input
-        className='shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+        className='w-full px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
         type='text'
         name='title'
         value={title}
@@ -43,7 +43,7 @@ const NewTodo = () => {
         onChange={handlerInputChange}
       />
       <button
-        className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+        className='px-4 py-2 font-bold text-white bg-teal-500 rounded hover:bg-teal-800'
         type='submit'>
         Add
       </button>

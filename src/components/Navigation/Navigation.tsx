@@ -18,7 +18,7 @@ const Navigation = () => {
   // // }
 
   return (
-    <nav className={`bg-gray-900 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
+    <nav className={`dark:bg-zinc-950 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
 
       <div className='absolute p-2 bg-gray-900 border border-white rounded-full toggleMenu top-3 -right-3' onClick={() => setToggleMenuOpen(!toggleMenuOpen)}>
         {toggleMenuOpen ? <ArrowLeftIcon /> : <ArrowRigthIcon />}

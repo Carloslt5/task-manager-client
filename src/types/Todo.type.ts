@@ -4,7 +4,5 @@ export interface TodoData {
   title: string
   completed: boolean
   owner: string
-  createdAt: string
-  updatedAt: string
 }
 

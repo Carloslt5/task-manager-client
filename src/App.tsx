@@ -8,7 +8,7 @@ function App() {
       <div className='h-screen navigation'>
         <Navigation />
       </div>
-      <div className='w-full h-full p-4 overflow-hidden dark:bg-slate-100'>
+      <div className='w-full h-full p-4 overflow-hidden dark:bg-zinc-900'>
         <AppRoutes />
         {/* <Footer /> */}
       </div>
