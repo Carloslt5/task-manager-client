@@ -35,7 +35,7 @@ export function AuthProviderWrapper({ children }: { children: ReactNode }) {
         logout()
       }
     } catch (error) {
-      console.error('Error during authentication:', error)
+      logout()
     }
   }
 
@@ -44,7 +44,7 @@ export function AuthProviderWrapper({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, authenticateUser, storeToken, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, setUser, authenticateUser, storeToken, logout }}>
       {children}
     </AuthContext.Provider >
   )

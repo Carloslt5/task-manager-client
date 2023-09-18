@@ -10,4 +10,5 @@ export interface AuthContextType {
   storeToken: (token: string) => void
   authenticateUser: () => Promise<void>
   logout: () => void
+  setUser: React.Dispatch<React.SetStateAction<UserData | null>>
 }
