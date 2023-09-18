@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer components {
-  .btn-primary {
+  .btn-form {
     @apply px-4 py-2 font-bold text-white bg-blue-500 rounded dark:bg-teal-500 dark:hover:bg-teal-800 hover:bg-blue-800
+  }
+
+  .btn-add {
+    @apply px-4 py-2 mb-4 text-white rounded bg-slate-500 hover:bg-gradient-to-b from-emerald-500 to-emerald-900 dark:bg-zinc-800 dark:border-gray-400 border
   }
 
   .input-primary {
@@ -17,5 +21,17 @@
 
   .hover-primary {
     @apply hover:text-blue-500 dark:hover:text-teal-500
+  }
+
+  .card-primary {
+    @apply h-32 text-white border dark:border-gray-400 rounded bg-slate-500 hover:bg-gradient-to-b from-emerald-500 to-emerald-900 dark:bg-zinc-800
+  }
+
+  .edit-title {
+    @apply flex items-center rounded hover:bg-gray-300 dark:text-white dark:hover:bg-zinc-800
+  }
+
+  .state-card {
+    @apply
   }
 }

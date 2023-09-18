@@ -5,7 +5,9 @@ import { AuthContextType } from '../../contexts/Types/AuthContext.types'
 import ArrowRigthIcon from '../icons/ArrowRigthIcon'
 import ArrowLeftIcon from '../icons/ArrowLeftIcon'
 import Logo from '../icons/Logo'
-import { MdDashboard, MdOutlineListAlt, MdOutlineLogin, MdHome, MdLogout, MdSunny, MdBedtime } from 'react-icons/md'
+import { MdSunny, MdBedtime } from 'react-icons/md'
+import { getNoUserMenuConstants, getUserMenuConstants, APP_NAME } from './../../const/Menu-const'
+
 const initialThemeMode = localStorage.getItem('theme') === 'dark'
 
 const Navigation = () => {
@@ -21,7 +23,6 @@ const Navigation = () => {
     } else {
       document.documentElement.classList.remove('dark')
       localStorage.setItem('theme', 'light')
-
     }
   }, [darkMode])
 
@@ -39,51 +40,52 @@ const Navigation = () => {
       </div>
 
       <Link to={'/'}>
-        <div className='flex items-center rounded hover:bg-slate-600 dark:bg-zinc-800 navBarTop gap-x-2'>
+        <div className='flex items-center rounded bg-slate-600 dark:bg-zinc-800 navBarTop gap-x-2'>
           <span>
             <Logo />
           </span>
-          <h1 className={`text-1xl font-bold origin-left whitespace-nowrap duration-300 text-white ${!toggleMenuOpen && 'scale-0'}`}>TODO-APP</h1>
+          <h1 className={`text-1xl font-bold origin-left whitespace-nowrap duration-300 text-white ${!toggleMenuOpen && 'scale-0'}`}>{APP_NAME}</h1>
         </div >
       </Link>
 
       <div className='navBarItems'>
         <ul className='flex flex-col gap-2 pt-6'>
-          <li className={'rounded px-2 py-1 cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800'} >
-            <Link to={'/'} className='flex items-center gap-x-4'>
-              <span><MdHome /></span>
-              <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Home</p>
-            </Link>
-          </li>
 
           {user
             ? <>
-              <li className={' rounded  cursor-pointe rhover:bg-slate-600 dark:hover:bg-zinc-800'} >
-                <Link to={`/${user._id}/task`} className='flex items-center px-2 py-1 gap-x-4'>
-                  <span><MdOutlineListAlt /></span>
-                  <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Task</p>
-                </Link>
-              </li>
-              <li className={'rounded cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800'} >
-                <Link to={`/${user._id}`} className='flex items-center px-2 py-1 gap-x-4 '>
-                  <span><MdDashboard /></span>
-                  <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Dashboard</p>
-                </Link>
-              </li>
-              <li className={' rounded  cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800'} >
-                <button className='flex items-center px-2 py-1 gap-x-4' onClick={logout}>
-                  <span><MdLogout /></span>
-                  <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Logout</p>
-                </button>
-              </li>
+              {
+                getUserMenuConstants(user, logout).map((el, idx) => (
+                  <li
+                    className={'rounded  cursor-pointe hover:bg-slate-600 dark:hover:bg-zinc-800'}
+                    key={idx}
+                    title={el.title}
+                    onClick={el.onClick ? el.onClick : undefined}
+                  >
+                    <Link to={el.src}
+                      className='flex items-center px-2 py-1 gap-x-4'>
+                      <span>{el.icon}</span>
+                      <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>{el.title}</p>
+                    </Link>
+                  </li>
+                ))
+              }
             </>
-
-            : <li className={' rounded cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800'} >
-              <Link to={'/login'} className='flex items-center px-2 py-1 gap-x-4'>
-                <span><MdOutlineLogin /></span>
-                <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Login / Signup</p>
-              </Link>
-            </li>
+            :
+            <>
+              {
+                getNoUserMenuConstants().map((el, idx) => (
+                  <li
+                    className={' rounded  cursor-pointe hover:bg-slate-600 dark:hover:bg-zinc-800'}
+                    key={idx}
+                    title={el.title}>
+                    <Link to={el.src} className='flex items-center px-2 py-1 gap-x-4'>
+                      <span>{el.icon}</span>
+                      <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>{el.title}</p>
+                    </Link>
+                  </li>
+                ))
+              }
+            </>
           }
         </ul>
       </div>

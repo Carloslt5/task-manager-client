@@ -96,7 +96,7 @@ const SignupForm = () => {
           </div>
         </div>
         <div className='flex items-center justify-between'>
-          <button className='w-full btn-primary'
+          <button className='w-full btn-form '
             type='submit'>
             Sign Up
           </button>

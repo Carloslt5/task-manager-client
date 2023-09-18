@@ -43,7 +43,7 @@ const NewTodo = () => {
         onChange={handlerInputChange}
       />
       <button
-        className='btn-primary'
+        className='btn-form'
         type='submit'>
         Add
       </button>

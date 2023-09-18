@@ -63,7 +63,7 @@ const LoginForm = () => {
         </div>
         <div className='flex items-center justify-between'>
           <button
-            className='w-full btn-primary'
+            className='w-full btn-form '
             type='submit'
           >
             Log in
