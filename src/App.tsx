@@ -1,6 +1,5 @@
 import Navigation from './components/Navigation/Navigation'
 import AppRoutes from './routes/AppRoutes'
-// import Footer from './components/Footer/Footer'
 
 function App() {
   return (
@@ -8,9 +7,8 @@ function App() {
       <div className='h-screen navigation'>
         <Navigation />
       </div>
-      <div className='w-full h-full p-4 overflow-hidden dark:bg-slate-100'>
+      <div className='w-full h-full p-4 overflow-hidden transition-all duration-300 dark:bg-zinc-900 bg-slate-200'>
         <AppRoutes />
-        {/* <Footer /> */}
       </div>
     </div >
   )

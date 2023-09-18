@@ -31,16 +31,16 @@ const SignupForm = () => {
   const { firstName, lastName, email, password } = signupData
 
   return (
-    <div className='container mx-auto p-6 my-4 max-w-screen-sm'>
-      <form className='w-full mx-auto'
+    <div className='container flex items-center justify-center h-full max-w-screen-sm p-6 mx-auto text-white h-100 dark:text-gray-300' >
+      <form className='w-full p-4 mx-auto rounded bg-slate-700 dark:bg-zinc-800'
         onSubmit={submitHandler}
       >
-        <div className='flex flex-wrap -mx-3 mb-6'>
-          <div className='w-full md:w-1/2 px-3 mb-6 md:mb-0'>
-            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='grid-first-name'>
+        <div className='flex flex-wrap mb-6 -mx-3'>
+          <div className='w-full px-3 mb-6 md:w-1/2 md:mb-0'>
+            <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-first-name'>
               First Name
             </label>
-            <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            <input className='input-primary'
               id='grid-first-name'
               type='text'
               placeholder='Your First Name'
@@ -49,11 +49,11 @@ const SignupForm = () => {
               onChange={handlerInputChange}
             />
           </div>
-          <div className='w-full md:w-1/2 px-3'>
-            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='grid-last-name'>
+          <div className='w-full px-3 md:w-1/2'>
+            <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-last-name'>
               Last Name
             </label>
-            <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+            <input className='input-primary'
               id='grid-last-name'
               type='text'
               placeholder='Your Last Name'
@@ -63,12 +63,13 @@ const SignupForm = () => {
             />
           </div>
         </div>
-        <div className='flex flex-wrap -mx-3 mb-6'>
+        <div className='flex flex-wrap mb-6 -mx-3'>
           <div className='w-full px-3'>
-            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='grid-email'>
+            <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-email'>
               Email
             </label>
-            <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outlinegrid-password'
+            <input
+              className='input-primary'
               id='grid-email'
               type='email'
               placeholder='Example@email.com'
@@ -78,12 +79,13 @@ const SignupForm = () => {
             />
           </div>
         </div>
-        <div className='flex flex-wrap -mx-3 mb-6'>
+        <div className='flex flex-wrap mb-6 -mx-3'>
           <div className='w-full px-3'>
-            <label className='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' htmlFor='grid-password'>
+            <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-password'>
               Password
             </label>
-            <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outlinegrid-password'
+            <input
+              className='input-primary'
               id='grid-password'
               type='password'
               placeholder='******************'
@@ -94,13 +96,18 @@ const SignupForm = () => {
           </div>
         </div>
         <div className='flex items-center justify-between'>
-          <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'>
+          <button className='w-full btn-form '
+            type='submit'>
             Sign Up
           </button>
         </div>
-        <hr className='border my-8' />
-        <h5>Don't have an account?
-          <Link to='/login' className='ml-2 text-blue-500 hover:underline' aria-current='page'>Log in</Link>
+        <hr className='my-8 border' />
+        <h5>I have an account
+          <Link to='/login'
+            className='ml-2 text-primary-color'
+            aria-current='page'>
+            Log in
+          </Link>
         </h5>
       </form>
     </div>

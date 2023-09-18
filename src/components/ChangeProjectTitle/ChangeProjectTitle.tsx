@@ -71,7 +71,7 @@ const ChangeProjectTitle = () => {
         </form>
       }
 
-      <div className='flex items-center rounded board-controls hover:bg-gray-300'>
+      <div className='edit-title'>
         <button
           className='w-full h-full px-6'
           onClick={handlerEditClick}

@@ -45,7 +45,7 @@ const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
     <>
       {!showInput
         ? <button
-          className='flex items-center w-full gap-2 p-1 rounded h-fit hover:bg-gray-900'
+          className='flex items-center w-full gap-2 p-1 rounded h-fit hover:bg-gray-900 dark:hover:bg-zinc-800 focus-outline-none '
           onClick={toggleInput}>
           <MdAdd />
           <p >Add Ticket...</p>
@@ -54,21 +54,21 @@ const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
           onSubmit={(event) => addTicket(event, stateId)}
           className=''>
           <input
-            className='w-full p-1 text-gray-700 bg-gray-200 border border-red-500 rounded appearance-none focus:outline-none focus:bg-white'
+            className='w-full input-primary'
             type='text'
             placeholder='Add ticket..'
             name='title'
             value={newTicket.title}
             onChange={ticketInputChange}
           />
-          <div className='flex items-stretch justify-end gap-2 mt-2 listAdd-Controls'>
+          <div className='flex items-stretch justify-end gap-2 mt-2'>
             <button
-              className='p-2 rounded hover:bg-gray-900 hover:text-emerald-500 '
+              className='p-2 rounded hover:bg-gray-900 hover:text-emerald-500 dark:hover:bg-zinc-800'
             >
               <span className='flex items-center gap-1'><MdOutlineCheck />Add ticket</span>
             </button>
             <button
-              className='p-2 rounded hover:bg-gray-900 hover:text-red-500'
+              className='p-2 rounded hover:bg-gray-900 dark:hover:bg-zinc-800 hover:text-red-500'
               onClick={toggleInput}
             >
               <span><MdOutlineClose /> </span>

@@ -32,14 +32,14 @@ const ProjectPage = () => {
     <div className='container h-full max-w-6xl mx-auto'>
       <ChangeProjectTitle />
       <button
-        className='flex items-center gap-2 px-4 py-2 mb-4 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+        className='flex items-center gap-2 btn-add '
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add State</span>
       </button>
       <DndProvider backend={HTML5Backend}>
         <section className='h-[80%] mt-2'>
-          <ul className='flex flex-row items-stretch h-full gap-2 pb-4 mb-2 overflow-y-auto text-white'>
+          <ul className='flex flex-row items-stretch h-full gap-4 pb-4 mb-2 overflow-y-auto text-white'>
             {projectData.state.map((state, idx) => (
               <ColumnState {...state} key={idx} />
             ))}

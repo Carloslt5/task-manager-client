@@ -38,7 +38,7 @@ const BoardPage = () => {
       </h1>
 
       <button
-        className='flex items-center gap-2 px-4 py-2 mb-4 text-white bg-gray-800 rounded hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+        className='flex items-center gap-2 btn-add'
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add Board</span>

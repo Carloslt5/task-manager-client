@@ -13,16 +13,16 @@ const TaskPage = () => {
   }, [])
 
   return (
-    <>
-      <div className='container px-4 mx-auto mt-8 w-100 '>
-        <h1 className='text-3xl'>Your Task List...</h1>
-        <NewTodo />
-        {!todoDataBackup
-          ? <h1>Loading...</h1>
-          : <TodoList />
-        }
-      </div>
-    </>
+
+    <div className='container px-4 mx-auto mt-8' >
+      <h1 className='text-3xl dark:text-white'>Your Task List...</h1>
+      <NewTodo />
+      {!todoDataBackup
+        ? <h1>Loading...</h1>
+        : <TodoList />
+      }
+    </div>
+
   )
 }
 
