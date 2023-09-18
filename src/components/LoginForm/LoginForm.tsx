@@ -35,12 +35,12 @@ const LoginForm = () => {
   const { email, password } = loginData
 
   return (
-    <div className='container mx-auto p-6 my-4 max-w-screen-sm'>
-      <form className='w-full mx-auto'
+    <div className='container flex items-center justify-center h-full max-w-screen-sm p-6 mx-auto text-white h-100 dark:text-gray-300' >
+      <form className='w-full p-4 mx-auto rounded bg-slate-800 dark:bg-zinc-800'
         onSubmit={submitHandler}
       >
         <div className='mb-4'>
-          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+          <input className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow outline-none appearance-none focus:ring-2 focus:ring-blue-500'
             id='email'
             type='email'
             name='email'
@@ -51,7 +51,7 @@ const LoginForm = () => {
 
         </div>
         <div className='mb-6'>
-          <input className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+          <input className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
             id='password'
             type='password'
             name='password'
@@ -61,13 +61,13 @@ const LoginForm = () => {
           />
         </div>
         <div className='flex items-center justify-between'>
-          <button className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' type='submit'
+          <button className='w-full px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline' type='submit'
           // disabled={!authContext}
           >
             Log in
           </button>
         </div>
-        <hr className='border my-8' />
+        <hr className='my-8' />
         <h5>Don't have an account?
           <Link to='/signup' className='ml-2 text-blue-500 hover:underline' aria-current='page'>Sign up</Link>
         </h5>
