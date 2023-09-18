@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { TodoData } from '../../types/Todo.type'
 import { MdDeleteForever } from 'react-icons/md'
-import Check from '../icons/Check'
+import { MdCheck } from 'react-icons/md'
 import { ToDoContext } from '../../contexts/todo.context'
 import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 
@@ -19,7 +19,7 @@ const EachTodo = ({ _id, title, completed }: TodoData) => {
           }
           onClick={() => updateTodoHandler(_id, completed)}
         >
-          {completed && <Check />}
+          {completed && <MdCheck />}
         </button>
         <p className={`${completed && 'line-through'}`}>
           {title}

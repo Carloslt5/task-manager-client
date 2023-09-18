@@ -34,6 +34,10 @@ class TicketServices {
     return this.instance.put('/ticket/updateStateTicket', { ticketId, stateId })
   }
 
+  deleteTicket(ticketId: string) {
+    return this.instance.delete(`/ticket/deleteTicket/${ticketId}`)
+  }
+
 }
 
 const ticketservices = new TicketServices()

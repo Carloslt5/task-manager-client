@@ -2,10 +2,8 @@ import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import { AuthContextType } from '../../contexts/Types/AuthContext.types'
-import ArrowRigthIcon from '../icons/ArrowRigthIcon'
-import ArrowLeftIcon from '../icons/ArrowLeftIcon'
 import Logo from '../icons/Logo'
-import { MdSunny, MdBedtime } from 'react-icons/md'
+import { MdSunny, MdBedtime, MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
 import { getNoUserMenuConstants, getUserMenuConstants, APP_NAME } from './../../const/Menu-const'
 
 const initialThemeMode = localStorage.getItem('theme') === 'dark'
@@ -37,9 +35,9 @@ const Navigation = () => {
     <nav
       className={`bg-slate-700 dark:bg-zinc-950 dark:text-gray-300 text-white min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
       <div
-        className='absolute p-2 border border-white rounded-full cursor-pointer bg-slate-700 dark:bg-zinc-950 toggleMenu top-3 -right-3'
+        className='absolute p-1 border border-white rounded-full cursor-pointer bg-slate-700 dark:bg-zinc-950 toggleMenu top-3 -right-3'
         onClick={toggleMenu}>
-        {toggleMenuOpen ? <ArrowLeftIcon /> : <ArrowRigthIcon />}
+        {toggleMenuOpen ? <MdKeyboardArrowLeft /> : <MdKeyboardArrowRight />}
       </div>
 
       <Link to={'/'}>

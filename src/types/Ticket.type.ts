@@ -5,7 +5,7 @@ export interface ITicketData {
   _id: string
   title: string
   completed: boolean
-  projectId: ProjectData
+  project: ProjectData
   state: IState
   owner: string
 }

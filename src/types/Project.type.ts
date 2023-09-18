@@ -1,7 +1,7 @@
 import { IState } from './State.type'
 
 export interface ProjectData {
-  _id: number
+  _id: string
   description: boolean
   owner: string
   state: IState[]
