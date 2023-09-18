@@ -42,7 +42,7 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
     <>
       <div
         id='containerForm'
-        className=' flex flex-col  min-w-[90%] md:min-w-[50%] gap-2 p-4 text-white bg-gray-800 border rounded h-3/4'>
+        className=' flex flex-col  min-w-[90%] md:min-w-[50%] gap-2 p-4 text-white bg-slate-700  dark:bg-zinc-900 border border-gray-400 rounded h-3/4'>
         <div className='flex justify-between'>
           <h1 className='text-2xl text-white '>Insert new project</h1>
           <button
@@ -75,7 +75,7 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
           />
           <div className='flex justify-between gap-2 mt-4 items-strech'>
             <button
-              className='flex items-center gap-2 px-4 py-2 bg-gray-800 border rounded flex-2 hover:border-transparent hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
+              className='flex items-center gap-2 btn-add'
             >
               <MdPostAdd />
               <span>Add Project</span>

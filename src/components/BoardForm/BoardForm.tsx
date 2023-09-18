@@ -34,44 +34,40 @@ const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, toggleModal }) => {
   const { title } = newKanbanBoard
 
   return (
-    <>
-      <div
-        id='containerForm'
-        className=' flex flex-col  min-w-[90%] md:min-w-[50%] gap-2 p-4 text-white bg-gray-800 border rounded h-3/4'>
-        <div className='flex justify-between'>
-          <h1 className='text-2xl text-white '>Insert new board</h1>
+    <div
+      id='containerForm'
+      className=' flex flex-col  min-w-[90%] md:min-w-[50%] gap-2 p-4 text-white bg-slate-700  dark:bg-zinc-900 border border-slate-400 rounded h-3/4'>
+      <div className='flex justify-between'>
+        <h1 className='text-2xl text-white'>Insert new board</h1>
+        <button
+          className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
+          onClick={toggleModal}
+        >
+          <MdClose />
+        </button>
+      </div>
+      <hr className='mb-4' />
+
+      <form className='flex flex-col gap-4 text-white'
+        onSubmit={todoSubmithandler}>
+        <input
+          className='input-primary'
+          type='text'
+          name='title'
+          value={title}
+          placeholder='Insert Task...'
+          onChange={handlerInputChange}
+        />
+        <div className='flex items-center gap-2 listAdd-Controls'>
           <button
-            className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-            onClick={toggleModal}
-          >
-            <MdClose />
+            className='flex items-center gap-2 btn-add'
+            type='submit'>
+            <MdPostAdd />
+            <span>Add Board</span>
           </button>
         </div>
-        <hr className='mb-4' />
-
-        <form className='flex flex-col gap-4 text-white bg-gray-800'
-          onSubmit={todoSubmithandler}>
-          <input
-            className='px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-            type='text'
-            name='title'
-            value={title}
-            placeholder='Insert Task...'
-            onChange={handlerInputChange}
-          />
-          <div className='flex items-center gap-2 listAdd-Controls'>
-            <button
-              className='flex items-center gap-2 px-4 py-2 bg-gray-800 border rounded hover:border-transparent hover:bg-gradient-to-b from-emerald-500 to-emerald-900'
-              type='submit'>
-              <MdPostAdd />
-              <span>Add Board</span>
-            </button>
-          </div>
-        </form >
-      </div>
-
-    </>
-
+      </form >
+    </div>
   )
 }
 

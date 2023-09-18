@@ -26,6 +26,9 @@ const Navigation = () => {
     }
   }, [darkMode])
 
+  const toggleMenu = () => {
+    setToggleMenuOpen(!toggleMenuOpen)
+  }
   const toggleThemeHandler = () => {
     setDarkMode(!darkMode)
   }
@@ -35,12 +38,12 @@ const Navigation = () => {
       className={`bg-slate-700 dark:bg-zinc-950 dark:text-gray-300 text-white min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
       <div
         className='absolute p-2 border border-white rounded-full cursor-pointer bg-slate-700 dark:bg-zinc-950 toggleMenu top-3 -right-3'
-        onClick={() => setToggleMenuOpen(!toggleMenuOpen)}>
+        onClick={toggleMenu}>
         {toggleMenuOpen ? <ArrowLeftIcon /> : <ArrowRigthIcon />}
       </div>
 
       <Link to={'/'}>
-        <div className='flex items-center rounded bg-slate-600 dark:bg-zinc-800 navBarTop gap-x-2'>
+        <div className='flex items-center rounded bg-slate-600 dark:bg-zinc-800 navBarTop gap-x-2' title={APP_NAME}>
           <span>
             <Logo />
           </span>
@@ -91,6 +94,7 @@ const Navigation = () => {
       </div>
       <span
         className='p-2 mt-auto rounded cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800 w-fit'
+        title='Theme Mode'
         onClick={toggleThemeHandler}
       >
         {darkMode ? <MdSunny /> : <MdBedtime />}

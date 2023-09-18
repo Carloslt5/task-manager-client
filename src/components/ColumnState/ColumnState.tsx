@@ -48,7 +48,7 @@ const ColumnState: React.FC<IState> = (state) => {
     <li>
       <article
         ref={drop}
-        className='flex flex-col gap-2 p-2 border border-gray-400 min-w-[15rem] bg-slate-700 dark:bg-zinc-950 rounded max-h-[100%]'
+        className='flex flex-col gap-2 p-2 border border-gray-500 min-w-[15rem] bg-slate-700 dark:bg-zinc-950 rounded max-h-[100%]'
       >
         <EachState {...state} />
 
