@@ -36,7 +36,7 @@ const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, toggleModal }) => {
   return (
     <div
       id='containerForm'
-      className=' flex flex-col  min-w-[90%] md:min-w-[50%] gap-2 p-4 text-white bg-slate-700  dark:bg-zinc-900 border border-slate-400 rounded h-3/4'>
+      className='modal-form'>
       <div className='flex justify-between'>
         <h1 className='text-2xl text-white'>Insert new board</h1>
         <button
