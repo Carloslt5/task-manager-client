@@ -7,10 +7,9 @@ import Loading from '../Loading/Loading'
 const TodoList = () => {
 
   const { todoDataBackup, changeFilter, clearCompleted } = useContext(ToDoContext) as ToDoContextType
-  // const [currentFilter, setCurrentFilter] = useState('All')
 
   return (
-    <div className='w-full px-2 py-2 mb-4 leading-tight border border-gray-400 rounded shadow appearance-none focus:outline-none focus:shadow-outline dark:bg-zinc-800'>
+    <div className='w-full px-2 py-2 mb-4 text-white border border-gray-400 rounded shadow appearance-none bg-slate-500 dark:bg-zinc-800'>
 
       <ul>
         {!todoDataBackup
@@ -29,19 +28,19 @@ const TodoList = () => {
           </li>
         </ul>
         <ul className='flex gap-4'>
-          <li className={'py-1  hover:text-emerald-400'}>
+          <li className={'py-1  hover-primary'}>
             <button
-              className={'focus:text-emerald-400'}
+              className={'focus:text-blue-500'}
               onClick={() => changeFilter('All')}>All</button>
           </li>
-          <li className={'py-1  hover:text-emerald-400'}>
+          <li className={'py-1  hover-primary'}>
             <button
-              className={'focus:text-emerald-400'}
+              className={'focus:text-blue-500'}
               onClick={() => changeFilter('Active')}>Active</button>
           </li>
-          <li className={'py-1  hover:text-emerald-400'}>
+          <li className={'py-1  hover-primary'}>
             <button
-              className={'focus:text-emerald-400'}
+              className={'focus:text-blue-500'}
               onClick={() => changeFilter('Completed')}>Completed</button>
           </li>
         </ul>

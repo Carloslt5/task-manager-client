@@ -35,7 +35,7 @@ const NewTodo = () => {
       className='flex flex-col gap-3 my-4 md:flex-row'
     >
       <input
-        className='w-full px-2 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+        className='input-primary'
         type='text'
         name='title'
         value={title}
@@ -43,7 +43,7 @@ const NewTodo = () => {
         onChange={handlerInputChange}
       />
       <button
-        className='px-4 py-2 font-bold text-white bg-teal-500 rounded hover:bg-teal-800'
+        className='btn-primary'
         type='submit'>
         Add
       </button>

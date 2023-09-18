@@ -11,13 +11,8 @@ const initialThemeMode = localStorage.getItem('theme') === 'dark'
 const Navigation = () => {
 
   const [darkMode, setDarkMode] = useState(initialThemeMode)
-  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [toggleMenuOpen, setToggleMenuOpen] = useState(false)
   const { user, logout } = useContext(AuthContext) as AuthContextType
-
-  // // const mobileMenuHandler = () => {
-  // //   setMobileMenuOpen(!mobileMenuOpen)
-  // // }
 
   useEffect(() => {
     if (darkMode) {
@@ -36,9 +31,9 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`bg-slate-800 dark:bg-zinc-950 dark:text-gray-300 text-white min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
+      className={`bg-slate-700 dark:bg-zinc-950 dark:text-gray-300 text-white min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}>
       <div
-        className='absolute p-2 border border-white rounded-full cursor-pointer bg-slate-800 dark:bg-zinc-950 toggleMenu top-3 -right-3'
+        className='absolute p-2 border border-white rounded-full cursor-pointer bg-slate-700 dark:bg-zinc-950 toggleMenu top-3 -right-3'
         onClick={() => setToggleMenuOpen(!toggleMenuOpen)}>
         {toggleMenuOpen ? <ArrowLeftIcon /> : <ArrowRigthIcon />}
       </div>
@@ -63,16 +58,16 @@ const Navigation = () => {
 
           {user
             ? <>
-              <li className={'rounded cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800'} >
-                <Link to={`/${user._id}`} className='flex items-center px-2 py-1 gap-x-4 '>
-                  <span><MdDashboard /></span>
-                  <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Dashboard</p>
-                </Link>
-              </li>
               <li className={' rounded  cursor-pointe rhover:bg-slate-600 dark:hover:bg-zinc-800'} >
                 <Link to={`/${user._id}/task`} className='flex items-center px-2 py-1 gap-x-4'>
                   <span><MdOutlineListAlt /></span>
                   <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Task</p>
+                </Link>
+              </li>
+              <li className={'rounded cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800'} >
+                <Link to={`/${user._id}`} className='flex items-center px-2 py-1 gap-x-4 '>
+                  <span><MdDashboard /></span>
+                  <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && 'scale-0'}`}>Dashboard</p>
                 </Link>
               </li>
               <li className={' rounded  cursor-pointer hover:bg-slate-600 dark:hover:bg-zinc-800'} >
