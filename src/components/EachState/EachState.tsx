@@ -40,7 +40,7 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
   }
 
   return (
-    <div className='mb-4' >
+    <div>
       {
         !isEditing
           ? <h2 onClick={handlerEditClick} className='px-1 font-bold uppercase 2xl'>{stateName}</h2>
@@ -48,16 +48,18 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
             onSubmit={todoSubmithandler}
             className='flex w-full'>
             <input
+              autoFocus
+              onBlur={handlerEditClick}
               type='text'
               name='title'
               value={editedContent.stateName}
               onChange={handlerInputChange}
-              className='w-full px-1 font-extrabold text-gray-900 uppercase rounded bg-gray-50 focus:ring-blue-500'
+              className='w-full px-1 font-extrabold text-gray-900 uppercase rounded outline-none bg-gray-50dark:focus:ring-2 dark:focus:ring-teal-500 focus:ring-2 focus:ring-blue-500'
               placeholder={stateName}
               required />
           </form>
       }
-      <hr className='my-2' />
+      <hr className='mt-2' />
     </div>
   )
 }

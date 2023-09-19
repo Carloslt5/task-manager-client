@@ -54,13 +54,14 @@ const ColumnState: React.FC<IState> = (state) => {
 
         <article className={`py-2 overflow-y-scroll rounded ${isOver && 'bg-slate-950 dark:bg-zinc-700'}`}>
           <ul className='flex flex-col gap-2 overflow-y-hidden'>
-            {!ticketData
-              ? <Loading />
-              : ticketData
-                .filter((ticket) => ticket.state._id === state._id)
-                .map((ticket) => (
-                  <EachTicket key={ticket._id} {...ticket} />
-                ))
+            {
+              !ticketData
+                ? <Loading />
+                : ticketData
+                  .filter((ticket) => ticket.state._id === state._id)
+                  .map((ticket) => (
+                    <EachTicket key={ticket._id} {...ticket} />
+                  ))
             }
           </ul>
         </article>

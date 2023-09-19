@@ -58,6 +58,7 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
           onSubmit={todoSubmithandler}
         >
           <input
+            autoFocus
             className='input-primary'
             type='text'
             name='title'

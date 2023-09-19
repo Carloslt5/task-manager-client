@@ -25,7 +25,6 @@ const ProjectPage = () => {
 
   if (!projectData || !projectId || !projectData.state) {
     return <Loading />
-
   }
 
   return (

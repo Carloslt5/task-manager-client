@@ -54,6 +54,8 @@ const AddNewTicket: React.FC<IState> = ({ _id: stateId }) => {
           onSubmit={(event) => addTicket(event, stateId)}
           className=''>
           <input
+            autoFocus
+            onBlur={toggleInput}
             className='w-full input-primary'
             type='text'
             placeholder='Add ticket..'

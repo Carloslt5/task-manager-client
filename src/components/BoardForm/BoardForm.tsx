@@ -51,6 +51,7 @@ const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, toggleModal }) => {
       <form className='flex flex-col gap-4 text-white'
         onSubmit={todoSubmithandler}>
         <input
+          autoFocus
           className='input-primary'
           type='text'
           name='title'

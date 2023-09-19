@@ -40,7 +40,7 @@ const AddNewState: React.FC<AddNewStateProps> = ({ toggleModal }) => {
       <div
         id='containerForm'
         className='modal-form'>
-        <div className='flex justify-between'>
+        <div className='flex justify-between' >
           <h1 className='text-2xl text-white '>Insert new state</h1>
           <button
             className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
@@ -55,6 +55,7 @@ const AddNewState: React.FC<AddNewStateProps> = ({ toggleModal }) => {
           onSubmit={todoSubmithandler}
         >
           <input
+            autoFocus
             className='input-primary'
             type='text'
             name='stateName'

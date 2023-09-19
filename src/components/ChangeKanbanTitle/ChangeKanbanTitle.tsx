@@ -58,6 +58,8 @@ const ChangeKanbanTitle = () => {
           onSubmit={todoSubmithandler}
           className='flex w-full text-5xl'>
           <input
+            autoFocus
+            onBlur={handlerEditClick}
             type='text'
             name='title'
             value={editedContent.title}
