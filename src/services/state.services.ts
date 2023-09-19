@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { IState } from '../types/State.type'
 
 class StateServices {
 
@@ -27,6 +28,10 @@ class StateServices {
 
   createState(projectId: string, newProjectData: object) {
     return this.instance.post(`/state/createState/${projectId}`, newProjectData)
+  }
+
+  editState(state: Partial<IState>): Promise<AxiosResponse<IState>> {
+    return this.instance.put('/state/editState', state)
   }
 }
 

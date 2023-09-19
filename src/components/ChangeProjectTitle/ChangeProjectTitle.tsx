@@ -7,7 +7,6 @@ import projectservices from '../../services/project.services'
 
 const ChangeProjectTitle = () => {
   const { projectId } = useParams()
-
   const { projectData, loadProject } = useContext(ProjectContext) as ProjectContextType
 
   const [isEditing, setEditing] = useState(false)
