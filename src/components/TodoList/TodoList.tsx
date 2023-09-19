@@ -9,9 +9,9 @@ const TodoList = () => {
   const { todoDataBackup, changeFilter, clearCompleted } = useContext(ToDoContext) as ToDoContextType
 
   return (
-    <div className='w-full px-2 py-2 mb-4 text-white border border-gray-400 rounded shadow appearance-none bg-slate-500 dark:bg-zinc-800'>
+    <div className='flex flex-col w-full p-2 overflow-hidden text-white border border-gray-400 rounded bg-slate-500 dark:bg-zinc-800'>
 
-      <ul>
+      <ul className='mb-4 overflow-y-auto'>
         {!todoDataBackup
           ? <Loading />
           : todoDataBackup.map((todo, idx) =>
@@ -21,7 +21,7 @@ const TodoList = () => {
           )}
       </ul>
 
-      <div className='flex flex-col items-center gap-2 mt-10 text-white filtertOptions sm:flex-row sm:justify-between '>
+      <div className='flex flex-col items-center gap-2 text-white sm:flex-row sm:justify-between '>
         <ul>
           <li className='py-1'>
             {todoDataBackup?.length} Total Task

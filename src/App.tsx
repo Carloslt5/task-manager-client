@@ -7,7 +7,7 @@ function App() {
       <div className='h-screen navigation'>
         <Navigation />
       </div>
-      <div className='w-full h-full p-4 overflow-hidden transition-all duration-300 dark:bg-zinc-900 bg-slate-200'>
+      <div className='w-full h-screen p-4 overflow-hidden transition-all duration-300 dark:bg-zinc-900 bg-slate-200'>
         <AppRoutes />
       </div>
     </div >

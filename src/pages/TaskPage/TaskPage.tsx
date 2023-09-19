@@ -15,7 +15,7 @@ const TaskPage = () => {
 
   return (
 
-    <div className='container px-4 mx-auto mt-8' >
+    <div className='container flex flex-col h-full px-4' >
       <h1 className='text-3xl dark:text-white'>Your Task List...</h1>
       <NewTodo />
       {!todoDataBackup
