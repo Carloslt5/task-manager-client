@@ -2,7 +2,10 @@ import { useContext, useState } from 'react'
 import { IState } from '../../types/State.type'
 import stateservices from '../../services/state.services'
 import { useParams } from 'react-router-dom'
+import { MdClose } from 'react-icons/md'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
+import ModalForm from '../ModalForm/ModalForm'
+import DeleteStateModal from '../DeleteStateModal/DeleteStateModal'
 
 const EachState: React.FC<IState> = ({ _id, stateName }) => {
 
@@ -13,6 +16,9 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
   const [editedContent, setEditedContent] = useState({
     stateName: '',
   })
+
+  const [showModal, setShowModal] = useState(false)
+  const toggleModal = () => setShowModal(!showModal)
 
   const handlerEditClick = () => {
     setEditing(!isEditing)
@@ -40,27 +46,43 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
   }
 
   return (
-    <div>
+    <>
+      <div className='flex items-center justify-between gap-2'>
+        {
+          !isEditing
+            ? <h2 onClick={handlerEditClick} className='px-1 font-bold uppercase 2xl'>{stateName}</h2>
+            :
+            <form
+              onSubmit={todoSubmithandler}
+              className='flex w-full'>
+              <input
+                autoFocus
+                onBlur={handlerEditClick}
+                type='text'
+                name='title'
+                value={editedContent.stateName}
+                onChange={handlerInputChange}
+                className='w-full px-1 font-extrabold text-gray-900 uppercase rounded outline-none bg-gray-50dark:focus:ring-2 dark:focus:ring-teal-500 focus:ring-2 focus:ring-blue-500'
+                placeholder={stateName}
+                required />
+            </form>
+        }
+        <button
+          onClick={toggleModal}
+          className='hover:text-red-500 '>
+          <MdClose />
+        </button>
+      </div >
+      <hr />
+
       {
-        !isEditing
-          ? <h2 onClick={handlerEditClick} className='px-1 font-bold uppercase 2xl'>{stateName}</h2>
-          : <form
-            onSubmit={todoSubmithandler}
-            className='flex w-full'>
-            <input
-              autoFocus
-              onBlur={handlerEditClick}
-              type='text'
-              name='title'
-              value={editedContent.stateName}
-              onChange={handlerInputChange}
-              className='w-full px-1 font-extrabold text-gray-900 uppercase rounded outline-none bg-gray-50dark:focus:ring-2 dark:focus:ring-teal-500 focus:ring-2 focus:ring-blue-500'
-              placeholder={stateName}
-              required />
-          </form>
+        showModal &&
+        <ModalForm >
+          <DeleteStateModal toggleModal={toggleModal} _id={_id} />
+        </ModalForm>
       }
-      <hr className='mt-2' />
-    </div>
+    </>
+
   )
 }
 

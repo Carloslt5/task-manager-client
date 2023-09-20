@@ -33,6 +33,10 @@ class StateServices {
   editState(state: Partial<IState>): Promise<AxiosResponse<IState>> {
     return this.instance.put('/state/editState', state)
   }
+
+  deleteState(stateId: string) {
+    return this.instance.delete(`/state/deleteState/${stateId}`)
+  }
 }
 
 const stateservices = new StateServices()

@@ -38,53 +38,50 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
   const { title, description } = newProjectData
 
   return (
-
-    <>
-      <div
-        id='containerForm'
-        className='modal-form'>
-        <div className='flex justify-between'>
-          <h1 className='text-2xl text-white '>Insert new project</h1>
+    <div
+      id='containerForm'
+      className='modal-form'>
+      <div className='flex justify-between'>
+        <h1 className='text-2xl text-white '>Insert new project</h1>
+        <button
+          className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
+          onClick={toggleModal}
+        >
+          <MdClose />
+        </button>
+      </div>
+      <hr className='mb-4' />
+      <form
+        className='flex flex-col gap-2 text-white'
+        onSubmit={todoSubmithandler}
+      >
+        <input
+          autoFocus
+          className='input-primary'
+          type='text'
+          name='title'
+          value={title}
+          placeholder='Insert title...'
+          onChange={handlerInputChange}
+        />
+        <input
+          className='input-primary'
+          type='text'
+          name='description'
+          value={description}
+          placeholder='Insert description...'
+          onChange={handlerInputChange}
+        />
+        <div className='flex justify-between gap-2 mt-4 items-strech'>
           <button
-            className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-            onClick={toggleModal}
+            className='flex items-center gap-2 btn-add'
           >
-            <MdClose />
+            <MdPostAdd />
+            <span>Add Project</span>
           </button>
         </div>
-        <hr className='mb-4' />
-        <form
-          className='flex flex-col gap-2 text-white'
-          onSubmit={todoSubmithandler}
-        >
-          <input
-            autoFocus
-            className='input-primary'
-            type='text'
-            name='title'
-            value={title}
-            placeholder='Insert title...'
-            onChange={handlerInputChange}
-          />
-          <input
-            className='input-primary'
-            type='text'
-            name='description'
-            value={description}
-            placeholder='Insert description...'
-            onChange={handlerInputChange}
-          />
-          <div className='flex justify-between gap-2 mt-4 items-strech'>
-            <button
-              className='flex items-center gap-2 btn-add'
-            >
-              <MdPostAdd />
-              <span>Add Project</span>
-            </button>
-          </div>
-        </form >
-      </div>
-    </>
+      </form >
+    </div>
 
   )
 }
