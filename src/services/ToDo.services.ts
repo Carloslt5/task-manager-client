@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { TodoData } from '../types/Todo.type'
 
 class ToDoServices {
 
@@ -21,24 +22,24 @@ class ToDoServices {
     })
   }
 
-  getAllToDos() {
-    return this.instance.get('/todos/getAllTodos')
+  getAllToDos(id: string): Promise<AxiosResponse<TodoData[]>> {
+    return this.instance.get(`/todos/${id}/getAllTodos`)
   }
 
-  createToDo(newTodo: object) {
-    return this.instance.post('/todos/createdTodo', newTodo)
+  createToDo(newTodo: object, id: string): Promise<AxiosResponse<TodoData>> {
+    return this.instance.post(`/todos/${id}/createdTodo`, newTodo)
   }
 
-  updateToDo(_id: number, completed: boolean) {
-    return this.instance.put('/todos/updateTodo', { _id, completed })
+  updateToDo(_id: number, completed: boolean, id: string): Promise<AxiosResponse<TodoData>> {
+    return this.instance.put(`/todos/${id}/updateTodo`, { _id, completed })
   }
 
-  deleteToDo(_id: number) {
-    return this.instance.delete(`/todos/deleteTodo/${_id}`)
+  deleteToDo(_id: number, id: string): Promise<AxiosResponse<TodoData>> {
+    return this.instance.delete(`/todos/${id}/deleteTodo/${_id}`)
   }
 
-  clearCompleted() {
-    return this.instance.delete('/todos/deleteCompletedTodos')
+  clearCompleted(id: string) {
+    return this.instance.delete(`/todos/${id}/deleteCompletedTodos`)
   }
 
 }

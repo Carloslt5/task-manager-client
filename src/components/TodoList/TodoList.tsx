@@ -3,9 +3,10 @@ import EachTodo from '../EachTodo/EachTodo'
 import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 import { ToDoContext } from '../../contexts/todo.context'
 import Loading from '../Loading/Loading'
+import { useParams } from 'react-router-dom'
 
 const TodoList = () => {
-
+  const { id } = useParams()
   const { todoDataBackup, changeFilter, clearCompleted } = useContext(ToDoContext) as ToDoContextType
 
   return (
@@ -50,7 +51,7 @@ const TodoList = () => {
         </ul>
         <ul>
           <li className='py-1 hover:text-red-500'>
-            <button onClick={() => clearCompleted()} >Clear Completed</button>
+            <button onClick={() => clearCompleted(id!)} >Clear Completed</button>
           </li>
         </ul>
       </div>

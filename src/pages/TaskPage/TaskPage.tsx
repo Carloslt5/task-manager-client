@@ -1,16 +1,19 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect } from 'react'
 import NewTodo from '../../components/NewTodo/NewTodo'
 import TodoList from '../../components/TodoList/TodoList'
 import { ToDoContext, } from '../../contexts/todo.context'
 import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
+import { useParams } from 'react-router-dom'
 
 const TaskPage = () => {
+  const { id } = useParams()
   const { loadToDos } = useContext(ToDoContext) as ToDoContextType
 
   useEffect(() => {
-    loadToDos()
-  }, [])
+    if (id) {
+      loadToDos(id)
+    }
+  }, [loadToDos, id])
 
   return (
 

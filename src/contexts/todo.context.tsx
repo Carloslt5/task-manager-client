@@ -1,5 +1,5 @@
 
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useCallback, useState } from 'react'
 import { TodoData } from '../types/Todo.type'
 import todoservices from '../services/ToDo.services'
 import { ToDoContextType } from './Types/ToDoContext.types'
@@ -10,38 +10,38 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
   const [todoData, setTodoData] = useState<TodoData[] | []>([])
   const [todoDataBackup, setTodoDataBackup] = useState(todoData)
 
-  const loadToDos = async () => {
+  const loadToDos = useCallback(async (id: string) => {
     try {
-      const { data } = await todoservices.getAllToDos()
+      const { data } = await todoservices.getAllToDos(id)
       setTodoData(data)
       setTodoDataBackup(data)
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [])
 
-  const addTodoHandler = async (todo: TodoData) => {
+  const addTodoHandler = async (todo: TodoData, id: string) => {
     try {
       setTodoData([...todoData ?? [], todo])
-      loadToDos()
+      loadToDos(id)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const updateTodoHandler = async (todoID: number, completed: boolean) => {
+  const updateTodoHandler = async (todoID: number, completed: boolean, id: string) => {
     try {
-      await todoservices.updateToDo(todoID, completed)
-      loadToDos()
+      await todoservices.updateToDo(todoID, completed, id)
+      loadToDos(id)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const deleteTodoHandler = async (todoID: number) => {
+  const deleteTodoHandler = async (todoID: number, id: string) => {
     try {
-      await todoservices.deleteToDo(todoID)
-      loadToDos()
+      await todoservices.deleteToDo(todoID, id)
+      loadToDos(id)
     } catch (error) {
       console.log(error)
     }
@@ -62,10 +62,10 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
     }
   }
 
-  const clearCompleted = async () => {
+  const clearCompleted = async (id: string) => {
     try {
-      await todoservices.clearCompleted()
-      loadToDos()
+      await todoservices.clearCompleted(id)
+      loadToDos(id)
     } catch (error) {
       console.log(error)
     }
