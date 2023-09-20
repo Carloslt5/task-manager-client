@@ -12,13 +12,17 @@ const TodoList = () => {
     <div className='flex flex-col w-full p-2 overflow-hidden text-white border border-gray-400 rounded bg-slate-500 dark:bg-zinc-800'>
 
       <ul className='mb-4 overflow-y-auto'>
-        {!todoDataBackup
-          ? <Loading />
-          : todoDataBackup.map((todo, idx) =>
-            <li key={idx}>
-              <EachTodo {...todo} />
-            </li>
-          )}
+        {
+          !todoDataBackup
+            ? <Loading />
+            : todoDataBackup.length === 0
+              ? <p>No pending tasks 👍</p>
+              : todoDataBackup.map((todo, idx) =>
+                <li key={idx}>
+                  <EachTodo {...todo} />
+                </li>
+              )
+        }
       </ul>
 
       <div className='flex flex-col items-center gap-2 text-white sm:flex-row sm:justify-between '>

@@ -7,7 +7,7 @@ import { ToDoContextType } from './Types/ToDoContext.types'
 export const ToDoContext = createContext<ToDoContextType | null>(null)
 export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
 
-  const [todoData, setTodoData] = useState<TodoData[] | null>(null)
+  const [todoData, setTodoData] = useState<TodoData[] | []>([])
   const [todoDataBackup, setTodoDataBackup] = useState(todoData)
 
   const loadToDos = async () => {
