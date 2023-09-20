@@ -9,6 +9,14 @@ const TodoList = () => {
   const { id } = useParams()
   const { todoDataBackup, changeFilter, clearCompleted } = useContext(ToDoContext) as ToDoContextType
 
+  const changeFilterHandler = (filter: string) => () => {
+    changeFilter(filter)
+  }
+
+  const clearCompletedHandler = () => {
+    clearCompleted(id!)
+  }
+
   return (
     <div className='flex flex-col w-full p-2 overflow-hidden text-white border border-gray-400 rounded bg-slate-500 dark:bg-zinc-800'>
 
@@ -36,22 +44,22 @@ const TodoList = () => {
           <li className={'py-1  hover-primary'}>
             <button
               className={'focus:text-blue-500'}
-              onClick={() => changeFilter('All')}>All</button>
+              onClick={changeFilterHandler('All')}>All</button>
           </li>
           <li className={'py-1  hover-primary'}>
             <button
               className={'focus:text-blue-500'}
-              onClick={() => changeFilter('Active')}>Active</button>
+              onClick={changeFilterHandler('Active')}>Active</button>
           </li>
           <li className={'py-1  hover-primary'}>
             <button
               className={'focus:text-blue-500'}
-              onClick={() => changeFilter('Completed')}>Completed</button>
+              onClick={changeFilterHandler('Completed')}>Completed</button>
           </li>
         </ul>
         <ul>
           <li className='py-1 hover:text-red-500'>
-            <button onClick={() => clearCompleted(id!)} >Clear Completed</button>
+            <button onClick={clearCompletedHandler} >Clear Completed</button>
           </li>
         </ul>
       </div>
