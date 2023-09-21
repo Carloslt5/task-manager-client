@@ -29,7 +29,7 @@ const DeleteStateModal: React.FC<DeleteStateModalProprs> = ({ toggleModal, _id: 
           <MdClose />
         </button>
       </div>
-      <div className='flex flex-col items-center justify-center gap-4 mb-6'>
+      <div className='flex flex-col items-center justify-center gap-4 px-4 mb-6'>
         <span className='text-7xl'><MdOutlineDelete /></span>
         <h1 className='text-2xl text-white '>Are you sure to delete the state and all tasks?</h1>
         <div className='flex items-center justify-center gap-4'>
