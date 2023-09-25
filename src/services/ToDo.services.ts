@@ -30,11 +30,11 @@ class ToDoServices {
     return this.instance.post(`/todos/${id}/createdTodo`, newTodo)
   }
 
-  updateToDo(_id: number, completed: boolean, id: string): Promise<AxiosResponse<TodoData>> {
+  updateToDo(_id: string, completed: boolean, id: string): Promise<AxiosResponse<TodoData>> {
     return this.instance.put(`/todos/${id}/updateTodo`, { _id, completed })
   }
 
-  deleteToDo(_id: number, id: string): Promise<AxiosResponse<TodoData>> {
+  deleteToDo(_id: string, id: string): Promise<AxiosResponse<TodoData>> {
     return this.instance.delete(`/todos/${id}/deleteTodo/${_id}`)
   }
 

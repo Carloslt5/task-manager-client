@@ -1,26 +1,18 @@
-import { useContext, useEffect } from 'react'
 import NewTodo from '../../components/NewTodo/NewTodo'
 import TodoList from '../../components/TodoList/TodoList'
-import { ToDoContext, } from '../../contexts/todo.context'
-import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
-import { useParams } from 'react-router-dom'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const TaskPage = () => {
-  const { id } = useParams()
-  const { loadToDos } = useContext(ToDoContext) as ToDoContextType
-
-  useEffect(() => {
-    if (id) {
-      loadToDos(id)
-    }
-  }, [loadToDos, id])
 
   return (
 
     <div className='container flex flex-col h-full px-4' >
       <h1 className='text-3xl dark:text-white'>Your Task List...</h1>
       <NewTodo />
-      <TodoList />
+      <DndProvider backend={HTML5Backend}>
+        <TodoList />
+      </DndProvider>
     </div>
 
   )

@@ -29,7 +29,7 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
     }
   }
 
-  const updateTodoHandler = async (todoID: number, completed: boolean, id: string) => {
+  const updateTodoHandler = async (todoID: string, completed: boolean, id: string) => {
     try {
       await todoservices.updateToDo(todoID, completed, id)
       loadToDos(id)
@@ -38,7 +38,7 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
     }
   }
 
-  const deleteTodoHandler = async (todoID: number, id: string) => {
+  const deleteTodoHandler = async (todoID: string, id: string) => {
     try {
       await todoservices.deleteToDo(todoID, id)
       loadToDos(id)
@@ -72,7 +72,7 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ToDoContext.Provider value={{ todoData, todoDataBackup, loadToDos, addTodoHandler, updateTodoHandler, deleteTodoHandler, changeFilter, clearCompleted }}>
+    <ToDoContext.Provider value={{ todoData, todoDataBackup, setTodoData, setTodoDataBackup, loadToDos, addTodoHandler, updateTodoHandler, deleteTodoHandler, changeFilter, clearCompleted }}>
       {children}
     </ToDoContext.Provider >
   )

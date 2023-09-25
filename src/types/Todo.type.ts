@@ -1,8 +1,9 @@
 
 export interface TodoData {
-  _id: number
+  _id: string
   title: string
   completed: boolean
+  order: number
   owner: string
 }
 
