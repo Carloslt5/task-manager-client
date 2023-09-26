@@ -14,7 +14,7 @@ export interface draggableToDo extends TodoData {
 const EachTodo: React.FC<draggableToDo> = ({ _id, title, completed, order, owner, index }) => {
   const { id } = useParams()
   const { updateTodoHandler, deleteTodoHandler } = useContext(ToDoContext) as ToDoContextType
-  // const { todoDataBackup, setTodoDataBackup } = useContext(ToDoContext) as ToDoContextType
+  const { todoDataBackup, setTodoDataBackup } = useContext(ToDoContext) as ToDoContextType
 
   const updateTodo = () => updateTodoHandler(_id, completed, id!)
   const deleteTodo = () => deleteTodoHandler(_id, id!)
@@ -46,6 +46,10 @@ const EachTodo: React.FC<draggableToDo> = ({ _id, title, completed, order, owner
     console.log('item', item)
     console.log('inicio', startIndex)
     console.log('end', endIndex)
+    const copyData = [...todoDataBackup!]
+    const [updatetodo] = copyData.splice(startIndex, 1)
+    copyData.splice(endIndex, 0, updatetodo)
+    setTodoDataBackup(copyData)
   }
 
   return (
