@@ -1,9 +1,9 @@
 import { TodoData } from '../../types/Todo.type'
 
 export interface ToDoContextType {
-  todoData: TodoData[] | null
-  todoDataBackup: TodoData[] | null
+  todoData: TodoData[] | []
   setTodoData: React.Dispatch<React.SetStateAction<TodoData[] | []>>
+  todoDataBackup: TodoData[]
   setTodoDataBackup: React.Dispatch<React.SetStateAction<TodoData[] | []>>
   loadToDos: (userId: string) => Promise<void>
   addTodoHandler: (todo: TodoData, id: string) => Promise<void>

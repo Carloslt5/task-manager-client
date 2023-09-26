@@ -38,8 +38,12 @@ class ToDoServices {
     return this.instance.delete(`/todos/${id}/deleteTodo/${_id}`)
   }
 
-  clearCompleted(id: string) {
+  clearCompleted(id: string): Promise<AxiosResponse<TodoData>> {
     return this.instance.delete(`/todos/${id}/deleteCompletedTodos`)
+  }
+
+  updateTodoOrder(id: string, updatedOrder: object[]) {
+    return this.instance.put(`/todos/${id}/updateTodoOrder/`, { updatedOrder })
   }
 
 }

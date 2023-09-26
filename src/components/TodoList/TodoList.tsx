@@ -4,10 +4,13 @@ import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 import { ToDoContext } from '../../contexts/todo.context'
 import Loading from '../Loading/Loading'
 import { useParams } from 'react-router-dom'
+import { ReactSortable } from 'react-sortablejs'
+import { TodoData } from '../../types/Todo.type'
+import todoservices from '../../services/ToDo.services'
 
 const TodoList = () => {
   const { id } = useParams()
-  const { loadToDos, todoDataBackup, changeFilter, clearCompleted } = useContext(ToDoContext) as ToDoContextType
+  const { loadToDos, todoDataBackup, setTodoDataBackup, changeFilter, clearCompleted } = useContext(ToDoContext) as ToDoContextType
 
   useEffect(() => {
     if (id) {
@@ -18,24 +21,43 @@ const TodoList = () => {
   const changeFilterHandler = (filter: string) => () => changeFilter(filter)
   const clearCompletedHandler = () => clearCompleted(id!)
 
+  const handleSortEnd = (newOrder: TodoData[]) => {
+    setTodoDataBackup(newOrder)
+
+    const updatedOrder = newOrder.map((item: TodoData, index: number) => ({
+      _id: item._id,
+      title: item.title,
+      order: index,
+    }))
+
+    todoservices.updateTodoOrder(id!, updatedOrder)
+  }
+
   return (
     <div className='flex flex-col w-full p-2 overflow-hidden text-white border border-gray-400 rounded bg-slate-500 dark:bg-zinc-800'>
-
       <ul
         className='mb-4 overflow-y-auto'>
-        {
-          !todoDataBackup
-            ? <Loading />
-            : todoDataBackup.length === 0
-              ? <p>No pending tasks 👍</p>
-              : todoDataBackup.map((todo, index) =>
-                <li key={todo._id}>
-                  <EachTodo {...todo} index={index} />
-                </li>
-              )
-        }
+        <ReactSortable
+          filter='.addImageButtonContainer'
+          dragClass='sortableDrag'
+          list={todoDataBackup as never[]}
+          setList={handleSortEnd}
+          animation={200}
+          easing='ease-out'
+        >
+          {
+            !todoDataBackup
+              ? <Loading />
+              : todoDataBackup.length === 0
+                ? <p>No pending tasks 👍</p>
+                : todoDataBackup.map((todo) =>
+                  <li key={todo._id}>
+                    <EachTodo {...todo} />
+                  </li>
+                )
+          }
+        </ReactSortable>
       </ul>
-
       <div className='flex flex-col items-center gap-2 text-white sm:flex-row sm:justify-between '>
         <ul>
           <li className='py-1'>

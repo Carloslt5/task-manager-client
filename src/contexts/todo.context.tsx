@@ -8,7 +8,7 @@ export const ToDoContext = createContext<ToDoContextType | null>(null)
 export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
 
   const [todoData, setTodoData] = useState<TodoData[] | []>([])
-  const [todoDataBackup, setTodoDataBackup] = useState(todoData)
+  const [todoDataBackup, setTodoDataBackup] = useState<TodoData[]>(todoData)
 
   const loadToDos = useCallback(async (id: string) => {
     try {
