@@ -72,7 +72,19 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
   }
 
   return (
-    <ToDoContext.Provider value={{ todoData, todoDataBackup, setTodoData, setTodoDataBackup, loadToDos, addTodoHandler, updateTodoHandler, deleteTodoHandler, changeFilter, clearCompleted }}>
+    <ToDoContext.Provider
+      value={{
+        todoData,
+        todoDataBackup,
+        setTodoData,
+        setTodoDataBackup,
+        loadToDos,
+        addTodoHandler,
+        updateTodoHandler,
+        deleteTodoHandler,
+        changeFilter,
+        clearCompleted
+      }}>
       {children}
     </ToDoContext.Provider >
   )
