@@ -33,7 +33,7 @@ const NewTodo = () => {
   return (
     <form
       onSubmit={todoSubmithandler}
-      className='flex flex-col gap-3 my-4 md:flex-row'
+      className='flex flex-col gap-3 my-3 md:flex-row'
     >
       <input
         className='input-primary'

@@ -74,17 +74,17 @@ const TodoList = () => {
         <ul className='flex gap-4'>
           <li className={'py-1  hover-primary'}>
             <button
-              className={currentFilter === 'All' ? 'text-blue-500' : ''}
+              className={currentFilter === 'All' ? 'text-blue-300 dark:text-teal-500' : ''}
               onClick={changeFilterHandler('All')}>All</button>
           </li>
           <li className={'py-1  hover-primary'}>
             <button
-              className={currentFilter === 'Active' ? 'text-blue-500' : ''}
+              className={currentFilter === 'Active' ? 'text-blue-300  dark:text-teal-500' : ''}
               onClick={changeFilterHandler('Active')}>Active</button>
           </li>
           <li className={'py-1  hover-primary'}>
             <button
-              className={currentFilter === 'Completed' ? 'text-blue-500' : ''}
+              className={currentFilter === 'Completed' ? 'text-blue-300  dark:text-teal-500' : ''}
               onClick={changeFilterHandler('Completed')}>Completed</button>
           </li>
         </ul>

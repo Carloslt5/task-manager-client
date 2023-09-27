@@ -12,6 +12,9 @@ const TaskPage = () => {
       <NewTodo />
       <TodoList />
       {/* </DndProvider> */}
+      <p
+        className='mt-4 text-sm text-center text-slate-500'
+      >Drag and Drop to reorder list</p>
     </div>
 
   )

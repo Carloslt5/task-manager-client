@@ -37,12 +37,16 @@ const ProjectPage = () => {
         <span>Add State</span>
       </button>
       <DndProvider backend={HTML5Backend}>
-        <section className='h-[80%] mt-2'>
-          <ul className='flex flex-row items-stretch h-full gap-4 pb-4 mb-2 overflow-y-auto text-white'>
+        <section className='h-[75%] mt-2'>
+          <ul className='flex flex-row items-stretch max-h-full gap-4 pb-2 mb-3 overflow-y-auto text-white'>
             {projectData.state.map((state, idx) => (
               <ColumnState {...state} key={idx} />
             ))}
           </ul>
+          <p
+            className='mt-2 text-sm text-center text-slate-500 dark:text-zinc-500'>
+            Drag and Drop to change status
+          </p>
         </section >
       </DndProvider>
       {
@@ -51,9 +55,10 @@ const ProjectPage = () => {
           <AddNewState toggleModal={toggleModal} />
         </ModalForm>
       }
-
     </div >
+
   )
+
 }
 
 export default ProjectPage
