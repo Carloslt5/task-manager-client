@@ -21,7 +21,7 @@ const TodoList = () => {
   const changeFilterHandler = (filter: string) => () => changeFilter(filter)
   const clearCompletedHandler = () => clearCompleted(id!)
 
-  const handleSortEnd = (newOrder: TodoData[]) => {
+  const handlerSortEnd = (newOrder: TodoData[]) => {
     setTodoDataBackup(newOrder)
 
     const updatedOrder = newOrder.map((item: TodoData, index: number) => ({
@@ -29,7 +29,7 @@ const TodoList = () => {
       title: item.title,
       order: index,
     }))
-
+    console.log('first', updatedOrder)
     todoservices.updateTodoOrder(id!, updatedOrder)
   }
 
@@ -41,7 +41,7 @@ const TodoList = () => {
           filter='.addImageButtonContainer'
           dragClass='sortableDrag'
           list={todoDataBackup as never[]}
-          setList={handleSortEnd}
+          setList={handlerSortEnd}
           animation={200}
           easing='ease-out'
         >

@@ -6,7 +6,7 @@ import { ToDoContext } from '../../contexts/todo.context'
 import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 import { useParams } from 'react-router-dom'
 
-const EachTodo: React.FC<TodoData> = ({ _id, title, completed }) => {
+const EachTodo: React.FC<TodoData> = ({ _id, title, completed, order }) => {
   const { id } = useParams()
   const { updateTodoHandler, deleteTodoHandler } = useContext(ToDoContext) as ToDoContextType
 
@@ -28,6 +28,8 @@ const EachTodo: React.FC<TodoData> = ({ _id, title, completed }) => {
         </button>
         <p className={`${completed && 'line-through'}`}>
           {title}
+          <br />
+          order: {order}
         </p>
 
       </div>
