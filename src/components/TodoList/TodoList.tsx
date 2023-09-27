@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import EachTodo from '../EachTodo/EachTodo'
 import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 import { ToDoContext } from '../../contexts/todo.context'
@@ -9,6 +9,7 @@ import todoservices from '../../services/ToDo.services'
 const TodoList = () => {
   const { id } = useParams()
   const { loadToDos, todoDataBackup, setTodoDataBackup, changeFilter, clearCompleted } = useContext(ToDoContext) as ToDoContextType
+  const [currentFilter, setCurrentFilter] = useState('All')
 
   useEffect(() => {
     if (id) {
@@ -16,7 +17,10 @@ const TodoList = () => {
     }
   }, [loadToDos, id])
 
-  const changeFilterHandler = (filter: string) => () => changeFilter(filter)
+  const changeFilterHandler = (filter: string) => () => {
+    changeFilter(filter)
+    setCurrentFilter(filter)
+  }
   const clearCompletedHandler = () => clearCompleted(id!)
 
   const dragTodo = useRef<number>(0)
@@ -70,17 +74,17 @@ const TodoList = () => {
         <ul className='flex gap-4'>
           <li className={'py-1  hover-primary'}>
             <button
-              className={'focus:text-blue-500'}
+              className={currentFilter === 'All' ? 'text-blue-500' : ''}
               onClick={changeFilterHandler('All')}>All</button>
           </li>
           <li className={'py-1  hover-primary'}>
             <button
-              className={'focus:text-blue-500'}
+              className={currentFilter === 'Active' ? 'text-blue-500' : ''}
               onClick={changeFilterHandler('Active')}>Active</button>
           </li>
           <li className={'py-1  hover-primary'}>
             <button
-              className={'focus:text-blue-500'}
+              className={currentFilter === 'Completed' ? 'text-blue-500' : ''}
               onClick={changeFilterHandler('Completed')}>Completed</button>
           </li>
         </ul>

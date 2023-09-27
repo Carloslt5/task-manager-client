@@ -11,7 +11,7 @@ interface droppableTodo extends TodoData {
   index: number
 }
 
-const EachTodo: React.FC<droppableTodo> = ({ _id, title, completed, order }) => {
+const EachTodo: React.FC<droppableTodo> = ({ _id, title, completed }) => {
   const { id } = useParams()
   const { updateTodoHandler, deleteTodoHandler } = useContext(ToDoContext) as ToDoContextType
 
@@ -68,8 +68,6 @@ const EachTodo: React.FC<droppableTodo> = ({ _id, title, completed, order }) => 
         </button>
         <p className={`${completed && 'line-through'}`}>
           {title}
-          <br />
-          order: {order}
         </p>
 
       </div>
