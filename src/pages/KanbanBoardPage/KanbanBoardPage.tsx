@@ -8,8 +8,11 @@ import EachKanbanBoard from '../../components/EachKanbanBoard/EachKanbanBoard'
 import Loading from '../../components/Loading/Loading'
 import ModalForm from '../../components/ModalForm/ModalForm'
 import ChangeKanbanTitle from '../../components/ChangeKanbanTitle/ChangeKanbanTitle'
+import { AuthContext } from '../../contexts/auth.context'
+import { AuthContextType } from '../../contexts/Types/AuthContext.types'
 
 const KanbanBoardPage = () => {
+  const { user } = useContext(AuthContext) as AuthContextType
   const { kanbanBoardId } = useParams()
   const { kanbanBoardData, loadKanbanBoard } = useContext(KanbanContext) as KanbanContextType
 
@@ -42,7 +45,7 @@ const KanbanBoardPage = () => {
         {!kanbanBoardData
           ? <Loading />
           : kanbanBoardData.project.map((project, idx) => (
-            <Link to={`/project/${kanbanBoardId}/${project._id}`} key={idx}>
+            <Link to={`/${user?._id}/${kanbanBoardId}/${project._id}`} key={idx}>
               <EachKanbanBoard {...project} />
             </Link>
           ))}

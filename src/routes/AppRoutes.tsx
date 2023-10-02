@@ -9,6 +9,7 @@ import KanbanBoardPage from '../pages/KanbanBoardPage/KanbanBoardPage'
 import ProjectPage from '../pages/ProjectPage/ProjectPage'
 import BoardPage from '../pages/BoardPage/BoardPage'
 import { ToDoProviderWrapper } from '../contexts/todo.context'
+import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs'
 
 const AppRoutes = () => {
   return (
@@ -18,10 +19,14 @@ const AppRoutes = () => {
       <Route path='/login' element={<LoginPage />} />
       <Route path='/signup' element={<SignupPage />} />
 
-      <Route element={<PrivateRoutes />}>
+      <Route element={<>
+        <Breadcrumbs />
+        <PrivateRoutes />
+      </>
+      }>
         <Route path='/:id' element={<BoardPage />} />
         <Route path='/:id/:kanbanBoardId' element={<KanbanBoardPage />} />
-        <Route path='/project/:kanbanBoardId/:projectId' element={<ProjectPage />} />
+        <Route path='/:id/:kanbanBoardId/:projectId' element={<ProjectPage />} />
         <Route path='/:id/task' element={<ToDoProviderWrapper><TaskPage /></ToDoProviderWrapper>} />
       </Route>
     </Routes>
