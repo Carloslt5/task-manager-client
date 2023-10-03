@@ -2,9 +2,8 @@ import { IState } from '../../types/State.type'
 import EachState from '../EachState/EachState'
 import EachTicket from '../EachTicket/EachTicket'
 import Loading from '../Loading/Loading'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
-import { useParams } from 'react-router-dom'
 import { ITicketData } from '../../types/Ticket.type'
 import ticketservices from '../../services/ticket.services'
 import { useDrop } from 'react-dnd'
@@ -13,8 +12,7 @@ import { MdAdd } from 'react-icons/md'
 import NewTicketForm from '../Forms/NewTicketForm'
 
 const ColumnState: React.FC<IState> = (state) => {
-  const { projectId } = useParams()
-  const { ticketData, setTicketData, loadTicket } = useContext(TicketContext) as TicketContextType
+  const { ticketData, setTicketData } = useContext(TicketContext) as TicketContextType
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
@@ -42,12 +40,6 @@ const ColumnState: React.FC<IState> = (state) => {
 
     ticketservices.updateStateTicket(ticketToAdd._id, state._id)
   }
-
-  useEffect(() => {
-    if (projectId) {
-      loadTicket(projectId)
-    }
-  }, [projectId, loadTicket])
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { MdPostAdd, MdClose } from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 import React, { useContext, useState } from 'react'
 import projectservices from '../../services/project.services'
 import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
@@ -75,7 +75,6 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
           <button
             className='flex items-center gap-2 btn-add'
           >
-            <MdPostAdd />
             <span>Add Project</span>
           </button>
         </div>

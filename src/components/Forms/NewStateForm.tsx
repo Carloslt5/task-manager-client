@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { MdPostAdd, MdClose } from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 import { useParams } from 'react-router-dom'
 import stateservices from '../../services/state.services'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
@@ -66,7 +66,6 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ toggleModal }) => {
             <button
               className='flex items-center gap-2 btn-add'
             >
-              <MdPostAdd />
               <span>Add State</span>
             </button>
           </div>

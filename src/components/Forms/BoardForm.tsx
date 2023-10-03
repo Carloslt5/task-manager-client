@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IKanbanBoardData } from '../../types/KanbanBoard.type'
 import kanbanservices from '../../services/kanban.services'
-import { MdPostAdd, MdClose } from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 
 interface BoardFormaProps {
   loadBoard: () => void
@@ -63,7 +63,6 @@ const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, toggleModal }) => {
           <button
             className='flex items-center gap-2 btn-add'
             type='submit'>
-            <MdPostAdd />
             <span>Add Board</span>
           </button>
         </div>

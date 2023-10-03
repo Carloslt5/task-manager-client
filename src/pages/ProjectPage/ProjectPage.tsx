@@ -9,10 +9,12 @@ import ColumnState from '../../components/ColumnState/ColumnState'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import NewStateForm from '../../components/Forms/NewStateForm'
+import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 
 const ProjectPage = () => {
   const { projectId } = useParams()
   const { projectData, loadProject } = useContext(ProjectContext) as ProjectContextType
+  const { loadTicket } = useContext(TicketContext) as TicketContextType
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
@@ -20,8 +22,9 @@ const ProjectPage = () => {
   useEffect(() => {
     if (projectId) {
       loadProject(projectId)
+      loadTicket(projectId)
     }
-  }, [projectId, loadProject])
+  }, [projectId, loadProject, loadTicket])
 
   if (!projectData || !projectId || !projectData.state) {
     return <Loading />

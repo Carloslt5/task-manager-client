@@ -1,4 +1,4 @@
-import { MdClose, MdCheck } from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 import { useContext, useState } from 'react'
 import ticketservices from '../../services/ticket.services'
 import { useParams } from 'react-router-dom'
@@ -98,7 +98,6 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ toggleModal, _id: stateID
             className='flex items-center gap-2 btn-add'
           >
             <span>Create Ticket</span>
-            <MdCheck />
           </button>
         </div>
       </form >
