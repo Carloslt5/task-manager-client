@@ -7,6 +7,7 @@ export interface ITicketData {
   description: string
   completed: boolean
   project: ProjectData
+  priority: string
   state: IState
   owner: string
 }
