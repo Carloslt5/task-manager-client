@@ -27,7 +27,7 @@ const AppRoutes = () => {
         <Route path='/:id' element={<BoardPage />} />
         <Route path='/:id/:kanbanBoardId' element={<KanbanBoardPage />} />
         <Route path='/:id/:kanbanBoardId/:projectId' element={<ProjectPage />} />
-        <Route path='/:id/task' element={<ToDoProviderWrapper><TaskPage /></ToDoProviderWrapper>} />
+        <Route path='/:id/task' element={<TaskPage />} />
       </Route>
     </Routes>
   )

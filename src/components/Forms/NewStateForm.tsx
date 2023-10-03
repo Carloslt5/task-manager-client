@@ -4,11 +4,11 @@ import { useParams } from 'react-router-dom'
 import stateservices from '../../services/state.services'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 
-interface AddNewStateProps {
+interface NewStateFormProps {
   toggleModal: () => void
 }
 
-const AddNewState: React.FC<AddNewStateProps> = ({ toggleModal }) => {
+const NewStateForm: React.FC<NewStateFormProps> = ({ toggleModal }) => {
   const { projectId } = useParams()
   const { loadProject } = useContext(ProjectContext) as ProjectContextType
 
@@ -41,7 +41,7 @@ const AddNewState: React.FC<AddNewStateProps> = ({ toggleModal }) => {
         id='containerForm'
         className='modal-form'>
         <div className='flex justify-between' >
-          <h1 className='text-2xl text-white '>Insert new state</h1>
+          <h1 className='text-2xl text-white '>New State</h1>
           <button
             className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
             onClick={toggleModal}
@@ -76,4 +76,4 @@ const AddNewState: React.FC<AddNewStateProps> = ({ toggleModal }) => {
   )
 }
 
-export default AddNewState
+export default NewStateForm

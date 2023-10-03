@@ -39,7 +39,6 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
 
   return (
     <div
-      id='containerForm'
       className='modal-form'>
       <div className='flex justify-between'>
         <h1 className='text-2xl text-white '>Insert new project</h1>

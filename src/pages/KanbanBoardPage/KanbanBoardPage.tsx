@@ -2,7 +2,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { MdPostAdd } from 'react-icons/md'
-import ProjectForm from '../../components/ProjectForm/ProjectForm'
+import ProjectForm from '../../components/Forms/ProjectForm'
 import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
 import EachKanbanBoard from '../../components/EachKanbanBoard/EachKanbanBoard'
 import Loading from '../../components/Loading/Loading'

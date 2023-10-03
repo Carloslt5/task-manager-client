@@ -4,7 +4,7 @@ import { MdDeleteForever } from 'react-icons/md'
 import { useContext } from 'react'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 
-const EachTicket: React.FC<ITicketData> = ({ _id, title, state, completed, project, owner }) => {
+const EachTicket: React.FC<ITicketData> = ({ _id, title, state, description, completed, project, owner }) => {
   const { deleteTicket } = useContext(TicketContext) as TicketContextType
 
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -12,6 +12,7 @@ const EachTicket: React.FC<ITicketData> = ({ _id, title, state, completed, proje
     item: {
       _id: _id,
       title: title,
+      description: description,
       state: state,
       completed: completed,
       project: project,

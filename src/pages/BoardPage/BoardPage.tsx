@@ -8,7 +8,7 @@ import { IKanbanBoardData } from '../../types/KanbanBoard.type'
 import EachBoard from '../../components/EachBoard/EachBoard'
 import Loading from '../../components/Loading/Loading'
 import ModalForm from '../../components/ModalForm/ModalForm'
-import BoardForm from '../../components/BoardForm/BoardForm'
+import BoardForm from '../../components/Forms/BoardForm'
 
 const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType

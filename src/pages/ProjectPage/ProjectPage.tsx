@@ -4,11 +4,11 @@ import { MdPostAdd } from 'react-icons/md'
 import Loading from '../../components/Loading/Loading'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 import ModalForm from '../../components/ModalForm/ModalForm'
-import AddNewState from '../../components/AddNewState/AddNewState'
 import ChangeProjectTitle from '../../components/ChangeProjectTitle/ChangeProjectTitle'
 import ColumnState from '../../components/ColumnState/ColumnState'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import NewStateForm from '../../components/Forms/NewStateForm'
 
 const ProjectPage = () => {
   const { projectId } = useParams()
@@ -44,7 +44,8 @@ const ProjectPage = () => {
             ))}
           </ul>
           <p
-            className='mt-2 text-sm text-center text-slate-500 dark:text-zinc-500'>
+            className='mt-2 text-sm text-center text-slate-500 dark:text-zinc-500'
+          >
             Drag and Drop to change status
           </p>
         </section >
@@ -52,7 +53,7 @@ const ProjectPage = () => {
       {
         showModal &&
         <ModalForm >
-          <AddNewState toggleModal={toggleModal} />
+          <NewStateForm toggleModal={toggleModal} />
         </ModalForm>
       }
     </div >
