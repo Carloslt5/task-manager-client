@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { MdClose } from 'react-icons/md'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 import ModalForm from '../ModalForm/ModalForm'
-import DeleteStateModal from '../DeleteStateModal/DeleteStateModal'
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 
 const EachState: React.FC<IState> = ({ _id, stateName }) => {
 
@@ -45,6 +45,16 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
     }
   }
 
+  const deleteStateAndTask = async () => {
+    try {
+      await stateservices.deleteState(_id)
+      toggleModal()
+      loadProject(projectId!)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <>
       <div className='flex items-center justify-between gap-2'>
@@ -75,10 +85,22 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
       </div >
       <hr />
 
-      {
+      {/* {
         showModal &&
         <ModalForm >
           <DeleteStateModal toggleModal={toggleModal} _id={_id} />
+        </ModalForm>
+      } */}
+
+      {
+        showModal &&
+        <ModalForm >
+          <ConfirmationModal
+            title='Confirm Delete State'
+            message='Are you sure to delete the TICKET and ALL TO DO?'
+            onConfirm={deleteStateAndTask}
+            onCancel={toggleModal}
+          />
         </ModalForm>
       }
     </>
