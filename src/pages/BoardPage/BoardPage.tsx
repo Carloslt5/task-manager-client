@@ -12,7 +12,7 @@ import BoardForm from '../../components/Forms/BoardForm'
 
 const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
-  const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData[] | null>(null)
+  const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData[] | []>([])
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
@@ -57,7 +57,10 @@ const BoardPage = () => {
       {
         showModal &&
         <ModalForm >
-          <BoardForm loadBoard={loadBoard} toggleModal={toggleModal} />
+          <BoardForm
+            loadBoard={loadBoard}
+            onCancel={toggleModal}
+          />
         </ModalForm>
       }
 

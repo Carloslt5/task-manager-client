@@ -5,10 +5,14 @@ import { MdClose } from 'react-icons/md'
 
 interface BoardFormaProps {
   loadBoard: () => void
-  toggleModal: () => void
+  onCancel: () => void
 }
 
-const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, toggleModal }) => {
+const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, onCancel }) => {
+
+  const handleCancel = () => {
+    onCancel()
+  }
 
   const [newKanbanBoard, setNewKanbanBoard] = useState<Partial<IKanbanBoardData>>({
     title: '',
@@ -24,7 +28,7 @@ const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, toggleModal }) => {
     try {
       await kanbanservices.createKanbanBoard(newKanbanBoard)
       setNewKanbanBoard({ title: '' })
-      toggleModal()
+      onCancel()
       loadBoard()
     } catch (error) {
       console.log(error)
@@ -41,7 +45,7 @@ const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, toggleModal }) => {
         <h1 className='text-2xl text-white'>Insert new board</h1>
         <button
           className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-          onClick={toggleModal}
+          onClick={handleCancel}
         >
           <MdClose />
         </button>
