@@ -6,11 +6,13 @@ import { MdClose } from 'react-icons/md'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 import ModalForm from '../ModalForm/ModalForm'
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
+import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 
 const EachState: React.FC<IState> = ({ _id, stateName }) => {
 
   const { projectId } = useParams()
   const { loadProject } = useContext(ProjectContext) as ProjectContextType
+  const { ticketData, deleteStateAndTicket } = useContext(TicketContext) as TicketContextType
 
   const [isEditing, setEditing] = useState(false)
   const [editedContent, setEditedContent] = useState({
@@ -45,13 +47,11 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
     }
   }
 
-  const deleteStateAndTask = async () => {
-    try {
-      await stateservices.deleteState(_id)
-      toggleModal()
-      loadProject(projectId!)
-    } catch (error) {
-      console.log(error)
+  const handlerDeleteStateAndTicket = () => {
+    if (ticketData) {
+      ticketData.map(ticket => {
+        deleteStateAndTicket(_id, ticket._id)
+      })
     }
   }
 
@@ -98,7 +98,7 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
           <ConfirmationModal
             title='Confirm Delete State'
             message='Are you sure to delete the TICKET and ALL TO DO?'
-            onConfirm={deleteStateAndTask}
+            onConfirm={handlerDeleteStateAndTicket}
             onCancel={toggleModal}
           />
         </ModalForm>

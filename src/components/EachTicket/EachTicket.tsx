@@ -1,14 +1,11 @@
 import { useDrag } from 'react-dnd'
 import { ITicketData } from '../../types/Ticket.type'
-import { MdDeleteForever } from 'react-icons/md'
-import { useContext, useState } from 'react'
-import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
+import { useState } from 'react'
 import { getPriorityColor } from '../../const/Ticket-Priority'
 import ModalForm from '../ModalForm/ModalForm'
 import TicketDetails from './TicketDetails'
 
 const EachTicket: React.FC<ITicketData> = ({ _id, title, state, description, completed, priority, project, owner, todos }) => {
-  const { deleteTicket } = useContext(TicketContext) as TicketContextType
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
@@ -55,11 +52,6 @@ const EachTicket: React.FC<ITicketData> = ({ _id, title, state, description, com
         <div className={`${priorityColor} w-2`} />
         <article className='flex items-center justify-between w-full py-1'>
           <p>{title}</p>
-          <span
-            onClick={() => deleteTicket(_id, project._id)}
-            className='rounded hover:text-red-500'>
-            <MdDeleteForever />
-          </span>
         </article>
       </li >
 
