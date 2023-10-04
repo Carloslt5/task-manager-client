@@ -26,8 +26,12 @@ class ToDoServices {
     return this.instance.get(`/todos/${id}/getAllTodos`)
   }
 
-  createToDo(newTodo: object, id: string): Promise<AxiosResponse<TodoData>> {
-    return this.instance.post(`/todos/${id}/createdTodo`, newTodo)
+  getTicketToDos(id: string, ticketID: string): Promise<AxiosResponse<TodoData[]>> {
+    return this.instance.get(`/todos/${id}/${ticketID}/getTicketToDos`)
+  }
+
+  createToDo(newTodo: object, id: string, ticketID: string): Promise<AxiosResponse<TodoData>> {
+    return this.instance.post(`/todos/${id}/createdTodo`, { newTodo, ticketID })
   }
 
   updateToDo(_id: string, completed: boolean, id: string): Promise<AxiosResponse<TodoData>> {

@@ -10,66 +10,69 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
   const [todoData, setTodoData] = useState<TodoData[] | []>([])
   const [todoDataBackup, setTodoDataBackup] = useState<TodoData[]>(todoData)
 
-  const loadToDos = useCallback(async (id: string) => {
+  const loadToDos = useCallback(async (userID: string, ticketID: string) => {
     try {
-      const { data } = await todoservices.getAllToDos(id)
-      setTodoData(data)
-      setTodoDataBackup(data)
+      if (ticketID) {
+
+        const { data } = await todoservices.getTicketToDos(userID, ticketID)
+        setTodoData(data)
+        setTodoDataBackup(data)
+      }
     } catch (error) {
       console.log(error)
     }
   }, [])
 
-  const addTodoHandler = async (todo: TodoData, id: string) => {
+  const addTodoHandler = async (todo: TodoData, id: string, ticketID: string) => {
     try {
       setTodoData([...todoData ?? [], todo])
-      loadToDos(id)
+      loadToDos(id, ticketID)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const updateTodoHandler = async (todoID: string, completed: boolean, id: string) => {
+  const updateTodoHandler = async (todoID: string, completed: boolean, id: string, ticketID: string) => {
     try {
       await todoservices.updateToDo(todoID, completed, id)
-      loadToDos(id)
+      loadToDos(id, ticketID)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const deleteTodoHandler = async (todoID: string, id: string) => {
+  const deleteTodoHandler = async (todoID: string, id: string, ticketID: string) => {
     try {
       await todoservices.deleteToDo(todoID, id)
-      loadToDos(id)
+      loadToDos(id, ticketID)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const changeFilter = (filter: string) => {
-    if (todoDataBackup) {
-      switch (filter) {
-        case ('All'):
-          return setTodoDataBackup(todoData)
-        case ('Active'):
-          return setTodoDataBackup(todoData!.filter(todo => !todo.completed))
-        case ('Completed'):
-          return setTodoDataBackup(todoData!.filter(todo => todo.completed))
-        default:
-          return setTodoDataBackup(todoData)
-      }
-    }
-  }
+  // const changeFilter = (filter: string) => {
+  //   if (todoDataBackup) {
+  //     switch (filter) {
+  //       case ('All'):
+  //         return setTodoDataBackup(todoData)
+  //       case ('Active'):
+  //         return setTodoDataBackup(todoData!.filter(todo => !todo.completed))
+  //       case ('Completed'):
+  //         return setTodoDataBackup(todoData!.filter(todo => todo.completed))
+  //       default:
+  //         return setTodoDataBackup(todoData)
+  //     }
+  //   }
+  // }
 
-  const clearCompleted = async (id: string) => {
-    try {
-      await todoservices.clearCompleted(id)
-      loadToDos(id)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  // const clearCompleted = async (id: string) => {
+  //   try {
+  //     await todoservices.clearCompleted(id)
+  //     loadToDos(id)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   return (
     <ToDoContext.Provider
@@ -82,8 +85,8 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
         addTodoHandler,
         updateTodoHandler,
         deleteTodoHandler,
-        changeFilter,
-        clearCompleted
+        // changeFilter,
+        // clearCompleted
       }}>
       {children}
     </ToDoContext.Provider >

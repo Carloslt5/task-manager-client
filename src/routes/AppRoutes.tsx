@@ -8,7 +8,6 @@ import TaskPage from '../pages/TaskPage/TaskPage'
 import KanbanBoardPage from '../pages/KanbanBoardPage/KanbanBoardPage'
 import ProjectPage from '../pages/ProjectPage/ProjectPage'
 import BoardPage from '../pages/BoardPage/BoardPage'
-import { ToDoProviderWrapper } from '../contexts/todo.context'
 import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs'
 
 const AppRoutes = () => {
