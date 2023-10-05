@@ -19,7 +19,7 @@ const SignupForm = () => {
 
   const submitHandler = async (event: React.FormEvent) => {
     event.preventDefault()
-    console.log('enviando')
+
     try {
       await authservices.signup(signupData)
       navigate('/login')
