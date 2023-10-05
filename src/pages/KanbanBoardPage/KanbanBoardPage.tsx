@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Link, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { MdPostAdd } from 'react-icons/md'
@@ -23,9 +22,9 @@ const KanbanBoardPage = () => {
     if (kanbanBoardId) {
       loadKanbanBoard(kanbanBoardId)
     }
-  }, [])
+  }, [kanbanBoardId, loadKanbanBoard])
 
-  if (!kanbanBoardId) {
+  if (!kanbanBoardId || !kanbanBoardData) {
     return <Loading />
   }
 
@@ -42,13 +41,13 @@ const KanbanBoardPage = () => {
       </button>
 
       <section className='grid w-full gap-2 mb-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[500px] overflow-y-auto'>
-        {!kanbanBoardData
-          ? <Loading />
-          : kanbanBoardData.project.map((project, idx) => (
+        {
+          kanbanBoardData.project.map((project, idx) => (
             <Link to={`/${user?._id}/${kanbanBoardId}/${project._id}`} key={idx}>
               <EachKanbanBoard {...project} />
             </Link>
-          ))}
+          ))
+        }
       </section>
 
       {

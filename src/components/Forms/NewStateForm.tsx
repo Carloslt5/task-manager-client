@@ -5,16 +5,21 @@ import stateservices from '../../services/state.services'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 
 interface NewStateFormProps {
-  toggleModal: () => void
+  modalTitle: string
+  onCancel: () => void
 }
 
-const NewStateForm: React.FC<NewStateFormProps> = ({ toggleModal }) => {
+const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => {
   const { projectId } = useParams()
   const { loadProject } = useContext(ProjectContext) as ProjectContextType
 
   const [newStateData, setNewStateData] = useState({
     stateName: '',
   })
+
+  const handleCancel = () => {
+    onCancel()
+  }
 
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
@@ -27,7 +32,7 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ toggleModal }) => {
       if (projectId) {
         await stateservices.createState(projectId, newStateData)
         loadProject(projectId)
-        toggleModal()
+        handleCancel()
       }
     } catch (error) {
       console.log(error)
@@ -41,10 +46,10 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ toggleModal }) => {
         id='containerForm'
         className='modal-form'>
         <div className='flex justify-between' >
-          <h1 className='text-2xl text-white '>New State</h1>
+          <h1 className='text-2xl text-white '>{modalTitle}</h1>
           <button
             className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-            onClick={toggleModal}
+            onClick={handleCancel}
           >
             <MdClose />
           </button>

@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useCallback, useState } from 'react'
 import { IKanbanBoardData } from '../types/KanbanBoard.type'
 import kanbanservices from '../services/kanban.services'
 
@@ -13,7 +13,7 @@ export function KanbanProviderWrapper({ children }: { children: ReactNode }) {
 
   const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData | null>(null)
 
-  const loadKanbanBoard = async (kanbanBoardId: string) => {
+  const loadKanbanBoard = useCallback(async (kanbanBoardId: string) => {
     try {
       if (kanbanBoardId) {
         const { data } = await kanbanservices.getOneKanbanBoard(kanbanBoardId)
@@ -22,10 +22,12 @@ export function KanbanProviderWrapper({ children }: { children: ReactNode }) {
     } catch (error) {
       console.log(error)
     }
-  }
+  }, [])
+
+  const value = { kanbanBoardData, loadKanbanBoard }
 
   return (
-    <KanbanContext.Provider value={{ kanbanBoardData, loadKanbanBoard }}>
+    <KanbanContext.Provider value={value}>
       {children}
     </KanbanContext.Provider >
   )

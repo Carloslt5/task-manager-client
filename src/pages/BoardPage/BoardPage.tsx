@@ -45,13 +45,15 @@ const BoardPage = () => {
       </button>
 
       <section className='grid w-full gap-2 mb-4 overflow-y-auto lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[70vh]'>
-        {!kanbanBoardData
-          ? <Loading />
-          : kanbanBoardData.map((kanbanBoard, idx) => (
-            <Link to={`/${user?._id}/${kanbanBoard._id}`} key={idx}>
-              <EachBoard {...kanbanBoard} />
-            </Link>)
-          )}
+        {
+          !kanbanBoardData
+            ? <Loading />
+            : kanbanBoardData.map((kanbanBoard, idx) => (
+              <Link to={`/${user?._id}/${kanbanBoard._id}`} key={idx}>
+                <EachBoard {...kanbanBoard} />
+              </Link>
+            ))
+        }
       </section >
 
       {

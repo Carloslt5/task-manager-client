@@ -32,31 +32,38 @@ const ProjectPage = () => {
 
   return (
     <div className='container h-full max-w-6xl mx-auto'>
+
       <ChangeProjectTitle />
+
       <button
         className='flex items-center gap-2 btn-add '
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add State</span>
       </button>
+
       <DndProvider backend={HTML5Backend}>
         <section className='h-[75%] mt-2'>
           <ul className='flex flex-row items-stretch max-h-full gap-4 pb-2 mb-3 overflow-y-auto text-white'>
-            {projectData.state.map((state, idx) => (
-              <ColumnState {...state} key={idx} />
-            ))}
+            {
+              projectData.state.map((state, idx) => (
+                <ColumnState {...state} key={idx} />
+              ))
+            }
           </ul>
-          <p
-            className='mt-2 text-sm text-center text-slate-500 dark:text-zinc-500'
-          >
+          <p className='mt-2 text-sm text-center text-slate-500 dark:text-zinc-500'>
             Drag and Drop to change status
           </p>
         </section >
       </DndProvider>
+
       {
         showModal &&
         <ModalForm >
-          <NewStateForm toggleModal={toggleModal} />
+          <NewStateForm
+            modalTitle='Insert New State'
+            onCancel={toggleModal}
+          />
         </ModalForm>
       }
     </div >
