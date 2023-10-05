@@ -54,7 +54,10 @@ const KanbanBoardPage = () => {
       {
         showModal &&
         <ModalForm>
-          <ProjectForm kanbanID={kanbanBoardId} toggleModal={toggleModal} />
+          <ProjectForm
+            modalTitle='Insert New Project'
+            kanbanID={kanbanBoardId}
+            onCancel={toggleModal} />
         </ModalForm>
       }
 

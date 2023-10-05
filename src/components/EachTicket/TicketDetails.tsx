@@ -76,7 +76,8 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
         </section>
       </div>
 
-      {showDeleteModal && (
+      {
+        showDeleteModal &&
         <ModalForm>
           <ConfirmationModal
             title='Confirm Delete'
@@ -85,7 +86,6 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
             onCancel={toggleDeleteModal}
           />
         </ModalForm>
-      )
       }
 
     </>

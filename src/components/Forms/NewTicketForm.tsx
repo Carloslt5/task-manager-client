@@ -31,8 +31,8 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ toggleModal, _id: stateID
       if (projectId) {
         ticketservices.createdTicket(projectId, stateID, newTicketData)
         setNewTicketData({ title: '', description: '', priority: '' })
-        loadTicket(projectId)
         toggleModal()
+        loadTicket(projectId)
       }
     } catch (error) {
       console.log(error)

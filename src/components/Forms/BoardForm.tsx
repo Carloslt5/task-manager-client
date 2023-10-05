@@ -4,11 +4,12 @@ import kanbanservices from '../../services/kanban.services'
 import { MdClose } from 'react-icons/md'
 
 interface BoardFormaProps {
+  modalTitle: string
   loadBoard: () => void
   onCancel: () => void
 }
 
-const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, onCancel }) => {
+const BoardForm: React.FC<BoardFormaProps> = ({ modalTitle, loadBoard, onCancel }) => {
 
   const handleCancel = () => {
     onCancel()
@@ -42,7 +43,7 @@ const BoardForm: React.FC<BoardFormaProps> = ({ loadBoard, onCancel }) => {
       id='containerForm'
       className='modal-form'>
       <div className='flex justify-between'>
-        <h1 className='text-2xl text-white'>Insert new board</h1>
+        <h1 className='text-2xl text-white'>{modalTitle}</h1>
         <button
           className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
           onClick={handleCancel}

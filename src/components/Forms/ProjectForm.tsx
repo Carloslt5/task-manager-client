@@ -6,10 +6,11 @@ import { useParams } from 'react-router-dom'
 
 interface ProjecFormProprs {
   kanbanID: string
-  toggleModal: () => void
+  modalTitle: string
+  onCancel: () => void
 }
 
-const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
+const ProjectForm: React.FC<ProjecFormProprs> = ({ modalTitle, kanbanID, onCancel }) => {
   const { kanbanBoardId } = useParams()
   const { loadKanbanBoard } = useContext(KanbanContext) as KanbanContextType
 
@@ -26,10 +27,12 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
   const todoSubmithandler = async (event: React.FormEvent) => {
     event.preventDefault()
     try {
-      await projectservices.createProject(newProjectData, kanbanID)
-      setNewProjectData({ title: '', description: '' })
-      loadKanbanBoard(kanbanBoardId!)
-      toggleModal()
+      if (kanbanBoardId) {
+        await projectservices.createProject(newProjectData, kanbanID)
+        setNewProjectData({ title: '', description: '' })
+        onCancel()
+        loadKanbanBoard(kanbanBoardId)
+      }
     } catch (error) {
       console.log(error)
     }
@@ -41,10 +44,10 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ kanbanID, toggleModal }) => {
     <div
       className='modal-form'>
       <div className='flex justify-between'>
-        <h1 className='text-2xl text-white '>Insert new project</h1>
+        <h1 className='text-2xl text-white '>{modalTitle}</h1>
         <button
           className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-          onClick={toggleModal}
+          onClick={onCancel}
         >
           <MdClose />
         </button>

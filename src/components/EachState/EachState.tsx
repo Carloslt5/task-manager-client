@@ -22,9 +22,7 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
 
-  const handlerEditClick = () => {
-    setEditing(!isEditing)
-  }
+  const handlerEditClick = () => setEditing(!isEditing)
 
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEditedContent({
@@ -84,13 +82,6 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
         </button>
       </div >
       <hr />
-
-      {/* {
-        showModal &&
-        <ModalForm >
-          <DeleteStateModal toggleModal={toggleModal} _id={_id} />
-        </ModalForm>
-      } */}
 
       {
         showModal &&

@@ -58,6 +58,7 @@ const BoardPage = () => {
         showModal &&
         <ModalForm >
           <BoardForm
+            modalTitle='Insert New Board'
             loadBoard={loadBoard}
             onCancel={toggleModal}
           />
