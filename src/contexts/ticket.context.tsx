@@ -41,8 +41,10 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
     }
   }
 
+  const value = { ticketData, setTicketData, loadTicket, deleteTicket, deleteStateAndTicket }
+
   return (
-    <TicketContext.Provider value={{ ticketData, setTicketData, loadTicket, deleteTicket, deleteStateAndTicket }}>
+    <TicketContext.Provider value={value}>
       {children}
     </TicketContext.Provider >
   )

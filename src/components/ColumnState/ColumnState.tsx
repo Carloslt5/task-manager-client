@@ -63,6 +63,7 @@ const ColumnState: React.FC<IState> = (state) => {
               }
             </ul>
           </article>
+
           <button
             className='flex items-center w-full gap-2 p-1 rounded h-fit hover:bg-gray-900 dark:hover:bg-zinc-800 focus-outline-none '
             onClick={toggleModal}>
@@ -75,8 +76,8 @@ const ColumnState: React.FC<IState> = (state) => {
         showModal &&
         <ModalForm >
           <NewTicketForm
-            {...state}
-            toggleModal={toggleModal}
+            data={state}
+            onCancel={toggleModal}
           />
         </ModalForm >
       }

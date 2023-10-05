@@ -43,8 +43,10 @@ export function AuthProviderWrapper({ children }: { children: ReactNode }) {
     authenticateUser()
   }, [])
 
+  const value = { user, isLoading, setUser, authenticateUser, storeToken, logout }
+
   return (
-    <AuthContext.Provider value={{ user, isLoading, setUser, authenticateUser, storeToken, logout }}>
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider >
   )

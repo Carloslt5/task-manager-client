@@ -1,13 +1,13 @@
 import { MdClose } from 'react-icons/md'
 
 interface ConfirmationModalProps {
-  title: string
+  modalTitle: string
   message: string
   onConfirm: () => void
   onCancel: () => void
 }
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ title, message, onConfirm, onCancel, }) => {
+const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ modalTitle, message, onConfirm, onCancel, }) => {
 
   const handleConfirm = () => {
     onConfirm()
@@ -28,7 +28,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ title, message, o
         </button>
       </div>
       <div className='flex flex-col items-center justify-center gap-4 px-4 mb-6'>
-        <h1 className='text-2xl text-white'>{title}</h1>
+        <h1 className='text-2xl text-white'>{modalTitle}</h1>
         <p className='text-white'>{message}</p>
         <div className='flex items-center justify-center gap-4'>
           <button

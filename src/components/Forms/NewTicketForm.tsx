@@ -6,10 +6,11 @@ import { IState } from '../../types/State.type'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 import { TICKET_PRIORITY } from '../../const/Ticket-Priority'
 
-interface NewTicketFormProps extends IState {
-  toggleModal: () => void
+interface NewTicketFormProps {
+  data: IState
+  onCancel: () => void
 }
-const NewTicketForm: React.FC<NewTicketFormProps> = ({ toggleModal, _id: stateID }) => {
+const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: stateID } }) => {
   const { projectId } = useParams()
   const { loadTicket } = useContext(TicketContext) as TicketContextType
 
@@ -19,6 +20,10 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ toggleModal, _id: stateID
     priority: ''
   })
 
+  const handleCancel = () => {
+    onCancel()
+  }
+
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target
     setNewTicketData((prevTicket) => ({ ...prevTicket, [name]: value, }))
@@ -27,17 +32,17 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ toggleModal, _id: stateID
   const handlerSubmit = async (event: React.FormEvent) => {
     event.preventDefault()
     try {
-      console.log(newTicketData)
       if (projectId) {
         ticketservices.createdTicket(projectId, stateID, newTicketData)
         setNewTicketData({ title: '', description: '', priority: '' })
-        toggleModal()
+        handleCancel()
         loadTicket(projectId)
       }
     } catch (error) {
       console.log(error)
     }
   }
+
   const { title, description, priority } = newTicketData
 
   return (
@@ -47,7 +52,7 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ toggleModal, _id: stateID
         <h1 className='text-2xl text-white '>New Ticket</h1>
         <button
           className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-          onClick={toggleModal}
+          onClick={handleCancel}
         >
           <MdClose />
         </button>

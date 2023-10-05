@@ -87,7 +87,7 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
         showModal &&
         <ModalForm >
           <ConfirmationModal
-            title='Confirm Delete State'
+            modalTitle='Confirm Delete State'
             message='Are you sure to delete the TICKET and ALL TO DO?'
             onConfirm={handlerDeleteStateAndTicket}
             onCancel={toggleModal}

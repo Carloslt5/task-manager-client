@@ -24,8 +24,10 @@ export function ProjectProviderWrapper({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  const value = { projectData, loadProject }
+
   return (
-    <ProjectContext.Provider value={{ projectData, loadProject }}>
+    <ProjectContext.Provider value={value}>
       {children}
     </ProjectContext.Provider >
   )
