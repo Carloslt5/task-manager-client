@@ -47,12 +47,6 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => 
         className='modal-form'>
         <div className='flex justify-between' >
           <h1 className='text-2xl text-white '>{modalTitle}</h1>
-          <button
-            className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-            onClick={handleCancel}
-          >
-            <MdClose />
-          </button>
         </div>
         <hr className='mb-4' />
         <form
@@ -67,9 +61,15 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => 
             placeholder='New State...'
             onChange={handlerInputChange}
           />
-          <div className='flex justify-between gap-2 mt-4 items-strech'>
+          <div className='flex items-center justify-end gap-2 mt-4 items-strech'>
             <button
-              className='flex items-center gap-2 btn-add'
+              className='btn-cancel'
+              onClick={onCancel}
+            >
+              <span>Cancel</span>
+            </button>
+            <button
+              className='flex items-center btn-add'
             >
               <span>Add State</span>
             </button>

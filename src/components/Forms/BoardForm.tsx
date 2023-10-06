@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { IKanbanBoardData } from '../../types/KanbanBoard.type'
 import kanbanservices from '../../services/kanban.services'
-import { MdClose } from 'react-icons/md'
 
 interface BoardFormaProps {
   modalTitle: string
@@ -43,12 +42,6 @@ const BoardForm: React.FC<BoardFormaProps> = ({ modalTitle, loadBoard, onCancel 
       className='modal-form'>
       <div className='flex justify-between'>
         <h1 className='text-2xl text-white'>{modalTitle}</h1>
-        <button
-          className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-          onClick={handleCancel}
-        >
-          <MdClose />
-        </button>
       </div>
       <hr className='mb-4' />
 
@@ -63,10 +56,16 @@ const BoardForm: React.FC<BoardFormaProps> = ({ modalTitle, loadBoard, onCancel 
           placeholder='Insert Task...'
           onChange={handlerInputChange}
         />
-        <div className='flex items-center gap-2 listAdd-Controls'>
+        <div className='flex items-center justify-end gap-2 mt-4 items-strech'>
           <button
-            className='flex items-center gap-2 btn-add'
-            type='submit'>
+            className='btn-cancel'
+            onClick={handleCancel}
+          >
+            <span>Cancel</span>
+          </button>
+          <button
+            className='flex items-center btn-add'
+          >
             <span>Add Board</span>
           </button>
         </div>

@@ -6,9 +6,10 @@ import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
 import EachKanbanBoard from '../../components/EachKanbanBoard/EachKanbanBoard'
 import Loading from '../../components/Loading/Loading'
 import ModalForm from '../../components/ModalForm/ModalForm'
-import ChangeKanbanTitle from '../../components/ChangeKanbanTitle/ChangeKanbanTitle'
 import { AuthContext } from '../../contexts/auth.context'
 import { AuthContextType } from '../../contexts/Types/AuthContext.types'
+import ChangeTitle, { EditedContent } from '../../components/ChangeTitle/ChangeTitle'
+import kanbanservices from '../../services/kanban.services'
 
 const KanbanBoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
@@ -24,6 +25,14 @@ const KanbanBoardPage = () => {
     }
   }, [kanbanBoardId, loadKanbanBoard])
 
+  const updateKanbantTitle = async (kanbanBoardId: string, editedContent: EditedContent) => {
+    try {
+      await kanbanservices.updateKanbanBoard(kanbanBoardId, editedContent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   if (!kanbanBoardId || !kanbanBoardData) {
     return <Loading />
   }
@@ -31,10 +40,18 @@ const KanbanBoardPage = () => {
   return (
     <div className='container max-w-6xl mx-auto'>
 
-      <ChangeKanbanTitle />
+      <header className='flex justify-between gap-2 pb-3 border-b'>
+        <ChangeTitle
+          data={kanbanBoardData}
+          entityId={kanbanBoardId}
+          updateEntityTitle={updateKanbantTitle}
+          updateEntity={loadKanbanBoard}
+          variant='title-page'
+        />
+      </header>
 
       <button
-        className='flex items-center gap-2 btn-add'
+        className='flex items-center gap-2 mb-4 btn-add'
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add Project</span>

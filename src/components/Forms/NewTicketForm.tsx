@@ -1,4 +1,3 @@
-import { MdClose } from 'react-icons/md'
 import { useContext, useState } from 'react'
 import ticketservices from '../../services/ticket.services'
 import { useParams } from 'react-router-dom'
@@ -50,12 +49,6 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
       className='modal-form'>
       <div className='flex justify-between'>
         <h1 className='text-2xl text-white '>New Ticket</h1>
-        <button
-          className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-          onClick={handleCancel}
-        >
-          <MdClose />
-        </button>
       </div>
       <hr className='mb-4' />
       <form
@@ -98,9 +91,16 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
             </li>
           ))}
         </ul>
-        <div className='flex justify-between gap-2 mt-4 items-strech'>
+
+        <div className='flex items-center justify-end gap-2 mt-4 items-strech'>
           <button
-            className='flex items-center gap-2 btn-add'
+            className='btn-cancel'
+            onClick={onCancel}
+          >
+            <span>Cancel</span>
+          </button>
+          <button
+            className='flex items-center btn-add'
           >
             <span>Create Ticket</span>
           </button>

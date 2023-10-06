@@ -4,12 +4,13 @@ import { MdPostAdd } from 'react-icons/md'
 import Loading from '../../components/Loading/Loading'
 import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
 import ModalForm from '../../components/ModalForm/ModalForm'
-import ChangeProjectTitle from '../../components/ChangeProjectTitle/ChangeProjectTitle'
 import ColumnState from '../../components/ColumnState/ColumnState'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import NewStateForm from '../../components/Forms/NewStateForm'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
+import ChangeTitle, { EditedContent } from '../../components/ChangeTitle/ChangeTitle'
+import projectservices from '../../services/project.services'
 
 const ProjectPage = () => {
   const { projectId } = useParams()
@@ -26,6 +27,14 @@ const ProjectPage = () => {
     }
   }, [projectId, loadProject, loadTicket])
 
+  const updateProjectTitle = async (projectId: string, editedContent: EditedContent) => {
+    try {
+      await projectservices.updateProject(projectId, editedContent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   if (!projectData || !projectId || !projectData.state) {
     return <Loading />
   }
@@ -33,7 +42,15 @@ const ProjectPage = () => {
   return (
     <div className='container h-full max-w-6xl mx-auto'>
 
-      <ChangeProjectTitle />
+      <header className='flex justify-between gap-2 pb-3 border-b'>
+        <ChangeTitle
+          data={projectData}
+          entityId={projectId}
+          updateEntityTitle={updateProjectTitle}
+          updateEntity={loadProject}
+          variant='title-page'
+        />
+      </header>
 
       <button
         className='flex items-center gap-2 btn-add '

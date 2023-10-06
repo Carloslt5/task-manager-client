@@ -32,17 +32,21 @@ const BoardPage = () => {
 
   return (
     <div className='container max-w-6xl mx-auto'>
-      <h1
-        className='py-2 mb-4 text-5xl font-extrabold text-transparent uppercase bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-200'>
-        My Boards
-      </h1>
+      <header>
 
-      <button
-        className='flex items-center gap-2 btn-add'
-        onClick={toggleModal}>
-        <MdPostAdd />
-        <span>Add Board</span>
-      </button>
+        <h1
+          className='title-primary'>
+          My Boards
+        </h1>
+
+        <button
+          className='flex items-center gap-2 mb-4 btn-add'
+          onClick={toggleModal}>
+          <MdPostAdd />
+          <span>Add Board</span>
+        </button>
+
+      </header>
 
       <section className='grid w-full gap-2 mb-4 overflow-y-auto lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[70vh]'>
         {

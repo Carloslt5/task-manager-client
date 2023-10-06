@@ -7,6 +7,10 @@ import { useContext, useState } from 'react'
 import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
 import ModalForm from '../ModalForm/ModalForm'
 import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
+import ChangeTitle, { EditedContent } from '../ChangeTitle/ChangeTitle'
+import { useParams } from 'react-router-dom'
+import Loading from '../Loading/Loading'
+import ticketservices from '../../services/ticket.services'
 
 interface TicketDetailsProps {
   ticketDetails: ITicketData
@@ -14,9 +18,11 @@ interface TicketDetailsProps {
 }
 
 const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetails }) => {
-  const { deleteTicket } = useContext(TicketContext) as TicketContextType
+  const { projectId } = useParams()
 
-  const { _id: ticketID, title, description, priority, project } = ticketDetails
+  const { loadTicket, deleteTicket } = useContext(TicketContext) as TicketContextType
+
+  const { _id: ticketID, description, priority, project } = ticketDetails
 
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const toggleDeleteModal = () => setShowDeleteModal(!showDeleteModal)
@@ -25,14 +31,31 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
     deleteTicket(ticketID, project._id)
   }
 
+  const updateTickettTitle = async (ticketID: string, editedContent: EditedContent) => {
+    try {
+      await ticketservices.updateTickettTitle(ticketID, editedContent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const priorityColor = getPriorityColor(priority)
+
+  if (!projectId) {
+    return <Loading />
+  }
 
   return (
     <>
       <div className='max-h-full modal-form'>
         <section>
-          <header className='flex justify-between pb-3 mb-2 border-b'>
-            <h1 className='text-2xl text-white '>{title}</h1>
+          <header className='flex justify-between gap-2 pb-3 mb-2 border-b'>
+            <ChangeTitle
+              data={ticketDetails}
+              entityId={projectId}
+              updateEntityTitle={updateTickettTitle}
+              updateEntity={loadTicket}
+            />
             <button
               className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
               onClick={toggleModal}
