@@ -35,7 +35,7 @@ const BoardPage = () => {
       <header>
 
         <h1
-          className='title-primary'>
+          className='mb-4 title-primary'>
           My Boards
         </h1>
 

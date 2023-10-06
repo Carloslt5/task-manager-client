@@ -40,7 +40,7 @@ const KanbanBoardPage = () => {
   return (
     <div className='container max-w-6xl mx-auto'>
 
-      <header className='flex justify-between gap-2 pb-3 border-b'>
+      <header className='flex justify-between gap-2 pb-3 '>
         <ChangeTitle
           data={kanbanBoardData}
           entityId={kanbanBoardId}

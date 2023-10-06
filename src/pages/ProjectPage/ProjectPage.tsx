@@ -42,7 +42,7 @@ const ProjectPage = () => {
   return (
     <div className='container h-full max-w-6xl mx-auto'>
 
-      <header className='flex justify-between gap-2 pb-3 border-b'>
+      <header className='flex justify-between gap-2 pb-3 '>
         <ChangeTitle
           data={projectData}
           entityId={projectId}

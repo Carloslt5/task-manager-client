@@ -51,6 +51,9 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
   const inputClassName = variant === 'title-page'
     ? 'input-primary'
     : 'w-full text-2xl'
+  const buttonClassName = variant === 'title-page'
+    ? 'p-6'
+    : 'p-2'
 
   return (
     <div className='flex items-stretch justify-between w-full gap-2'>
@@ -80,7 +83,7 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
       }
       <div className='edit-title'>
         <button
-          className='w-full h-full px-6'
+          className={buttonClassName}
           onClick={handlerEditClick}
         >
           {isEditing ? <MdClose /> : <MdModeEdit />}

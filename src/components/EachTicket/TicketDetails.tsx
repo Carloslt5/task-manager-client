@@ -1,4 +1,3 @@
-import { MdClose } from 'react-icons/md'
 import { ITicketData } from '../../types/Ticket.type'
 import { getPriorityColor } from '../../const/Ticket-Priority'
 import AddNewTodo from '../AddNewTodo/AddNewTodo'
@@ -56,12 +55,6 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
               updateEntityTitle={updateTickettTitle}
               updateEntity={loadTicket}
             />
-            <button
-              className='flex items-center justify-center p-2 border border-transparent rounded hover:border hover:border-red-500 hover:bg-gray-800 hover:text-red-500'
-              onClick={toggleModal}
-            >
-              <MdClose />
-            </button>
           </header>
           <section className='flex flex-col items-stretch gap-2'>
             <article className='flex items-center w-full gap-2 py-1 text-sm'>
@@ -86,6 +79,13 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
           {...ticketDetails}
         />
         <section className='flex items-center justify-end w-full gap-3'>
+
+          <button
+            className='btn-cancel'
+            onClick={toggleModal}
+          >
+            <span>Cancel</span>
+          </button>
           <button
             onClick={toggleDeleteModal}
             className='p-2 font-bold bg-red-500 rounded hover:bg-red-700'>

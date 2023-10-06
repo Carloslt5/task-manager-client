@@ -52,12 +52,12 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
       </div>
       <hr className='mb-4' />
       <form
-        className='flex flex-col gap-2 text-white'
+        className='flex flex-col gap-2 text-slate-500'
         onSubmit={handlerSubmit}
       >
         <input
           autoFocus
-          className='input-primary'
+          className='input-standard'
           type='text'
           name='title'
           value={title}
@@ -65,7 +65,7 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
           onChange={handlerInputChange}
         />
         <textarea
-          className='input-primary min-h-[50px] max-h-32'
+          className='input-standard min-h-[50px] max-h-32'
           name='description'
           value={description}
           placeholder='Insert description...'
@@ -92,18 +92,20 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
           ))}
         </ul>
 
-        <div className='flex items-center justify-end gap-2 mt-4 items-strech'>
-          <button
-            className='btn-cancel'
-            onClick={onCancel}
-          >
-            <span>Cancel</span>
-          </button>
+        <div className='flex flex-row-reverse items-center gap-2 mt-4 items-strech'>
+
           <button
             className='flex items-center btn-add'
           >
             <span>Create Ticket</span>
           </button>
+          <button
+            className='btn-cancel'
+            onClick={handleCancel}
+          >
+            <span>Cancel</span>
+          </button>
+
         </div>
       </form >
     </div>
