@@ -24,7 +24,7 @@ const EachTodo: React.FC<droppableTodo> = ({ _id, title, completed, ticketID }) 
       <div className='flex items-center gap-2'>
 
         <button
-          className={`rounded-full h-6 w-6 aspect-square flex flex-nowrap border bg-slate-200 dark:bg-zinc-900
+          className={`rounded-full h-4 w-4 aspect-square flex flex-nowrap border bg-slate-200 dark:bg-zinc-900
           ${completed && 'border flex justify-center items-center bg-gradient-to-b from-emerald-200 from-10% to-emerald-500 to-90%'}`
           }
           onClick={updateTodo}
@@ -37,7 +37,7 @@ const EachTodo: React.FC<droppableTodo> = ({ _id, title, completed, ticketID }) 
 
       </div>
       <button
-        className='px-2 py-2 font-bold bg-red-500 rounded hover:bg-red-700'
+        className='p-1 font-bold bg-red-500 rounded hover:bg-red-700'
         onClick={deleteTodo}
       >
         <MdDeleteForever />

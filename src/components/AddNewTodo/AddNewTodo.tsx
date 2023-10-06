@@ -5,10 +5,6 @@ import { ToDoContext } from '../../contexts/todo.context'
 import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
 import { ITicketData } from '../../types/Ticket.type'
 
-// interface AddNewTodoProps {
-//   ticketID: string
-// }
-
 const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const { id: userID } = useParams()
   const { addTodoHandler } = useContext(ToDoContext) as ToDoContextType

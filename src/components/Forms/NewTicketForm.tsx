@@ -33,7 +33,7 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
     event.preventDefault()
     try {
       if (projectId) {
-        ticketservices.createdTicket(projectId, stateID, newTicketData)
+        await ticketservices.createdTicket(projectId, stateID, newTicketData)
         setNewTicketData({ title: '', description: '', priority: '' })
         handleCancel()
         loadTicket(projectId)

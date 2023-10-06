@@ -52,7 +52,7 @@ const ProjectPage = () => {
             }
           </ul>
           <p className='mt-2 text-sm text-center text-slate-500 dark:text-zinc-500'>
-            Drag and Drop to change status
+            Drag and Drop ticket to change status
           </p>
         </section >
       </DndProvider>

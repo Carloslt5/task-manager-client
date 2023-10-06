@@ -40,7 +40,6 @@ const BoardForm: React.FC<BoardFormaProps> = ({ modalTitle, loadBoard, onCancel 
 
   return (
     <div
-      id='containerForm'
       className='modal-form'>
       <div className='flex justify-between'>
         <h1 className='text-2xl text-white'>{modalTitle}</h1>

@@ -27,7 +27,7 @@ const TicketTodoList: React.FC<ITicketData> = ({ _id: ticketID }) => {
           !todoDataBackup
             ? <Loading />
             : todoDataBackup.length === 0
-              ? <p>No pending tasks 👍</p>
+              ? <p className='p-1 rounded-sm bg-slate-600 dark:bg-zinc-700 dark:text-white'>No pending tasks 👍</p>
               : todoDataBackup.map((todo, index) =>
                 <li key={todo._id} >
                   <EachTodo {...todo} index={index} ticketID={ticketID} />

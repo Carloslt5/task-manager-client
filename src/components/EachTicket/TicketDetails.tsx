@@ -80,7 +80,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
         showDeleteModal &&
         <ModalForm>
           <ConfirmationModal
-            title='Confirm Delete'
+            modalTitle='Confirm Delete'
             message='Do you want to delete TICKET and ALL TASKS'
             onConfirm={handleDeleteTicket}
             onCancel={toggleDeleteModal}
