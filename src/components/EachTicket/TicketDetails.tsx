@@ -10,18 +10,21 @@ import ChangeTitle, { EditedContent } from '../ChangeTitle/ChangeTitle'
 import { useParams } from 'react-router-dom'
 import Loading from '../Loading/Loading'
 import ticketservices from '../../services/ticket.services'
+import ChangeDetails, { EditedContentDetails } from '../ChangeDetails/ChangeDetails'
 
 interface TicketDetailsProps {
   ticketDetails: ITicketData
   toggleModal: () => void
 }
 
+const priorityOptions = ['Low', 'Medium', 'High']
+
 const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetails }) => {
   const { projectId } = useParams()
 
   const { loadTicket, deleteTicket } = useContext(TicketContext) as TicketContextType
 
-  const { _id: ticketID, description, priority, project } = ticketDetails
+  const { _id: ticketID, priority, project } = ticketDetails
 
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const toggleDeleteModal = () => setShowDeleteModal(!showDeleteModal)
@@ -30,9 +33,26 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
     deleteTicket(ticketID, project._id)
   }
 
+  const [selectedPriority, setSelectedPriority] = useState(priority)
+  const handlePriorityChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedPriority(event.target.value)
+    try {
+      console.log('cambiando prioridad')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const updateTickettTitle = async (ticketID: string, editedContent: EditedContent) => {
     try {
-      await ticketservices.updateTickettTitle(ticketID, editedContent)
+      await ticketservices.updateTicketDetails(ticketID, editedContent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const updateTicketDetails = async (ticketID: string, editedContent: EditedContentDetails) => {
+    try {
+      await ticketservices.updateTicketDetails(ticketID, editedContent)
     } catch (error) {
       console.log(error)
     }
@@ -59,12 +79,24 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
           <section className='flex flex-col items-stretch gap-2'>
             <article className='flex items-center w-full gap-2 py-1 text-sm'>
               <p>Priority:</p>
-              <section className={`${priorityColor} h-4 w-4 rounded-full`} />
-              <p>{priority}</p>
+              <div className={`${priorityColor} h-4 w-4 rounded-full`} />
+              <select className='text-slate-500'
+                value={selectedPriority}
+                onChange={handlePriorityChange}
+              >
+                {priorityOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
             </article>
-            <article className='p-2 text-white border border-gray-400 rounded bg-slate-500 dark:bg-zinc-800'>
-              <p>{description}</p>
-            </article>
+            <ChangeDetails
+              data={ticketDetails}
+              entityId={projectId}
+              updateEntityDetails={updateTicketDetails}
+              updateEntity={loadTicket}
+            />
           </section>
         </section>
 
@@ -91,11 +123,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
             className='p-2 font-bold bg-red-500 rounded hover:bg-red-700'>
             <span>Delete Ticket</span>
           </button>
-          {/* <button
-          // onClick={handleDeleteTicket}
-          className='btn-form'>
-          <span>Save Ticket</span>
-        </button> */}
+
         </section>
       </div>
 

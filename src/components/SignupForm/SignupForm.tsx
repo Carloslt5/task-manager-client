@@ -40,7 +40,7 @@ const SignupForm = () => {
             <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-first-name'>
               First Name
             </label>
-            <input className='input-primary'
+            <input className='p-2 input-standard'
               id='grid-first-name'
               type='text'
               placeholder='Your First Name'
@@ -53,7 +53,7 @@ const SignupForm = () => {
             <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-last-name'>
               Last Name
             </label>
-            <input className='input-primary'
+            <input className='p-2 input-standard'
               id='grid-last-name'
               type='text'
               placeholder='Your Last Name'
@@ -69,7 +69,7 @@ const SignupForm = () => {
               Email
             </label>
             <input
-              className='input-primary'
+              className='p-2 input-standard'
               id='grid-email'
               type='email'
               placeholder='Example@email.com'
@@ -85,7 +85,7 @@ const SignupForm = () => {
               Password
             </label>
             <input
-              className='input-primary'
+              className='p-2 input-standard'
               id='grid-password'
               type='password'
               placeholder='******************'

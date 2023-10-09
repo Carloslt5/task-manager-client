@@ -41,7 +41,7 @@ const LoginForm = () => {
       >
         <div className='mb-4'>
           <input
-            className='input-primary'
+            className='p-2 input-standard'
             id='email'
             type='email'
             name='email'
@@ -52,7 +52,7 @@ const LoginForm = () => {
 
         </div>
         <div className='mb-6'>
-          <input className='input-primary'
+          <input className='p-2  input-standard'
             id='password'
             type='password'
             name='password'

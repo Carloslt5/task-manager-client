@@ -12,7 +12,7 @@
   }
 
   .input-standard {
-    @apply w-full px-1 text-2xl rounded
+    @apply w-full px-1 text-2xl rounded dark:text-zinc-500
   }
 
 

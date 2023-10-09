@@ -30,8 +30,8 @@ class TicketServices {
     return this.instance.post(`/ticket/createdTicket/${projectId}`, { stateId, newTicket })
   }
 
-  updateTickettTitle(ticketID: string, editedContent: Partial<ITicketData>) {
-    return this.instance.put(`/ticket/updateTickettTitle/${ticketID}`, editedContent)
+  updateTicketDetails(ticketID: string, editedContent: Partial<ITicketData>) {
+    return this.instance.put(`/ticket/updateTicketDetails/${ticketID}`, editedContent)
   }
 
   updateStateTicket(ticketId: string, stateId: string): Promise<AxiosResponse<ITicketData>> {

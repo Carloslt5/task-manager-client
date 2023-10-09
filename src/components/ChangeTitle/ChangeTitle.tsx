@@ -35,6 +35,7 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
 
   const todoSubmithandler = async (event: React.FormEvent) => {
     event.preventDefault()
+    console.log('first')
     try {
       await updateEntityTitle(_id, editedContent)
       setEditedContent({ title: '' })
@@ -50,7 +51,7 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
     : 'w-full text-2xl'
   const inputClassName = variant === 'title-page'
     ? 'input-primary'
-    : 'w-full text-2xl'
+    : 'input-standard'
   const buttonClassName = variant === 'title-page'
     ? 'p-6'
     : 'p-2'
