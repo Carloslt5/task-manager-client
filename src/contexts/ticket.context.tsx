@@ -3,12 +3,20 @@ import { ITicketData } from '../types/Ticket.type'
 import ticketservices from '../services/ticket.services'
 import stateservices from '../services/state.services'
 
+export interface EditedContent {
+  title?: string
+  description?: string
+}
+
 export interface TicketContextType {
   ticketData: ITicketData[] | null
   setTicketData: React.Dispatch<React.SetStateAction<ITicketData[] | null>>
   loadTicket: (projectId: string) => Promise<void>
   deleteTicket: (ticketId: string, projectId: string) => Promise<void>
   deleteStateAndTicket: (stateID: string, ticketID: string) => Promise<void>
+  updateTickettTitle: (projectId: string, editedContent: EditedContent) => Promise<void>
+  updateTicketPriority: (ticketID: string, priority: string) => Promise<void>
+  updateTicketDetails: (ticketID: string, editedContent: EditedContent) => Promise<void>
 }
 
 export const TicketContext = createContext<TicketContextType | null>(null)
@@ -41,7 +49,31 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
     }
   }
 
-  const value = { ticketData, setTicketData, loadTicket, deleteTicket, deleteStateAndTicket }
+  const updateTickettTitle = async (ticketID: string, editedContent: EditedContent) => {
+    try {
+      await ticketservices.updateTicketDetails(ticketID, editedContent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const updateTicketPriority = async (ticketID: string, priority: string) => {
+    try {
+      await ticketservices.updateTicketDetails(ticketID, { priority })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const updateTicketDetails = async (ticketID: string, editedContent: EditedContent) => {
+    try {
+      await ticketservices.updateTicketDetails(ticketID, editedContent)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const value = { ticketData, setTicketData, loadTicket, deleteTicket, deleteStateAndTicket, updateTicketPriority, updateTickettTitle, updateTicketDetails }
 
   return (
     <TicketContext.Provider value={value}>

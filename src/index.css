@@ -12,9 +12,8 @@
   }
 
   .input-standard {
-    @apply w-full px-1 text-2xl rounded dark:text-zinc-500
+    @apply w-full px-1 text-xl rounded dark:text-zinc-500
   }
-
 
   .btn-form {
     @apply px-4 py-2 font-bold text-white bg-blue-500 rounded dark:bg-teal-500 dark:hover:bg-teal-800 hover:bg-blue-800

@@ -4,10 +4,7 @@ import { IKanbanBoardData } from '../../types/KanbanBoard.type'
 import { ITicketData } from '../../types/Ticket.type'
 import { useState } from 'react'
 import { ProjectData } from '../../types/Project.type'
-
-export interface EditedContent {
-  title: string
-}
+import { EditedContent } from '../../contexts/ticket.context'
 
 interface ChangeTitleProps {
   data: ITicketData | IKanbanBoardData | ProjectData
@@ -20,7 +17,7 @@ interface ChangeTitleProps {
 const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityId, variant, updateEntityTitle, updateEntity }) => {
   const [isEditing, setEditing] = useState(false)
   const [editedContent, setEditedContent] = useState<EditedContent>({
-    title: '',
+    title: title,
   })
   const handlerEditClick = () => {
     setEditing(!isEditing)
@@ -35,10 +32,8 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
 
   const todoSubmithandler = async (event: React.FormEvent) => {
     event.preventDefault()
-    console.log('first')
     try {
       await updateEntityTitle(_id, editedContent)
-      setEditedContent({ title: '' })
       setEditing(false)
       updateEntity(entityId)
     } catch (error) {
@@ -71,7 +66,6 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
             className='flex w-full text-2xl'>
             <input
               autoFocus
-              onClick={handlerEditClick}
               onBlur={handlerEditClick}
               onChange={handlerInputChange}
               type='text'
