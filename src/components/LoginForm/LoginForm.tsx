@@ -35,13 +35,13 @@ const LoginForm = () => {
   const { email, password } = loginData
 
   return (
-    <div className='container flex items-center justify-center h-full max-w-screen-sm p-6 mx-auto text-white h-100 dark:text-gray-300' >
+    <div className='container flex items-center justify-center h-full max-w-screen-sm p-6 mx-auto text-white h-100' >
       <form className='w-full p-4 mx-auto rounded bg-slate-700 dark:bg-zinc-800'
         onSubmit={submitHandler}
       >
         <div className='mb-4'>
           <input
-            className='p-2 input-standard'
+            className='p-2 dark:text-zinc-800 input-standard'
             id='email'
             type='email'
             name='email'
@@ -52,7 +52,7 @@ const LoginForm = () => {
 
         </div>
         <div className='mb-6'>
-          <input className='p-2  input-standard'
+          <input className='p-2 dark:text-zinc-800 input-standard'
             id='password'
             type='password'
             name='password'

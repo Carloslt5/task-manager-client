@@ -45,9 +45,9 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
 
   const titleClassName = variant === 'title-page'
     ? 'title-primary'
-    : 'w-full text-2xl'
+    : 'input-standard'
   const inputClassName = variant === 'title-page'
-    ? 'input-primary'
+    ? 'input-primary '
     : 'input-standard'
   const buttonClassName = variant === 'title-page'
     ? 'p-6'
