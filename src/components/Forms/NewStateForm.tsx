@@ -48,12 +48,12 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => 
         </div>
         <hr className='mb-4' />
         <form
-          className='flex flex-col text-slate-500'
+          className='flex flex-col '
           onSubmit={todoSubmithandler}
         >
           <input
             autoFocus
-            className='input-standard'
+            className='input-standard text-zinc-700'
             type='text'
             name='stateName'
             placeholder='New State...'

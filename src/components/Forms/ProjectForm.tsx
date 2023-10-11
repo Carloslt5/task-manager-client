@@ -51,12 +51,12 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ modalTitle, kanbanID, onCance
       </div>
       <hr className='mb-4' />
       <form
-        className='flex flex-col gap-2 text-slate-500'
+        className='flex flex-col gap-2'
         onSubmit={todoSubmithandler}
       >
         <input
           autoFocus
-          className='input-standard'
+          className='input-standard text-slate-700'
           type='text'
           name='title'
           value={title}
@@ -64,7 +64,7 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ modalTitle, kanbanID, onCance
           onChange={handlerInputChange}
         />
         <input
-          className='input-standard'
+          className='input-standard text-zinc-700'
           type='text'
           name='description'
           value={description}

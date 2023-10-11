@@ -47,7 +47,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
             />
 
           </header>
-          <section className='flex flex-col items-stretch gap-2'>
+          <section className='flex flex-col items-stretch gap-2 mb-2'>
 
             <ChangePriority
               data={ticketDetails}
@@ -84,7 +84,7 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
             className='btn-cancel'
             onClick={toggleModal}
           >
-            <span>Cancel</span>
+            <span>Close</span>
           </button>
           <button
             onClick={toggleDeleteModal}

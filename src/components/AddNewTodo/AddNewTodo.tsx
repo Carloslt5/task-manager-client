@@ -36,7 +36,7 @@ const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
       className='flex flex-col gap-3 md:flex-row'
     >
       <input
-        className='input-standard'
+        className='input-standard text-slate-700'
         type='text'
         name='title'
         value={title}

@@ -57,7 +57,7 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
       >
         <input
           autoFocus
-          className='input-standard'
+          className='input-standard text-zinc-700'
           type='text'
           name='title'
           value={title}
@@ -65,7 +65,7 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
           onChange={handlerInputChange}
         />
         <textarea
-          className='input-standard min-h-[50px] max-h-32'
+          className='input-standard min-h-[50px] max-h-32 text-zinc-700 '
           name='description'
           value={description}
           placeholder='Insert description...'

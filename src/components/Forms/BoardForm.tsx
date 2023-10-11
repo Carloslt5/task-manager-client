@@ -51,7 +51,7 @@ const BoardForm: React.FC<BoardFormaProps> = ({ modalTitle, loadBoard, onCancel 
       >
         <input
           autoFocus
-          className='input-standard'
+          className='input-standard text-zinc-700'
           type='text'
           name='title'
           value={title}
