@@ -63,6 +63,7 @@ const EachTicket: React.FC<ITicketData> = ({ _id, title, state, description, com
             toggleModal={toggleModal} />
         </ModalForm >
       }
+
     </>
   )
 }

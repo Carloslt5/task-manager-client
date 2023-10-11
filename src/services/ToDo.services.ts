@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
 import { TodoData } from '../types/Todo.type'
+import { EditedContent } from '../contexts/ticket.context'
 
 class ToDoServices {
 
@@ -36,6 +37,10 @@ class ToDoServices {
 
   updateToDo(_id: string, completed: boolean, id: string): Promise<AxiosResponse<TodoData>> {
     return this.instance.put(`/todos/${id}/updateTodo`, { _id, completed })
+  }
+
+  updateTitleToDo(id: string, editedContent: EditedContent): Promise<AxiosResponse<TodoData>> {
+    return this.instance.put(`/todos/${id}/updateTitleToDo`, editedContent)
   }
 
   deleteToDo(_id: string, id: string): Promise<AxiosResponse<TodoData>> {

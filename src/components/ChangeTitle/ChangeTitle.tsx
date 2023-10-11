@@ -5,9 +5,10 @@ import { ITicketData } from '../../types/Ticket.type'
 import { useState } from 'react'
 import { ProjectData } from '../../types/Project.type'
 import { EditedContent } from '../../contexts/ticket.context'
+import { TodoData } from '../../types/Todo.type'
 
 interface ChangeTitleProps {
-  data: ITicketData | IKanbanBoardData | ProjectData
+  data: ITicketData | IKanbanBoardData | ProjectData | TodoData
   entityId: string
   variant?: 'title-page'
   updateEntity: (entityId: string) => void
@@ -17,6 +18,7 @@ interface ChangeTitleProps {
 const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityId, variant, updateEntityTitle, updateEntity }) => {
   const [isEditing, setEditing] = useState(false)
   const [editedContent, setEditedContent] = useState<EditedContent>({
+    _id: _id,
     title: title,
   })
   const handlerEditClick = () => {

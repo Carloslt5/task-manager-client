@@ -4,6 +4,7 @@ import ticketservices from '../services/ticket.services'
 import stateservices from '../services/state.services'
 
 export interface EditedContent {
+  _id?: string
   title?: string
   description?: string
 }

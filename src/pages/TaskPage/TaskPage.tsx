@@ -1,4 +1,5 @@
 import NewTodo from '../../components/NewTodo/NewTodo'
+import TicketTodoList from '../../components/TicketTodoList/TicketTodoList'
 import TodoList from '../../components/TodoList/TodoList'
 // import { DndProvider } from 'react-dnd'
 // import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -12,6 +13,7 @@ const TaskPage = () => {
       <NewTodo />
       <TodoList />
       {/* </DndProvider> */}
+      <TicketTodoList />
       <p
         className='mt-4 text-sm text-center text-slate-500'
       >Drag and Drop to reorder list</p>

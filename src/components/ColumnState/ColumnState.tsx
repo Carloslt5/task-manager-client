@@ -81,6 +81,7 @@ const ColumnState: React.FC<IState> = (state) => {
           />
         </ModalForm >
       }
+
     </>
 
   )
