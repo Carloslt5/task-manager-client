@@ -3,6 +3,7 @@ import { ReactNode, createContext, useCallback, useState } from 'react'
 import { TodoData } from '../types/Todo.type'
 import todoservices from '../services/ToDo.services'
 import { ToDoContextType } from './Types/ToDoContext.types'
+import { EditedContent } from './ticket.context'
 
 export const ToDoContext = createContext<ToDoContextType | null>(null)
 export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
@@ -13,7 +14,6 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
   const loadToDos = useCallback(async (userID: string, ticketID: string) => {
     try {
       if (ticketID) {
-
         const { data } = await todoservices.getTicketToDos(userID, ticketID)
         setTodoData(data)
         setTodoDataBackup(data)
@@ -23,28 +23,28 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const addTodoHandler = async (todo: TodoData, id: string, ticketID: string) => {
+  const addTodo = async (userID: string, todo: TodoData, ticketID: string) => {
     try {
       setTodoData([...todoData ?? [], todo])
-      loadToDos(id, ticketID)
+      loadToDos(userID, ticketID)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const updateTodoHandler = async (todoID: string, completed: boolean, id: string, ticketID: string) => {
+  const updateToDo = async (userID: string, editedContent: EditedContent, ticketID: string) => {
     try {
-      await todoservices.updateToDo(todoID, completed, id)
-      loadToDos(id, ticketID)
+      await todoservices.updateToDo(userID, editedContent)
+      loadToDos(userID, ticketID)
     } catch (error) {
       console.log(error)
     }
   }
 
-  const deleteTodoHandler = async (todoID: string, id: string, ticketID: string) => {
+  const deleteToDo = async (userID: string, todoID: string, ticketID: string) => {
     try {
-      await todoservices.deleteToDo(todoID, id)
-      loadToDos(id, ticketID)
+      await todoservices.deleteToDo(userID, todoID)
+      loadToDos(userID, ticketID)
     } catch (error) {
       console.log(error)
     }
@@ -82,9 +82,9 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
         setTodoData,
         setTodoDataBackup,
         loadToDos,
-        addTodoHandler,
-        updateTodoHandler,
-        deleteTodoHandler,
+        addTodo,
+        updateToDo,
+        deleteToDo,
         // changeFilter,
         // clearCompleted
       }}>

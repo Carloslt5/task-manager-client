@@ -19,12 +19,13 @@ const EachTodo: React.FC<droppableTodo> = ({ todo, ticketID }) => {
   const { id: userID } = useParams()
   const { _id: todoID, completed } = todo
 
-  const { loadToDos, updateTodoHandler, deleteTodoHandler } = useContext(ToDoContext) as ToDoContextType
+  const { loadToDos, updateToDo, deleteToDo } = useContext(ToDoContext) as ToDoContextType
 
-  const updateTodo = () => updateTodoHandler(todoID, completed, userID!, ticketID)
-  const deleteTodo = () => deleteTodoHandler(todoID, userID!, ticketID)
+  const handlerUpdateTodo = () => updateToDo(userID!, todo, ticketID)
+  const handlerDeleteToDo = () => deleteToDo(userID!, todoID, ticketID)
+  const handlerLoadToDos = () => loadToDos(userID!, ticketID)
 
-  const updateTitle = async (_id: string, editedContent: EditedContent) => {
+  const handlerUpdateTitleToDo = async (_id: string, editedContent: EditedContent) => {
     try {
       await todoservices.updateTitleToDo(userID!, editedContent)
     } catch (error) {
@@ -41,7 +42,7 @@ const EachTodo: React.FC<droppableTodo> = ({ todo, ticketID }) => {
           className={`rounded-full h-4 w-4 aspect-square flex flex-nowrap border bg-slate-200 dark:bg-zinc-900
           ${completed && 'border flex justify-center items-center bg-gradient-to-b from-emerald-200 from-10% to-emerald-500 to-90%'}`
           }
-          onClick={updateTodo}
+          onClick={handlerUpdateTodo}
         >
           {completed && <MdCheck />}
         </button>
@@ -49,8 +50,8 @@ const EachTodo: React.FC<droppableTodo> = ({ todo, ticketID }) => {
           <ChangeTitle
             data={todo}
             entityId={todoID}
-            updateEntityTitle={updateTitle}
-            updateEntity={() => loadToDos(userID!, ticketID)}
+            updateEntityTitle={handlerUpdateTitleToDo}
+            updateEntity={handlerLoadToDos}
           />
         </article>
 
@@ -58,7 +59,7 @@ const EachTodo: React.FC<droppableTodo> = ({ todo, ticketID }) => {
       <div className='flex gap-2'>
         <button
           className='p-1 font-bold bg-red-500 rounded hover:bg-red-700'
-          onClick={deleteTodo}
+          onClick={handlerDeleteToDo}
         >
           <MdDeleteForever />
         </button>

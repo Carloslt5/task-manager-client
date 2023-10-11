@@ -7,7 +7,7 @@ import { ITicketData } from '../../types/Ticket.type'
 
 const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const { id: userID } = useParams()
-  const { addTodoHandler } = useContext(ToDoContext) as ToDoContextType
+  const { addTodo } = useContext(ToDoContext) as ToDoContextType
 
   const [newTodo, setNewTodo] = useState({
     title: '',
@@ -21,8 +21,8 @@ const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const todoSubmithandler = async (event: React.FormEvent) => {
     event.preventDefault()
     try {
-      const { data } = await todoservices.createToDo(newTodo, userID!, ticketID!)
-      addTodoHandler(data, userID!, ticketID!)
+      const { data } = await todoservices.createToDo(userID!, newTodo, ticketID!)
+      addTodo(userID!, data, ticketID!)
       setNewTodo({ title: '' })
     } catch (error) {
       console.log(error)

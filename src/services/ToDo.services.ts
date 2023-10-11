@@ -23,36 +23,36 @@ class ToDoServices {
     })
   }
 
-  getAllToDos(id: string): Promise<AxiosResponse<TodoData[]>> {
-    return this.instance.get(`/todos/${id}/getAllTodos`)
+  getAllToDos(userID: string): Promise<AxiosResponse<TodoData[]>> {
+    return this.instance.get(`/todos/${userID}/getAllTodos`)
   }
 
-  getTicketToDos(id: string, ticketID: string): Promise<AxiosResponse<TodoData[]>> {
-    return this.instance.get(`/todos/${id}/${ticketID}/getTicketToDos`)
+  getTicketToDos(userID: string, ticketID: string): Promise<AxiosResponse<TodoData[]>> {
+    return this.instance.get(`/todos/${userID}/${ticketID}/getTicketToDos`)
   }
 
-  createToDo(newTodo: object, id: string, ticketID: string): Promise<AxiosResponse<TodoData>> {
-    return this.instance.post(`/todos/${id}/createdTodo`, { newTodo, ticketID })
+  createToDo(userID: string, newTodo: object, ticketID: string): Promise<AxiosResponse<TodoData>> {
+    return this.instance.post(`/todos/${userID}/createdTodo`, { newTodo, ticketID })
   }
 
-  updateToDo(_id: string, completed: boolean, id: string): Promise<AxiosResponse<TodoData>> {
-    return this.instance.put(`/todos/${id}/updateTodo`, { _id, completed })
+  updateToDo(userID: string, editedContent: EditedContent): Promise<AxiosResponse<TodoData>> {
+    return this.instance.put(`/todos/${userID}/updateTodo`, editedContent)
   }
 
-  updateTitleToDo(id: string, editedContent: EditedContent): Promise<AxiosResponse<TodoData>> {
-    return this.instance.put(`/todos/${id}/updateTitleToDo`, editedContent)
+  updateTitleToDo(userID: string, editedContent: EditedContent): Promise<AxiosResponse<TodoData>> {
+    return this.instance.put(`/todos/${userID}/updateTitleToDo`, editedContent)
   }
 
-  deleteToDo(_id: string, id: string): Promise<AxiosResponse<TodoData>> {
-    return this.instance.delete(`/todos/${id}/deleteTodo/${_id}`)
+  deleteToDo(userID: string, todoID: string): Promise<AxiosResponse<TodoData>> {
+    return this.instance.delete(`/todos/${userID}/deleteTodo/${todoID}`)
   }
 
-  clearCompleted(id: string): Promise<AxiosResponse<TodoData>> {
-    return this.instance.delete(`/todos/${id}/deleteCompletedTodos`)
+  clearCompleted(userID: string): Promise<AxiosResponse<TodoData>> {
+    return this.instance.delete(`/todos/${userID}/deleteCompletedTodos`)
   }
 
-  updateTodoOrder(id: string, updatedOrder: object[]) {
-    return this.instance.put(`/todos/${id}/updateTodoOrder/`, { updatedOrder })
+  updateTodoOrder(userID: string, updatedOrder: object[]) {
+    return this.instance.put(`/todos/${userID}/updateTodoOrder/`, { updatedOrder })
   }
 
 }
