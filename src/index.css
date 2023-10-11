@@ -12,7 +12,7 @@
   }
 
   .input-standard {
-    @apply flex items-center w-full px-1 text-xl rounded text-slate-500 dark:text-zinc-100 focus:dark:text-zinc-700
+    @apply flex items-center w-full px-1 text-xl rounded text-slate-100 dark:text-zinc-100 focus:dark:text-zinc-700
   }
 
   .btn-form {
