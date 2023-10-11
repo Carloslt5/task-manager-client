@@ -8,8 +8,8 @@ import ColumnState from '../../components/ColumnState/ColumnState'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import NewStateForm from '../../components/Forms/NewStateForm'
-import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
-import ChangeTitle, { EditedContent } from '../../components/ChangeTitle/ChangeTitle'
+import { EditedContent, TicketContext, TicketContextType } from '../../contexts/ticket.context'
+import ChangeTitle from '../../components/ChangeTitle/ChangeTitle'
 import projectservices from '../../services/project.services'
 
 const ProjectPage = () => {
