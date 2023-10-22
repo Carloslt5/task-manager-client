@@ -40,9 +40,7 @@ const LoginForm = () => {
         onSubmit={submitHandler}
       >
         <div className='mb-4'>
-          <input
-            className='p-2 text-slate-800 dark:text-zinc-800 input-standard'
-            id='email'
+          <input className='p-2 text-slate-800 dark:text-zinc-800 input-standard' id='email'
             type='email'
             name='email'
             value={email}
@@ -52,7 +50,8 @@ const LoginForm = () => {
 
         </div>
         <div className='mb-6'>
-          <input className='p-2 text-slate-800 dark:text-zinc-800 input-standard'
+          <input
+            className='p-2 text-slate-800 dark:text-zinc-800 input-standard'
             id='password'
             type='password'
             name='password'
@@ -77,7 +76,7 @@ const LoginForm = () => {
             Sign up
           </Link>
         </h5>
-      </form>
+      </form >
     </div >
   )
 }
