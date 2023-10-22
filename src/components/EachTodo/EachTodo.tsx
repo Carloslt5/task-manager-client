@@ -1,13 +1,13 @@
 import { useContext } from 'react'
-import { TodoData } from '../../types/Todo.type'
+import { TodoData } from '@/types/Todo.type'
 import { MdDeleteForever } from 'react-icons/md'
 import { MdCheck } from 'react-icons/md'
-import { ToDoContext } from '../../contexts/todo.context'
-import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
+import { ToDoContext } from '@/contexts/todo.context'
+import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { useParams } from 'react-router-dom'
-import ChangeTitle from '../ChangeTitle/ChangeTitle'
-import { EditedContent } from '../../contexts/ticket.context'
-import todoservices from '../../services/ToDo.services'
+import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
+import { EditedContent } from '@/contexts/ticket.context'
+import todoservices from '@/services/ToDo.services'
 
 interface droppableTodo {
   todo: TodoData

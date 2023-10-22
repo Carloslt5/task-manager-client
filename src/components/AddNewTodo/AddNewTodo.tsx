@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
-import todoservices from '../../services/ToDo.services'
+import todoservices from '@/services/ToDo.services'
 import { useParams } from 'react-router-dom'
-import { ToDoContext } from '../../contexts/todo.context'
-import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
-import { ITicketData } from '../../types/Ticket.type'
+import { ToDoContext } from '@/contexts/todo.context'
+import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
+import { ITicketData } from '@/types/Ticket.type'
 
 const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const { id: userID } = useParams()

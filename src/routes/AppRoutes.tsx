@@ -1,14 +1,13 @@
 import { Routes, Route } from 'react-router-dom'
-import HomePage from '../pages/HomePage/HomePage'
-import AboutPage from '../pages/AboutPage/AboutPage'
-import LoginPage from '../pages/LoginPage/LoginPage'
-import SignupPage from '../pages/SignupPage/SignupPage'
-import PrivateRoutes from './PrivateRoutes'
-import TaskPage from '../pages/TaskPage/TaskPage'
-import KanbanBoardPage from '../pages/KanbanBoardPage/KanbanBoardPage'
-import ProjectPage from '../pages/ProjectPage/ProjectPage'
-import BoardPage from '../pages/BoardPage/BoardPage'
-import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs'
+import HomePage from '@/pages/HomePage/HomePage'
+import AboutPage from '@/pages/AboutPage/AboutPage'
+import LoginPage from '@/pages/LoginPage/LoginPage'
+import SignupPage from '@/pages/SignupPage/SignupPage'
+import PrivateRoutes from '@/routes/PrivateRoutes'
+import KanbanBoardPage from '@/pages/KanbanBoardPage/KanbanBoardPage'
+import ProjectPage from '@/pages/ProjectPage/ProjectPage'
+import BoardPage from '@/pages/BoardPage/BoardPage'
+import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
 
 const AppRoutes = () => {
   return (
@@ -26,7 +25,6 @@ const AppRoutes = () => {
         <Route path='/:id' element={<BoardPage />} />
         <Route path='/:id/:kanbanBoardId' element={<KanbanBoardPage />} />
         <Route path='/:id/:kanbanBoardId/:projectId' element={<ProjectPage />} />
-        <Route path='/:id/task' element={<TaskPage />} />
       </Route>
     </Routes>
   )

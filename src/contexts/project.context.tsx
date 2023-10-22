@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useCallback, useState } from 'react'
-import { ProjectData } from '../types/Project.type'
-import projectservices from '../services/project.services'
+import { ProjectData } from '@/types/Project.type'
+import projectservices from '@/services/project.services'
 
 export interface ProjectContextType {
   projectData: ProjectData | null

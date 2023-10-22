@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
-import todoservices from './../../services/ToDo.services'
-import { ToDoContext } from '../../contexts/todo.context'
-import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
+import todoservices from '@/services/ToDo.services'
+import { ToDoContext } from '@/contexts/todo.context'
+import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { useParams } from 'react-router-dom'
 
 const NewTodo = () => {

@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import stateservices from '../../services/state.services'
-import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
+import stateservices from '@/services/state.services'
+import { ProjectContext, ProjectContextType } from '@/contexts/project.context'
 
 interface NewStateFormProps {
   modalTitle: string

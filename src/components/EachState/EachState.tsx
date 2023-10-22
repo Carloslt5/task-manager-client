@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react'
-import { IState } from '../../types/State.type'
-import stateservices from '../../services/state.services'
+import { IState } from '@/types/State.type'
+import stateservices from '@/services/state.services'
 import { useParams } from 'react-router-dom'
 import { MdClose } from 'react-icons/md'
-import { ProjectContext, ProjectContextType } from '../../contexts/project.context'
-import ModalForm from '../ModalForm/ModalForm'
-import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
-import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
+import { ProjectContext, ProjectContextType } from '@/contexts/project.context'
+import ModalForm from '@/components/ModalForm/ModalForm'
+import ConfirmationModal from '@/components/ConfirmationModal/ConfirmationModal'
+import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
 
 const EachState: React.FC<IState> = ({ _id, stateName }) => {
 

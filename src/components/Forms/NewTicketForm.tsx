@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react'
-import ticketservices from '../../services/ticket.services'
+import ticketservices from '@/services/ticket.services'
 import { useParams } from 'react-router-dom'
-import { IState } from '../../types/State.type'
-import { TicketContext, TicketContextType } from '../../contexts/ticket.context'
-import { TICKET_PRIORITY } from '../../const/Ticket-Priority'
+import { IState } from '@/types/State.type'
+import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
+import { TICKET_PRIORITY } from '@/const/Ticket-Priority'
 
 interface NewTicketFormProps {
   data: IState

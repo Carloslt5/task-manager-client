@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useCallback, useState } from 'react'
-import { ITicketData } from '../types/Ticket.type'
-import ticketservices from '../services/ticket.services'
-import stateservices from '../services/state.services'
+import { ITicketData } from '@/types/Ticket.type'
+import ticketservices from '@/services/ticket.services'
+import stateservices from '@/services/state.services'
 
 export interface EditedContent {
   _id?: string

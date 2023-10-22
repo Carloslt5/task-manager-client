@@ -1,4 +1,4 @@
-import { TodoData } from '../../types/Todo.type'
+import { TodoData } from '@/types/Todo.type'
 import { EditedContent } from '../ticket.context'
 
 export interface ToDoContextType {

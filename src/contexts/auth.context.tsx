@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ReactNode, createContext, useEffect, useState } from 'react'
-import authService from '../services/auth.services'
-import { UserData, AuthContextType } from './Types/AuthContext.types'
+import authService from '@/services/auth.services'
+import { UserData, AuthContextType } from '@/contexts/Types/AuthContext.types'
 
 export const AuthContext = createContext<AuthContextType | null>(null)
 export function AuthProviderWrapper({ children }: { children: ReactNode }) {

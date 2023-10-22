@@ -1,9 +1,9 @@
 
 import { ReactNode, createContext, useCallback, useState } from 'react'
-import { TodoData } from '../types/Todo.type'
-import todoservices from '../services/ToDo.services'
-import { ToDoContextType } from './Types/ToDoContext.types'
-import { EditedContent } from './ticket.context'
+import { TodoData } from '@/types/Todo.type'
+import todoservices from '@/services/ToDo.services'
+import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
+import { EditedContent } from '@/contexts/ticket.context'
 
 export const ToDoContext = createContext<ToDoContextType | null>(null)
 export function ToDoProviderWrapper({ children }: { children: ReactNode }) {

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
-import projectservices from '../../services/project.services'
-import { KanbanContext, KanbanContextType } from '../../contexts/kanban.context'
+import projectservices from '@/services/project.services'
+import { KanbanContext, KanbanContextType } from '@/contexts/kanban.context'
 import { useParams } from 'react-router-dom'
 
 interface ProjecFormProprs {

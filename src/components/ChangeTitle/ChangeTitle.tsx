@@ -1,11 +1,11 @@
 
 import { MdClose, MdModeEdit } from 'react-icons/md'
-import { IKanbanBoardData } from '../../types/KanbanBoard.type'
-import { ITicketData } from '../../types/Ticket.type'
+import { IKanbanBoardData } from '@/types/KanbanBoard.type'
+import { ITicketData } from '@/types/Ticket.type'
 import { useState } from 'react'
-import { ProjectData } from '../../types/Project.type'
-import { EditedContent } from '../../contexts/ticket.context'
-import { TodoData } from '../../types/Todo.type'
+import { ProjectData } from '@/types/Project.type'
+import { EditedContent } from '@/contexts/ticket.context'
+import { TodoData } from '@/types/Todo.type'
 
 interface ChangeTitleProps {
   data: ITicketData | IKanbanBoardData | ProjectData | TodoData

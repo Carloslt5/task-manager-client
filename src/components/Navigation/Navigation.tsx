@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../../contexts/auth.context'
-import { AuthContextType } from '../../contexts/Types/AuthContext.types'
-import Logo from '../icons/Logo'
+import { AuthContext } from '@/contexts/auth.context'
+import { AuthContextType } from '@/contexts/Types/AuthContext.types'
+import Logo from '@/components/icons/Logo'
 import { MdSunny, MdBedtime, MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
-import { getNoUserMenuConstants, getUserMenuConstants, APP_NAME } from './../../const/Menu-const'
+import { getNoUserMenuConstants, getUserMenuConstants, APP_NAME } from '@/const/Menu-const'
 
 const initialThemeMode = localStorage.getItem('theme') === 'dark'
 

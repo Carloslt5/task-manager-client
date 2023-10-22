@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import EachTodo from '../EachTodo/EachTodo'
-import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
-import { ToDoContext } from '../../contexts/todo.context'
+import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
+import { ToDoContext } from '@/contexts/todo.context'
 import Loading from '../Loading/Loading'
 import { useParams } from 'react-router-dom'
-import todoservices from '../../services/ToDo.services'
+import todoservices from '@/services/ToDo.services'
 
 const TodoList = () => {
   const { id } = useParams()

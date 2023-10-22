@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { ITicketData } from '../../types/Ticket.type'
-import { EditedContent } from '../../contexts/ticket.context'
+import { ITicketData } from '@/types/Ticket.type'
+import { EditedContent } from '@/contexts/ticket.context'
 
 interface ChangeDetails {
   data: ITicketData

@@ -1,7 +1,7 @@
 import { useDrag } from 'react-dnd'
-import { ITicketData } from '../../types/Ticket.type'
+import { ITicketData } from '@/types/Ticket.type'
 import { useState } from 'react'
-import { getPriorityColor } from '../../const/Ticket-Priority'
+import { getPriorityColor } from '@/const/Ticket-Priority'
 import ModalForm from '../ModalForm/ModalForm'
 import TicketDetails from './TicketDetails'
 

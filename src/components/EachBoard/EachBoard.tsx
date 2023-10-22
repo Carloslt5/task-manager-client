@@ -1,4 +1,4 @@
-import { IKanbanBoardData } from '../../types/KanbanBoard.type'
+import { IKanbanBoardData } from '@/types/KanbanBoard.type'
 
 const EachBoard: React.FC<IKanbanBoardData> = ({ title }) => {
   return (

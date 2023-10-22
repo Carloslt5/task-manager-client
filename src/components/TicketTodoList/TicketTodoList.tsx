@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef } from 'react'
 import Loading from '../Loading/Loading'
 import EachTodo from '../EachTodo/EachTodo'
-import { ToDoContext } from '../../contexts/todo.context'
-import { ToDoContextType } from '../../contexts/Types/ToDoContext.types'
+import { ToDoContext } from '@/contexts/todo.context'
+import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { useParams } from 'react-router-dom'
 
-import { ITicketData } from '../../types/Ticket.type'
+import { ITicketData } from '@/types/Ticket.type'
 
 const TicketTodoList: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const { id: userID } = useParams()

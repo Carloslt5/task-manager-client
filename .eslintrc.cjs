@@ -3,11 +3,11 @@ module.exports = {
   env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
+    'plugin:@/typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
-  parser: '@typescript-eslint/parser',
+  parser: '@/typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
     'react-refresh/only-export-components': [
@@ -19,7 +19,7 @@ module.exports = {
     "quotes": [2, "single"],
     'jsx-quotes': [2, 'prefer-single'],
     'no-multiple-empty-lines': ['error', { max: 1 }],
-    "@typescript-eslint/member-delimiter-style": ["error", {
+    "@/typescript-eslint/member-delimiter-style": ["error", {
       "multiline": {
         "delimiter": "none",
         "requireLast": true

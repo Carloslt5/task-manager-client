@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { getPriorityColor } from '../../const/Ticket-Priority'
-import { ITicketData } from '../../types/Ticket.type'
+import { getPriorityColor } from '@/const/Ticket-Priority'
+import { ITicketData } from '@/types/Ticket.type'
 
 interface ChangeDetails {
   data: ITicketData

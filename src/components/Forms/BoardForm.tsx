@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { IKanbanBoardData } from '../../types/KanbanBoard.type'
-import kanbanservices from '../../services/kanban.services'
+import { IKanbanBoardData } from '@/types/KanbanBoard.type'
+import kanbanservices from '@/services/kanban.services'
 
 interface BoardFormaProps {
   modalTitle: string

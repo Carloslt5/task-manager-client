@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import authservices from '../../services/auth.services'
-import { AuthContext } from '../../contexts/auth.context'
-import { AuthContextType } from '../../contexts/Types/AuthContext.types'
+import authservices from '@/services/auth.services'
+import { AuthContext } from '@/contexts/auth.context'
+import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 
 const LoginForm = () => {
 

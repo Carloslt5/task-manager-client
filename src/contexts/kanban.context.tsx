@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useCallback, useState } from 'react'
-import { IKanbanBoardData } from '../types/KanbanBoard.type'
-import kanbanservices from '../services/kanban.services'
+import { IKanbanBoardData } from '@/types/KanbanBoard.type'
+import kanbanservices from '@/services/kanban.services'
 
 export interface KanbanContextType {
   kanbanBoardData: IKanbanBoardData | null
