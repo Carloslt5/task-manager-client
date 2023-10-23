@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import authservices from '@/services/auth.services'
 import { useNavigate, Link } from 'react-router-dom'
+import { z } from 'zod'
 
 const SignupForm = () => {
 
