@@ -8,8 +8,9 @@ import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
-import ChangeTitle, { EditedContent } from '@/components/ChangeTitle/ChangeTitle'
+import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
 import kanbanservices from '@/services/kanban.services'
+import { EditedContent } from '@/contexts/ticket.context'
 
 const KanbanBoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType

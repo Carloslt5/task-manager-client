@@ -46,4 +46,8 @@
   .modal-form {
     @apply flex flex-col gap-2 max-w-[80%] min-w-[80%] p-4 text-white bg-slate-700 dark:bg-zinc-900 border border-slate-400 rounded
   }
+
+  .form-error {
+    @apply text-red-500 text-xs mt-2
+  }
 }

@@ -4,8 +4,8 @@ import { IKanbanBoardData } from '@/types/KanbanBoard.type'
 import { ITicketData } from '@/types/Ticket.type'
 import { useState } from 'react'
 import { ProjectData } from '@/types/Project.type'
-import { EditedContent } from '@/contexts/ticket.context'
 import { TodoData } from '@/types/Todo.type'
+import { EditedContent } from '@/contexts/ticket.context'
 
 interface ChangeTitleProps {
   data: ITicketData | IKanbanBoardData | ProjectData | TodoData

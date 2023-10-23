@@ -1,40 +1,49 @@
-import { useState } from 'react'
 import authservices from '@/services/auth.services'
 import { useNavigate, Link } from 'react-router-dom'
 import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { signUpSchema } from './../../../../commons/validations'
+
+// const signUpSchema = z.object({
+//   firstName: z.string().min(3, 'Name requires a minimum of 3 characters'),
+//   lastName: z.string().min(3, 'Last Name requires a minimum of 3 characters'),
+//   email: z.string().email('This is not a valid email'),
+//   password: z.string().min(4, 'Password requires a minimum of 4 characters'),
+// })
+
+type SignUpForm = z.infer<typeof signUpSchema>
 
 const SignupForm = () => {
 
-  const [signupData, setSignupData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+  const form = useForm<SignUpForm>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    }
   })
+
+  const { register, handleSubmit, formState } = form
+  const { errors } = formState
+
   const navigate = useNavigate()
 
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setSignupData({ ...signupData, [name]: value })
-  }
-
-  const submitHandler = async (event: React.FormEvent) => {
-    event.preventDefault()
-
+  const submitHandler = async (data: SignUpForm) => {
     try {
-      await authservices.signup(signupData)
+      await authservices.signup(data)
       navigate('/login')
     } catch (error) {
       console.log(error)
     }
   }
 
-  const { firstName, lastName, email, password } = signupData
-
   return (
     <div className='container flex items-center justify-center h-full max-w-screen-sm p-6 mx-auto text-white h-100 dark:text-gray-300' >
       <form className='w-full p-4 mx-auto rounded bg-slate-700 dark:bg-zinc-800'
-        onSubmit={submitHandler}
+        onSubmit={handleSubmit(submitHandler)}
       >
         <div className='flex flex-wrap mb-6 -mx-3'>
           <div className='w-full px-3 mb-6 md:w-1/2 md:mb-0'>
@@ -45,10 +54,9 @@ const SignupForm = () => {
               id='grid-first-name'
               type='text'
               placeholder='Your First Name'
-              name='firstName'
-              value={firstName}
-              onChange={handlerInputChange}
+              {...register('firstName')}
             />
+            <p className='form-error'>{errors.firstName?.message}</p>
           </div>
           <div className='w-full px-3 md:w-1/2'>
             <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-last-name'>
@@ -58,10 +66,9 @@ const SignupForm = () => {
               id='grid-last-name'
               type='text'
               placeholder='Your Last Name'
-              name='lastName'
-              value={lastName}
-              onChange={handlerInputChange}
+              {...register('lastName')}
             />
+            <p className='form-error'>{errors.lastName?.message}</p>
           </div>
         </div>
         <div className='flex flex-wrap mb-6 -mx-3'>
@@ -74,10 +81,10 @@ const SignupForm = () => {
               id='grid-email'
               type='email'
               placeholder='Example@email.com'
-              name='email'
-              value={email}
-              onChange={handlerInputChange}
+              {...register('email')}
             />
+            <p className='form-error'>{errors.email?.message}</p>
+
           </div>
         </div>
         <div className='flex flex-wrap mb-6 -mx-3'>
@@ -90,10 +97,9 @@ const SignupForm = () => {
               id='grid-password'
               type='password'
               placeholder='******************'
-              name='password'
-              value={password}
-              onChange={handlerInputChange}
+              {...register('password')}
             />
+            <p className='form-error'>{errors.password?.message}</p>
           </div>
         </div>
         <div className='flex items-center justify-between'>
@@ -103,7 +109,8 @@ const SignupForm = () => {
           </button>
         </div>
         <hr className='my-8 border' />
-        <h5>I have an account
+        <h5>
+          I have an account
           <Link to='/login'
             className='ml-2 text-primary-color'
             aria-current='page'>

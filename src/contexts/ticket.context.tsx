@@ -13,7 +13,7 @@ export interface TicketContextType {
   ticketData: ITicketData[] | null
   setTicketData: React.Dispatch<React.SetStateAction<ITicketData[] | null>>
   loadTicket: (projectId: string) => Promise<void>
-  deleteTicket: () => Promise<void>
+  deleteTicket: (ticketId: string, projectId: string) => Promise<void>
   deleteStateAndTicket: (stateID: string, ticketID: string) => Promise<void>
   updateTickettTitle: (projectId: string, editedContent: EditedContent) => Promise<void>
   updateTicketPriority: (ticketID: string, priority: string) => Promise<void>
