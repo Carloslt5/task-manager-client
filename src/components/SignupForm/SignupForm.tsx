@@ -3,14 +3,13 @@ import { useNavigate, Link } from 'react-router-dom'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signUpSchema } from './../../../../commons/validations'
 
-// const signUpSchema = z.object({
-//   firstName: z.string().min(3, 'Name requires a minimum of 3 characters'),
-//   lastName: z.string().min(3, 'Last Name requires a minimum of 3 characters'),
-//   email: z.string().email('This is not a valid email'),
-//   password: z.string().min(4, 'Password requires a minimum of 4 characters'),
-// })
+const signUpSchema = z.object({
+  firstName: z.string().min(3, 'Name requires a minimum of 3 characters'),
+  lastName: z.string().min(3, 'Last Name requires a minimum of 3 characters'),
+  email: z.string().email('This is not a valid email'),
+  password: z.string().min(4, 'Password requires a minimum of 4 characters'),
+})
 
 type SignUpForm = z.infer<typeof signUpSchema>
 
