@@ -9,6 +9,13 @@ export type ValidationError = {
   message: string
 };
 
+type SignUpData = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+}
+
 const SignupForm = () => {
 
   const form = useForm({
@@ -25,9 +32,9 @@ const SignupForm = () => {
 
   const navigate = useNavigate()
 
-  const submitHandler = async (data: object) => {
+  const submitHandler = async (signUpData: SignUpData) => {
     try {
-      await authservices.signup(data)
+      await authservices.signup(signUpData)
       navigate('/login')
     } catch (error) {
       //Mensaje torty error server

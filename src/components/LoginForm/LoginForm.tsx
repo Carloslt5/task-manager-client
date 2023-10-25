@@ -7,6 +7,11 @@ import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { ValidationError } from '../SignupForm/SignupForm'
 
+type LoginData = {
+  email: string
+  password: string
+}
+
 const LoginForm = () => {
 
   const loginForm = useForm({
@@ -22,13 +27,14 @@ const LoginForm = () => {
   const { storeToken, authenticateUser } = useContext(AuthContext) as AuthContextType
   const navigate = useNavigate()
 
-  const submitHandler = async (loginData: object) => {
+  const submitHandler = async (loginData: LoginData) => {
     try {
       const { data } = await authservices.login(loginData)
       storeToken(data.authToken)
       authenticateUser()
       navigate('/')
     } catch (error) {
+      //Mensaje torty error server
       if (error instanceof AxiosError) {
         setLoginErrors(error.response?.data)
       }
