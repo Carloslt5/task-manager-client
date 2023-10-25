@@ -3,6 +3,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { AxiosError } from 'axios'
+import { useState } from 'react'
 
 const signUpSchema = z.object({
   firstName: z.string().min(3, 'Name requires a minimum of 3 characters'),
@@ -27,6 +29,7 @@ const SignupForm = () => {
 
   const { register, handleSubmit, formState } = form
   const { errors } = formState
+  const [signUpErrors, setSignUpErrors] = useState([])
 
   const navigate = useNavigate()
 
@@ -35,7 +38,9 @@ const SignupForm = () => {
       await authservices.signup(data)
       navigate('/login')
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        setSignUpErrors(error.response?.data.errorMessages)
+      }
     }
   }
 
@@ -99,6 +104,7 @@ const SignupForm = () => {
               {...register('password')}
             />
             <p className='form-error'>{errors.password?.message}</p>
+            {signUpErrors.length > 0 && signUpErrors.map((elem, index) => <p key={index} className='mt-6 form-error'>{elem}</p>)}
           </div>
         </div>
         <div className='flex items-center justify-between'>

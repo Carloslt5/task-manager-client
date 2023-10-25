@@ -1,4 +1,8 @@
-import axios, { AxiosInstance } from 'axios'
+import axios, { AxiosInstance, AxiosResponse } from 'axios'
+
+interface AuthSuccessResponse {
+  authToken: string
+}
 
 class AuthServices {
 
@@ -26,7 +30,7 @@ class AuthServices {
     return this.instance.post('/auth/signup', userData)
   }
 
-  login(userData: object) {
+  login(userData: object): Promise<AxiosResponse<AuthSuccessResponse>> {
     return this.instance.post('/auth/login', userData)
   }
 
