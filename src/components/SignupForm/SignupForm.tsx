@@ -1,24 +1,17 @@
 import authservices from '@/services/auth.services'
 import { useNavigate, Link } from 'react-router-dom'
-import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
 
-const signUpSchema = z.object({
-  firstName: z.string().min(3, 'Name requires a minimum of 3 characters'),
-  lastName: z.string().min(3, 'Last Name requires a minimum of 3 characters'),
-  email: z.string().email('This is not a valid email'),
-  password: z.string().min(4, 'Password requires a minimum of 4 characters'),
-})
-
-type SignUpForm = z.infer<typeof signUpSchema>
+type ValidationError = {
+  path: string[]
+  message: string
+};
 
 const SignupForm = () => {
 
-  const form = useForm<SignUpForm>({
-    resolver: zodResolver(signUpSchema),
+  const form = useForm({
     defaultValues: {
       firstName: '',
       lastName: '',
@@ -27,19 +20,18 @@ const SignupForm = () => {
     }
   })
 
-  const { register, handleSubmit, formState } = form
-  const { errors } = formState
-  const [signUpErrors, setSignUpErrors] = useState([])
+  const { register, handleSubmit } = form
+  const [signUpErrors, setSignUpErrors] = useState<ValidationError[]>([])
 
   const navigate = useNavigate()
 
-  const submitHandler = async (data: SignUpForm) => {
+  const submitHandler = async (data: object) => {
     try {
       await authservices.signup(data)
       navigate('/login')
     } catch (error) {
       if (error instanceof AxiosError) {
-        setSignUpErrors(error.response?.data.errorMessages)
+        setSignUpErrors(error.response?.data)
       }
     }
   }
@@ -49,8 +41,8 @@ const SignupForm = () => {
       <form className='w-full p-4 mx-auto rounded bg-slate-700 dark:bg-zinc-800'
         onSubmit={handleSubmit(submitHandler)}
       >
-        <div className='flex flex-wrap mb-6 -mx-3'>
-          <div className='w-full px-3 mb-6 md:w-1/2 md:mb-0'>
+        <div className='flex flex-wrap gap-3 mb-3'>
+          <div className='flex-1 '>
             <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-first-name'>
               First Name
             </label>
@@ -60,9 +52,16 @@ const SignupForm = () => {
               placeholder='Your First Name'
               {...register('firstName')}
             />
-            <p className='form-error'>{errors.firstName?.message}</p>
+            {
+              signUpErrors.length > 0 &&
+              signUpErrors
+                .filter(error => error.path[1] === 'firstName')
+                .map((error, index) => (
+                  <p key={index} className='form-error'>{error.message}</p>
+                ))
+            }
           </div>
-          <div className='w-full px-3 md:w-1/2'>
+          <div className='flex-1'>
             <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-last-name'>
               Last Name
             </label>
@@ -72,11 +71,18 @@ const SignupForm = () => {
               placeholder='Your Last Name'
               {...register('lastName')}
             />
-            <p className='form-error'>{errors.lastName?.message}</p>
+            {
+              signUpErrors.length > 0 &&
+              signUpErrors
+                .filter(error => error.path[1] === 'lastName')
+                .map((error, index) => (
+                  <p key={index} className='form-error'>{error.message}</p>
+                ))
+            }
           </div>
         </div>
-        <div className='flex flex-wrap mb-6 -mx-3'>
-          <div className='w-full px-3'>
+        <div className='flex flex-wrap mb-3'>
+          <div className='w-full'>
             <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-email'>
               Email
             </label>
@@ -87,12 +93,18 @@ const SignupForm = () => {
               placeholder='Example@email.com'
               {...register('email')}
             />
-            <p className='form-error'>{errors.email?.message}</p>
-
+            {
+              signUpErrors.length > 0 &&
+              signUpErrors
+                .filter(error => error.path[1] === 'email')
+                .map((error, index) => (
+                  <p key={index} className='form-error'>{error.message}</p>
+                ))
+            }
           </div>
         </div>
-        <div className='flex flex-wrap mb-6 -mx-3'>
-          <div className='w-full px-3'>
+        <div className='flex flex-wrap mb-6'>
+          <div className='w-full'>
             <label className='block mb-2 text-xs font-bold tracking-wide uppercase' htmlFor='grid-password'>
               Password
             </label>
@@ -100,11 +112,17 @@ const SignupForm = () => {
               className='p-2 input-standard dark:text-zinc-800 text-slate-800'
               id='grid-password'
               type='password'
-              placeholder='******************'
+              placeholder='*********'
               {...register('password')}
             />
-            <p className='form-error'>{errors.password?.message}</p>
-            {signUpErrors.length > 0 && signUpErrors.map((elem, index) => <p key={index} className='mt-6 form-error'>{elem}</p>)}
+            {
+              signUpErrors.length > 0 &&
+              signUpErrors
+                .filter(error => error.path[1] === 'password')
+                .map((error, index) => (
+                  <p key={index} className='form-error'>{error.message}</p>
+                ))
+            }
           </div>
         </div>
         <div className='flex items-center justify-between'>

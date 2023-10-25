@@ -48,6 +48,6 @@
   }
 
   .form-error {
-    @apply text-red-500 text-xs mt-2
+    @apply text-red-500 text-xs my-2
   }
 }
