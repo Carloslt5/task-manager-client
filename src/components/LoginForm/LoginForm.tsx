@@ -3,21 +3,13 @@ import { Link, useNavigate } from 'react-router-dom'
 import authservices from '@/services/auth.services'
 import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
-import { z } from 'zod'
 import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { AxiosError } from 'axios'
-
-const loginSchema = z.object({
-  email: z.string(),
-  password: z.string(),
-})
-type LoginForm = z.infer<typeof loginSchema>
+import { ValidationError } from '../SignupForm/SignupForm'
 
 const LoginForm = () => {
 
-  const loginForm = useForm<LoginForm>({
-    resolver: zodResolver(loginSchema),
+  const loginForm = useForm({
     defaultValues: {
       email: '',
       password: '',
@@ -25,12 +17,12 @@ const LoginForm = () => {
   })
 
   const { register, handleSubmit } = loginForm
-  const [loginErrors, setLoginErrors] = useState([])
+  const [loginErrors, setLoginErrors] = useState<ValidationError[]>([])
 
   const { storeToken, authenticateUser } = useContext(AuthContext) as AuthContextType
   const navigate = useNavigate()
 
-  const submitHandler = async (loginData: LoginForm) => {
+  const submitHandler = async (loginData: object) => {
     try {
       const { data } = await authservices.login(loginData)
       storeToken(data.authToken)
@@ -38,7 +30,7 @@ const LoginForm = () => {
       navigate('/')
     } catch (error) {
       if (error instanceof AxiosError) {
-        setLoginErrors(error.response?.data.errorMessages)
+        setLoginErrors(error.response?.data)
       }
     }
   }
@@ -63,7 +55,8 @@ const LoginForm = () => {
             placeholder='******************'
             {...register('password')}
           />
-          {loginErrors.length > 0 && loginErrors.map((elem, index) => <p key={index} className='mt-6 form-error'>{elem}</p>)}
+          {loginErrors.length > 0 && loginErrors
+            .map((elem, index) => <p key={index} className='mt-6 form-error'>{elem.message}</p>)}
         </div>
         <div className='flex items-center justify-between'>
           <button

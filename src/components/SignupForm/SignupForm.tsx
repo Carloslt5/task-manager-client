@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
 
-type ValidationError = {
+export type ValidationError = {
   path: string[]
   message: string
 };
@@ -30,6 +30,7 @@ const SignupForm = () => {
       await authservices.signup(data)
       navigate('/login')
     } catch (error) {
+      //Mensaje torty error server
       if (error instanceof AxiosError) {
         setSignUpErrors(error.response?.data)
       }

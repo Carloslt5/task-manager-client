@@ -8,6 +8,7 @@ import KanbanBoardPage from '@/pages/KanbanBoardPage/KanbanBoardPage'
 import ProjectPage from '@/pages/ProjectPage/ProjectPage'
 import BoardPage from '@/pages/BoardPage/BoardPage'
 import Breadcrumbs from '@/components/Breadcrumbs/Breadcrumbs'
+import NotFound from '@/pages/NonFound/NonFound'
 
 const AppRoutes = () => {
   return (
@@ -16,6 +17,7 @@ const AppRoutes = () => {
       <Route path='/about' element={<AboutPage />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/signup' element={<SignupPage />} />
+      <Route path='*' element={<NotFound />} />
 
       <Route element={<>
         <Breadcrumbs />
