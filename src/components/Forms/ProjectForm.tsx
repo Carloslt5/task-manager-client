@@ -2,6 +2,10 @@ import React, { useContext, useState } from 'react'
 import projectservices from '@/services/project.services'
 import { KanbanContext, KanbanContextType } from '@/contexts/kanban.context'
 import { useParams } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { ProjectData } from '@/types/Project.type'
+import { ValidationError } from '../SignupForm/SignupForm'
+import { AxiosError } from 'axios'
 
 interface ProjecFormProprs {
   kanbanID: string
@@ -13,35 +17,34 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ modalTitle, kanbanID, onCance
   const { kanbanBoardId } = useParams()
   const { loadKanbanBoard } = useContext(KanbanContext) as KanbanContextType
 
-  const [newProjectData, setNewProjectData] = useState({
-    title: '',
-    description: '',
-  })
-
   const handleCancel = () => {
     onCancel()
   }
 
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setNewProjectData((prevBoard) => ({ ...prevBoard, [name]: value, }))
-  }
+  const projectForm = useForm<Partial<ProjectData>>({
+    defaultValues: {
+      title: '',
+      description: '',
+    }
+  })
+  const { register, handleSubmit } = projectForm
+  const [projectErrors, setProjectErrors] = useState<ValidationError[]>([])
 
-  const todoSubmithandler = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const submitHandler = async (newProjectData: Partial<ProjectData>) => {
     try {
       if (kanbanBoardId) {
         await projectservices.createProject(newProjectData, kanbanID)
-        setNewProjectData({ title: '', description: '' })
         handleCancel()
         loadKanbanBoard(kanbanBoardId)
       }
     } catch (error) {
-      console.log(error)
+      //error Server
+      console.log('------>', error)
+      if (error instanceof AxiosError) {
+        setProjectErrors(error.response?.data)
+      }
     }
   }
-
-  const { title, description } = newProjectData
 
   return (
     <div
@@ -52,26 +55,36 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ modalTitle, kanbanID, onCance
       <hr className='mb-4' />
       <form
         className='flex flex-col gap-2'
-        onSubmit={todoSubmithandler}
+        onSubmit={handleSubmit(submitHandler)}
       >
         <input
           autoFocus
-          className='input-standard text-slate-700'
+          className='input-standard text-slate-700 dark:text-zinc-700'
           type='text'
-          name='title'
-          value={title}
           placeholder='Insert title...'
-          onChange={handlerInputChange}
+          {...register('title')}
+          required
         />
-        <input
-          className='input-standard text-zinc-700'
-          type='text'
-          name='description'
-          value={description}
+        {
+          projectErrors.length > 0 && projectErrors
+            .filter(error => error.path[1] === 'title')
+            .map((error, index) => (
+              <p key={index} className='form-error'>{error.message}</p>
+            ))
+        }
+        <textarea
+          className='h-10 input-standard text-zinc-700 dark:text-zinc-700 max-h-32'
           placeholder='Insert description...'
-          onChange={handlerInputChange}
+          {...register('description')}
         />
-        <div className='flex flex-row-reverse items-center gap-2 mt-4 items-strech'>
+        {
+          projectErrors.length > 0 && projectErrors
+            .filter(error => error.path[1] === 'description')
+            .map((error, index) => (
+              <p key={index} className='form-error'>{error.message}</p>
+            ))
+        }
+        <div className='flex flex-row-reverse items-center gap-2 items-strech'>
 
           <button
             className='flex items-center btn-add'
