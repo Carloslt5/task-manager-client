@@ -9,6 +9,7 @@ import EachBoard from '@/components/EachBoard/EachBoard'
 import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import BoardForm from '@/components/Forms/BoardForm'
+import { AxiosError } from 'axios'
 
 const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
@@ -22,7 +23,9 @@ const BoardPage = () => {
       const { data } = await kanbanservices.getKanbanBoard()
       setKanbanBoardData(data)
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data)
+      }
     }
   }
 

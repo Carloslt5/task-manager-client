@@ -1,41 +1,42 @@
-import React, { useState } from 'react'
 import { IKanbanBoardData } from '@/types/KanbanBoard.type'
 import kanbanservices from '@/services/kanban.services'
+import { useForm } from 'react-hook-form'
+import { ValidationError } from '../SignupForm/SignupForm'
+import { useState } from 'react'
+import { AxiosError } from 'axios'
 
-interface BoardFormaProps {
+interface BoardFormProps {
   modalTitle: string
   loadBoard: () => void
   onCancel: () => void
 }
 
-const BoardForm: React.FC<BoardFormaProps> = ({ modalTitle, loadBoard, onCancel }) => {
+const BoardForm: React.FC<BoardFormProps> = ({ modalTitle, loadBoard, onCancel }) => {
 
   const handleCancel = () => {
     onCancel()
   }
-
-  const [newKanbanBoard, setNewKanbanBoard] = useState<Partial<IKanbanBoardData>>({
-    title: '',
+  const boardForm = useForm({
+    defaultValues: {
+      title: ''
+    }
   })
 
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setNewKanbanBoard((prevBoard) => ({ ...prevBoard, [name]: value, }))
-  }
+  const { register, handleSubmit } = boardForm
+  const [boardErrors, setBoardErrors] = useState<ValidationError[]>([])
 
-  const todoSubmithandler = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const submitHandler = async (boardData: Partial<IKanbanBoardData>) => {
     try {
-      await kanbanservices.createKanbanBoard(newKanbanBoard)
-      setNewKanbanBoard({ title: '' })
+      await kanbanservices.createKanbanBoard(boardData)
       handleCancel()
       loadBoard()
     } catch (error) {
-      console.log(error)
+      //server Error
+      if (error instanceof AxiosError) {
+        setBoardErrors(error.response?.data)
+      }
     }
   }
-
-  const { title } = newKanbanBoard
 
   return (
     <div
@@ -47,18 +48,20 @@ const BoardForm: React.FC<BoardFormaProps> = ({ modalTitle, loadBoard, onCancel 
 
       <form
         className='flex flex-col gap-4 text-slate-500'
-        onSubmit={todoSubmithandler}
+        onSubmit={handleSubmit(submitHandler)}
       >
         <input
           autoFocus
-          className='input-standard text-zinc-700'
+          className='input-standard text-zinc-700 dark:text-zinc-700'
           type='text'
-          name='title'
-          value={title}
           placeholder='Insert Board...'
-          onChange={handlerInputChange}
+          {...register('title')}
         />
-        <div className='flex flex-row-reverse items-center gap-2 mt-4 items-strech'>
+        {
+          boardErrors.length > 0 && boardErrors
+            .map((issues, index) => <p key={index} className='form-error'>{issues.message}</p>)
+        }
+        <div className='flex flex-row-reverse items-center gap-2 items-strech'>
 
           <button
             type='submit'
