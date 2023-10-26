@@ -35,21 +35,20 @@ const BoardPage = () => {
 
   return (
     <div className='container max-w-6xl mx-auto'>
-      <header>
 
+      <header>
         <h1
-          className='mb-4 title-primary'>
+          className='mb-3 title-primary'>
           My Boards
         </h1>
-
-        <button
-          className='flex items-center gap-2 mb-4 btn-add'
-          onClick={toggleModal}>
-          <MdPostAdd />
-          <span>Add Board</span>
-        </button>
-
       </header>
+
+      <button
+        className='flex items-center gap-2 mb-6 btn-add'
+        onClick={toggleModal}>
+        <MdPostAdd />
+        <span>Add Board</span>
+      </button>
 
       <section className='grid w-full gap-2 mb-4 overflow-y-auto lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[70vh]'>
         {

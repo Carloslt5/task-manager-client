@@ -6,40 +6,44 @@ import { useState } from 'react'
 import { ProjectData } from '@/types/Project.type'
 import { TodoData } from '@/types/Todo.type'
 import { EditedContent } from '@/contexts/ticket.context'
+import { useForm } from 'react-hook-form'
+import { ValidationError } from '../SignupForm/SignupForm'
+import { AxiosError } from 'axios'
 
 interface ChangeTitleProps {
   data: ITicketData | IKanbanBoardData | ProjectData | TodoData
   entityId: string
   variant?: 'title-page'
   updateEntity: (entityId: string) => void
-  updateEntityTitle: (projectId: string, editedContent: EditedContent) => Promise<void>
+  updateEntityTitle: (entityId: string, editedContent: EditedContent) => void
 }
 
 const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityId, variant, updateEntityTitle, updateEntity }) => {
   const [isEditing, setEditing] = useState(false)
-  const [editedContent, setEditedContent] = useState<EditedContent>({
-    _id: _id,
-    title: title,
+  const editContent = useForm({
+    defaultValues: {
+      _id: _id,
+      title: title,
+    }
   })
+
+  const { register, handleSubmit } = editContent
+  const [changeTitleErrors, setChangeTitleErrors] = useState<ValidationError[]>([])
+
   const handlerEditClick = () => {
     setEditing(!isEditing)
   }
 
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedContent({
-      ...editedContent,
-      title: event.target.value,
-    })
-  }
-
-  const todoSubmithandler = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const submitHandler = async (editedContent: EditedContent): Promise<void> => {
     try {
       await updateEntityTitle(_id, editedContent)
       setEditing(false)
       updateEntity(entityId)
+      setChangeTitleErrors([])
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        setChangeTitleErrors(error.response?.data)
+      }
     }
   }
 
@@ -54,39 +58,43 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
     : 'p-2'
 
   return (
-    <div className='flex items-stretch justify-between w-full gap-2'>
-      {
-        !isEditing
-          ? <h1
-            className={titleClassName}
+    <article className='flex flex-col w-full'>
+      <div className='flex items-stretch justify-between w-full gap-2'>
+        {
+          !isEditing
+            ? <h1
+              className={titleClassName}
+              onClick={handlerEditClick}
+            >
+              {title}
+            </h1>
+            : <form
+              className='flex w-full text-2xl'
+              onSubmit={handleSubmit(submitHandler)}>
+              <input
+                autoFocus
+                type='text'
+                {...register('title')}
+                className={inputClassName}
+                placeholder={title}
+                required />
+            </form>
+        }
+        <div className='edit-title'>
+          <button
+            className={buttonClassName}
             onClick={handlerEditClick}
           >
-            {title}
-          </h1>
-          : <form
-            onSubmit={todoSubmithandler}
-            className='flex w-full text-2xl'>
-            <input
-              autoFocus
-              onBlur={handlerEditClick}
-              onChange={handlerInputChange}
-              type='text'
-              name='title'
-              value={editedContent.title}
-              className={inputClassName}
-              placeholder={title}
-              required />
-          </form>
-      }
-      <div className='edit-title'>
-        <button
-          className={buttonClassName}
-          onClick={handlerEditClick}
-        >
-          {isEditing ? <MdClose /> : <MdModeEdit />}
-        </button>
+            {isEditing ? <MdClose /> : <MdModeEdit />}
+          </button>
+        </div>
       </div>
-    </div>)
+      {
+        changeTitleErrors.length > 0 && changeTitleErrors
+          .map((error, index) => <p key={index} className='mt-6 form-error'>{error.message}</p>)
+      }
+    </article>
+  )
 }
 
 export default ChangeTitle

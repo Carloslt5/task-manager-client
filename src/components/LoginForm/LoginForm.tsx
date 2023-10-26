@@ -62,7 +62,8 @@ const LoginForm = () => {
             {...register('password')}
           />
           {loginErrors.length > 0 && loginErrors
-            .map((elem, index) => <p key={index} className='mt-6 form-error'>{elem.message}</p>)}
+            .map((elem, index) => <p key={index} className='mt-6 form-error'>{elem.message}</p>)
+          }
         </div>
         <div className='flex items-center justify-between'>
           <button

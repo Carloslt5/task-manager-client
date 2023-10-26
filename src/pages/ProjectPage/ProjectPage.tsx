@@ -28,11 +28,7 @@ const ProjectPage = () => {
   }, [projectId, loadProject, loadTicket])
 
   const updateProjectTitle = async (projectId: string, editedContent: EditedContent) => {
-    try {
-      await projectservices.updateProject(projectId, editedContent)
-    } catch (error) {
-      console.log(error)
-    }
+    await projectservices.updateProject(projectId, editedContent)
   }
 
   if (!projectData || !projectId || !projectData.state) {
@@ -53,7 +49,7 @@ const ProjectPage = () => {
       </header>
 
       <button
-        className='flex items-center gap-2 btn-add '
+        className='flex items-center gap-2 mb-6 btn-add '
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add State</span>

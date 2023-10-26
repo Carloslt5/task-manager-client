@@ -26,12 +26,8 @@ const KanbanBoardPage = () => {
     }
   }, [kanbanBoardId, loadKanbanBoard])
 
-  const updateKanbantTitle = async (kanbanBoardId: string, editedContent: EditedContent) => {
-    try {
-      await kanbanservices.updateKanbanBoard(kanbanBoardId, editedContent)
-    } catch (error) {
-      console.log(error)
-    }
+  const updateKanbantTitle = async (kanbanBoardId: string, editedContent: EditedContent): Promise<void> => {
+    await kanbanservices.updateKanbanBoard(kanbanBoardId, editedContent)
   }
 
   if (!kanbanBoardId || !kanbanBoardData) {
@@ -41,7 +37,7 @@ const KanbanBoardPage = () => {
   return (
     <div className='container max-w-6xl mx-auto'>
 
-      <header className='flex justify-between gap-2 pb-3 '>
+      <header className='flex justify-between gap-2 pb-3'>
         <ChangeTitle
           data={kanbanBoardData}
           entityId={kanbanBoardId}
@@ -52,7 +48,7 @@ const KanbanBoardPage = () => {
       </header>
 
       <button
-        className='flex items-center gap-2 mb-4 btn-add'
+        className='flex items-center gap-2 mb-6 btn-add'
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add Project</span>
