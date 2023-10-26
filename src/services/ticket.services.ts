@@ -38,8 +38,8 @@ class TicketServices {
     return this.instance.put('/ticket/updateStateTicket', { ticketId, stateId })
   }
 
-  deleteTicket(ticketId: string) {
-    return this.instance.delete(`/ticket/deleteTicket/${ticketId}`)
+  deleteTicket(ticketId: string, stateID: string) {
+    return this.instance.delete(`/ticket/deleteTicket/${ticketId}`, { data: { stateID } })
   }
 
 }

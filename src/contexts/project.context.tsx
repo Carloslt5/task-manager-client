@@ -17,6 +17,8 @@ export function ProjectProviderWrapper({ children }: { children: ReactNode }) {
     try {
       if (projectId) {
         const { data } = await projectservices.getOneProject(projectId)
+        console.log('seeting pd', projectId)
+        console.log(data)
         setProjectData(data)
       }
     } catch (error) {

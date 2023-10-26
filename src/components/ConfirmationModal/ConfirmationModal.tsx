@@ -9,13 +9,8 @@ interface ConfirmationModalProps {
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ modalTitle, message, onConfirm, onCancel, }) => {
 
-  const handleConfirm = () => {
-    onConfirm()
-  }
-
-  const handleCancel = () => {
-    onCancel()
-  }
+  const handleConfirm = () => onConfirm()
+  const handleCancel = () => onCancel()
 
   return (
     <div className='modal-form'>

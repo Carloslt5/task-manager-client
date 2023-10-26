@@ -37,7 +37,7 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
     try {
       if (projectId) {
         await stateservices.editState(stateFormData)
-        setEditing(false)
+        toggleModal()
         loadProject(projectId)
       }
     } catch (error) {
@@ -46,11 +46,18 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
     }
   }
 
-  const handlerDeleteStateAndTicket = () => {
+  const handlerDeleteStateAndTicket = async () => {
     if (ticketData) {
-      ticketData.map(ticket => {
-        deleteStateAndTicket(_id, ticket._id)
-      })
+      try {
+        const deletionPromises = ticketData.map(ticket => {
+          return deleteStateAndTicket(_id, ticket._id)
+        })
+        await Promise.all(deletionPromises)
+        toggleModal()
+        await loadProject(projectId!)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 

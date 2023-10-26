@@ -37,14 +37,15 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
   }, [])
 
   const deleteTicket = async (ticketId: string, projectId: string) => {
-    await ticketservices.deleteTicket(ticketId)
-    loadTicket(projectId)
+    // await ticketservices.deleteTicket(ticketId)
+    console.log('-------->')
+    // loadTicket(projectId)
   }
 
   const deleteStateAndTicket = async (stateID: string, ticketID: string) => {
     try {
+      await ticketservices.deleteTicket(ticketID, stateID)
       await stateservices.deleteState(stateID)
-      await ticketservices.deleteTicket(ticketID)
     } catch (error) {
       console.log(error)
     }
