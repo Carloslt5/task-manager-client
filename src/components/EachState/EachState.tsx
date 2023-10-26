@@ -2,45 +2,46 @@ import { useContext, useState } from 'react'
 import { IState } from '@/types/State.type'
 import stateservices from '@/services/state.services'
 import { useParams } from 'react-router-dom'
-import { MdClose } from 'react-icons/md'
+import { MdDeleteForever } from 'react-icons/md'
 import { ProjectContext, ProjectContextType } from '@/contexts/project.context'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import ConfirmationModal from '@/components/ConfirmationModal/ConfirmationModal'
-import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
+import { EditedContent, TicketContext, TicketContextType } from '@/contexts/ticket.context'
+import { useForm } from 'react-hook-form'
 
-const EachState: React.FC<IState> = ({ _id, stateName }) => {
+type EachStateProps = {
+  stateData: IState
+}
 
+const EachState: React.FC<EachStateProps> = ({ stateData }) => {
+  const { _id, stateName } = stateData
   const { projectId } = useParams()
   const { loadProject } = useContext(ProjectContext) as ProjectContextType
   const { ticketData, deleteStateAndTicket } = useContext(TicketContext) as TicketContextType
 
   const [isEditing, setEditing] = useState(false)
-  const [editedContent, setEditedContent] = useState({
-    stateName: '',
+
+  const stateForm = useForm({
+    defaultValues: {
+      _id: _id,
+      stateName: stateName
+    }
   })
+  const { register, handleSubmit } = stateForm
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
-
   const handlerEditClick = () => setEditing(!isEditing)
 
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEditedContent({
-      ...editedContent,
-      stateName: event.target.value,
-    })
-  }
-
-  const todoSubmithandler = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const submitHandler = async (stateFormData: EditedContent): Promise<void> => {
     try {
       if (projectId) {
-        await stateservices.editState({ _id, ...editedContent })
-        setEditedContent({ stateName: '' })
+        await stateservices.editState(stateFormData)
         setEditing(false)
         loadProject(projectId)
       }
     } catch (error) {
+      //error server Tosty
       console.log(error)
     }
   }
@@ -55,30 +56,30 @@ const EachState: React.FC<IState> = ({ _id, stateName }) => {
 
   return (
     <>
-      <div className='flex items-center justify-between gap-2'>
+      <div className='flex items-center justify-between gap-2 '>
         {
           !isEditing
-            ? <h2 onClick={handlerEditClick} className='px-1 font-bold uppercase 2xl'>{stateName}</h2>
+            ? <h2 className='w-full px-1 font-bold 2xl' onClick={handlerEditClick} >{stateName}</h2>
             :
             <form
-              onSubmit={todoSubmithandler}
-              className='flex w-full'>
+              className='w-full'
+              onSubmit={handleSubmit(submitHandler)}
+            >
               <input
                 autoFocus
-                onBlur={handlerEditClick}
                 type='text'
-                name='title'
-                value={editedContent.stateName}
-                onChange={handlerInputChange}
-                className='w-full px-1 font-extrabold text-gray-900 uppercase rounded outline-none bg-gray-50dark:focus:ring-2 dark:focus:ring-teal-500 focus:ring-2 focus:ring-blue-500'
+                className='w-full px-1 text-gray-900 rounded outline-none bg-gray-50 dark:focus:ring-2 dark:focus:ring-teal-500 focus:ring-2 focus:ring-blue-500'
                 placeholder={stateName}
+                {...register('stateName')}
+                onBlur={handlerEditClick}
                 required />
             </form>
         }
+
         <button
           onClick={toggleModal}
           className='hover:text-red-500 '>
-          <MdClose />
+          <MdDeleteForever />
         </button>
       </div >
       <hr />

@@ -48,7 +48,7 @@ const ColumnState: React.FC<IState> = (state) => {
           ref={drop}
           className='flex flex-col gap-2 p-2 border border-gray-500 min-w-[15rem] bg-slate-700 dark:bg-zinc-950 rounded max-h-[100%]'
         >
-          <EachState {...state} />
+          <EachState stateData={state} />
 
           <article className={`py-2 overflow-y-scroll rounded ${isOver && 'bg-slate-950 dark:bg-zinc-700'}`}>
             <ul className='flex flex-col gap-2 overflow-y-hidden'>
