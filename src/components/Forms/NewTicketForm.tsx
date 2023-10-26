@@ -2,8 +2,11 @@ import { useContext, useState } from 'react'
 import ticketservices from '@/services/ticket.services'
 import { useParams } from 'react-router-dom'
 import { IState } from '@/types/State.type'
-import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
+import { EditedContent, TicketContext, TicketContextType } from '@/contexts/ticket.context'
 import { TICKET_PRIORITY } from '@/const/Ticket-Priority'
+import { useForm } from 'react-hook-form'
+import { ValidationError } from '../SignupForm/SignupForm'
+import { AxiosError } from 'axios'
 
 interface NewTicketFormProps {
   data: IState
@@ -12,37 +15,33 @@ interface NewTicketFormProps {
 const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: stateID } }) => {
   const { projectId } = useParams()
   const { loadTicket } = useContext(TicketContext) as TicketContextType
+  const handleCancel = () => onCancel()
 
-  const [newTicketData, setNewTicketData] = useState({
-    title: '',
-    description: '',
-    priority: ''
+  const newTicketData = useForm({
+    defaultValues: {
+      title: '',
+      description: '',
+      priority: ''
+    }
   })
 
-  const handleCancel = () => {
-    onCancel()
-  }
+  const { register, handleSubmit } = newTicketData
+  const [newTicketErrors, setNewTicketrrors] = useState<ValidationError[]>([])
 
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = event.target
-    setNewTicketData((prevTicket) => ({ ...prevTicket, [name]: value, }))
-  }
-
-  const handlerSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const onSubmit = async (newTicketData: EditedContent) => {
     try {
       if (projectId) {
         await ticketservices.createdTicket(projectId, stateID, newTicketData)
-        setNewTicketData({ title: '', description: '', priority: '' })
         handleCancel()
         loadTicket(projectId)
       }
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        console.log(error)
+        setNewTicketrrors(error.response?.data)
+      }
     }
   }
-
-  const { title, description, priority } = newTicketData
 
   return (
     <div
@@ -52,24 +51,22 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
       </div>
       <hr className='mb-4' />
       <form
-        className='flex flex-col gap-2 text-slate-500'
-        onSubmit={handlerSubmit}
+        className='flex flex-col gap-2 text-slate-500 '
+        onSubmit={handleSubmit(onSubmit)}
       >
         <input
           autoFocus
-          className='input-standard text-zinc-700'
+          className='input-standard text-zinc-700 dark:text-zinc-700'
           type='text'
-          name='title'
-          value={title}
           placeholder='Insert title...'
-          onChange={handlerInputChange}
+          {...register('title')}
+          required
         />
         <textarea
-          className='input-standard min-h-[50px] max-h-32 text-zinc-700 '
-          name='description'
-          value={description}
+          className='input-standard min-h-[50px] max-h-32 text-zinc-700 dark:text-zinc-700 '
           placeholder='Insert description...'
-          onChange={handlerInputChange}
+          {...register('description')}
+          required
         />
         <ul className='flex items-center gap-2'>
           <p>Priority:</p>
@@ -78,10 +75,8 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
               <input
                 id={`checkbox${index}`}
                 type='radio'
-                name='priority'
                 value={el}
-                checked={priority === el}
-                onChange={handlerInputChange}
+                {...register('priority')}
               />
               <label
                 className='inline-block pl-[0.15rem] hover:cursor-pointer'
@@ -91,7 +86,9 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
             </li>
           ))}
         </ul>
-
+        {newTicketErrors.length > 0 && newTicketErrors
+          .map((elem, index) => <p key={index} className='mt-6 form-error'>{elem.message}</p>)
+        }
         <div className='flex flex-row-reverse items-center gap-2 mt-4 items-strech'>
 
           <button
