@@ -58,6 +58,7 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => 
             name='stateName'
             placeholder='New State...'
             onChange={handlerInputChange}
+            required
           />
           <div className='flex flex-row-reverse items-center gap-2 mt-4 items-strech'>
 
