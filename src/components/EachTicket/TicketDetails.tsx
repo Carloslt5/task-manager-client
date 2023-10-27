@@ -20,13 +20,13 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
   const { projectId } = useParams()
   const { loadTicket, deleteTicket, updateTickettTitle, updateTicketPriority, updateTicketDetails } = useContext(TicketContext) as TicketContextType
 
-  const { _id: ticketID, project } = ticketDetails
+  const { _id: ticketID, project, state } = ticketDetails
 
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const toggleDeleteModal = () => setShowDeleteModal(!showDeleteModal)
 
   const handleDeleteTicket = () => {
-    deleteTicket(ticketID, project._id)
+    deleteTicket(ticketID, project._id, state._id)
   }
 
   if (!projectId) {

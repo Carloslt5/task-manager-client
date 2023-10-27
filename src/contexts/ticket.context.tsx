@@ -14,7 +14,7 @@ export interface TicketContextType {
   ticketData: ITicketData[] | null
   setTicketData: React.Dispatch<React.SetStateAction<ITicketData[] | null>>
   loadTicket: (projectId: string) => Promise<void>
-  deleteTicket: (ticketId: string, projectId: string) => Promise<void>
+  deleteTicket: (ticketId: string, projectId: string, stateID: string) => Promise<void>
   deleteStateAndTicket: (stateID: string, ticketID: string) => Promise<void>
   updateTickettTitle: (projectId: string, editedContent: EditedContent) => Promise<void>
   updateTicketPriority: (ticketID: string, priority: string) => Promise<void>
@@ -37,10 +37,9 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const deleteTicket = async (ticketId: string, projectId: string) => {
-    // await ticketservices.deleteTicket(ticketId)
-    console.log('-------->')
-    // loadTicket(projectId)
+  const deleteTicket = async (ticketId: string, projectId: string, stateID: string) => {
+    await ticketservices.deleteTicket(ticketId, stateID)
+    loadTicket(projectId)
   }
 
   const deleteStateAndTicket = async (stateID: string, ticketID: string) => {

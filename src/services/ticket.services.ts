@@ -27,6 +27,7 @@ class TicketServices {
   }
 
   createdTicket(projectId: string, stateId: string, newTicket: object) {
+
     return this.instance.post(`/ticket/createdTicket/${projectId}`, { stateId, newTicket })
   }
 
