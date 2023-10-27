@@ -52,7 +52,7 @@ const ChangeDetails: React.FC<ChangeDetails> = ({ data: { _id: ticketID, descrip
               value={editedContent.description}
               onChange={handlerInputChange}
               autoFocus
-              className='p-2 mb-1 text-base border-none max-h-40 input-standard'
+              className='p-2 mb-2 text-base border-none max-h-40 input-standard dark:text-zinc-700'
               placeholder={description}
             />
 

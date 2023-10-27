@@ -49,10 +49,10 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
 
   const titleClassName = variant === 'title-page'
     ? 'title-primary '
-    : 'input-standard text-slate-100'
+    : 'input-standard text-slate-100 dark:text-zinc-100'
   const inputClassName = variant === 'title-page'
     ? 'input-primary'
-    : 'input-standard text-slate-700'
+    : 'input-standard text-slate-100 dark:text-zinc-700'
   const buttonClassName = variant === 'title-page'
     ? 'p-6'
     : 'p-2'
@@ -69,7 +69,7 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
               {title}
             </h1>
             : <form
-              className='flex w-full text-2xl'
+              className='flex w-full text-2x '
               onSubmit={handleSubmit(submitHandler)}>
               <input
                 autoFocus
@@ -77,6 +77,7 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
                 {...register('title')}
                 className={inputClassName}
                 placeholder={title}
+                onBlur={handlerEditClick}
                 required />
             </form>
         }
