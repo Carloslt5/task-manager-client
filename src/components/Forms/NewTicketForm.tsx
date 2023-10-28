@@ -86,9 +86,12 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
             </li>
           ))}
         </ul>
-        {newTicketErrors.length > 0 && newTicketErrors
-          .map((elem, index) => <p key={index} className='mt-6 form-error'>{elem.message}</p>)
-        }
+        <div>
+          {
+            newTicketErrors.length > 0 && newTicketErrors
+              .map((elem, index) => <p key={index} className='form-error'>{elem.message}</p>)
+          }
+        </div>
         <div className='flex flex-row-reverse items-center gap-2 mt-4 items-strech'>
 
           <button
