@@ -21,7 +21,7 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
     defaultValues: {
       title: '',
       description: '',
-      priority: ''
+      priority: 'Low'
     }
   })
 
@@ -77,6 +77,7 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
                 type='radio'
                 value={el}
                 {...register('priority')}
+                defaultChecked={el === 'Low'}
               />
               <label
                 className='inline-block pl-[0.15rem] hover:cursor-pointer'
