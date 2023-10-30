@@ -12,11 +12,9 @@ interface BoardFormProps {
 }
 
 const BoardForm: React.FC<BoardFormProps> = ({ modalTitle, loadBoard, onCancel }) => {
+  const handleCancel = () => onCancel()
 
-  const handleCancel = () => {
-    onCancel()
-  }
-  const boardForm = useForm({
+  const boardForm = useForm<IKanbanBoardData>({
     defaultValues: {
       title: ''
     }
@@ -25,7 +23,7 @@ const BoardForm: React.FC<BoardFormProps> = ({ modalTitle, loadBoard, onCancel }
   const { register, handleSubmit } = boardForm
   const [boardErrors, setBoardErrors] = useState<ValidationError[]>([])
 
-  const submitHandler = async (boardData: Partial<IKanbanBoardData>) => {
+  const submitHandler = async (boardData: IKanbanBoardData) => {
     try {
       await kanbanservices.createKanbanBoard(boardData)
       handleCancel()
@@ -59,7 +57,7 @@ const BoardForm: React.FC<BoardFormProps> = ({ modalTitle, loadBoard, onCancel }
         />
         {
           boardErrors.length > 0 && boardErrors
-            .map((issues, index) => <p key={index} className='form-error'>{issues.message}</p>)
+            .map((error, index) => <p key={index} className='form-error'>{error.message}</p>)
         }
         <div className='flex flex-row-reverse items-center gap-2 items-strech'>
 

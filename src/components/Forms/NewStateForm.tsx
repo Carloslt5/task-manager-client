@@ -2,6 +2,8 @@ import { useContext, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import stateservices from '@/services/state.services'
 import { ProjectContext, ProjectContextType } from '@/contexts/project.context'
+import { AxiosError } from 'axios'
+import { ValidationError } from '../SignupForm/SignupForm'
 
 interface NewStateFormProps {
   modalTitle: string
@@ -9,17 +11,15 @@ interface NewStateFormProps {
 }
 
 const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => {
+  const handleCancel = () => onCancel()
+
   const { projectId } = useParams()
   const { loadProject } = useContext(ProjectContext) as ProjectContextType
 
   const [newStateData, setNewStateData] = useState({
     stateName: '',
   })
-
-  const handleCancel = () => {
-    onCancel()
-  }
-
+  const [stateError, setStateError] = useState<ValidationError[]>([])
   const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setNewStateData({ ...newStateData, [name]: value })
@@ -34,7 +34,9 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => 
         handleCancel()
       }
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        setStateError(error.response?.data)
+      }
     }
   }
 
@@ -58,8 +60,14 @@ const NewStateForm: React.FC<NewStateFormProps> = ({ modalTitle, onCancel }) => 
             name='stateName'
             placeholder='New State...'
             onChange={handlerInputChange}
-            required
+
           />
+
+          {
+            stateError.length > 0 && stateError
+              .map((elem, index) => <p key={index} className='form-error'>{elem.message}</p>)
+          }
+
           <div className='flex flex-row-reverse items-center gap-2 mt-4 items-strech'>
 
             <button
