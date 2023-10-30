@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { MdPostAdd } from 'react-icons/md'
 import Loading from '@/components/Loading/Loading'
@@ -11,14 +11,19 @@ import NewStateForm from '@/components/Forms/NewStateForm'
 import { EditedContent, TicketContext, TicketContextType } from '@/contexts/ticket.context'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
 import projectservices from '@/services/project.services'
+import SettingModal from '@/components/SettingModal/SettingModal'
+import { AuthContext } from '@/contexts/auth.context'
+import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 
 const ProjectPage = () => {
-  const { projectId } = useParams()
-  const { projectData, loadProject } = useContext(ProjectContext) as ProjectContextType
-  const { loadTicket } = useContext(TicketContext) as TicketContextType
+  const { kanbanBoardId, projectId } = useParams()
+  const { user } = useContext(AuthContext) as AuthContextType
+  const { projectData, loadProject, deleteProject } = useContext(ProjectContext) as ProjectContextType
+  const { ticketData, loadTicket, deleteStateAndTicket } = useContext(TicketContext) as TicketContextType
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (projectId) {
@@ -31,6 +36,25 @@ const ProjectPage = () => {
     await projectservices.updateProject(projectId, editedContent)
   }
 
+  const handleDelete = async () => {
+    try {
+      const stateIDs = projectData?.state.map(state => state._id)
+      const ticketIDs = ticketData?.map(ticket => ticket._id)
+      if (stateIDs && ticketIDs) {
+        const statePromises = stateIDs?.map(stateID => {
+          ticketIDs.map(ticketID => {
+            deleteStateAndTicket(stateID, ticketID)
+          })
+        })
+        await Promise.all(statePromises)
+      }
+      deleteProject()
+      navigate(`/${user?._id}/${kanbanBoardId}`)
+    } catch (error) {
+      console.log('--->', error)
+    }
+  }
+
   if (!projectData || !projectId || !projectData.state) {
     return <Loading />
   }
@@ -38,7 +62,7 @@ const ProjectPage = () => {
   return (
     <div className='container h-full max-w-6xl mx-auto'>
 
-      <header className='flex justify-between gap-2 pb-3 '>
+      <header className='flex items-stretch justify-between gap-2 pb-3'>
         <ChangeTitle
           data={projectData}
           entityId={projectId}
@@ -46,10 +70,15 @@ const ProjectPage = () => {
           updateEntity={loadProject}
           variant='title-page'
         />
+        <SettingModal
+          textData='Delete Project'
+          deleteEntity={handleDelete}
+        />
+
       </header>
 
       <button
-        className='flex items-center gap-2 mb-6 btn-add '
+        className='flex items-center gap-2 mb-6 btn-add'
         onClick={toggleModal}>
         <MdPostAdd />
         <span>Add State</span>
@@ -79,6 +108,7 @@ const ProjectPage = () => {
           />
         </ModalForm>
       }
+
     </div >
 
   )

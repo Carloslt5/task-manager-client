@@ -5,6 +5,7 @@ import projectservices from '@/services/project.services'
 export interface ProjectContextType {
   projectData: ProjectData | null
   loadProject: (projectId: string) => Promise<void>
+  deleteProject: () => Promise<void>
 }
 
 export const ProjectContext = createContext<ProjectContextType | null>(null)
@@ -24,7 +25,13 @@ export function ProjectProviderWrapper({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const value = { projectData, loadProject }
+  const deleteProject = async () => {
+    if (projectData) {
+      await projectservices.deleteProject(projectData?._id)
+    }
+  }
+
+  const value = { projectData, loadProject, deleteProject }
 
   return (
     <ProjectContext.Provider value={value}>

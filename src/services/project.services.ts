@@ -39,6 +39,10 @@ class ProjectServices {
     return this.instance.put(`/project/updateOrderSates/${projectId}`, orderInfo)
   }
 
+  deleteProject(projectId: string) {
+    return this.instance.delete(`/project/deleteProject/${projectId}`)
+  }
+
 }
 
 const projectservices = new ProjectServices()
