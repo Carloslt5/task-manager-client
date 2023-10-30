@@ -37,7 +37,6 @@ const NewTicketForm: React.FC<NewTicketFormProps> = ({ onCancel, data: { _id: st
       }
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.log(error)
         setNewTicketrrors(error.response?.data)
       }
     }

@@ -4,51 +4,62 @@ import { useParams } from 'react-router-dom'
 import { ToDoContext } from '@/contexts/todo.context'
 import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { ITicketData } from '@/types/Ticket.type'
+import { useForm } from 'react-hook-form'
+import { ValidationError } from '../SignupForm/SignupForm'
+import { AxiosError } from 'axios'
+import { TodoData } from '@/types/Todo.type'
 
 const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const { id: userID } = useParams()
   const { addTodo } = useContext(ToDoContext) as ToDoContextType
 
-  const [newTodo, setNewTodo] = useState({
-    title: '',
+  const todoForm = useForm<TodoData>({
+    defaultValues: {
+      title: ''
+    }
   })
 
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target
-    setNewTodo({ ...newTodo, [name]: value })
-  }
+  const { register, handleSubmit } = todoForm
+  const [newTicketErrors, setNewTicketrrors] = useState<ValidationError[]>([])
 
-  const todoSubmithandler = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const todoSubmithandler = async (newTodo: TodoData) => {
     try {
       const { data } = await todoservices.createToDo(userID!, newTodo, ticketID!)
       addTodo(userID!, data, ticketID!)
-      setNewTodo({ title: '' })
+      setNewTicketrrors([])
+      todoForm.setValue('title', '')
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        setNewTicketrrors(error.response?.data)
+      }
     }
   }
 
-  const { title } = newTodo
   return (
-    <form
-      onSubmit={todoSubmithandler}
-      className='flex flex-col gap-3 md:flex-row'
-    >
-      <input
-        className='input-standard text-slate-700'
-        type='text'
-        name='title'
-        value={title}
-        placeholder='Insert Task...'
-        onChange={handlerInputChange}
-      />
-      <button
-        className='btn-form'
-        type='submit'>
-        Add
-      </button>
-    </form>
+    <>
+      <form
+        className='flex flex-col gap-3 md:flex-row'
+        onSubmit={handleSubmit(todoSubmithandler)}
+      >
+        <input
+          className='input-standard text-slate-700'
+          type='text'
+          placeholder='Insert Task...'
+          {...register('title')}
+        />
+        <button
+          className='btn-form'
+          type='submit'>
+          Add
+        </button>
+      </form>
+      {
+        newTicketErrors.length > 0 && newTicketErrors
+          .map((error, index) => (
+            <p key={index} className='form-error'>{error.message}</p>
+          ))
+      }
+    </>
   )
 
 }
