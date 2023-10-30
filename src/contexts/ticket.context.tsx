@@ -52,11 +52,7 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
   }
 
   const updateTickettTitle = async (ticketID: string, editedContent: EditedContent) => {
-    try {
-      await ticketservices.updateTicketDetails(ticketID, editedContent)
-    } catch (error) {
-      console.log(error)
-    }
+    await ticketservices.updateTicketDetails(ticketID, editedContent)
   }
 
   const updateTicketPriority = async (ticketID: string, priority: string) => {
@@ -68,11 +64,7 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
   }
 
   const updateTicketDetails = async (ticketID: string, editedContent: EditedContent) => {
-    try {
-      await ticketservices.updateTicketDetails(ticketID, editedContent)
-    } catch (error) {
-      console.log(error)
-    }
+    await ticketservices.updateTicketDetails(ticketID, editedContent)
   }
 
   const value = { ticketData, setTicketData, loadTicket, deleteTicket, deleteStateAndTicket, updateTicketPriority, updateTickettTitle, updateTicketDetails }

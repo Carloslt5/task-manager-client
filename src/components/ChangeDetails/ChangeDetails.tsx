@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { ITicketData } from '@/types/Ticket.type'
 import { EditedContent } from '@/contexts/ticket.context'
+import { ValidationError } from '../SignupForm/SignupForm'
+import { AxiosError } from 'axios'
+import { useForm } from 'react-hook-form'
 
 interface ChangeDetails {
   data: ITicketData
@@ -12,27 +15,29 @@ interface ChangeDetails {
 const ChangeDetails: React.FC<ChangeDetails> = ({ data: { _id: ticketID, description }, entityId, updateEntityDetails, updateEntity }) => {
 
   const [isEditing, setEditing] = useState(false)
-  const [editedContent, setEditedContent] = useState<EditedContent>({
-    description: description,
-  })
   const handlerEditClick = () => {
     setEditing(!isEditing)
   }
-  const handlerInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setEditedContent({
-      ...editedContent,
-      description: event.target.value,
-    })
-  }
 
-  const todoSubmithandler = async (event: React.FormEvent) => {
-    event.preventDefault()
+  const detailsForm = useForm({
+    defaultValues: {
+      description: description,
+    }
+  })
+
+  const { register, handleSubmit } = detailsForm
+  const [changeDetailsErrors, setChangeDetailsErrors] = useState<ValidationError[]>([])
+
+  const submitHandler = async (editedContent: EditedContent) => {
     try {
       await updateEntityDetails(ticketID, editedContent)
       setEditing(false)
       updateEntity(entityId)
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        setChangeDetailsErrors(error.response?.data)
+      }
+      setEditing(true)
     }
   }
 
@@ -46,27 +51,30 @@ const ChangeDetails: React.FC<ChangeDetails> = ({ data: { _id: ticketID, descrip
           </article>
           :
           <form
-            onSubmit={todoSubmithandler}
+            onSubmit={handleSubmit(submitHandler)}
           >
             <textarea
-              value={editedContent.description}
-              onChange={handlerInputChange}
               autoFocus
-              className='p-2 mb-2 text-base border-none max-h-40 input-standard dark:text-zinc-700'
+              className='p-2 mb-2 text-base border-none max-h-40 input-standard dark:text-zinc-700 '
               placeholder={description}
+              {...register('description')}
+              required
             />
-
-            <section className='flex items-center justify-end w-full gap-3'>
-              <button
-                className='btn-cancel'
-                onClick={handlerEditClick}>
-                Cancel
-              </button>
+            {
+              changeDetailsErrors.length > 0 && changeDetailsErrors
+                .map((error, index) => <p key={index} className=' form-error'>{error.message}</p>)
+            }
+            <section className='flex flex-row-reverse items-center justify-start w-full gap-3'>
               <button
                 type='submit'
                 className='btn-add '
               >
                 Save Description
+              </button>
+              <button
+                className='btn-cancel'
+                onClick={handlerEditClick}>
+                Cancel
               </button>
             </section>
           </form>

@@ -20,6 +20,10 @@ interface ChangeTitleProps {
 
 const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityId, variant, updateEntityTitle, updateEntity }) => {
   const [isEditing, setEditing] = useState(false)
+  const handlerEditClick = () => {
+    setEditing(!isEditing)
+  }
+
   const editContent = useForm({
     defaultValues: {
       _id: _id,
@@ -29,10 +33,6 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
 
   const { register, handleSubmit } = editContent
   const [changeTitleErrors, setChangeTitleErrors] = useState<ValidationError[]>([])
-
-  const handlerEditClick = () => {
-    setEditing(!isEditing)
-  }
 
   const submitHandler = async (editedContent: EditedContent): Promise<void> => {
     try {
@@ -44,6 +44,7 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
       if (error instanceof AxiosError) {
         setChangeTitleErrors(error.response?.data)
       }
+      setEditing(true)
     }
   }
 
@@ -92,7 +93,7 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
       </div>
       {
         changeTitleErrors.length > 0 && changeTitleErrors
-          .map((error, index) => <p key={index} className='mt-6 form-error'>{error.message}</p>)
+          .map((error, index) => <p key={index} className=' form-error'>{error.message}</p>)
       }
     </article>
   )
