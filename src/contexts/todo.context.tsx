@@ -42,12 +42,8 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
   }
 
   const deleteToDo = async (userID: string, todoID: string, ticketID: string) => {
-    try {
-      await todoservices.deleteToDo(userID, todoID)
-      loadToDos(userID, ticketID)
-    } catch (error) {
-      console.log(error)
-    }
+    await todoservices.deleteToDo(userID, todoID)
+    loadToDos(userID, ticketID)
   }
 
   // const changeFilter = (filter: string) => {

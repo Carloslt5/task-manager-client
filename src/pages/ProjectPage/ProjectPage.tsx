@@ -48,7 +48,7 @@ const ProjectPage = () => {
         })
         await Promise.all(statePromises)
       }
-      deleteProject()
+      await deleteProject()
       navigate(`/${user?._id}/${kanbanBoardId}`)
     } catch (error) {
       console.log('--->', error)
