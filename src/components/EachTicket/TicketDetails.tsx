@@ -14,6 +14,7 @@ import { ToDoContext } from '@/contexts/todo.context'
 import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
+import { AxiosError } from 'axios'
 
 interface TicketDetailsProps {
   ticketDetails: ITicketData
@@ -39,7 +40,9 @@ const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetail
         await deleteTicket(ticketID, project._id, state._id)
       }
     } catch (error) {
-      console.log('error en el front', error)
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data)
+      }
     }
   }
 
