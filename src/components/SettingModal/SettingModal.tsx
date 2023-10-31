@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
 import { MdSettings } from 'react-icons/md'
+import ModalForm from '../ModalForm/ModalForm'
+import ConfirmationModal from '../ConfirmationModal/ConfirmationModal'
 
 interface SettingModalProps {
   textData: string
   deleteEntity: () => void
 }
+
 const SettingModal: React.FC<SettingModalProps> = ({ textData, deleteEntity }) => {
 
   const [settingModal, setSettingModal] = useState(false)
   const toggleSettingModal = () => setSettingModal(!settingModal)
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+  const toggleDeleteModal = () => setShowDeleteModal(!showDeleteModal)
 
   return (
     <div className='relative'>
@@ -26,12 +32,23 @@ const SettingModal: React.FC<SettingModalProps> = ({ textData, deleteEntity }) =
         >
           <ul className='flex flex-col items-stretch w-full justify-stretch'>
             <li className='p-2 text-center hover:text-red-500'
-              onClick={deleteEntity}
+              onClick={toggleDeleteModal}
             >
               {textData}
             </li>
           </ul>
         </div>
+      }
+      {
+        showDeleteModal &&
+        <ModalForm>
+          <ConfirmationModal
+            modalTitle='Confirm Delete'
+            message='Are you SURE you want to DELETE ALL PROJECT?'
+            onConfirm={deleteEntity}
+            onCancel={toggleDeleteModal}
+          />
+        </ModalForm>
       }
     </div>
   )

@@ -74,7 +74,6 @@ const ProjectPage = () => {
           textData='Delete Project'
           deleteEntity={handleDelete}
         />
-
       </header>
 
       <button
