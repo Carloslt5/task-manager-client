@@ -44,7 +44,6 @@ class ToDoServices {
   }
 
   deleteToDo(userID: string, todoID: string): Promise<AxiosResponse<TodoData>> {
-    console.log('services', userID)
     return this.instance.delete(`/todos/${userID}/deleteTodo/${todoID}`)
   }
 

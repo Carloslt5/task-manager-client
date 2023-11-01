@@ -4,6 +4,8 @@ import { TodoData } from '@/types/Todo.type'
 import todoservices from '@/services/ToDo.services'
 import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { EditedContent } from '@/contexts/ticket.context'
+import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 export const ToDoContext = createContext<ToDoContextType | null>(null)
 export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
@@ -42,8 +44,14 @@ export function ToDoProviderWrapper({ children }: { children: ReactNode }) {
   }
 
   const deleteToDo = async (userID: string, todoID: string, ticketID: string) => {
-    await todoservices.deleteToDo(userID, todoID)
-    loadToDos(userID, ticketID)
+    try {
+      await todoservices.deleteToDo(userID, todoID)
+      loadToDos(userID, ticketID)
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message)
+      }
+    }
   }
 
   // const changeFilter = (filter: string) => {

@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import { ValidationError } from '../SignupForm/SignupForm'
 import { AxiosError } from 'axios'
 import { TodoData } from '@/types/Todo.type'
+import { toast } from 'react-toastify'
 
 const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const { id: userID } = useParams()
@@ -30,6 +31,9 @@ const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
       todoForm.setValue('title', '')
     } catch (error) {
       if (error instanceof AxiosError) {
+        if (error.response?.status === 404 || error.response?.status === 422) {
+          toast.error(error.response?.data.message)
+        }
         setNewTicketrrors(error.response?.data)
       }
     }
