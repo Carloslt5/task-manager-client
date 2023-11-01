@@ -47,7 +47,7 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
       await ticketservices.deleteTicket(ticketID, stateID)
       await stateservices.deleteState(stateID)
     } catch (error) {
-      console.log(error)
+      throw Error
     }
   }
 

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { ValidationError } from '../SignupForm/SignupForm'
 import { useState } from 'react'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 interface BoardFormProps {
   modalTitle: string
@@ -29,8 +30,10 @@ const BoardForm: React.FC<BoardFormProps> = ({ modalTitle, loadBoard, onCancel }
       handleCancel()
       loadBoard()
     } catch (error) {
-      //server Error
       if (error instanceof AxiosError) {
+        if (error.response?.status == 422) {
+          toast.error(error.response.data.message)
+        }
         setBoardErrors(error.response?.data)
       }
     }

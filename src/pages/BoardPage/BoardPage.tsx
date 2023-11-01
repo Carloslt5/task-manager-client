@@ -10,6 +10,7 @@ import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import BoardForm from '@/components/Forms/BoardForm'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
@@ -24,7 +25,9 @@ const BoardPage = () => {
       setKanbanBoardData(data)
     } catch (error) {
       if (error instanceof AxiosError) {
-        console.log(error.response?.data)
+        if (error.response?.status == 404) {
+          toast.error(error.response.data.message)
+        }
       }
     }
   }
@@ -52,7 +55,7 @@ const BoardPage = () => {
 
       <section className='grid w-full gap-2 mb-4 overflow-y-auto lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[70vh]'>
         {
-          !kanbanBoardData
+          !kanbanBoardData || kanbanBoardData.length === 0
             ? <Loading />
             : kanbanBoardData.map((kanbanBoard, idx) => (
               <Link to={`/${user?._id}/${kanbanBoard._id}`} key={idx}>

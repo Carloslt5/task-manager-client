@@ -14,6 +14,8 @@ import projectservices from '@/services/project.services'
 import SettingModal from '@/components/SettingModal/SettingModal'
 import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
+import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 const ProjectPage = () => {
   const { kanbanBoardId, projectId } = useParams()
@@ -42,8 +44,8 @@ const ProjectPage = () => {
       const ticketIDs = ticketData?.map(ticket => ticket._id)
       if (stateIDs && ticketIDs) {
         const statePromises = stateIDs?.map(stateID => {
-          ticketIDs.map(ticketID => {
-            deleteStateAndTicket(stateID, ticketID)
+          return ticketIDs.map(ticketID => {
+            return deleteStateAndTicket(stateID, ticketID)
           })
         })
         await Promise.all(statePromises)
@@ -51,7 +53,9 @@ const ProjectPage = () => {
       await deleteProject()
       navigate(`/${user?._id}/${kanbanBoardId}`)
     } catch (error) {
-      console.log('--->', error)
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message)
+      }
     }
   }
 

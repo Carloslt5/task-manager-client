@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { ProjectData } from '@/types/Project.type'
 import { ValidationError } from '../SignupForm/SignupForm'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 interface ProjecFormProprs {
   kanbanID: string
@@ -38,9 +39,10 @@ const ProjectForm: React.FC<ProjecFormProprs> = ({ modalTitle, kanbanID, onCance
         loadKanbanBoard(kanbanBoardId)
       }
     } catch (error) {
-      //error Server
-      console.log('------>', error)
       if (error instanceof AxiosError) {
+        if (error.response?.status === 422) {
+          toast.error(error.response?.data.message)
+        }
         setProjectErrors(error.response?.data)
       }
     }

@@ -9,13 +9,14 @@ import { EditedContent } from '@/contexts/ticket.context'
 import { useForm } from 'react-hook-form'
 import { ValidationError } from '../SignupForm/SignupForm'
 import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 interface ChangeTitleProps {
   data: ITicketData | IKanbanBoardData | ProjectData | TodoData
   entityId: string
   variant?: 'title-page'
   updateEntity: (entityId: string) => void
-  updateEntityTitle: (entityId: string, editedContent: EditedContent) => void
+  updateEntityTitle: (entityId: string, editedContent: EditedContent) => Promise<void>
 }
 
 const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityId, variant, updateEntityTitle, updateEntity }) => {
@@ -42,6 +43,9 @@ const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityI
       setChangeTitleErrors([])
     } catch (error) {
       if (error instanceof AxiosError) {
+        if (error.response?.status === 422) {
+          toast.error(error.response.data.message)
+        }
         setChangeTitleErrors(error.response?.data)
       }
       setEditing(true)
