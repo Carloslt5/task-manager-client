@@ -2,6 +2,8 @@ import { createContext, ReactNode, useCallback, useState } from 'react'
 import { ITicketData } from '@/types/Ticket.type'
 import ticketservices from '@/services/ticket.services'
 import stateservices from '@/services/state.services'
+import { toast } from 'react-toastify'
+import { AxiosError } from 'axios'
 
 export interface EditedContent {
   _id?: string
@@ -14,7 +16,7 @@ export interface TicketContextType {
   ticketData: ITicketData[] | null
   setTicketData: React.Dispatch<React.SetStateAction<ITicketData[] | null>>
   loadTicket: (projectId: string) => Promise<void>
-  deleteTicket: (ticketId: string, projectId: string, stateID: string) => Promise<void>
+  deleteTicket: (ticketId: string, projectId: string) => Promise<void>
   deleteStateAndTicket: (stateID: string, ticketID: string) => Promise<void>
   updateTickettTitle: (projectId: string, editedContent: EditedContent) => Promise<void>
   updateTicketPriority: (ticketID: string, priority: string) => Promise<void>
@@ -37,14 +39,20 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  const deleteTicket = async (ticketId: string, projectId: string, stateID: string) => {
-    await ticketservices.deleteTicket(ticketId, stateID)
-    loadTicket(projectId)
+  const deleteTicket = async (ticketId: string, projectId: string) => {
+    try {
+      await ticketservices.deleteTicket(ticketId)
+      loadTicket(projectId)
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message)
+      }
+    }
   }
 
   const deleteStateAndTicket = async (stateID: string, ticketID: string) => {
     try {
-      await ticketservices.deleteTicket(ticketID, stateID)
+      await ticketservices.deleteTicket(ticketID)
       await stateservices.deleteState(stateID)
     } catch (error) {
       throw Error

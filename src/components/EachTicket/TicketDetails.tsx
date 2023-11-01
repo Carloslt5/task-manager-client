@@ -10,11 +10,6 @@ import ConfirmationModal from '@/components/ConfirmationModal/ConfirmationModal'
 import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import TicketTodoList from '@/components/TicketTodoList/TicketTodoList'
-import { ToDoContext } from '@/contexts/todo.context'
-import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
-import { AuthContext } from '@/contexts/auth.context'
-import { AuthContextType } from '@/contexts/Types/AuthContext.types'
-import { AxiosError } from 'axios'
 
 interface TicketDetailsProps {
   ticketDetails: ITicketData
@@ -23,27 +18,15 @@ interface TicketDetailsProps {
 
 const TicketDetails: React.FC<TicketDetailsProps> = ({ toggleModal, ticketDetails }) => {
   const { projectId } = useParams()
-  const { user } = useContext(AuthContext) as AuthContextType
   const { loadTicket, deleteTicket, updateTickettTitle, updateTicketPriority, updateTicketDetails } = useContext(TicketContext) as TicketContextType
-  const { todoDataBackup, deleteToDo } = useContext(ToDoContext) as ToDoContextType
 
-  const { _id: ticketID, project, state } = ticketDetails
+  const { _id: ticketID, project } = ticketDetails
 
   const [showDeleteModal, setShowDeleteModal] = useState(false)
   const toggleDeleteModal = () => setShowDeleteModal(!showDeleteModal)
 
-  const handleDeleteTicket = async () => {
-    try {
-      if (user) {
-        const deleteToDoPromises = todoDataBackup.map(todo => deleteToDo(user._id, todo._id, ticketID))
-        await Promise.all(deleteToDoPromises)
-        await deleteTicket(ticketID, project._id, state._id)
-      }
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        console.log(error.response?.data)
-      }
-    }
+  const handleDeleteTicket = () => {
+    deleteTicket(ticketID, project._id)
   }
 
   if (!projectId) {
