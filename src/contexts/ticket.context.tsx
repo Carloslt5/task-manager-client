@@ -17,7 +17,7 @@ export interface TicketContextType {
   setTicketData: React.Dispatch<React.SetStateAction<ITicketData[] | null>>
   loadTicket: (projectId: string) => Promise<void>
   deleteTicket: (ticketId: string, projectId: string) => Promise<void>
-  deleteStateAndTicket: (stateID: string, ticketID: string) => Promise<void>
+  deleteState: (stateID: string) => Promise<void>
   updateTickettTitle: (projectId: string, editedContent: EditedContent) => Promise<void>
   updateTicketPriority: (ticketID: string, priority: string) => Promise<void>
   updateTicketDetails: (ticketID: string, editedContent: EditedContent) => Promise<void>
@@ -50,11 +50,11 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
     }
   }
 
-  const deleteStateAndTicket = async (stateID: string, ticketID: string) => {
+  const deleteState = async (stateID: string) => {
     try {
-      await ticketservices.deleteTicket(ticketID)
       await stateservices.deleteState(stateID)
     } catch (error) {
+      console.log('context-', error)
       throw Error
     }
   }
@@ -75,7 +75,7 @@ export function TicketProviderWrapper({ children }: { children: ReactNode }) {
     await ticketservices.updateTicketDetails(ticketID, editedContent)
   }
 
-  const value = { ticketData, setTicketData, loadTicket, deleteTicket, deleteStateAndTicket, updateTicketPriority, updateTickettTitle, updateTicketDetails }
+  const value = { ticketData, setTicketData, loadTicket, deleteTicket, deleteState, updateTicketPriority, updateTickettTitle, updateTicketDetails }
 
   return (
     <TicketContext.Provider value={value}>

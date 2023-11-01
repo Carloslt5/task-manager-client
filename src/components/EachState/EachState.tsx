@@ -17,7 +17,7 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
   const { _id, stateName } = stateData
   const { projectId } = useParams()
   const { loadProject } = useContext(ProjectContext) as ProjectContextType
-  const { ticketData, deleteStateAndTicket } = useContext(TicketContext) as TicketContextType
+  const { ticketData, deleteState } = useContext(TicketContext) as TicketContextType
 
   const [isEditing, setEditing] = useState(false)
 
@@ -49,10 +49,7 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
   const handlerDeleteStateAndTicket = async () => {
     if (ticketData) {
       try {
-        const deletionPromises = ticketData.map(ticket => {
-          return deleteStateAndTicket(_id, ticket._id)
-        })
-        await Promise.all(deletionPromises)
+        await deleteState(stateData._id)
         toggleModal()
         await loadProject(projectId!)
       } catch (error) {
