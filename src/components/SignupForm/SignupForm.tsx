@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 export type ValidationError = {
   path: string[]
@@ -37,8 +38,10 @@ const SignupForm = () => {
       await authservices.signup(signUpData)
       navigate('/login')
     } catch (error) {
-      //Mensaje torty error server
       if (error instanceof AxiosError) {
+        if (error.response?.status == 422) {
+          toast.error(error.response.data.message)
+        }
         setSignUpErrors(error.response?.data)
       }
     }

@@ -6,6 +6,7 @@ import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
 import { ValidationError } from '../SignupForm/SignupForm'
+import { toast } from 'react-toastify'
 
 type LoginData = {
   email: string
@@ -34,8 +35,10 @@ const LoginForm = () => {
       authenticateUser()
       navigate('/')
     } catch (error) {
-      //Mensaje torty error server
       if (error instanceof AxiosError) {
+        if (error.response?.status == 401) {
+          toast.error(error.response.data.message)
+        }
         setLoginErrors(error.response?.data)
       }
     }
