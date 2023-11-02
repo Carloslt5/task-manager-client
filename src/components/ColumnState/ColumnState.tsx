@@ -2,44 +2,24 @@ import { IState } from '@/types/State.type'
 import EachState from '@/components/EachState/EachState'
 import EachTicket from '@/components/EachTicket/EachTicket'
 import Loading from '@/components/Loading/Loading'
-import { useContext, useState } from 'react'
-import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
-import { ITicketData } from '@/types/Ticket.type'
-import ticketservices from '@/services/ticket.services'
-import { useDrop } from 'react-dnd'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import { MdAdd } from 'react-icons/md'
 import NewTicketForm from '@/components/Forms/NewTicketForm'
+import { useModalHook } from '../ModalForm/Modal-Hook'
+import { useDragAndDrop } from './useDragAndDrop-Hook'
 
 const ColumnState: React.FC<IState> = (state) => {
-  const { ticketData, setTicketData } = useContext(TicketContext) as TicketContextType
 
-  const [showModal, setShowModal] = useState(false)
-  const toggleModal = () => setShowModal(!showModal)
+  const {
+    ticketData,
+    isOver,
+    drop
+  } = useDragAndDrop(state)
 
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: 'Ticket',
-    drop: (ticket: ITicketData) => addItemToSection(ticket),
-    collect: (monitor) => ({
-      isOver: !!monitor.isOver()
-    })
-  }))
-
-  const addItemToSection = (ticketToAdd: ITicketData) => {
-    setTicketData(prev => {
-
-      const updateTicket = prev?.map(ticket => {
-        if (ticket._id === ticketToAdd._id) {
-          return { ...ticket, state: state }
-        }
-        return ticket
-      })
-
-      return updateTicket || null
-    })
-
-    ticketservices.updateStateTicket(ticketToAdd._id, state._id)
-  }
+  const {
+    showModal,
+    toggleModal
+  } = useModalHook()
 
   return (
     <>
@@ -72,6 +52,7 @@ const ColumnState: React.FC<IState> = (state) => {
           </button>
         </article>
       </li >
+
       {
         showModal &&
         <ModalForm >

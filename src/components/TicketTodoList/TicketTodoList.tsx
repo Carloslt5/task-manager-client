@@ -6,10 +6,11 @@ import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { useParams } from 'react-router-dom'
 
 import { ITicketData } from '@/types/Ticket.type'
+import todoservices from '@/services/ToDo.services'
 
 const TicketTodoList: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const { id: userID } = useParams()
-  const { todoDataBackup, loadToDos } = useContext(ToDoContext) as ToDoContextType
+  const { todoDataBackup, setTodoDataBackup, loadToDos } = useContext(ToDoContext) as ToDoContextType
 
   useEffect(() => {
     if (userID) {
@@ -21,19 +22,19 @@ const TicketTodoList: React.FC<ITicketData> = ({ _id: ticketID }) => {
   const dragOverTodo = useRef<number>(0)
 
   const handlerSort = () => {
-    console.log('ordenando----------->')
-    // const todoDataBackupClone = [...todoDataBackup]
-    // const temp = todoDataBackupClone[dragTodo.current]
-    // todoDataBackupClone[dragTodo.current] = todoDataBackupClone[dragOverTodo.current]
-    // todoDataBackupClone[dragOverTodo.current] = temp
-    // setTodoDataBackup(todoDataBackupClone)
 
-    // const updatedTodoData = todoDataBackupClone.map((todo, index) => ({
-    //   ...todo,
-    //   order: index,
-    // }))
+    const todoDataBackupClone = [...todoDataBackup]
+    const temp = todoDataBackupClone[dragTodo.current]
+    todoDataBackupClone[dragTodo.current] = todoDataBackupClone[dragOverTodo.current]
+    todoDataBackupClone[dragOverTodo.current] = temp
+    setTodoDataBackup(todoDataBackupClone)
 
-    // todoservices.updateTodoOrder(id!, updatedTodoData)
+    const updatedTodoData = todoDataBackupClone.map((todo, index) => ({
+      ...todo,
+      order: index,
+    }))
+
+    todoservices.updateTodoOrder(userID!, updatedTodoData)
   }
 
   return (

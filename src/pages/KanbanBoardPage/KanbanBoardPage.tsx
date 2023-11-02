@@ -1,34 +1,30 @@
-import { Link, useParams } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
 import { MdPostAdd } from 'react-icons/md'
 import ProjectForm from '@/components/Forms/ProjectForm'
-import { KanbanContext, KanbanContextType } from '@/contexts/kanban.context'
 import EachKanbanBoard from '@/components/EachKanbanBoard/EachKanbanBoard'
 import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
-import kanbanservices from '@/services/kanban.services'
-import { EditedContent } from '@/contexts/ticket.context'
+import { useUpdateKanbanHooks } from './useUpdateKanbanBoard-Hooks'
+import { useModalHook } from '@/components/ModalForm/Modal-Hook'
 
 const KanbanBoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
-  const { kanbanBoardId } = useParams()
-  const { kanbanBoardData, loadKanbanBoard } = useContext(KanbanContext) as KanbanContextType
 
-  const [showModal, setShowModal] = useState(false)
-  const toggleModal = () => setShowModal(!showModal)
+  const {
+    kanbanBoardId,
+    kanbanBoardData,
+    loadKanbanBoard,
+    updateKanbantTitle
+  } = useUpdateKanbanHooks()
 
-  useEffect(() => {
-    if (kanbanBoardId) {
-      loadKanbanBoard(kanbanBoardId)
-    }
-  }, [kanbanBoardId, loadKanbanBoard])
-
-  const updateKanbantTitle = async (kanbanBoardId: string, kanbanTitleData: EditedContent): Promise<void> => {
-    await kanbanservices.updateKanbanBoard(kanbanBoardId, kanbanTitleData)
-  }
+  const {
+    showModal,
+    toggleModal
+  } = useModalHook()
 
   if (!kanbanBoardId || !kanbanBoardData) {
     return <Loading />

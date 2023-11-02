@@ -15,9 +15,7 @@ interface ChangeDetails {
 const ChangeDetails: React.FC<ChangeDetails> = ({ data: { _id: ticketID, description }, entityId, updateEntityDetails, updateEntity }) => {
 
   const [isEditing, setEditing] = useState(false)
-  const handlerEditClick = () => {
-    setEditing(!isEditing)
-  }
+  const handlerEditClick = () => setEditing(!isEditing)
 
   const detailsForm = useForm({
     defaultValues: {

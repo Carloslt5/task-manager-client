@@ -1,53 +1,29 @@
-import { useNavigate, useParams } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
 import { MdPostAdd } from 'react-icons/md'
 import Loading from '@/components/Loading/Loading'
-import { ProjectContext, ProjectContextType } from '@/contexts/project.context'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import ColumnState from '@/components/ColumnState/ColumnState'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import NewStateForm from '@/components/Forms/NewStateForm'
-import { EditedContent, TicketContext, TicketContextType } from '@/contexts/ticket.context'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
-import projectservices from '@/services/project.services'
 import SettingModal from '@/components/SettingModal/SettingModal'
-import { AuthContext } from '@/contexts/auth.context'
-import { AuthContextType } from '@/contexts/Types/AuthContext.types'
-import { AxiosError } from 'axios'
-import { toast } from 'react-toastify'
+import { useProject } from './useProject.Hook'
+import { useModalHook } from '@/components/ModalForm/Modal-Hook'
 
 const ProjectPage = () => {
-  const { kanbanBoardId, projectId } = useParams()
-  const { user } = useContext(AuthContext) as AuthContextType
-  const { projectData, loadProject, deleteProject } = useContext(ProjectContext) as ProjectContextType
-  const { loadTicket } = useContext(TicketContext) as TicketContextType
 
-  const [showModal, setShowModal] = useState(false)
-  const toggleModal = () => setShowModal(!showModal)
-  const navigate = useNavigate()
+  const {
+    projectId,
+    projectData,
+    loadProject,
+    updateProjectTitle,
+    handleDelete
+  } = useProject()
 
-  useEffect(() => {
-    if (projectId) {
-      loadProject(projectId)
-      loadTicket(projectId)
-    }
-  }, [projectId, loadProject, loadTicket])
-
-  const updateProjectTitle = async (projectId: string, projectTitleData: EditedContent) => {
-    await projectservices.updateProject(projectId, projectTitleData)
-  }
-
-  const handleDelete = async () => {
-    try {
-      await deleteProject()
-      navigate(`/${user?._id}/${kanbanBoardId}`)
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        toast.error(error.response?.data.message)
-      }
-    }
-  }
+  const {
+    showModal,
+    toggleModal
+  } = useModalHook()
 
   if (!projectData || !projectId || !projectData.state) {
     return <Loading />

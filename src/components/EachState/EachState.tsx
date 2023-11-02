@@ -6,7 +6,7 @@ import { MdDeleteForever } from 'react-icons/md'
 import { ProjectContext, ProjectContextType } from '@/contexts/project.context'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import ConfirmationModal from '@/components/ConfirmationModal/ConfirmationModal'
-import { EditedContent, TicketContext, TicketContextType } from '@/contexts/ticket.context'
+import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
 import { useForm } from 'react-hook-form'
 
 type EachStateProps = {
@@ -21,7 +21,7 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
 
   const [isEditing, setEditing] = useState(false)
 
-  const stateForm = useForm({
+  const stateForm = useForm<IState>({
     defaultValues: {
       _id: _id,
       stateName: stateName
@@ -33,7 +33,7 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
   const toggleModal = () => setShowModal(!showModal)
   const handlerEditClick = () => setEditing(!isEditing)
 
-  const submitHandler = async (stateFormData: EditedContent): Promise<void> => {
+  const submitHandler = async (stateFormData: IState): Promise<void> => {
     try {
       if (projectId) {
         await stateservices.editState(stateFormData)
@@ -41,7 +41,6 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
         loadProject(projectId)
       }
     } catch (error) {
-      //error server Tosty
       console.log(error)
     }
   }
@@ -61,6 +60,7 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
   return (
     <>
       <div className='flex items-center justify-between gap-2 '>
+
         {
           !isEditing
             ? <h2 className='w-full px-1 font-bold 2xl' onClick={handlerEditClick} >{stateName}</h2>

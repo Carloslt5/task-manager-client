@@ -8,6 +8,8 @@ import { useParams } from 'react-router-dom'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
 import { EditedContent } from '@/contexts/ticket.context'
 import todoservices from '@/services/ToDo.services'
+import { AxiosError } from 'axios'
+import { toast } from 'react-toastify'
 
 interface droppableTodo {
   todo: TodoData
@@ -29,7 +31,9 @@ const EachTodo: React.FC<droppableTodo> = ({ todo, ticketID }) => {
     try {
       await todoservices.updateTitleToDo(userID!, editedContent)
     } catch (error) {
-      console.log(error)
+      if (error instanceof AxiosError) {
+        toast.error(error.response?.data.message)
+      }
     }
   }
 

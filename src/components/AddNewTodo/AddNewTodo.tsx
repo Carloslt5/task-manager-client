@@ -46,7 +46,7 @@ const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
         onSubmit={handleSubmit(todoSubmithandler)}
       >
         <input
-          className='input-standard text-slate-700'
+          className='input-standard text-slate-700 dark:text-zinc-800'
           type='text'
           placeholder='Insert Task...'
           {...register('title')}

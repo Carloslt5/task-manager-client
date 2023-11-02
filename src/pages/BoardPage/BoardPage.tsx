@@ -1,40 +1,23 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 import { Link } from 'react-router-dom'
 import { MdPostAdd } from 'react-icons/md'
-import kanbanservices from '@/services/kanban.services'
-import { IKanbanBoardData } from '@/types/KanbanBoard.type'
 import EachBoard from '@/components/EachBoard/EachBoard'
 import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import BoardForm from '@/components/Forms/BoardForm'
-import { AxiosError } from 'axios'
-import { toast } from 'react-toastify'
+import { useKanbanBoard } from './useKanbanBoard-Hooks'
+import { useModalHook } from '@/components/ModalForm/Modal-Hook'
 
 const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType
-  const [kanbanBoardData, setKanbanBoardData] = useState<IKanbanBoardData[] | []>([])
+  const { kanbanBoardData, loadBoard } = useKanbanBoard()
 
-  const [showModal, setShowModal] = useState(false)
-  const toggleModal = () => setShowModal(!showModal)
-
-  const loadBoard = async () => {
-    try {
-      const { data } = await kanbanservices.getKanbanBoard()
-      setKanbanBoardData(data)
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        if (error.response?.status == 404) {
-          toast.error(error.response.data.message)
-        }
-      }
-    }
-  }
-
-  useEffect(() => {
-    loadBoard()
-  }, [])
+  const {
+    showModal,
+    toggleModal
+  } = useModalHook()
 
   return (
     <div className='container mx-auto max-w-7xl'>
