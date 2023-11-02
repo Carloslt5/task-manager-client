@@ -21,7 +21,7 @@ const ProjectPage = () => {
   const { kanbanBoardId, projectId } = useParams()
   const { user } = useContext(AuthContext) as AuthContextType
   const { projectData, loadProject, deleteProject } = useContext(ProjectContext) as ProjectContextType
-  const { ticketData, loadTicket, deleteStateAndTicket } = useContext(TicketContext) as TicketContextType
+  const { loadTicket } = useContext(TicketContext) as TicketContextType
 
   const [showModal, setShowModal] = useState(false)
   const toggleModal = () => setShowModal(!showModal)
@@ -40,16 +40,16 @@ const ProjectPage = () => {
 
   const handleDelete = async () => {
     try {
-      const stateIDs = projectData?.state.map(state => state._id)
-      const ticketIDs = ticketData?.map(ticket => ticket._id)
-      if (stateIDs && ticketIDs) {
-        const statePromises = stateIDs?.map(stateID => {
-          return ticketIDs.map(ticketID => {
-            return deleteStateAndTicket(stateID, ticketID)
-          })
-        })
-        await Promise.all(statePromises)
-      }
+      // const stateIDs = projectData?.state.map(state => state._id)
+      // const ticketIDs = ticketData?.map(ticket => ticket._id)
+      // if (stateIDs && ticketIDs) {
+      //   const statePromises = stateIDs?.map(stateID => {
+      //     return ticketIDs.map(ticketID => {
+      //       return deleteState(stateID, ticketID)
+      //     })
+      //   })
+      //   await Promise.all(statePromises)
+      // }
       await deleteProject()
       navigate(`/${user?._id}/${kanbanBoardId}`)
     } catch (error) {

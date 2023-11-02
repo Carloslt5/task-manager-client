@@ -55,7 +55,7 @@ const BoardPage = () => {
 
       <section className='grid w-full gap-2 mb-4 overflow-y-auto lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-h-[70vh]'>
         {
-          !kanbanBoardData || kanbanBoardData.length === 0
+          !kanbanBoardData
             ? <Loading />
             : kanbanBoardData.map((kanbanBoard, idx) => (
               <Link to={`/${user?._id}/${kanbanBoard._id}`} key={idx}>
