@@ -19,7 +19,7 @@ const Breadcrumbs = () => {
     })
 
   return (
-    <div className='flex w-full p-2 text-xs text-slate-500 dark:text-zinc-500'>{crumbs}</div>
+    <div className='flex w-full py-2 mx-auto text-xs text-slate-500 dark:text-zinc-500 max-w-7xl'>{crumbs}</div>
   )
 }
 

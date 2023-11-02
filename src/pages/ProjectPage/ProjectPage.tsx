@@ -34,22 +34,12 @@ const ProjectPage = () => {
     }
   }, [projectId, loadProject, loadTicket])
 
-  const updateProjectTitle = async (projectId: string, editedContent: EditedContent) => {
-    await projectservices.updateProject(projectId, editedContent)
+  const updateProjectTitle = async (projectId: string, projectTitleData: EditedContent) => {
+    await projectservices.updateProject(projectId, projectTitleData)
   }
 
   const handleDelete = async () => {
     try {
-      // const stateIDs = projectData?.state.map(state => state._id)
-      // const ticketIDs = ticketData?.map(ticket => ticket._id)
-      // if (stateIDs && ticketIDs) {
-      //   const statePromises = stateIDs?.map(stateID => {
-      //     return ticketIDs.map(ticketID => {
-      //       return deleteState(stateID, ticketID)
-      //     })
-      //   })
-      //   await Promise.all(statePromises)
-      // }
       await deleteProject()
       navigate(`/${user?._id}/${kanbanBoardId}`)
     } catch (error) {
@@ -64,7 +54,7 @@ const ProjectPage = () => {
   }
 
   return (
-    <div className='container h-full max-w-6xl mx-auto'>
+    <div className='container h-full mx-auto max-w-7xl'>
 
       <header className='flex items-stretch justify-between gap-2 pb-3'>
         <ChangeTitle

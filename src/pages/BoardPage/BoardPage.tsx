@@ -37,18 +37,18 @@ const BoardPage = () => {
   }, [])
 
   return (
-    <div className='container max-w-6xl mx-auto'>
+    <div className='container mx-auto max-w-7xl'>
 
       <header>
-        <h1
-          className='mb-3 title-primary'>
+        <h1 className='mb-3 title-primary'>
           My Boards
         </h1>
       </header>
 
       <button
         className='flex items-center gap-2 mb-6 btn-add'
-        onClick={toggleModal}>
+        onClick={toggleModal}
+      >
         <MdPostAdd />
         <span>Add Board</span>
       </button>

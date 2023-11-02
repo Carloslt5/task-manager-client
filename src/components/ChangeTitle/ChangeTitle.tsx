@@ -21,9 +21,7 @@ interface ChangeTitleProps {
 
 const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityId, variant, updateEntityTitle, updateEntity }) => {
   const [isEditing, setEditing] = useState(false)
-  const handlerEditClick = () => {
-    setEditing(!isEditing)
-  }
+  const handlerEditClick = () => setEditing(!isEditing)
 
   const editContent = useForm({
     defaultValues: {

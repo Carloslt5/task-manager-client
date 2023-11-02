@@ -26,8 +26,8 @@ const KanbanBoardPage = () => {
     }
   }, [kanbanBoardId, loadKanbanBoard])
 
-  const updateKanbantTitle = async (kanbanBoardId: string, editedContent: EditedContent): Promise<void> => {
-    await kanbanservices.updateKanbanBoard(kanbanBoardId, editedContent)
+  const updateKanbantTitle = async (kanbanBoardId: string, kanbanTitleData: EditedContent): Promise<void> => {
+    await kanbanservices.updateKanbanBoard(kanbanBoardId, kanbanTitleData)
   }
 
   if (!kanbanBoardId || !kanbanBoardData) {
@@ -35,7 +35,7 @@ const KanbanBoardPage = () => {
   }
 
   return (
-    <div className='container max-w-6xl mx-auto'>
+    <div className='container mx-auto max-w-7xl'>
 
       <header className='flex justify-between gap-2 pb-3'>
         <ChangeTitle
