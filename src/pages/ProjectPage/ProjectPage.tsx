@@ -8,7 +8,7 @@ import NewStateForm from '@/components/Forms/NewStateForm'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
 import SettingModal from '@/components/SettingModal/SettingModal'
 import { useProject } from './useProject.Hook'
-import { useModalHook } from '@/components/ModalForm/Modal-Hook'
+import { useModalHook } from '@/hooks/useModal-Hook'
 
 const ProjectPage = () => {
 

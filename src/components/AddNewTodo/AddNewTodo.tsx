@@ -1,5 +1,5 @@
 import { ITicketData } from '@/types/Ticket.type'
-import { useAddTodo } from './useAddTodo-Hook'
+import { useAddTodo } from '../../hooks/useAddTodo-Hook'
 
 const AddNewTodo: React.FC<ITicketData> = ({ _id: ticketID }) => {
 

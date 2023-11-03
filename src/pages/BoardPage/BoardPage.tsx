@@ -8,7 +8,7 @@ import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import BoardForm from '@/components/Forms/BoardForm'
 import { useKanbanBoard } from './useKanbanBoard-Hooks'
-import { useModalHook } from '@/components/ModalForm/Modal-Hook'
+import { useModalHook } from '@/hooks/useModal-Hook'
 
 const BoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType

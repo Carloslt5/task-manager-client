@@ -9,7 +9,7 @@ import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
 import { useUpdateKanbanHooks } from './useUpdateKanbanBoard-Hooks'
-import { useModalHook } from '@/components/ModalForm/Modal-Hook'
+import { useModalHook } from '@/hooks/useModal-Hook'
 
 const KanbanBoardPage = () => {
   const { user } = useContext(AuthContext) as AuthContextType

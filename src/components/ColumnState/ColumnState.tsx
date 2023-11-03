@@ -5,7 +5,7 @@ import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import { MdAdd } from 'react-icons/md'
 import NewTicketForm from '@/components/Forms/NewTicketForm'
-import { useModalHook } from '../ModalForm/Modal-Hook'
+import { useModalHook } from '../../hooks/useModal-Hook'
 import { useDragAndDrop } from './useDragAndDrop-Hook'
 
 const ColumnState: React.FC<IState> = (state) => {

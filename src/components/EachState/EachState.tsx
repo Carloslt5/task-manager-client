@@ -3,8 +3,8 @@ import { IState } from '@/types/State.type'
 import { MdDeleteForever } from 'react-icons/md'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import ConfirmationModal from '@/components/ConfirmationModal/ConfirmationModal'
-import { useModalHook } from '../ModalForm/Modal-Hook'
-import { useHandleState } from './useHandleState-Hook'
+import { useModalHook } from '../../hooks/useModal-Hook'
+import { useHandleState } from '../../hooks/useHandleState-Hook'
 
 type EachStateProps = {
   stateData: IState

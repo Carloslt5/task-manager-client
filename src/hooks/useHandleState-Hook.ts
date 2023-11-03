@@ -5,7 +5,7 @@ import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
 import { useForm } from 'react-hook-form'
 import { useContext } from 'react'
 import { IState } from '@/types/State.type'
-import { useModalHook } from '../ModalForm/Modal-Hook'
+import { useModalHook } from './useModal-Hook'
 
 export const useHandleState = (stateData: IState) => {
   const { _id, stateName } = stateData

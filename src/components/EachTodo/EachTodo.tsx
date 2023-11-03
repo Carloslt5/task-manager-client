@@ -2,7 +2,7 @@ import { TodoData } from '@/types/Todo.type'
 import { MdDeleteForever } from 'react-icons/md'
 import { MdCheck } from 'react-icons/md'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
-import { useHandleTodo } from './useHandleTodo-Hook'
+import { useHandleTodo } from '../../hooks/useHandleTodo-Hook'
 
 interface droppableTodo {
   todo: TodoData
