@@ -1,14 +1,13 @@
 import { useDrag } from 'react-dnd'
 import { ITicketData } from '@/types/Ticket.type'
-import { useState } from 'react'
 import { getPriorityColor } from '@/const/Ticket-Priority'
 import ModalForm from '../ModalForm/ModalForm'
 import TicketDetails from './TicketDetails'
+import { useModalHook } from '@/hooks/useModal-Hook'
 
 const EachTicket: React.FC<ITicketData> = ({ _id, title, state, description, completed, priority, project, owner, todos }) => {
 
-  const [showModal, setShowModal] = useState(false)
-  const toggleModal = () => setShowModal(!showModal)
+  const { showModal, toggleModal } = useModalHook()
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'Ticket',

@@ -7,7 +7,7 @@ import EachBoard from '@/components/EachBoard/EachBoard'
 import Loading from '@/components/Loading/Loading'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import BoardForm from '@/components/Forms/BoardForm'
-import { useKanbanBoard } from './useKanbanBoard-Hooks'
+import { useKanbanBoard } from '@/hooks/useKanbanBoard-Hooks'
 import { useModalHook } from '@/hooks/useModal-Hook'
 
 const BoardPage = () => {

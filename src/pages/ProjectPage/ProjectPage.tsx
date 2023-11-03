@@ -7,7 +7,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 import NewStateForm from '@/components/Forms/NewStateForm'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
 import SettingModal from '@/components/SettingModal/SettingModal'
-import { useProject } from './useProject.Hook'
+import { useProject } from '@/hooks/useProject.Hook'
 import { useModalHook } from '@/hooks/useModal-Hook'
 
 const ProjectPage = () => {

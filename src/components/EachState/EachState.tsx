@@ -1,10 +1,10 @@
-import { useState } from 'react'
 import { IState } from '@/types/State.type'
 import { MdDeleteForever } from 'react-icons/md'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import ConfirmationModal from '@/components/ConfirmationModal/ConfirmationModal'
 import { useModalHook } from '../../hooks/useModal-Hook'
 import { useHandleState } from '../../hooks/useHandleState-Hook'
+import { useEditing } from '@/hooks/useEditing-Hook'
 
 type EachStateProps = {
   stateData: IState
@@ -20,9 +20,7 @@ const EachState: React.FC<EachStateProps> = ({ stateData }) => {
   } = useHandleState(stateData)
 
   const { showModal, toggleModal } = useModalHook()
-
-  const [isEditing, setEditing] = useState(false)
-  const handlerEditClick = () => setEditing(!isEditing)
+  const { isEditing, handlerEditClick } = useEditing()
 
   const { stateName } = stateData
 

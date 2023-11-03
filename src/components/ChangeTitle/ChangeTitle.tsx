@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form'
 import { ValidationError } from '../SignupForm/SignupForm'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
+import { useEditing } from '@/hooks/useEditing-Hook'
 
 interface ChangeTitleProps {
   data: ITicketData | IKanbanBoardData | ProjectData | TodoData
@@ -20,8 +21,8 @@ interface ChangeTitleProps {
 }
 
 const ChangeTitle: React.FC<ChangeTitleProps> = ({ data: { _id, title }, entityId, variant, updateEntityTitle, updateEntity }) => {
-  const [isEditing, setEditing] = useState(false)
-  const handlerEditClick = () => setEditing(!isEditing)
+
+  const { isEditing, setEditing, handlerEditClick } = useEditing()
 
   const editContent = useForm({
     defaultValues: {

@@ -8,7 +8,7 @@ import ModalForm from '@/components/ModalForm/ModalForm'
 import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 import ChangeTitle from '@/components/ChangeTitle/ChangeTitle'
-import { useUpdateKanbanHooks } from './useUpdateKanbanBoard-Hooks'
+import { useUpdateKanbanHooks } from '@/hooks/useUpdateKanbanBoard-Hooks'
 import { useModalHook } from '@/hooks/useModal-Hook'
 
 const KanbanBoardPage = () => {
