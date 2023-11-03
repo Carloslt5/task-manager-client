@@ -1,51 +1,14 @@
-import authservices from '@/services/auth.services'
-import { useNavigate, Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { AxiosError } from 'axios'
-import { useState } from 'react'
-import { toast } from 'react-toastify'
-
-export type ValidationError = {
-  path: string[]
-  message: string
-};
-
-type SignUpData = {
-  firstName: string
-  lastName: string
-  email: string
-  password: string
-}
+import { Link } from 'react-router-dom'
+import { useSignup } from '@/hooks/useSignup-Hook'
 
 const SignupForm = () => {
 
-  const form = useForm({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-    }
-  })
-
-  const { register, handleSubmit } = form
-  const [signUpErrors, setSignUpErrors] = useState<ValidationError[]>([])
-
-  const navigate = useNavigate()
-
-  const submitHandler = async (signUpData: SignUpData) => {
-    try {
-      await authservices.signup(signUpData)
-      navigate('/login')
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        if (error.response?.status == 422) {
-          toast.error(error.response.data.message)
-        }
-        setSignUpErrors(error.response?.data)
-      }
-    }
-  }
+  const {
+    register,
+    handleSubmit,
+    signUpErrors,
+    submitHandler
+  } = useSignup()
 
   return (
     <div className='container flex items-center justify-center h-full max-w-screen-sm p-6 mx-auto text-white h-100 dark:text-gray-300' >

@@ -4,9 +4,9 @@ import { KanbanContext, KanbanContextType } from '@/contexts/kanban.context'
 import { useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { ProjectData } from '@/types/Project.type'
-import { ValidationError } from '../SignupForm/SignupForm'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
+import { ValidationError } from '@/types/ValidationError.type'
 
 interface ProjecFormProprs {
   kanbanID: string

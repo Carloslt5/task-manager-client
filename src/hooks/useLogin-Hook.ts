@@ -5,8 +5,8 @@ import { AuthContext } from '@/contexts/auth.context'
 import { AuthContextType } from '@/contexts/Types/AuthContext.types'
 import { useForm } from 'react-hook-form'
 import { AxiosError } from 'axios'
-import { ValidationError } from '../components/SignupForm/SignupForm'
 import { toast } from 'react-toastify'
+import { ValidationError } from '@/types/ValidationError.type'
 
 type LoginData = {
   email: string

@@ -7,10 +7,10 @@ import { ProjectData } from '@/types/Project.type'
 import { TodoData } from '@/types/Todo.type'
 import { EditedContent } from '@/contexts/ticket.context'
 import { useForm } from 'react-hook-form'
-import { ValidationError } from '../SignupForm/SignupForm'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
 import { useEditing } from '@/hooks/useEditing-Hook'
+import { ValidationError } from '@/types/ValidationError.type'
 
 interface ChangeTitleProps {
   data: ITicketData | IKanbanBoardData | ProjectData | TodoData

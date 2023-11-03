@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom'
 import { ToDoContext } from '@/contexts/todo.context'
 import { ToDoContextType } from '@/contexts/Types/ToDoContext.types'
 import { useForm } from 'react-hook-form'
-import { ValidationError } from '../components/SignupForm/SignupForm'
 import { AxiosError } from 'axios'
 import { TodoData } from '@/types/Todo.type'
 import { toast } from 'react-toastify'
+import { ValidationError } from '@/types/ValidationError.type'
 
 export const useAddTodo = (ticketID: string) => {
 

@@ -1,10 +1,10 @@
 import { IKanbanBoardData } from '@/types/KanbanBoard.type'
 import kanbanservices from '@/services/kanban.services'
 import { useForm } from 'react-hook-form'
-import { ValidationError } from '../SignupForm/SignupForm'
 import { useState } from 'react'
 import { AxiosError } from 'axios'
 import { toast } from 'react-toastify'
+import { ValidationError } from '@/types/ValidationError.type'
 
 interface BoardFormProps {
   modalTitle: string

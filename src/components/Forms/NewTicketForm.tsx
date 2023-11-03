@@ -5,8 +5,9 @@ import { IState } from '@/types/State.type'
 import { EditedContent, TicketContext, TicketContextType } from '@/contexts/ticket.context'
 import { TICKET_PRIORITY } from '@/const/Ticket-Priority'
 import { useForm } from 'react-hook-form'
-import { ValidationError } from '../SignupForm/SignupForm'
+
 import { AxiosError } from 'axios'
+import { ValidationError } from '@/types/ValidationError.type'
 
 interface NewTicketFormProps {
   data: IState

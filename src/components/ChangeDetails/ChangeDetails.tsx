@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { ITicketData } from '@/types/Ticket.type'
 import { EditedContent } from '@/contexts/ticket.context'
-import { ValidationError } from '../SignupForm/SignupForm'
 import { AxiosError } from 'axios'
 import { useForm } from 'react-hook-form'
 import { useEditing } from '@/hooks/useEditing-Hook'
+import { ValidationError } from '@/types/ValidationError.type'
 
 interface ChangeDetails {
   data: ITicketData
