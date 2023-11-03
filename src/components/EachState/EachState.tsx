@@ -1,61 +1,30 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { IState } from '@/types/State.type'
-import stateservices from '@/services/state.services'
-import { useParams } from 'react-router-dom'
 import { MdDeleteForever } from 'react-icons/md'
-import { ProjectContext, ProjectContextType } from '@/contexts/project.context'
 import ModalForm from '@/components/ModalForm/ModalForm'
 import ConfirmationModal from '@/components/ConfirmationModal/ConfirmationModal'
-import { TicketContext, TicketContextType } from '@/contexts/ticket.context'
-import { useForm } from 'react-hook-form'
+import { useModalHook } from '../ModalForm/Modal-Hook'
+import { useHandleState } from './useHandleState-Hook'
 
 type EachStateProps = {
   stateData: IState
 }
 
 const EachState: React.FC<EachStateProps> = ({ stateData }) => {
-  const { _id, stateName } = stateData
-  const { projectId } = useParams()
-  const { loadProject } = useContext(ProjectContext) as ProjectContextType
-  const { ticketData, deleteState } = useContext(TicketContext) as TicketContextType
+
+  const {
+    register,
+    handleSubmit,
+    submitHandler,
+    handlerDeleteStateAndTicket
+  } = useHandleState(stateData)
+
+  const { showModal, toggleModal } = useModalHook()
 
   const [isEditing, setEditing] = useState(false)
-
-  const stateForm = useForm<IState>({
-    defaultValues: {
-      _id: _id,
-      stateName: stateName
-    }
-  })
-  const { register, handleSubmit } = stateForm
-
-  const [showModal, setShowModal] = useState(false)
-  const toggleModal = () => setShowModal(!showModal)
   const handlerEditClick = () => setEditing(!isEditing)
 
-  const submitHandler = async (stateFormData: IState): Promise<void> => {
-    try {
-      if (projectId) {
-        await stateservices.editState(stateFormData)
-        toggleModal()
-        loadProject(projectId)
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handlerDeleteStateAndTicket = async () => {
-    if (ticketData) {
-      try {
-        await deleteState(stateData._id)
-        toggleModal()
-        await loadProject(projectId!)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-  }
+  const { stateName } = stateData
 
   return (
     <>

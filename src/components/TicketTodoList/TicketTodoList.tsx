@@ -55,7 +55,7 @@ const TicketTodoList: React.FC<ITicketData> = ({ _id: ticketID }) => {
                   onDragEnd={handlerSort}
                   onDragOver={(e) => e.preventDefault()}
                 >
-                  <EachTodo todo={todo} index={index} ticketID={ticketID} />
+                  <EachTodo todo={todo} ticketID={ticketID} />
                 </li>
               )
         }
