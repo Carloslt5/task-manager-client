@@ -20,7 +20,7 @@ export const useSignup = () => {
       lastName: '',
       email: '',
       password: '',
-    }
+    },
   })
 
   const { register, handleSubmit } = form
@@ -39,6 +39,9 @@ export const useSignup = () => {
         }
         setSignUpErrors(error.response?.data)
       }
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
     }
   }
   return {
@@ -46,6 +49,6 @@ export const useSignup = () => {
     register,
     handleSubmit,
     signUpErrors,
-    submitHandler
+    submitHandler,
   }
 }

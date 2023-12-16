@@ -18,7 +18,7 @@ export const useLogin = () => {
     defaultValues: {
       email: '',
       password: '',
-    }
+    },
   })
 
   const { register, handleSubmit } = loginForm
@@ -40,9 +40,15 @@ export const useLogin = () => {
         }
         setLoginErrors(error.response?.data)
       }
+      if (error instanceof Error) {
+        toast.error(error.message)
+      }
     }
   }
   return {
-    register, handleSubmit, loginErrors, submitHandler
+    register,
+    handleSubmit,
+    loginErrors,
+    submitHandler,
   }
 }
