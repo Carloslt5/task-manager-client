@@ -2,7 +2,25 @@
 
 This project is a task list application that uses a Kanban layout to organize tasks and allows drag-and-drop functionality for an intuitive user experience.
 
-<!-- ## Deploy -->
+## Deploy
+
+https://kanban-todo-app.netlify.app
+
+## User Test
+
+You can also register [sign up](https://kanban-todo-app.netlify.app/signup) 👍
+
+1. User:
+
+```
+02@email.com
+```
+
+2. Password:
+
+```
+1234
+```
 
 ## Features
 
