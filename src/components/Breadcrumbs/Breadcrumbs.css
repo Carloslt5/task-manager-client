@@ -1,8 +1,0 @@
-.crumb:after {
-  content: '>';
-  margin: 0 0.5em;
-}
-
-.crumb:last-child:after {
-  display: none
-}
