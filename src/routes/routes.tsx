@@ -7,7 +7,7 @@ const App = () => {
   return (
     <>
       <MainLayout>
-        <Outlet />;
+        <Outlet />
       </MainLayout>
     </>
   );
