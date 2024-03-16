@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from './NavBar';
+import Navigation from '../components/NavBar';
 
 type MainLayoutProps = {
   children: React.ReactNode;

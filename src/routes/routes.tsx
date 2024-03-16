@@ -1,6 +1,7 @@
-import { MainLayout } from '@/components/MainLayout';
+import { MainLayout } from '@/layout/MainLayout';
 import { HomePage } from '@/pages/Home';
 import { LoginPage } from '@/pages/Login';
+import { SignUpPage } from '@/pages/SignUp';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {
@@ -20,6 +21,7 @@ export const routes = [
     children: [
       { path: '', element: <HomePage /> },
       { path: '/login', element: <LoginPage /> },
+      { path: '/signup', element: <SignUpPage /> },
     ],
   },
 ];
