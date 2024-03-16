@@ -14,6 +14,10 @@ const Navigation = () => {
   const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
 
   useEffect(() => {
+    setThemeMode(darkMode);
+  }, [darkMode]);
+
+  const setThemeMode = (darkMode: unknown) => {
     if (darkMode) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -21,7 +25,7 @@ const Navigation = () => {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
-  }, [darkMode]);
+  };
 
   const toggleMenu = () => {
     setToggleMenuOpen(!toggleMenuOpen);
@@ -32,10 +36,10 @@ const Navigation = () => {
 
   return (
     <nav
-      className={`bg-slate-700 dark:bg-zinc-950 dark:text-gray-300 text-white min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}
+      className={`bg-blue-chill-400 dark:bg-blue-chill-800 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? 'w-60' : 'w-16'}`}
     >
       <div
-        className="absolute w-8 rounded-full cursor-pointer toggleMenu top-4 -right-4 "
+        className="absolute w-6 border border-white rounded-full cursor-pointer text-blue-chill-50 bg-blue-chill-600 dark:bg-blue-chill-950 toggleMenu top-3 -right-3 "
         onClick={toggleMenu}
       >
         {toggleMenuOpen ? <ArrowLeft /> : <ArrowRight />}
@@ -43,7 +47,7 @@ const Navigation = () => {
 
       <Link to={'/'}>
         <div
-          className="flex items-center rounded bg-slate-600 dark:bg-zinc-800 navBarTop gap-x-2"
+          className="flex items-center rounded bg-blue-chill-600 dark:bg-blue-chill-950 navBarTop gap-x-2"
           title={APP_NAME}
         >
           <span>
