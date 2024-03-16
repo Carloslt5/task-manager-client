@@ -21,14 +21,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="container flex items-center justify-center h-full max-w-screen-sm p-6 mx-auto text-white h-100">
-      <form
-        className="w-full p-4 mx-auto rounded bg-slate-700 dark:bg-zinc-800"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+    <div className="flex items-center justify-center h-full max-w-screen-sm mx-auto h-100">
+      <form className="w-full p-4 mx-auto rounded bg-color" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <input
-            className="p-2 text-slate-800 dark:text-zinc-800 input-standard"
+            className="input-standard "
             id="email"
             type="email"
             placeholder="Your Email"
@@ -37,7 +34,7 @@ const LoginForm = () => {
         </div>
         <div className="mb-6">
           <input
-            className="p-2 text-slate-800 dark:text-zinc-800 input-standard"
+            className="input-standard "
             id="password"
             type="password"
             placeholder="******************"
@@ -45,14 +42,18 @@ const LoginForm = () => {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button className="w-full btn-form " type="submit">
+          <button className="btn btn-primary" type="submit">
             Log in
           </button>
         </div>
         <hr className="my-8" />
         <h5>
           Don't have an account?
-          <Link to="/signup" className="ml-2 text-primary-color" aria-current="page">
+          <Link
+            to="/signup"
+            className="ml-2 underline text-blue-chill-950 dark:text-blue-chill-400"
+            aria-current="page"
+          >
             Sign up
           </Link>
         </h5>
