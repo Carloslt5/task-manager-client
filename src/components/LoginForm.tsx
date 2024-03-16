@@ -22,10 +22,16 @@ const LoginForm = () => {
 
   return (
     <div className="flex items-center justify-center h-full max-w-screen-sm mx-auto h-100">
-      <form className="w-full p-4 mx-auto rounded bg-color" onSubmit={handleSubmit(onSubmit)}>
+      <form className="form bg__color" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
+          <label
+            className="block mb-2 text-xs font-bold tracking-wide uppercase"
+            htmlFor="grid-email"
+          >
+            Email
+          </label>
           <input
-            className="input-standard "
+            className="input__standard "
             id="email"
             type="email"
             placeholder="Your Email"
@@ -33,8 +39,14 @@ const LoginForm = () => {
           />
         </div>
         <div className="mb-6">
+          <label
+            className="block mb-2 text-xs font-bold tracking-wide uppercase"
+            htmlFor="grid-password"
+          >
+            Password
+          </label>
           <input
-            className="input-standard "
+            className="input__standard "
             id="password"
             type="password"
             placeholder="******************"
@@ -42,7 +54,7 @@ const LoginForm = () => {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button className="btn btn-primary" type="submit">
+          <button className="btn btn__primary" type="submit">
             Log in
           </button>
         </div>

@@ -4,11 +4,11 @@
 
 
 @layer components {
-  .bg-color {
+  .bg__color {
     @apply bg-blue-chill-400 dark:bg-blue-chill-800
   }
 
-  .input-standard {
+  .input__standard {
     @apply flex items-center w-full p-2 px-1 text-xl rounded text-blue-chill-400 dark:text-blue-chill-800;
   }
 
@@ -16,7 +16,11 @@
     @apply flex items-center justify-center flex-1 px-2 py-2 rounded;
   }
 
-  .btn-primary {
+  .btn__primary {
     @apply bg-blue-chill-600 dark:bg-blue-chill-950;
+  }
+
+  .form {
+    @apply w-full p-4 mx-auto rounded;
   }
 }
