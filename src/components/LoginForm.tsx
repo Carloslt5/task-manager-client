@@ -1,24 +1,8 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useLogin } from '@/hooks/useLogin';
 import { Link } from 'react-router-dom';
 
-type LoginFormValue = {
-  email: string;
-  password: string;
-};
-
-const LoginForm = () => {
-  const loginForm = useForm<LoginFormValue>({
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
-
-  const { register, handleSubmit } = loginForm;
-
-  const onSubmit: SubmitHandler<LoginFormValue> = (loginData) => {
-    console.log('------------', loginData);
-  };
+export const LoginForm = () => {
+  const { register, handleSubmit, onSubmit } = useLogin();
 
   return (
     <div className="flex items-center justify-center h-full max-w-screen-sm mx-auto h-100">
@@ -73,5 +57,3 @@ const LoginForm = () => {
     </div>
   );
 };
-
-export default LoginForm;

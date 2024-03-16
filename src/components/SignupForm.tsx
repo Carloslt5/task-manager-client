@@ -7,7 +7,7 @@ type SignUpData = {
   password: string;
 };
 
-const SignupForm = () => {
+export const SignupForm = () => {
   const signupForm = useForm<SignUpData>({
     defaultValues: {
       firstName: '',
@@ -116,5 +116,3 @@ const SignupForm = () => {
     </div>
   );
 };
-
-export default SignupForm;
