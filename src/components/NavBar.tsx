@@ -1,15 +1,9 @@
+import { Logo } from '@/components/Logo';
+import { ArrowLeft, ArrowRight, Dark, Dashboard, Home, Light, Login } from '@/components/icons';
+import { APP_NAME } from '@/constants/Menu.const';
+import { useNavBar } from '@/hooks/useNavBar';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { APP_NAME } from '../constants/Menu.const';
-import { useNavBar } from '../hooks/useNavBar';
-import { Logo } from './Logo';
-import { ArrowLeft } from './icons/ArrowLeft';
-import { ArrowRight } from './icons/ArrowRight';
-import { Dark } from './icons/Dark';
-import { Dashboard } from './icons/Dashboard';
-import { Home } from './icons/Home';
-import { Light } from './icons/Light';
-import { Login } from './icons/Login';
 
 const MENU_CONST_USER = [
   {

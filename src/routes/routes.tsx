@@ -1,7 +1,7 @@
+import { MainLayout } from '@/components/MainLayout';
+import { HomePage } from '@/pages/Home';
+import { LoginPage } from '@/pages/Login';
 import { Outlet } from 'react-router-dom';
-import { MainLayout } from '../components/MainLayout';
-import { HomePage } from '../pages/Home';
-import { LoginPage } from '../pages/Login';
 
 const App = () => {
   return (
