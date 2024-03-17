@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 type AuthState = {
-  authToken: string;
+  authToken: string | null;
 };
 
 type AuthAction = {
@@ -12,7 +12,7 @@ type AuthAction = {
 export const useAuthStore = create(
   persist<AuthState & AuthAction>(
     (set) => ({
-      authToken: '',
+      authToken: null,
       setToken: (authToken: string) => set((_state) => ({ authToken })),
     }),
     {

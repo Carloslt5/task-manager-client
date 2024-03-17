@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useAuthStore } from '@/store/authStore';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { commonRoutes } from './common';
 import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
-  const [test] = useState(false);
+  const auth = useAuthStore((state) => state.authToken);
 
-  const routes = test ? protectedRoutes : publicRoutes;
+  const routes = auth ? protectedRoutes : publicRoutes;
   const router = createBrowserRouter([...commonRoutes, ...routes]);
   return <RouterProvider router={router} />;
 };
