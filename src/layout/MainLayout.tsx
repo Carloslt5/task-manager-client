@@ -1,8 +1,8 @@
-import React from 'react';
+import { ReactNode } from 'react';
 import Navigation from '../components/NavBar';
 
 type MainLayoutProps = {
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export function MainLayout({ children }: MainLayoutProps) {

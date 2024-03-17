@@ -1,5 +1,5 @@
-import { SignupForm } from '@/components/SignupForm';
+import { SignupForm } from '@/features/auth/components/SignupForm';
 
-export const SignUpPage = () => {
+export const SignupPage = () => {
   return <SignupForm />;
 };

@@ -1,11 +1,13 @@
-import { routes } from '@/routes/routes';
+import { useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { commonRoutes } from './common';
+import { protectedRoutes } from './protected';
+import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
-  const router = createBrowserRouter(routes);
-  return (
-    <>
-      <RouterProvider router={router} />
-    </>
-  );
+  const [test] = useState(false);
+
+  const routes = test ? protectedRoutes : publicRoutes;
+  const router = createBrowserRouter([...commonRoutes, ...routes]);
+  return <RouterProvider router={router} />;
 };
