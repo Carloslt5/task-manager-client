@@ -1,3 +1,4 @@
+import authservices from '@/services/auth.services';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 type LoginFormValue = {
@@ -15,8 +16,9 @@ export const useLogin = () => {
 
   const { register, handleSubmit } = loginForm;
 
-  const onSubmit: SubmitHandler<LoginFormValue> = (loginData) => {
-    console.log('------------', loginData);
+  const onSubmit: SubmitHandler<LoginFormValue> = async (loginData) => {
+    const data = await authservices.login(loginData);
+    console.log('🚀 --------- data', data);
   };
 
   return {
