@@ -1,9 +1,10 @@
 import Axios, { InternalAxiosRequestConfig } from 'axios';
 
 function addToken(config: InternalAxiosRequestConfig) {
-  const storedToken = localStorage.getItem('authToken');
-  if (storedToken) {
-    config.headers!['Authorization'] = `Bearer ${storedToken}`;
+  const tokenString = localStorage.getItem('auth');
+  if (tokenString) {
+    const tokenObject = JSON.parse(tokenString);
+    config.headers['Authorization'] = `Bearer ${tokenObject.state.authToken}`;
   }
   return config;
 }

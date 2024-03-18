@@ -32,6 +32,10 @@
     @apply w-full py-1 text-5xl font-extrabold text-transparent uppercase border border-transparent text-blue-chill-500 dark:text-blue-chill-700;
   }
 
+  .card__primary {
+    @apply h-32 p-4 text-white border rounded dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900 bg-blue-chill-400;
+  }
+
 
 
 }

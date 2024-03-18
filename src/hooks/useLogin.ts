@@ -10,6 +10,7 @@ type LoginFormValue = {
 
 export const useLogin = () => {
   const setToken = useAuthStore((state) => state.setToken);
+  const authenticate = useAuthStore((state) => state.authenticate);
   const navigate = useNavigate();
 
   const loginForm = useForm<LoginFormValue>({
@@ -23,8 +24,9 @@ export const useLogin = () => {
 
   const onSubmit: SubmitHandler<LoginFormValue> = async (loginData) => {
     const { data } = await authservices.login(loginData);
-    setToken(data);
-    navigate('/');
+    setToken(data.authToken);
+    authenticate();
+    navigate(`/dashboard`);
   };
 
   return {
