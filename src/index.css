@@ -23,4 +23,15 @@
   .form {
     @apply w-full p-4 mx-auto rounded;
   }
+
+  .title__primary {
+    @apply w-full py-2 text-5xl font-extrabold text-transparent uppercase border border-transparent text-blue-chill-500 dark:text-blue-chill-700;
+  }
+
+  .title__input {
+    @apply w-full py-1 text-5xl font-extrabold text-transparent uppercase border border-transparent text-blue-chill-500 dark:text-blue-chill-700;
+  }
+
+
+
 }

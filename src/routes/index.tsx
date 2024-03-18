@@ -5,10 +5,6 @@ import { commonRoutes } from './common';
 import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
 
-const App = () => {
-  return <Outlet />;
-};
-
 export const AppRoutes = () => {
   const auth = useAuthStore((state) => state.authToken);
 
@@ -18,7 +14,7 @@ export const AppRoutes = () => {
       children: [
         {
           path: '/',
-          element: <App />,
+          element: <Outlet />,
           children: [...commonRoutes, ...(auth ? protectedRoutes : publicRoutes)],
         },
       ],
