@@ -1,6 +1,6 @@
 import App from '@/App.tsx';
 import '@/index.css';
-import '@/lib/darkMode.tsx';
+import '@/lib/darkMode';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
