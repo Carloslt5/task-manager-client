@@ -1,4 +1,4 @@
-import { MainLayout } from '@/layout/MainLayout';
+import { MainLayout } from '@/components/layout/MainLayout';
 import { useAuthStore } from '@/store/authStore';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { commonRoutes } from './common';
