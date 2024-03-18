@@ -3,8 +3,11 @@ import { axios } from '@/lib/axios';
 class ProjectServices {
   constructor() {}
 
-  async getProject() {
-    return axios.get(`/project/getAllProject`);
+  async getProject(): Promise<Project[]> {
+    const {
+      data: { data },
+    } = await axios.get(`/project/getAllProject`);
+    return data;
   }
 }
 
