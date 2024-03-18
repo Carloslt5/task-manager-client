@@ -10,6 +10,7 @@ type AuthState = {
 type AuthAction = {
   setToken: (authToken: string) => void;
   authenticate: () => void;
+  logout: () => void;
 };
 
 export const useAuthStore = create(
@@ -27,8 +28,11 @@ export const useAuthStore = create(
           set(() => ({
             user: data,
           }));
+        } else {
+          set(() => ({ authToken: null, user: null }));
         }
       },
+      logout: () => set(() => ({ authToken: null, user: null })),
     }),
     {
       name: 'auth',

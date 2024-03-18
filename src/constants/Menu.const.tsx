@@ -1,4 +1,4 @@
-import { Dashboard, Home, Login } from '@/components/icons';
+import { Dashboard, Home, Login, Logout } from '@/components/icons';
 
 export const MENU_CONST_NOT_USER = [
   {
@@ -23,5 +23,10 @@ export const MENU_CONST_USER = [
     title: 'Dashboard',
     src: `/dashboard`,
     icon: <Dashboard />,
+  },
+  {
+    title: 'Logout',
+    src: '/',
+    icon: <Logout />,
   },
 ];

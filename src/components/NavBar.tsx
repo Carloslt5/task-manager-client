@@ -12,6 +12,7 @@ const Navigation = () => {
   const { darkMode, setThemeMode, toggleMenu, toggleMenuOpen, toggleThemeHandler } = useNavBar();
 
   const auth = useAuthStore((state) => state.authToken);
+  const logout = useAuthStore((state) => state.logout);
 
   useEffect(() => {
     setThemeMode(darkMode);
@@ -71,7 +72,11 @@ const Navigation = () => {
                 key={idx}
                 title={menuItem.title}
               >
-                <Link to={menuItem.src} className="flex items-center gap-4 ">
+                <Link
+                  to={menuItem.src}
+                  className="flex items-center gap-4 "
+                  onClick={menuItem.title === 'Logout' ? () => logout() : undefined}
+                >
                   <span className="p-1">{menuItem.icon}</span>
                   <p
                     className={`text-md origin-left whitespace-nowrap duration-300 text-white ${!toggleMenuOpen && 'scale-0'}`}
