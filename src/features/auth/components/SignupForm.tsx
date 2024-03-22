@@ -1,27 +1,8 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-type SignUpData = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-};
+import { useSignup } from '../hooks/useSignup';
 
 export const SignupForm = () => {
-  const signupForm = useForm<SignUpData>({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-    },
-  });
-
-  const { register, handleSubmit } = signupForm;
-
-  const onSubmit: SubmitHandler<SignUpData> = (signupData) => {
-    console.log('------------', signupData);
-  };
+  const { register, handleSubmit, onSubmit } = useSignup();
 
   return (
     <div className="flex items-center justify-center h-full max-w-screen-sm mx-auto h-100">

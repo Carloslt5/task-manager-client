@@ -1,4 +1,4 @@
-import { ProjectPage } from '@/pages/Project';
+import { ProjectPage } from '@/features/project/pages/Project';
 import { Route, Routes } from 'react-router-dom';
 
 export const ProjectRoutes = () => {

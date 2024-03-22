@@ -17,10 +17,10 @@ interface ChangeTitleProps {
 
 export const ChangeTitle = ({
   data: { id, title },
-  entityId,
+  // entityId,
   variant,
-  updateEntityTitle,
-  updateEntity,
+  // updateEntityTitle,
+  // updateEntity,
 }: ChangeTitleProps) => {
   const { isEditing, handlerEditClick } = useEditing();
 

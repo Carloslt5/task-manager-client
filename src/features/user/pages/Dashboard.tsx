@@ -1,5 +1,5 @@
 import { ProjectCard } from '@/features/project/components/ProjectCard';
-import { useProject } from '@/hooks/useProject';
+import { useProject } from '@/features/project/hooks/useProject';
 import { Link } from 'react-router-dom';
 
 export const DashboardPage = () => {

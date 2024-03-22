@@ -1,4 +1,4 @@
-import projectservices from '@/services/project.services';
+import projectservices from '@/features/project/api/project.actions';
 import { useQuery } from '@tanstack/react-query';
 
 export const useProject = () => {
