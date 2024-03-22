@@ -1,4 +1,4 @@
-import { useLogin } from '@/hooks/useLogin';
+import { useLogin } from '@/features/auth/hooks/useLogin';
 import { Link } from 'react-router-dom';
 
 export const LoginForm = () => {

@@ -1,5 +1,5 @@
-import { LoginPage } from '@/pages/Login';
-import { SignupPage } from '@/pages/Signup';
+import { LoginPage } from '@/features/auth/pages/Login';
+import { SignupPage } from '@/features/auth/pages/Signup';
 import { Route, Routes } from 'react-router-dom';
 
 export const AuthRoutes = () => {

@@ -1,4 +1,4 @@
-import authservices from '@/services/auth.services';
+import authservices from '@/features/auth/api/auth.actions';
 import { useAuthStore } from '@/store/authStore';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';

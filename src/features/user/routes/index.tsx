@@ -1,5 +1,5 @@
 import { ProjectRoutes } from '@/features/project/routes';
-import { DashboardPage } from '@/pages/Dashboard';
+import { DashboardPage } from '@/features/user/pages/Dashboard';
 import { Route, Routes } from 'react-router-dom';
 
 export const UserRoutes = () => {
