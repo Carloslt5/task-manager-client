@@ -1,5 +1,5 @@
 type Auth = {
-  id: string;
+  id?: string;
   firstName: string;
   lastName: string;
 };

@@ -1,12 +1,15 @@
+import { sleep } from '@/helpers/sleep';
 import { axios } from '@/lib/axios';
 
 class ProjectServices {
   constructor() {}
 
-  async getProject(): Promise<Project[]> {
+  async getProjects(): Promise<Project[]> {
+    await sleep(3);
     const {
       data: { data },
-    } = await axios.get(`/project/getAllProject`);
+    } = await axios.get<{ data: Project[] }>(`/project/getAllProject`);
+
     return data;
   }
 }

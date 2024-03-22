@@ -6,7 +6,7 @@ export const UserRoutes = () => {
   return (
     <Routes>
       <Route path="dashboard" element={<DashboardPage />} />
-      <Route path="*" element={<ProjectRoutes />} />
+      <Route path="project/*" element={<ProjectRoutes />} />
     </Routes>
   );
 };
