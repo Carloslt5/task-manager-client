@@ -1,6 +1,6 @@
 import { MainLayout } from '@/components/layout/MainLayout';
 import { useAuthStore } from '@/store/authStore';
-import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { commonRoutes } from './common';
 import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
@@ -14,7 +14,6 @@ export const AppRoutes = () => {
       children: [
         {
           path: '/',
-          element: <Outlet />,
           children: [...commonRoutes, ...(auth ? protectedRoutes : publicRoutes)],
         },
       ],
