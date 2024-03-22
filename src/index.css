@@ -20,6 +20,10 @@
     @apply bg-blue-chill-600 dark:bg-blue-chill-950;
   }
 
+  .btn__add {
+    @apply px-4 py-2 border rounded text-blue-chill-50;
+  }
+
   .form {
     @apply w-full p-4 mx-auto rounded;
   }
@@ -35,7 +39,6 @@
   .card__primary {
     @apply h-32 p-4 text-white border rounded dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900 bg-blue-chill-400;
   }
-
 
 
 }
