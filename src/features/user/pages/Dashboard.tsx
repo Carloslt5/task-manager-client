@@ -1,11 +1,13 @@
 import { AddButton } from '@/components/AddButton';
+import { ModalForm } from '@/components/ModalForm';
+import { ProjectForm } from '@/features/project/components/ProjectForm';
 import { useProjects } from '@/features/project/hooks/useProjects';
 import { ProjectList } from '@/features/project/pages/ProjectList';
 import { useModalHook } from '@/hooks/useModalHook';
 import { useAuthStore } from '@/store/authStore';
 
 export const DashboardPage = () => {
-  const { toggleModal } = useModalHook();
+  const { showModal, toggleModal } = useModalHook();
   const user = useAuthStore((state) => state.user);
   const { projects, error, isLoading, isError } = useProjects(user?.id);
 
@@ -25,11 +27,17 @@ export const DashboardPage = () => {
       ) : (
         <ProjectList projects={projects} />
       )}
+
+      {showModal && (
+        <ModalForm>
+          <ProjectForm modalTitle="Insert New Project" onCancel={toggleModal} />
+        </ModalForm>
+      )}
     </>
   );
 };
 
-export const ProjectSkeleton = () => (
+const ProjectSkeleton = () => (
   <>
     <header className="animate-pulse">
       <div className="w-3/4 h-16 mb-3 bg-gray-200 rounded"></div>
