@@ -5,16 +5,14 @@ import { persist } from 'zustand/middleware';
 type AuthState = {
   authToken: string | null;
   user: Auth | null;
-};
 
-type AuthAction = {
   setToken: (authToken: string) => void;
   authenticate: () => void;
   logout: () => void;
 };
 
 export const useAuthStore = create(
-  persist<AuthState & AuthAction>(
+  persist<AuthState>(
     (set) => ({
       authToken: null,
       user: null,
