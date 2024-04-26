@@ -4,7 +4,7 @@ This project is a task list application that uses a Kanban layout to organize ta
 
 ## Deploy
 
-https://kanban-todo-app.netlify.app
+https://kanban-manager-app.netlify.app
 
 ## User Test
 
@@ -32,7 +32,6 @@ You can also register [sign up](https://kanban-todo-app.netlify.app/signup) 👍
 
 - React
 - TypeScript
-- Zod
 - Axios
 - Hooks-form
 - Toastify
