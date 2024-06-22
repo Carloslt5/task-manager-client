@@ -20,10 +20,6 @@
     @apply bg-blue-chill-500 hover:bg-blue-chill-900 dark:bg-blue-chill-700 dark:hover:bg-blue-chill-900;
   }
 
-  /* .btn__add {
-    @apply px-4 py-2 bg-red-300 border rounded text-blue-chill-50;
-  } */
-
   .btn__cancel {
     @apply border border-blue-chill-700 bg-blue-chill-600 text-blue-chill-500 hover:border-red-500 hover:text-red-500 hover:bg-blue-chill-900 dark:text-blue-chill-800;
   }
