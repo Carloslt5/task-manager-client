@@ -7,7 +7,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import { APP_GLOBAL_NAME } from "@/app/app.constants";
-import { useTheme } from "@/hooks/useTheme";
+import { useTheme } from "@/shared/hooks/useTheme";
 
 import { Logo } from "../icons/Logo";
 

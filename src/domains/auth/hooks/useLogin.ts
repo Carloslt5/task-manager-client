@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { login } from "../auth.services";
 
@@ -9,7 +9,7 @@ export type LoginFormValue = {
 };
 
 export const useLogin = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const loginForm = useForm<LoginFormValue>({
     defaultValues: {
@@ -22,8 +22,8 @@ export const useLogin = () => {
 
   const onSubmit: SubmitHandler<LoginFormValue> = async (loginData) => {
     await login(loginData);
-    // console.log("🚀 --------- userData", userData);
-    // navigate("/admin/dashboard");
+
+    navigate("/admin/dashboard");
   };
 
   return {
