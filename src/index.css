@@ -17,7 +17,7 @@
   }
 
   .btn__primary {
-    @apply bg-blue-chill-400 dark:bg-blue-chill-700 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900;
+    @apply bg-blue-chill-500 hover:bg-blue-chill-900 dark:bg-blue-chill-700 dark:hover:bg-blue-chill-900;
   }
 
   /* .btn__add {

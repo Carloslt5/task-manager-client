@@ -3,16 +3,13 @@ import { Link } from "react-router-dom";
 
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import { APP_GLOBAL_NAME } from "@/app/app.constants";
-import { useTheme } from "@/shared/hooks/useTheme";
 
+import { ThemeToggleButton } from "../components/ThemeToggleButton";
 import { Logo } from "../icons/Logo";
 
 export const Sidebar = () => {
-  const { darkMode, toggleThemeHandler } = useTheme();
   const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -53,13 +50,7 @@ export const Sidebar = () => {
         <h2>modulos</h2>
       </aside>
 
-      <span
-        className={`w-8 p-2 flex ${toggleMenuOpen ? "justify-start" : "justify-center"}  mt-auto text-white rounded cursor-pointer`}
-        title="Theme Mode"
-        onClick={toggleThemeHandler}
-      >
-        {darkMode ? <Brightness7Icon /> : <DarkModeIcon />}
-      </span>
+      <ThemeToggleButton toggleMenuOpen={toggleMenuOpen} />
     </nav>
   );
 };
