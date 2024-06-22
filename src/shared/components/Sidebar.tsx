@@ -6,7 +6,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { APP_GLOBAL_NAME } from "@/app/app.constants";
 
-import { ThemeToggleButton } from "../components/ThemeToggleButton";
+import { ThemeToggleButton } from "./ThemeToggleButton";
 import { Logo } from "../icons/Logo";
 
 export const Sidebar = () => {
