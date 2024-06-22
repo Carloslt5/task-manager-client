@@ -4,6 +4,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 
 import { MenuItem } from "@/app/app.types";
 import { registerModule } from "@/app/module-orquestator/modules.helpers";
+import { AdminLayout } from "@/shared/layouts/AdminLayout";
 
 import { MODULE_DASHBOARD } from "./dashboard.constants";
 import { DashboardPage } from "./pages/DashboardPage";
@@ -11,7 +12,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 const routes: RouteObject[] = [
   {
     path: "/admin",
-    // element: <AdminLayout />,
+    element: <AdminLayout />,
     children: [
       {
         path: "",
