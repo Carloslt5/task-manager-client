@@ -1,4 +1,4 @@
-import "./module-orquestator/modules";
+import "../module-orquestator/modules";
 
 import { AppProviders } from "./AppProviders";
 import { AppRoutes } from "./AppRoutes";

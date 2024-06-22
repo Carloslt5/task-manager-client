@@ -2,14 +2,14 @@ import React from "react";
 
 import ReactDOM from "react-dom/client";
 
-import "./app/app.styles.css";
+import "./index.css";
 import "./app/libs/darkMode";
 
-import { App } from "./app/App";
+import { App } from "./app/components/App";
 import { mockServerConfig } from "./mock-server/constants";
 
 export async function enableMocking() {
-  if (import.meta.env.VITE_ENABLE_MSW !== "true") {
+  if (!import.meta.env.VITE_ENABLE_MSW) {
     return;
   }
   const { worker } = await import("@/mock-server/browser");

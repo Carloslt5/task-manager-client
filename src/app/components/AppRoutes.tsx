@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { getAllRoutes } from "./module-orquestator/modules.helpers";
+import { getAllRoutes } from "../module-orquestator/modules.helpers";
 
 const basename = import.meta.env.VITE_APP_CONTEXT_PATH;
 

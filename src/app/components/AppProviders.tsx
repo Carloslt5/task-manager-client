@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { queryClient as defaultQueryClient } from "./libs/queryClient";
+import { queryClient as defaultQueryClient } from "../libs/queryClient";
 
 type Props = {
   readonly children: React.ReactNode;
