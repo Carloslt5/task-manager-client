@@ -1,6 +1,8 @@
 import { RouteObject } from "react-router-dom";
 
-import { Module } from "../app.types";
+import { User } from "@/domains/auth/auth.types";
+
+import { MenuItem, Module } from "../app.types";
 
 export type GlobalThis = typeof globalThis & { APP_MODULES: Module[] };
 
@@ -17,6 +19,14 @@ export const getModules = () => {
 
 export const getAllRoutes = () => {
   return modules.filter((module) => !!module.routes).flatMap((module) => module.routes) as RouteObject[];
+};
+
+export const getAllowedMenuItems = (user: User) => () => {
+  return modules
+    .flatMap((module) => module.menuItems)
+    .filter(Boolean)
+    .filter((menuItem) => menuItem!.isAllowed?.(user) ?? true)
+    .toSorted((a, b) => (a!.priority || 0) - (b!.priority || 0)) as MenuItem[];
 };
 
 export const getAllMockHandlers = () => {

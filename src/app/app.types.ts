@@ -2,6 +2,8 @@ import { RouteObject } from "react-router-dom";
 
 import { RequestHandler } from "msw";
 
+import { User } from "@/domains/auth/auth.types";
+
 export enum Locale {
   EN = "en",
   ES = "es",
@@ -15,7 +17,7 @@ export interface MenuItem {
   icon?: JSX.Element;
   path?: string;
   isActive?: (location: Location, path?: string) => boolean;
-  // isAllowed?: (user: User) => boolean;
+  isAllowed?: (user: User) => boolean;
   priority?: number;
 }
 

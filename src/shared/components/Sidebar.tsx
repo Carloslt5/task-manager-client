@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import { APP_GLOBAL_NAME } from "@/app/app.constants";
 
+import { AdminMenuItems } from "./AdminMenuItems";
 import { ThemeToggleButton } from "./ThemeToggleButton";
 import { Logo } from "../icons/Logo";
 
@@ -47,7 +48,7 @@ export const Sidebar = () => {
         </div>
       </Link>
       <aside className="mt-10">
-        <h2>modulos</h2>
+        <AdminMenuItems toggleMenuOpen={toggleMenuOpen} />
       </aside>
 
       <ThemeToggleButton toggleMenuOpen={toggleMenuOpen} />

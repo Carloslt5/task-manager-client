@@ -28,7 +28,7 @@ const routes: RouteObject[] = [
 
 const menuItems: MenuItem[] = [
   {
-    title: "dashboard.dashboard.title",
+    title: "dashboard",
     icon: <DashboardIcon />,
     path: "/admin/dashboard",
     // isAllowed: (user: User) => Object.values(UserRoles).some((role) => user.roles.includes(role)),
