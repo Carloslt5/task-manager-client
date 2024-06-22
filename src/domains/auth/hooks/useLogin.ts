@@ -1,4 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 type LoginFormValue = {
   email: string;
@@ -6,6 +7,8 @@ type LoginFormValue = {
 };
 
 export const useLogin = () => {
+  const navigate = useNavigate();
+
   const loginForm = useForm<LoginFormValue>({
     defaultValues: {
       email: "",
@@ -19,6 +22,7 @@ export const useLogin = () => {
     // loginData
     {
       // console.log("🚀 --------- loginData", loginData);
+      navigate("/admin/dashboard");
     };
 
   return {
