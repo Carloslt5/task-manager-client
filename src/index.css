@@ -37,7 +37,7 @@
   }
 
   .card__primary {
-    @apply h-32 p-4 text-white border rounded dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900 bg-blue-chill-400 dark:bg-blue-chill-800;
+    @apply h-full p-4 text-white border rounded dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900 bg-blue-chill-400 dark:bg-blue-chill-800;
   }
 
   .modal__form {

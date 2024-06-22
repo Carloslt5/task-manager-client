@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom";
 
 import { Sidebar } from "../components/Sidebar";
+interface Props {
+  readonly children?: React.ReactNode;
+}
 
-export const AdminLayout = () => {
+export const AdminLayout = ({ children }: Props) => {
   return (
     <div className="flex">
       <Sidebar />
       <main className="flex-1 p-4 bg-blue-chill-200 dark:bg-dark-100 text-blue-chill-50 ">
         <Outlet />
+        {children}
       </main>
     </div>
   );
