@@ -5,7 +5,6 @@ export interface User {
   userId: string;
   roles: UserRoles[];
   permissions: string[];
-  attributes: { key: string; values: string[] }[];
   userData: {
     description: string;
     employeeId: string;

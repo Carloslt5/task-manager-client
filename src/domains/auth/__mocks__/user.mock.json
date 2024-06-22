@@ -4,7 +4,6 @@
   "name": "John Doe",
   "userId": "userId1",
   "roles": ["admin", "staff"],
-  "attributes": [{ "key": "tenants", "values": ["tenant1", "tenant2"] }],
   "userData": {
     "description": "Mock user",
     "employeeId": "john_mock",
