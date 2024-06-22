@@ -6,22 +6,17 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
+import { APP_GLOBAL_NAME } from "@/app/app.constants";
+import { useTheme } from "@/hooks/useTheme";
+
 import { Logo } from "../icons/Logo";
 
-const initialThemeMode = localStorage.getItem("theme") === "dark";
-
-export const APP_NAME = "TASK-MANAGER";
-
 export const Sidebar = () => {
+  const { darkMode, toggleThemeHandler } = useTheme();
   const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(initialThemeMode);
 
   const toggleMenu = () => {
     setToggleMenuOpen(!toggleMenuOpen);
-  };
-
-  const toggleThemeHandler = () => {
-    setDarkMode(!darkMode);
   };
 
   return (
@@ -40,14 +35,17 @@ export const Sidebar = () => {
       </div>
 
       <Link to={"/"}>
-        <div className="flex items-center rounded bg-blue-chill-600 dark:bg-blue-chill-950 gap-x-2" title={APP_NAME}>
+        <div
+          className="flex items-center rounded bg-blue-chill-600 dark:bg-blue-chill-950 gap-x-2"
+          title={APP_GLOBAL_NAME}
+        >
           <span>
             <Logo />
           </span>
           <h1
             className={`text-1xl font-bold origin-left whitespace-nowrap duration-300 text-white ${!toggleMenuOpen && "scale-0"}`}
           >
-            {APP_NAME}
+            {APP_GLOBAL_NAME}
           </h1>
         </div>
       </Link>
