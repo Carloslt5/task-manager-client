@@ -19,6 +19,10 @@ export const getAllRoutes = () => {
   return modules.filter((module) => !!module.routes).flatMap((module) => module.routes) as RouteObject[];
 };
 
+export const getAllMockHandlers = () => {
+  return modules.filter((module) => !!module.mockHandlers).flatMap((module) => module.mockHandlers ?? []);
+};
+
 export function registerModule(module: Module) {
   modules.push(module);
 }

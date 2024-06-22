@@ -1,5 +1,7 @@
 import { RouteObject } from "react-router-dom";
 
+import { RequestHandler } from "msw";
+
 export enum Locale {
   EN = "en",
   ES = "es",
@@ -24,7 +26,7 @@ export interface Module {
   menuItems?: MenuItem[];
   routes?: RouteObject[];
   // all module mock handlers
-  // mockHandlers?: RequestHandler[];
+  mockHandlers?: RequestHandler[];
   // all module permissions definitions
   permissions?: string[];
 }
