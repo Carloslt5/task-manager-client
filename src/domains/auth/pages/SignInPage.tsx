@@ -8,7 +8,7 @@ export const SignInPage = () => {
   const { register, handleSubmit, onSubmit } = useLogin();
 
   return (
-    <div className="bg-blue-chill-200 dark:bg-dark-200 h-svh text-blue-chill-50">
+    <div className="bg-blue-chill-200 dark:bg-dark-100 h-svh text-blue-chill-50">
       <div className="flex items-center justify-center h-full max-w-screen-sm mx-auto ">
         <form className="form bg__color" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
