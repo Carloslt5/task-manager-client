@@ -8,6 +8,7 @@ import { AdminLayout } from "@/shared/layouts/AdminLayout";
 
 import { MODULE_DASHBOARD } from "./dashboard.constants";
 import { DashboardPage } from "./pages/DashboardPage";
+import { User, UserRoles } from "../auth/auth.types";
 
 const routes: RouteObject[] = [
   {
@@ -31,7 +32,7 @@ const menuItems: MenuItem[] = [
     title: "dashboard",
     icon: <DashboardIcon />,
     path: "/admin/dashboard",
-    // isAllowed: (user: User) => Object.values(UserRoles).some((role) => user.roles.includes(role)),
+    isAllowed: (user: User) => Object.values(UserRoles).some((role) => user.roles.includes(role)),
   },
 ];
 
