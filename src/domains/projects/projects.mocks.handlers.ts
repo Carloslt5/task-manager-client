@@ -3,6 +3,7 @@ import { delay, http, HttpResponse } from "msw";
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 
 import { ProjectMother } from "./__mocks__/ProjectMother";
+import { Project } from "./projects.type";
 
 const projects = ProjectMother.getRandomList();
 
@@ -30,6 +31,29 @@ export const handlers = [
 
     return HttpResponse.json({
       data: project,
+    });
+  }),
+
+  http.post("/api/project/createProject", async ({ request }) => {
+    const newProjectData = await request.json();
+
+    if (!newProjectData) {
+      return HttpResponse.json(
+        {
+          code: 400,
+          message: "Invalid project data received",
+        },
+        { status: 400 },
+      );
+    }
+
+    const newProject = ProjectMother.getRandomOrder(newProjectData as Project);
+
+    await delay(DEFAULT_DELAY);
+    projects.push(newProject);
+
+    return HttpResponse.json({
+      data: projects,
     });
   }),
 ];

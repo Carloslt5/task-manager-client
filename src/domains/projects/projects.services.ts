@@ -13,3 +13,9 @@ export function fetchOneProject(projectId: string) {
     .get<AxiosResponse<Project>>(getEndpoint() + `/project/getOneProject/${projectId}`)
     .then((res) => res.data);
 }
+
+export function createProject(projectData: Partial<Project>) {
+  return axios
+    .post<AxiosResponse<Project>>(getEndpoint() + "/project/createProject", projectData)
+    .then((res) => res.data);
+}

@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 
+import { useProjectsControllers } from "../hooks/useProjectsControllers";
 import { Project } from "../projects.type";
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
+  const { handleProjectCreate } = useProjectsControllers();
+
   const handleCancel = () => {
     onCancel();
   };
@@ -22,8 +25,8 @@ export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
   const { register, handleSubmit } = projectForm;
 
   const submitHandler = async (newProjectData: Partial<Project>) => {
-    // console.log("🚀 --------- newProjectData", newProjectData);
-    return newProjectData;
+    handleProjectCreate(newProjectData);
+    handleCancel();
   };
 
   return (
