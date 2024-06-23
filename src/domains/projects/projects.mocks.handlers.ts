@@ -13,4 +13,23 @@ export const handlers = [
       data: projects,
     });
   }),
+
+  http.get("/api/project/getOneProject/:projectId", async ({ params }) => {
+    const { projectId } = params;
+    const project = projects.find((p) => p.id === projectId);
+
+    if (!project) {
+      return HttpResponse.json(
+        {
+          code: 400,
+          message: "Project not found",
+        },
+        { status: 400 },
+      );
+    }
+
+    return HttpResponse.json({
+      data: project,
+    });
+  }),
 ];

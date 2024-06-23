@@ -8,13 +8,16 @@ import { Project } from "../projects.type";
 const userData = UserMother.getMockUser();
 
 export class ProjectMother {
+  private static currentId = 1;
+
   static getRandomOrder() {
-    return {
-      id: faker.string.uuid(),
+    const project: Project = {
+      id: (this.currentId++).toString(),
       title: faker.commerce.productName(),
       description: faker.commerce.productDescription(),
       ownerId: userData.userId,
-    } as Project;
+    };
+    return project;
   }
 
   static getRandomList(length = API_DEFAULT_LIMIT) {
