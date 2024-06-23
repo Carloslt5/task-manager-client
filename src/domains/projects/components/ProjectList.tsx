@@ -4,9 +4,9 @@ import { ProjectCard } from "./ProjectCard";
 import { useProjectsControllers } from "../hooks/useProjectsControllers";
 
 export const ProjectList = () => {
-  const { projects, isFetching } = useProjectsControllers();
+  const { projects, isLoading } = useProjectsControllers();
 
-  if (isFetching) {
+  if (isLoading) {
     return <h1>Loading</h1>;
   }
 

@@ -1,19 +1,19 @@
 import { useCallback } from "react";
 
-import { useProjectCreate } from "./useProjectCreate";
+import { useProjectCreate } from "./useProjectCreate.hook";
 import { useProjects } from "./useProjects.hook";
 import { Project } from "../projects.type";
 
 export const useProjectsControllers = () => {
-  const { data: projects, isFetching } = useProjects();
-  const mutation = useProjectCreate();
+  const { data: projects, isLoading } = useProjects();
+  const addProjectMutation = useProjectCreate();
 
   const handleProjectCreate = useCallback(
     (newProjectData: Partial<Project>) => {
-      mutation.mutate(newProjectData);
+      addProjectMutation.mutate(newProjectData);
     },
-    [mutation],
+    [addProjectMutation],
   );
 
-  return { projects, isFetching, handleProjectCreate };
+  return { projects, isLoading, handleProjectCreate };
 };
