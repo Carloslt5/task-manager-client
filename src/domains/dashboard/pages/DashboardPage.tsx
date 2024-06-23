@@ -10,10 +10,10 @@ export const DashboardPage = () => {
 
   return (
     <>
-      <header>
-        <h1 className="mb-3 title__primary">My Boards</h1>
+      <header className="py-3">
+        <h1 className="title__primary">My Boards</h1>
       </header>
-      <button className="flex items-center gap-1 mb-6 btn btn__add" onClick={toggleModal}>
+      <button className="flex items-center gap-1 mt-3 mb-6 btn btn__add" onClick={toggleModal}>
         <AddIcon />
         <span>Add Board</span>
       </button>

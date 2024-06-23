@@ -10,14 +10,13 @@ const userData = UserMother.getMockUser();
 export class ProjectMother {
   private static currentId = 1;
 
-  static getRandomOrder() {
-    const project: Project = {
+  static getRandomOrder(project?: Partial<Project>) {
+    return {
       id: (this.currentId++).toString(),
       title: faker.commerce.productName(),
-      description: faker.commerce.productDescription(),
       ownerId: userData.userId,
-    };
-    return project;
+      ...project,
+    } as Project;
   }
 
   static getRandomList(length = API_DEFAULT_LIMIT) {

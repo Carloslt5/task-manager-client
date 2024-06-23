@@ -7,5 +7,6 @@ export const useProject = (projectId: string) => {
   return useQuery({
     queryKey: [QUERY_KEY_PROJECT, projectId],
     queryFn: () => fetchOneProject(projectId),
+    enabled: !!projectId,
   });
 };

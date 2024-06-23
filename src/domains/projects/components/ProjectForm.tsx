@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 
+import { useProjectsControllers } from "../hooks/useProjectsControllers";
 import { Project } from "../projects.type";
 
 interface Props {
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
+  const { handleProjectCreate } = useProjectsControllers();
+
   const handleCancel = () => {
     onCancel();
   };
@@ -15,15 +18,14 @@ export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
   const projectForm = useForm<Partial<Project>>({
     defaultValues: {
       title: "",
-      description: "",
     },
   });
 
   const { register, handleSubmit } = projectForm;
 
   const submitHandler = async (newProjectData: Partial<Project>) => {
-    // console.log("🚀 --------- newProjectData", newProjectData);
-    return newProjectData;
+    handleProjectCreate(newProjectData);
+    handleCancel();
   };
 
   return (
@@ -31,23 +33,16 @@ export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
       <div className="flex justify-between">
         <h1 className="text-2xl text-white ">{modalTitle}</h1>
       </div>
-      <hr className="mb-4" />
+      <hr className="my-4" />
       <form className="flex flex-col gap-2" onSubmit={handleSubmit(submitHandler)}>
         <input
           autoFocus
-          className="input__standard text-slate-700 dark:text-zinc-700"
+          className="mb-4 input__standard text-slate-700 dark:text-zinc-700"
           type="text"
           placeholder="Insert title..."
           {...register("title")}
           required
         />
-
-        <textarea
-          className="h-20 input__standard text-zinc-700 dark:text-dark-200 max-h-32"
-          placeholder="Insert description..."
-          {...register("description")}
-        />
-
         <div className="flex flex-row-reverse items-center gap-2 items-strech">
           <button className="flex items-center btn btn__add">
             <span>Add Project</span>

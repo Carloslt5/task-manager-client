@@ -7,6 +7,10 @@
     @apply bg-blue-chill-400 dark:bg-blue-chill-800;
   }
 
+  .input__primary {
+    @apply w-full py-1 text-5xl font-extrabold text-blue-chill-500;
+  }
+
   .input__standard {
     @apply flex items-center w-full px-1 py-2 text-lg rounded text-blue-chill-400 dark:text-blue-chill-800;
   }
@@ -32,15 +36,19 @@
   }
 
   .title__primary {
-    @apply w-full py-2 text-5xl font-extrabold text-transparent uppercase border border-transparent text-blue-chill-500 dark:text-blue-chill-700;
+    @apply w-full text-5xl font-extrabold text-blue-chill-500;
   }
 
   .title__input {
     @apply w-full py-1 text-5xl font-extrabold text-transparent uppercase border border-transparent text-blue-chill-500 dark:text-blue-chill-700;
   }
 
+  .edit__title {
+    @apply flex items-center rounded text-blue-chill-500 hover:bg-blue-chill-50 dark:text-blue-chill-500;
+  }
+
   .card__primary {
-    @apply h-full p-4 text-white border rounded dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900 bg-blue-chill-400 dark:bg-blue-chill-800;
+    @apply flex items-center justify-center h-full p-4 text-center text-white border rounded min-h-32 dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900 bg-blue-chill-400 dark:bg-blue-chill-800;
   }
 
   .modal__form {
