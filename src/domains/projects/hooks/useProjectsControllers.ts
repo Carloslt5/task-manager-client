@@ -25,12 +25,12 @@ export const useProjectsControllers = (projectId?: string) => {
   );
 
   // Update one project
-  const projectUpdateMutation = useProjectUpdate();
+  const updateProjecteMutation = useProjectUpdate();
   const handleProjectUpdate = useCallback(
     (updateData: EditContent) => {
-      projectUpdateMutation.mutate(updateData);
+      updateProjecteMutation.mutate(updateData);
     },
-    [projectUpdateMutation],
+    [updateProjecteMutation],
   );
 
   return {
