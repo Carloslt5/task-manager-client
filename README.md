@@ -1,30 +1,79 @@
-# React + TypeScript + Vite
+# Task Manager Client
+![Version 2 - In Progress](https://img.shields.io/badge/V.2.0-progress-yellow)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a task list application that uses a Kanban layout to organize tasks and allows drag-and-drop functionality for an intuitive user experience.
 
-Currently, two official plugins are available:
+### Deploy
+![v.1 - Deploy](https://img.shields.io/badge/V.1.0-is%20deploy-green)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3cf7b717-bb14-4d3b-8222-15e262f69310/deploy-status)](https://app.netlify.com/sites/kanban-manager-app/deploys)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://kanban-manager-app.netlify.app
 
-## Expanding the ESLint configuration
+### User Test
+You can also register [sign up](https://kanban-todo-app.netlify.app/signup) 👍
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. User:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```
+02@email.com
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Password:
+
+```
+1234
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (>=16.0.0)
+- npm (>=10.8.0)
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Carloslt5/task-manager-client.git
+   cd task-manager-client
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+### Development
+
+To start the development server:
+
+```sh
+npm start
+```
+
+This will start the Vite development server and open the application in your default web browser.
+
+## Features
+
+- **User session with JWT**
+- **Drag-and-Drop:** Easily move tasks ✅ .
+- **Tailwind:** Theme Light 🌞 and Dark 🌚
+
+## Technologies
+
+- React
+- React DOM
+- React Router DOM
+- TypeScript
+- Vite
+- Mock Service Worker (MSW) to development
+- Axios
+- Hooks-form
+- Toastify
+- ESLint (with plugins for TypeScript, React, and Prettier)
+
+## Rest API
+
+https://github.com/Carloslt5/task-manager-server
+
