@@ -7,17 +7,18 @@ import { Project } from "@/domains/projects/projects.type";
 
 import { useEditing } from "../hooks/useEditingHook";
 
-interface ChangeTitleProps {
-  readonly data: Project;
-  readonly variant?: "title-page";
-}
-
-interface FormValues {
+export interface EditContent {
   id: string;
   title: string;
 }
 
-export const ChangeTitle = ({ data: { id, title }, variant }: ChangeTitleProps) => {
+interface ChangeTitleProps {
+  readonly data: Project;
+  readonly variant?: "title-page";
+  readonly updateData: (editedContent: EditContent) => void;
+}
+
+export const ChangeTitle = ({ data: { id, title }, variant, updateData }: ChangeTitleProps) => {
   const { isEditing, handlerEditClick } = useEditing();
 
   const editContent = useForm({
@@ -29,10 +30,10 @@ export const ChangeTitle = ({ data: { id, title }, variant }: ChangeTitleProps) 
 
   const { register, handleSubmit } = editContent;
 
-  const submitHandler = async (editedContent: FormValues) => {
-    // console.log("🚀 --------- editedContent", editedContent);
+  const submitHandler = async (editedContent: EditContent) => {
+    updateData(editedContent);
     handlerEditClick();
-    return editedContent;
+    return;
   };
 
   const titleClassName = variant === "title-page" ? "title__primary" : "input__standard ";

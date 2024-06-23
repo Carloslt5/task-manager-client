@@ -14,7 +14,6 @@ export class ProjectMother {
     return {
       id: (this.currentId++).toString(),
       title: faker.commerce.productName(),
-      description: faker.commerce.productDescription(),
       ownerId: userData.userId,
       ...project,
     } as Project;

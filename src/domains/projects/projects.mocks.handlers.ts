@@ -29,6 +29,7 @@ export const handlers = [
       );
     }
 
+    await delay(DEFAULT_DELAY);
     return HttpResponse.json({
       data: project,
     });
@@ -54,6 +55,32 @@ export const handlers = [
 
     return HttpResponse.json({
       data: projects,
+    });
+  }),
+
+  http.put("/api/project/updateProject/:projectId", async ({ params, request }) => {
+    const { projectId } = params;
+    const updatedProjectData = await request.json();
+
+    const projectIndex = projects.findIndex((p) => p.id === projectId);
+
+    if (typeof updatedProjectData !== "object" || updatedProjectData === null) {
+      return HttpResponse.json(
+        {
+          code: 400,
+          message: "Project not found",
+        },
+        { status: 400 },
+      );
+    }
+
+    const updatedProject = { ...projects[projectIndex], ...updatedProjectData };
+    projects[projectIndex] = updatedProject;
+
+    await delay(DEFAULT_DELAY);
+
+    return HttpResponse.json({
+      data: updatedProject,
     });
   }),
 ];
