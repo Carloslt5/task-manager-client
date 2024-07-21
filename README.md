@@ -77,3 +77,21 @@ This will start the Vite development server and open the application in your def
 
 https://github.com/Carloslt5/task-manager-server
 
+## DDBB
+Project
+  - id
+  - title
+  - ownerId
+
+State
+  - id
+  - title
+  - Project ID
+
+Ticket
+  - id
+  - State ID
+  - Project ID
+  - Priority
+  - name
+  - description
