@@ -7,8 +7,8 @@ import { ModalForm } from "@/shared/components/ModalForm";
 import { useEditing } from "@/shared/hooks/useEditingHook";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
-import { useStateControllers } from "../hooks/useStateControllers";
 import { useStateForm } from "../hooks/useStateForm";
+import { useStatesControllers } from "../hooks/useStatesControllers";
 import { State } from "../states.type";
 
 type Props = {
@@ -21,7 +21,7 @@ const EachState = ({ state }: Props) => {
   const { showModal, toggleModal } = useModalHook();
   const { isEditing, handlerEditClick } = useEditing();
 
-  const { handleDeleteState } = useStateControllers(projectId!);
+  const { handleDeleteState } = useStatesControllers(projectId!);
 
   const { register, handleSubmit, submitHandler } = useStateForm({
     state,

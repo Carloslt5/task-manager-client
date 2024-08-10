@@ -8,8 +8,8 @@ import { ModalForm } from "@/shared/components/ModalForm";
 import SettingModal from "@/shared/components/SettingModal";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
-import { ColumnState } from "../features/states/components/ColumnState";
 import { CreateStateModal } from "../features/states/components/CreateStateModal";
+import { StatesContainer } from "../features/states/components/StatesContainer";
 import { useProjectsControllers } from "../hooks/useProjectsControllers";
 
 export const ProjectPage = () => {
@@ -35,22 +35,7 @@ export const ProjectPage = () => {
       <ActionButton icon={<AddIcon />} ctaText="Add State" onClick={toggleModal} />
       <p>Owner: {project?.data.ownerId}</p>
 
-      <section className="h-[75%] mt-2">
-        <ul className="flex flex-row items-stretch max-h-full gap-4 pb-2 mb-3 overflow-y-auto text-white">
-          {project.data.states.length > 0 ? (
-            <ul className="flex flex-row items-stretch max-h-full gap-4 pb-2 mb-3 overflow-y-auto text-white">
-              {project.data.states.map((state) => (
-                <ColumnState key={state.id} state={state} />
-              ))}
-            </ul>
-          ) : (
-            <p className="text-center text-slate-500 dark:text-zinc-500">Add your first state</p>
-          )}
-        </ul>
-        <p className="mt-2 text-sm text-center text-slate-500 dark:text-zinc-500">
-          Drag and Drop ticket to change status
-        </p>
-      </section>
+      <StatesContainer />
 
       {showModal && (
         <ModalForm>

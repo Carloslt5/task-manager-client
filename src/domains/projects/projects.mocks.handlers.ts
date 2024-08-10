@@ -2,7 +2,8 @@ import { delay, http, HttpResponse } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 
-import { MOCK_PROJECTS_LIST, ProjectMother } from "./__mocks__/ProjectMother";
+import { MOCK_PROJECTS_LIST } from "./__mocks__/MockData";
+import { ProjectMother } from "./__mocks__/ProjectMother";
 import { Project } from "./projects.type";
 
 export const projectsHandlers = [

@@ -15,7 +15,6 @@ export class ProjectMother {
       id: (this.currentId++).toString(),
       title: faker.commerce.productName(),
       ownerId: userData.userId,
-      states: [],
       ...project,
     } as Project;
 
@@ -26,5 +25,3 @@ export class ProjectMother {
     return Array.from({ length }, () => this.getRandomProject());
   }
 }
-
-export const MOCK_PROJECTS_LIST = ProjectMother.getRandomList();

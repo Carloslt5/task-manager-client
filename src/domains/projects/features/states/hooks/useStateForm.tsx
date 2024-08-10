@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-import { useStateControllers } from "./useStateControllers";
+import { useStatesControllers } from "./useStatesControllers";
 import { State } from "../states.type";
 
 type UseStateFormProps = {
@@ -10,7 +10,7 @@ type UseStateFormProps = {
 };
 
 export const useStateForm = ({ state, projectId, onClose }: UseStateFormProps) => {
-  const { handleStatesCreate, handleUpdateStates } = useStateControllers(projectId!);
+  const { handleStatesCreate, handleUpdateStates } = useStatesControllers(projectId!);
 
   const { register, handleSubmit, reset } = useForm<State>({
     defaultValues: state || { stateName: "" },
