@@ -7,6 +7,9 @@ import { ProjectPage } from "./pages/ProjectPage";
 import { MODULE_PROJECT } from "./projects.constants";
 import { projectsHandlers } from "./projects.mocks.handlers";
 
+import "./features/states";
+import "./features/tickets";
+
 const routes: RouteObject[] = [
   {
     path: "/admin",

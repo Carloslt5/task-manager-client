@@ -4,7 +4,15 @@
 
 @layer components {
   .bg__color {
-    @apply bg-blue-chill-400 dark:bg-blue-chill-800;
+    @apply bg-blue-chill-400 dark:bg-zinc-950;
+  }
+
+  .bg__color-hover {
+    @apply hover:bg-blue-chill-500 dark:hover:bg-zinc-700;
+  }
+
+  .bg__gradient {
+    @apply hover:bg-gradient-to-b from-blue-chill-400 to-blue-chill-500 dark:from-zinc-500 dark:to-zinc-700 bg-blue-chill-400 dark:bg-zinc-700
   }
 
   .input__primary {
@@ -20,11 +28,11 @@
   }
 
   .btn__primary {
-    @apply text-white bg-blue-chill-500 hover:bg-blue-chill-900 dark:bg-blue-chill-700 dark:hover:bg-blue-chill-900;
+    @apply text-white bg-blue-chill-600 dark:bg-zinc-800 bg__color-hover;
   }
 
   .btn__add {
-    @apply text-white rounded bg-blue-chill-400 dark:bg-blue-chill-800 dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900;
+    @apply text-white rounded bg__gradient;
   }
 
   .btn__cancel {
@@ -36,7 +44,7 @@
   }
 
   .title__primary {
-    @apply w-full text-5xl font-extrabold text-blue-chill-500;
+    @apply w-full text-5xl font-extrabold text-blue-chill-600 dark:text-white;
   }
 
   .title__input {
@@ -48,7 +56,7 @@
   }
 
   .card__primary {
-    @apply flex items-center justify-center h-full p-4 text-center text-white border rounded min-h-32 dark:border-blue-chill-100 hover:bg-gradient-to-b from-blue-chill-500 to-blue-chill-900 bg-blue-chill-400 dark:bg-blue-chill-800;
+    @apply flex items-center justify-center h-full p-4 text-center text-white rounded min-h-32 bg__gradient;
   }
 
   .modal__form {

@@ -5,15 +5,15 @@ import { useLoggedUser } from "@/domains/auth/hooks/useLoggedUser";
 
 export const AdminMenuItems = ({ toggleMenuOpen }: { toggleMenuOpen: boolean }) => {
   const { user } = useLoggedUser();
-  const location = useLocation(); // Hook para obtener la ruta actual
+  const location = useLocation();
 
   return getAllowedMenuItems(user)().map((menuItem) => {
-    const isActive = location.pathname === menuItem.path; // Verificar si el ítem está activo
+    const isActive = location.pathname.startsWith(menuItem.path!);
 
     return (
       <li
-        className={`rounded cursor-pointer hover:bg-blue-chill-600 dark:hover:bg-blue-chill-950 list-none flex items-center p-1 text-blue-chill-50 ${
-          isActive ? "bg-blue-chill-600 dark:bg-blue-chill-950" : ""
+        className={`bg__color rounded cursor-pointer list-none flex items-center p-1 text-blue-chill-50 ${
+          isActive ? "bg-blue-chill-500 dark:bg-zinc-700" : ""
         }`}
         key={menuItem.path}
         title={menuItem.title}
