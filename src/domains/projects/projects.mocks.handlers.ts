@@ -81,4 +81,27 @@ export const projectsHandlers = [
       data: updatedProject,
     });
   }),
+
+  http.delete("/api/project/deleteProject/:projectId", async ({ params }) => {
+    const { projectId } = params;
+    const projectIndex = MOCK_PROJECTS_LIST.findIndex((p) => p.id === projectId);
+
+    if (projectIndex === -1) {
+      return HttpResponse.json(
+        {
+          code: 400,
+          message: "Project not found",
+        },
+        { status: 400 },
+      );
+    }
+
+    MOCK_PROJECTS_LIST.splice(projectIndex, 1);
+
+    await delay(DEFAULT_DELAY);
+
+    return HttpResponse.json({
+      message: "Project successfully deleted",
+    });
+  }),
 ];

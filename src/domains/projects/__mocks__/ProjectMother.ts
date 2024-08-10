@@ -3,7 +3,6 @@ import { faker } from "@faker-js/faker";
 import { API_DEFAULT_LIMIT } from "@/app/api";
 import { UserMother } from "@/domains/auth/__mocks__/UserMother";
 
-import { StateMother } from "./StatesMother";
 import { Project } from "../projects.type";
 
 const userData = UserMother.getMockUser();
@@ -16,12 +15,11 @@ export class ProjectMother {
       id: (this.currentId++).toString(),
       title: faker.commerce.productName(),
       ownerId: userData.userId,
+      states: [],
       ...project,
     } as Project;
 
-    const states = StateMother.generateStates(newProject.id);
-    const completeProject = { ...newProject, states };
-    return completeProject;
+    return newProject;
   }
 
   static getRandomList(length = API_DEFAULT_LIMIT) {

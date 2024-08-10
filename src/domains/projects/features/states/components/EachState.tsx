@@ -1,8 +1,13 @@
+import { useParams } from "react-router-dom";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
+import { ConfirmationModal } from "@/shared/components/ConfirmationModal";
+import { ModalForm } from "@/shared/components/ModalForm";
 import { useEditing } from "@/shared/hooks/useEditingHook";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
+import { useStateControllers } from "../hooks/useStateControllers";
 import { useStateForm } from "../hooks/useStateForm";
 import { State } from "../states.type";
 
@@ -11,9 +16,12 @@ type Props = {
 };
 
 const EachState = ({ state }: Props) => {
-  const { isEditing, handlerEditClick } = useEditing();
-  const { toggleModal } = useModalHook();
+  const { id: projectId } = useParams();
 
+  const { showModal, toggleModal } = useModalHook();
+  const { isEditing, handlerEditClick } = useEditing();
+
+  const { handleDeleteState } = useStateControllers(projectId!);
   const { handleSubmit, submitHandler, register } = useStateForm(state);
 
   const { stateName } = state;
@@ -39,11 +47,20 @@ const EachState = ({ state }: Props) => {
           </form>
         )}
 
-        <button onClick={toggleModal} className="hover:text-red-500 ">
+        <button className="hover:text-red-500" onClick={toggleModal}>
           <DeleteForeverIcon fontSize="small" />
         </button>
       </div>
-      <hr />
+
+      {showModal && (
+        <ModalForm>
+          <ConfirmationModal
+            message="Are you SURE you want to DELETE this STATE?"
+            onConfirm={() => handleDeleteState(state.id)}
+            onCancel={toggleModal}
+          />
+        </ModalForm>
+      )}
     </>
   );
 };

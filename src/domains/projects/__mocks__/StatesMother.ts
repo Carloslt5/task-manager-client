@@ -1,19 +1,22 @@
+import { faker } from "@faker-js/faker";
+
 import { State } from "../features/states/states.type";
 
 export class StateMother {
   private static currentId = 1;
 
-  static getStates(projectId: string, title: string, state?: Partial<State>) {
-    return {
+  static getRandomState(projectId: string, state?: Partial<State>): State {
+    const newState = {
       id: (this.currentId++).toString(),
-      stateName: title,
+      stateName: faker.commerce.department(),
       projectId,
       ...state,
     } as State;
+
+    return newState;
   }
 
-  static generateStates(projectId: string) {
-    const stateTitles = ["Pending", "In Progress", "Done"];
-    return stateTitles.map((title) => this.getStates(projectId, title));
+  static getRandomList(projectId: string, length = 0): State[] {
+    return Array.from({ length }, () => this.getRandomState(projectId!));
   }
 }

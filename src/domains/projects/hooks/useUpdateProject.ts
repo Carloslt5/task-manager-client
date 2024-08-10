@@ -5,7 +5,7 @@ import { EditContent } from "@/shared/components/ChangeTitle";
 import { QUERY_KEY_PROJECT } from "../projects.constants";
 import { updateProject } from "../projects.services";
 
-export function useProjectUpdate() {
+export function useUpdateProject() {
   const queryClient = useQueryClient();
 
   return useMutation({

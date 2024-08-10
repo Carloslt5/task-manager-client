@@ -26,3 +26,9 @@ export function updateProject(editContent: EditContent) {
     .put<AxiosResponse<Project>>(getEndpoint() + `/project/updateProject/${editContent.id}`, editContent)
     .then((res) => res.data);
 }
+
+export function deleteProject(projectId: string) {
+  return axios
+    .delete<AxiosResponse<Project>>(getEndpoint() + `/project/deleteProject/${projectId}`)
+    .then((res) => res.data);
+}
