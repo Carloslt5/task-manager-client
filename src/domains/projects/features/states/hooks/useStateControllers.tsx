@@ -2,6 +2,7 @@ import { useCallback } from "react";
 
 import { useDeleteState } from "./useDeleteState";
 import { useStateCeate } from "./useStateCeate";
+import { useUpdateState } from "./useUpdateState";
 import { State } from "../states.type";
 
 export const useStateControllers = (projectId: string) => {
@@ -12,6 +13,15 @@ export const useStateControllers = (projectId: string) => {
       addStateMutation.mutate(newStateData);
     },
     [addStateMutation],
+  );
+
+  // Update state in project
+  const updateStatesMutation = useUpdateState(projectId!);
+  const handleUpdateStates = useCallback(
+    (newStateData: Partial<State>) => {
+      updateStatesMutation.mutate(newStateData);
+    },
+    [updateStatesMutation],
   );
 
   // delete state in project
@@ -26,5 +36,6 @@ export const useStateControllers = (projectId: string) => {
   return {
     handleStatesCreate,
     handleDeleteState,
+    handleUpdateStates,
   };
 };

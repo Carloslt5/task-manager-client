@@ -9,7 +9,7 @@ import SettingModal from "@/shared/components/SettingModal";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
 import { ColumnState } from "../features/states/components/ColumnState";
-import { CreateStateForm } from "../features/states/components/CreateStateForm";
+import { CreateStateModal } from "../features/states/components/CreateStateModal";
 import { useProjectsControllers } from "../hooks/useProjectsControllers";
 
 export const ProjectPage = () => {
@@ -54,7 +54,7 @@ export const ProjectPage = () => {
 
       {showModal && (
         <ModalForm>
-          <CreateStateForm modalTitle="Insert New State" onCancel={toggleModal} />
+          <CreateStateModal modalTitle="Insert New State" onCancel={toggleModal} />
         </ModalForm>
       )}
     </>

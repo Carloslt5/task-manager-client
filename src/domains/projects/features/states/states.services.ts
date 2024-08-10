@@ -10,6 +10,10 @@ export function createStateInProject(projectId: string, newStateData: Partial<St
     .then((res) => res.data);
 }
 
+export function updateStateInProject(newStateData: Partial<State>) {
+  return axios.post<AxiosResponse<State>>(getEndpoint() + `/state/editState`, newStateData).then((res) => res.data);
+}
+
 export function deleteStateInProject(stateId: string) {
   return axios.delete<AxiosResponse<void>>(`${getEndpoint()}/state/deleteState/${stateId}`).then((res) => res.data);
 }

@@ -22,7 +22,12 @@ const EachState = ({ state }: Props) => {
   const { isEditing, handlerEditClick } = useEditing();
 
   const { handleDeleteState } = useStateControllers(projectId!);
-  const { handleSubmit, submitHandler, register } = useStateForm(state);
+
+  const { register, handleSubmit, submitHandler } = useStateForm({
+    state,
+    projectId: projectId!,
+    onClose: handlerEditClick,
+  });
 
   const { stateName } = state;
 

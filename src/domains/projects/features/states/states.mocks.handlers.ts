@@ -47,6 +47,55 @@ export const statesHandlers = [
     });
   }),
 
+  http.post(`/api/state/editState`, async ({ request }) => {
+    const requestBody = await request.json();
+    const { id: stateId, stateName }: Partial<State> = requestBody as Partial<State>;
+
+    const projectContainingState = MOCK_PROJECTS_LIST.find((project) =>
+      project.states.some((state) => state.id === stateId),
+    );
+
+    if (!projectContainingState) {
+      return HttpResponse.json(
+        {
+          code: 404,
+          message: "State not found",
+        },
+        { status: 404 },
+      );
+    }
+
+    const stateToUpdate = projectContainingState.states.find((state) => state.id === stateId);
+
+    if (!stateToUpdate) {
+      return HttpResponse.json(
+        {
+          code: 404,
+          message: "State not found",
+        },
+        { status: 404 },
+      );
+    }
+
+    if (stateName && typeof stateName === "string") {
+      stateToUpdate.stateName = stateName;
+    } else {
+      return HttpResponse.json(
+        {
+          code: 400,
+          message: "Invalid stateName",
+        },
+        { status: 400 },
+      );
+    }
+
+    await delay(DEFAULT_DELAY);
+
+    return HttpResponse.json({
+      message: "State updated",
+    });
+  }),
+
   http.delete(`/api/state/deleteState/:stateId`, async ({ params }) => {
     const { stateId } = params;
 

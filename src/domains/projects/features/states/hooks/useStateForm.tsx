@@ -1,42 +1,30 @@
-/* eslint-disable no-console */
-
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
 
+import { useStateControllers } from "./useStateControllers";
 import { State } from "../states.type";
 
-export const useStateForm = (state: State) => {
-  const { id, stateName } = state;
-  const { id: projectId } = useParams();
+type UseStateFormProps = {
+  state?: State;
+  projectId: string;
+  onClose: () => void;
+};
 
-  const stateForm = useForm<State>({
-    defaultValues: {
-      id: id,
-      stateName: stateName,
-    },
+export const useStateForm = ({ state, projectId, onClose }: UseStateFormProps) => {
+  const { handleStatesCreate, handleUpdateStates } = useStateControllers(projectId!);
+
+  const { register, handleSubmit, reset } = useForm<State>({
+    defaultValues: state || { stateName: "" },
   });
 
-  const { register, handleSubmit } = stateForm;
-
-  const submitHandler = async (stateFormData: State): Promise<void> => {
-    try {
-      if (projectId) {
-        console.log("🚀 --------- projectId", projectId);
-        console.log("🚀 --------- stateFormData", stateFormData);
-      }
-    } catch (error) {
-      console.log(error);
+  const submitHandler = (data: State) => {
+    if (state) {
+      handleUpdateStates(data);
+    } else {
+      handleStatesCreate(data);
     }
+    reset();
+    onClose();
   };
 
-  const handlerDeleteStateAndTicket = async () => {
-    //todo
-  };
-
-  return {
-    register,
-    handleSubmit,
-    submitHandler,
-    handlerDeleteStateAndTicket,
-  };
+  return { register, handleSubmit, submitHandler };
 };

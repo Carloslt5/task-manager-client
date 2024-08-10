@@ -1,28 +1,19 @@
-import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
-import { useStateControllers } from "../hooks/useStateControllers";
+import { useStateForm } from "../hooks/useStateForm";
 
 type Props = {
   readonly modalTitle: string;
   readonly onCancel: () => void;
 };
 
-type FormValues = {
-  stateName: string;
-};
-
-export const CreateStateForm = ({ modalTitle, onCancel }: Props) => {
+export const CreateStateModal = ({ modalTitle, onCancel }: Props) => {
   const { id: projectId } = useParams();
-  const { handleStatesCreate } = useStateControllers(projectId!);
 
-  const handleCancel = () => onCancel();
-
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit = async (data: FormValues) => {
-    handleStatesCreate(data);
-    handleCancel();
-  };
+  const { register, handleSubmit, submitHandler } = useStateForm({
+    projectId: projectId!,
+    onClose: onCancel,
+  });
 
   return (
     <>
@@ -31,7 +22,7 @@ export const CreateStateForm = ({ modalTitle, onCancel }: Props) => {
           <h1 className="text-2xl text-white ">{modalTitle}</h1>
         </div>
         <hr className="my-4" />
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit(submitHandler)}>
           <input
             autoFocus
             className="mb-4 input__standard text-slate-700 dark:text-zinc-700"
@@ -44,7 +35,7 @@ export const CreateStateForm = ({ modalTitle, onCancel }: Props) => {
             <button className="flex items-center btn btn__add">
               <span>Add State</span>
             </button>
-            <button className="btn btn__cancel" onClick={handleCancel}>
+            <button className="btn btn__cancel" onClick={onCancel}>
               <span>Cancel</span>
             </button>
           </div>
