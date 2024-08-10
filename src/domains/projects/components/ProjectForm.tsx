@@ -11,10 +11,6 @@ interface Props {
 export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
   const { handleProjectCreate } = useProjectsControllers();
 
-  const handleCancel = () => {
-    onCancel();
-  };
-
   const projectForm = useForm<Partial<Project>>({
     defaultValues: {
       title: "",
@@ -25,7 +21,7 @@ export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
 
   const submitHandler = async (newProjectData: Partial<Project>) => {
     handleProjectCreate(newProjectData);
-    handleCancel();
+    onCancel();
   };
 
   return (
@@ -47,7 +43,7 @@ export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
           <button className="flex items-center btn btn__add">
             <span>Add Project</span>
           </button>
-          <button className="btn btn__cancel" onClick={handleCancel}>
+          <button className="btn btn__cancel" onClick={onCancel}>
             <span>Cancel</span>
           </button>
         </div>
