@@ -2,22 +2,20 @@ import { delay, http, HttpResponse } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 
-import { mockProjects, ProjectMother } from "./__mocks__/ProjectMother";
+import { MOCK_PROJECTS_LIST, ProjectMother } from "./__mocks__/ProjectMother";
 import { Project } from "./projects.type";
-
-const projects = ProjectMother.getRandomList();
 
 export const projectsHandlers = [
   http.get("/api/project/getAllProject", async () => {
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
-      data: mockProjects,
+      data: MOCK_PROJECTS_LIST,
     });
   }),
 
   http.get("/api/project/getOneProject/:projectId", async ({ params }) => {
     const { projectId } = params;
-    const project = mockProjects.find((p) => p.id === projectId);
+    const project = MOCK_PROJECTS_LIST.find((p) => p.id === projectId);
 
     if (!project) {
       return HttpResponse.json(
@@ -48,13 +46,13 @@ export const projectsHandlers = [
       );
     }
 
-    const newProject = ProjectMother.getRandomOrder(newProjectData as Project);
+    const newProject = ProjectMother.getRandomProject(newProjectData as Project);
 
     await delay(DEFAULT_DELAY);
-    projects.push(newProject);
+    MOCK_PROJECTS_LIST.push(newProject);
 
     return HttpResponse.json({
-      data: projects,
+      data: newProject,
     });
   }),
 
@@ -62,7 +60,7 @@ export const projectsHandlers = [
     const { projectId } = params;
     const updatedProjectData = await request.json();
 
-    const projectIndex = projects.findIndex((p) => p.id === projectId);
+    const projectIndex = MOCK_PROJECTS_LIST.findIndex((p) => p.id === projectId);
 
     if (typeof updatedProjectData !== "object" || updatedProjectData === null) {
       return HttpResponse.json(
@@ -74,8 +72,8 @@ export const projectsHandlers = [
       );
     }
 
-    const updatedProject = { ...projects[projectIndex], ...updatedProjectData };
-    projects[projectIndex] = updatedProject;
+    const updatedProject = { ...MOCK_PROJECTS_LIST[projectIndex], ...updatedProjectData };
+    MOCK_PROJECTS_LIST[projectIndex] = updatedProject;
 
     await delay(DEFAULT_DELAY);
 

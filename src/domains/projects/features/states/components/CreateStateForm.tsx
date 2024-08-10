@@ -21,6 +21,7 @@ export const CreateStateForm = ({ modalTitle, onCancel }: Props) => {
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit = async (data: FormValues) => {
     handleStatesCreate(data);
+    handleCancel();
   };
 
   return (

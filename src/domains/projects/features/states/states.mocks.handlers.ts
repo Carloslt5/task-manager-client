@@ -3,7 +3,7 @@ import { delay, http, HttpResponse } from "msw";
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 
 import { State } from "./states.type";
-import { mockProjects } from "../../__mocks__/ProjectMother";
+import { MOCK_PROJECTS_LIST } from "../../__mocks__/ProjectMother";
 
 export const statesHandlers = [
   http.post(`/api/state/createState/:projectId`, async ({ params, request }) => {
@@ -11,7 +11,7 @@ export const statesHandlers = [
 
     const requestBody = await request.json();
     const newStateData: Partial<State> = requestBody as Partial<State>;
-    const project = mockProjects.find((p) => p.id === projectId);
+    const project = MOCK_PROJECTS_LIST.find((p) => p.id === projectId);
 
     if (!project) {
       return HttpResponse.json(

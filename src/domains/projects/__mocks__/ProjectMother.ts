@@ -7,12 +7,11 @@ import { StateMother } from "./StatesMother";
 import { Project } from "../projects.type";
 
 const userData = UserMother.getMockUser();
-export const mockProjects: Project[] = [];
 
 export class ProjectMother {
   private static currentId = 1;
 
-  static getRandomOrder(project?: Partial<Project>) {
+  static getRandomProject(project?: Partial<Project>) {
     const newProject = {
       id: (this.currentId++).toString(),
       title: faker.commerce.productName(),
@@ -22,12 +21,12 @@ export class ProjectMother {
 
     const states = StateMother.generateStates(newProject.id);
     const completeProject = { ...newProject, states };
-    mockProjects.push(completeProject);
-
     return completeProject;
   }
 
   static getRandomList(length = API_DEFAULT_LIMIT) {
-    return Array.from({ length }, () => this.getRandomOrder());
+    return Array.from({ length }, () => this.getRandomProject());
   }
 }
+
+export const MOCK_PROJECTS_LIST = ProjectMother.getRandomList();
