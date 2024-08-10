@@ -1,11 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { QUERY_KEY_PROJECT } from "@/domains/projects/projects.constants";
-
+import { QUERY_KEY_STATES } from "../states.constants";
 import { createStateInProject } from "../states.services";
 import { State } from "../states.type";
 
-export const useStateCeate = (projectId: string) => {
+export const useCreateStates = (projectId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -14,7 +13,7 @@ export const useStateCeate = (projectId: string) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY_PROJECT, projectId],
+        queryKey: [QUERY_KEY_STATES, projectId],
       });
     },
   });

@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 
-import { useDeleteState } from "./useDeleteState";
+import { useCreateStates } from "./useCreateStates";
+import { useDeleteStates } from "./useDeleteStates";
 import { useFetchStates } from "./useFetchStates";
-import { useStateCeate } from "./useStateCeate";
-import { useUpdateState } from "./useUpdateState";
+import { useUpdateStates } from "./useUpdateStates";
 import { State } from "../states.type";
 
 export const useStatesControllers = (projectId?: string) => {
@@ -11,8 +11,8 @@ export const useStatesControllers = (projectId?: string) => {
   const { data: states, isLoading: isLoadingStates, isError: isErrorStates } = useFetchStates(projectId!);
 
   // Add state in project
-  const addStateMutation = useStateCeate(projectId!);
-  const handleStatesCreate = useCallback(
+  const addStateMutation = useCreateStates(projectId!);
+  const handleCreateStates = useCallback(
     (newStateData: Partial<State>) => {
       addStateMutation.mutate(newStateData);
     },
@@ -20,7 +20,7 @@ export const useStatesControllers = (projectId?: string) => {
   );
 
   // Update state in project
-  const updateStatesMutation = useUpdateState(projectId!);
+  const updateStatesMutation = useUpdateStates(projectId!);
   const handleUpdateStates = useCallback(
     (newStateData: Partial<State>) => {
       updateStatesMutation.mutate(newStateData);
@@ -29,8 +29,8 @@ export const useStatesControllers = (projectId?: string) => {
   );
 
   // delete state in project
-  const deleteStateMutation = useDeleteState(projectId!);
-  const handleDeleteState = useCallback(
+  const deleteStateMutation = useDeleteStates(projectId!);
+  const handleDeleteStates = useCallback(
     (stateId: string) => {
       deleteStateMutation.mutate(stateId);
     },
@@ -41,8 +41,8 @@ export const useStatesControllers = (projectId?: string) => {
     states,
     isLoadingStates,
     isErrorStates,
-    handleStatesCreate,
-    handleDeleteState,
+    handleCreateStates,
+    handleDeleteStates,
     handleUpdateStates,
   };
 };

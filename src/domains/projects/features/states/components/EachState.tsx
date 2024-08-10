@@ -21,7 +21,7 @@ const EachState = ({ state }: Props) => {
   const { showModal, toggleModal } = useModalHook();
   const { isEditing, handlerEditClick } = useEditing();
 
-  const { handleDeleteState } = useStatesControllers(projectId!);
+  const { handleDeleteStates } = useStatesControllers(projectId!);
 
   const { register, handleSubmit, submitHandler } = useStateForm({
     state,
@@ -61,7 +61,7 @@ const EachState = ({ state }: Props) => {
         <ModalForm>
           <ConfirmationModal
             message="Are you SURE you want to DELETE this STATE?"
-            onConfirm={() => handleDeleteState(state.id)}
+            onConfirm={() => handleDeleteStates(state.id)}
             onCancel={toggleModal}
           />
         </ModalForm>

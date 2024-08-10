@@ -1,10 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { QUERY_KEY_PROJECT } from "@/domains/projects/projects.constants";
-
+import { QUERY_KEY_STATES } from "../states.constants";
 import { deleteStateInProject } from "../states.services";
 
-export const useDeleteState = (projectId: string) => {
+export const useDeleteStates = (projectId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -13,7 +12,7 @@ export const useDeleteState = (projectId: string) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEY_PROJECT, projectId],
+        queryKey: [QUERY_KEY_STATES, projectId],
       });
     },
   });

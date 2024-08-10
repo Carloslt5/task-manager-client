@@ -10,7 +10,7 @@ type UseStateFormProps = {
 };
 
 export const useStateForm = ({ state, projectId, onClose }: UseStateFormProps) => {
-  const { handleStatesCreate, handleUpdateStates } = useStatesControllers(projectId!);
+  const { handleCreateStates, handleUpdateStates } = useStatesControllers(projectId!);
 
   const { register, handleSubmit, reset } = useForm<State>({
     defaultValues: state || { stateName: "" },
@@ -20,7 +20,7 @@ export const useStateForm = ({ state, projectId, onClose }: UseStateFormProps) =
     if (state) {
       handleUpdateStates(data);
     } else {
-      handleStatesCreate(data);
+      handleCreateStates(data);
     }
     reset();
     onClose();

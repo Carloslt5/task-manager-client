@@ -2,7 +2,9 @@ import { delay, http, HttpResponse } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 
+import { State } from "./states.type";
 import { MOCK_STATES_LIST } from "../../__mocks__/MockData";
+import { StateMother } from "../../__mocks__/StatesMother";
 
 export const statesHandlers = [
   http.get(`/api/state/getState/:projectId`, async ({ params }) => {
@@ -26,113 +28,68 @@ export const statesHandlers = [
     }
 
     await delay(DEFAULT_DELAY);
-
     return HttpResponse.json({
       data: states,
     });
   }),
 
-  // http.post(`/api/state/createState/:projectId`, async ({ params, request }) => {
-  //   const { projectId } = params;
+  http.post(`/api/state/createState/:projectId`, async ({ params, request }) => {
+    const { projectId } = params;
 
-  //   const requestBody = await request.json();
-  //   const newStateData: Partial<State> = requestBody as Partial<State>;
-  //   const project = MOCK_PROJECTS_LIST.find((p) => p.id === projectId);
+    const requestBody = await request.json();
+    const newStateData: Partial<State> = requestBody as Partial<State>;
 
-  //   if (!project) {
-  //     return HttpResponse.json(
-  //       {
-  //         code: 404,
-  //         message: "Project not found",
-  //       },
-  //       { status: 404 },
-  //     );
-  //   }
+    const newState = StateMother.getRandomState(projectId as string, newStateData);
+    MOCK_STATES_LIST.push(newState);
 
-  //   if (!newStateData.stateName || typeof newStateData.stateName !== "string") {
-  //     return HttpResponse.json(
-  //       {
-  //         code: 400,
-  //         message: "Invalid stateName",
-  //       },
-  //       { status: 400 },
-  //     );
-  //   }
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      data: "Stated created",
+    });
+  }),
 
-  //   const newState: State = StateMother.getRandomState(project.id, {
-  //     stateName: newStateData.stateName,
-  //   });
+  http.post(`/api/state/editState`, async ({ request }) => {
+    const requestBody = await request.json();
+    const { id: stateId, stateName }: Partial<State> = requestBody as Partial<State>;
 
-  //   project.states.push(newState);
+    const stateIndex = MOCK_STATES_LIST.findIndex((state) => state.id === stateId);
+    if (stateIndex === -1) {
+      return HttpResponse.json(
+        {
+          code: 404,
+          message: "State not found",
+        },
+        { status: 404 },
+      );
+    }
 
-  //   await delay(DEFAULT_DELAY);
+    MOCK_STATES_LIST[stateIndex] = { ...MOCK_STATES_LIST[stateIndex], stateName: stateName ?? "" };
 
-  //   return HttpResponse.json({
-  //     data: newState,
-  //   });
-  // }),
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      message: "State updated",
+    });
+  }),
 
-  // http.post(`/api/state/editState`, async ({ request }) => {
-  //   const requestBody = await request.json();
-  //   const { id: stateId, stateName }: Partial<State> = requestBody as Partial<State>;
+  http.delete(`/api/state/deleteState/:stateId`, async ({ params }) => {
+    const { stateId } = params;
 
-  //   const projectContainingState = MOCK_PROJECTS_LIST.find((project) =>
-  //     project.states.some((state) => state.id === stateId),
-  //   );
+    const stateIndex = MOCK_STATES_LIST.findIndex((state) => state.id === stateId);
+    if (stateIndex === -1) {
+      return HttpResponse.json(
+        {
+          code: 404,
+          message: "State not found",
+        },
+        { status: 404 },
+      );
+    }
 
-  //   if (!projectContainingState) {
-  //     return HttpResponse.json(
-  //       {
-  //         code: 404,
-  //         message: "State not found",
-  //       },
-  //       { status: 404 },
-  //     );
-  //   }
+    MOCK_STATES_LIST.splice(stateIndex, 1);
 
-  //   const stateToUpdate = projectContainingState.states.find((state) => state.id === stateId);
-
-  //   if (!stateToUpdate) {
-  //     return HttpResponse.json(
-  //       {
-  //         code: 404,
-  //         message: "State not found",
-  //       },
-  //       { status: 404 },
-  //     );
-  //   }
-
-  //   if (stateName && typeof stateName === "string") {
-  //     stateToUpdate.stateName = stateName;
-  //   } else {
-  //     return HttpResponse.json(
-  //       {
-  //         code: 400,
-  //         message: "Invalid stateName",
-  //       },
-  //       { status: 400 },
-  //     );
-  //   }
-
-  //   await delay(DEFAULT_DELAY);
-
-  //   return HttpResponse.json({
-  //     message: "State updated",
-  //   });
-  // }),
-
-  // http.delete(`/api/state/deleteState/:stateId`, async ({ params }) => {
-  //   const { stateId } = params;
-
-  //   MOCK_PROJECTS_LIST.map((project) => {
-  //     project.states = project.states.filter((state) => state.id !== stateId);
-  //     return project;
-  //   });
-
-  //   await delay(DEFAULT_DELAY);
-
-  //   return HttpResponse.json({
-  //     message: "Project successfully deleted",
-  //   });
-  // }),
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      message: "State successfully deleted",
+    });
+  }),
 ];
