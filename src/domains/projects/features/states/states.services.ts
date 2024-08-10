@@ -1,0 +1,11 @@
+import axios, { AxiosResponse } from "axios";
+
+import { getEndpoint } from "@/app/api";
+
+import { State } from "./states.type";
+
+export function createStateInProject(projectId: string, newStateData: Partial<State>) {
+  return axios
+    .post<AxiosResponse<State>>(getEndpoint() + `/state/createState/${projectId}`, newStateData)
+    .then((res) => res.data);
+}

@@ -7,6 +7,7 @@ import { StateMother } from "./StatesMother";
 import { Project } from "../projects.type";
 
 const userData = UserMother.getMockUser();
+export const mockProjects: Project[] = [];
 
 export class ProjectMother {
   private static currentId = 1;
@@ -20,8 +21,10 @@ export class ProjectMother {
     } as Project;
 
     const states = StateMother.generateStates(newProject.id);
+    const completeProject = { ...newProject, states };
+    mockProjects.push(completeProject);
 
-    return { ...newProject, states };
+    return completeProject;
   }
 
   static getRandomList(length = API_DEFAULT_LIMIT) {

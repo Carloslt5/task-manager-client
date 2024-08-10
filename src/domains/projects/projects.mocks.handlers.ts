@@ -2,22 +2,22 @@ import { delay, http, HttpResponse } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 
-import { ProjectMother } from "./__mocks__/ProjectMother";
+import { mockProjects, ProjectMother } from "./__mocks__/ProjectMother";
 import { Project } from "./projects.type";
 
 const projects = ProjectMother.getRandomList();
 
-export const handlers = [
+export const projectsHandlers = [
   http.get("/api/project/getAllProject", async () => {
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
-      data: projects,
+      data: mockProjects,
     });
   }),
 
   http.get("/api/project/getOneProject/:projectId", async ({ params }) => {
     const { projectId } = params;
-    const project = projects.find((p) => p.id === projectId);
+    const project = mockProjects.find((p) => p.id === projectId);
 
     if (!project) {
       return HttpResponse.json(

@@ -5,7 +5,7 @@ import { AdminLayout } from "@/shared/layouts/AdminLayout";
 
 import { ProjectPage } from "./pages/ProjectPage";
 import { MODULE_PROJECT } from "./projects.constants";
-import { handlers } from "./projects.mocks.handlers";
+import { projectsHandlers } from "./projects.mocks.handlers";
 
 const routes: RouteObject[] = [
   {
@@ -26,6 +26,6 @@ const routes: RouteObject[] = [
 
 registerModule({
   name: MODULE_PROJECT,
-  mockHandlers: handlers,
+  mockHandlers: projectsHandlers,
   routes,
 });

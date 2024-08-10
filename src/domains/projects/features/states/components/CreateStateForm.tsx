@@ -1,5 +1,7 @@
-/* eslint-disable no-console */
 import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+
+import { useStateControllers } from "../hooks/useStateControllers";
 
 type Props = {
   readonly modalTitle: string;
@@ -11,11 +13,14 @@ type FormValues = {
 };
 
 export const CreateStateForm = ({ modalTitle, onCancel }: Props) => {
+  const { id: projectId } = useParams();
+  const { handleStatesCreate } = useStateControllers(projectId!);
+
   const handleCancel = () => onCancel();
 
   const { register, handleSubmit } = useForm<FormValues>();
   const onSubmit = async (data: FormValues) => {
-    console.log("🚀 --------- data", data);
+    handleStatesCreate(data);
   };
 
   return (
