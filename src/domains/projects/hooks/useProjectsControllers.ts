@@ -1,7 +1,5 @@
 import { useCallback } from "react";
 
-import { EditContent } from "@/shared/components/ChangeTitle";
-
 import { useCreateProject } from "./useCreateProject";
 import { useDeleteProject } from "./useDeleteProject";
 import { useFetchProject } from "./useFetchProject";
@@ -19,7 +17,7 @@ export const useProjectsControllers = (projectId?: string) => {
   // Add one project
   const addProjectMutation = useCreateProject();
   const handleProjectCreate = useCallback(
-    (newProjectData: Partial<Project>) => {
+    (newProjectData: Project) => {
       addProjectMutation.mutate(newProjectData);
     },
     [addProjectMutation],
@@ -28,7 +26,7 @@ export const useProjectsControllers = (projectId?: string) => {
   // Update one project
   const updateProjecteMutation = useUpdateProject();
   const handleProjectUpdate = useCallback(
-    (updateData: EditContent) => {
+    (updateData: Project) => {
       updateProjecteMutation.mutate(updateData);
     },
     [updateProjecteMutation],

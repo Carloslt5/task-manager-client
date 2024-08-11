@@ -13,7 +13,7 @@ export const useStatesControllers = (projectId?: string) => {
   // Add state in project
   const addStateMutation = useCreateStates(projectId!);
   const handleCreateStates = useCallback(
-    (newStateData: Partial<State>) => {
+    (newStateData: State) => {
       addStateMutation.mutate(newStateData);
     },
     [addStateMutation],
@@ -22,7 +22,7 @@ export const useStatesControllers = (projectId?: string) => {
   // Update state in project
   const updateStatesMutation = useUpdateStates(projectId!);
   const handleUpdateStates = useCallback(
-    (newStateData: Partial<State>) => {
+    (newStateData: State) => {
       updateStatesMutation.mutate(newStateData);
     },
     [updateStatesMutation],

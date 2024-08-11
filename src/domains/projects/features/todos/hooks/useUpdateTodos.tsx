@@ -1,15 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { EditContent } from "@/shared/components/ChangeTitle";
-
 import { QUERY_KEY_TODO } from "../todos.constants";
 import { updateTodos } from "../todos.services";
+import { Todo } from "../todos.types";
 
 export const useUpdateTodos = (ticketId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (newTodoData: EditContent) => {
+    mutationFn: (newTodoData: Todo) => {
       return updateTodos(newTodoData.id, newTodoData);
     },
     onSuccess: () => {

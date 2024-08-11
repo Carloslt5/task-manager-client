@@ -8,7 +8,7 @@ export const useUpdateStates = (projectId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (newStateData: Partial<State>) => {
+    mutationFn: (newStateData: State) => {
       return updateStateInProject(newStateData);
     },
     onSuccess: () => {

@@ -15,7 +15,9 @@ export function fetchTicketDetails(ticketId: string) {
 }
 
 export function createTicket(projectId: string, ticket: Ticket) {
-  return axios.post<Ticket>(getEndpoint() + `/ticket/create/${projectId}`, ticket).then((res) => res.data);
+  return axios
+    .post<AxiosResponse<Ticket>>(getEndpoint() + `/ticket/create/${projectId}`, ticket)
+    .then((res) => res.data);
 }
 
 export function updatePriorityTicket(ticketId: string, priority: string) {

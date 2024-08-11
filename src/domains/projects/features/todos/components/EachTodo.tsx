@@ -3,13 +3,13 @@ import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-import { ChangeTitle, EditContent } from "@/shared/components/ChangeTitle";
+import { ChangeTitle } from "@/shared/components/ChangeTitle";
 
 import { Todo } from "../todos.types";
 
 interface Props {
   readonly todo: Todo;
-  readonly handleUpdateTodos: (newStateData: EditContent) => void;
+  readonly handleUpdateTodos: (newTodoData: Todo) => void;
 }
 
 export const EachTodo: React.FC<Props> = ({ todo, handleUpdateTodos }) => {

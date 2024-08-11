@@ -8,7 +8,7 @@ export function useCreateProject() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (newProjectData: Partial<Project>) => {
+    mutationFn: (newProjectData: Project) => {
       return createProject(newProjectData);
     },
     onSuccess: () => {

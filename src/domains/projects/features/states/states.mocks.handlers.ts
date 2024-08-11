@@ -37,20 +37,21 @@ export const statesHandlers = [
     const { projectId } = params;
 
     const requestBody = await request.json();
-    const newStateData: Partial<State> = requestBody as Partial<State>;
+    const newStateData = requestBody as State;
 
     const newState = StateMother.getRandomState(projectId as string, newStateData);
     MOCK_STATES_LIST.push(newState);
 
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
-      data: "Stated created",
+      data: newState,
+      message: "Stated created",
     });
   }),
 
   http.post(`/api/state/editState`, async ({ request }) => {
     const requestBody = await request.json();
-    const { id: stateId, stateName }: Partial<State> = requestBody as Partial<State>;
+    const { id: stateId, stateName } = requestBody as State;
 
     const stateIndex = MOCK_STATES_LIST.findIndex((state) => state.id === stateId);
     if (stateIndex === -1) {
@@ -63,10 +64,14 @@ export const statesHandlers = [
       );
     }
 
-    MOCK_STATES_LIST[stateIndex] = { ...MOCK_STATES_LIST[stateIndex], stateName: stateName ?? "" };
+    const updateState = (MOCK_STATES_LIST[stateIndex] = {
+      ...MOCK_STATES_LIST[stateIndex],
+      stateName: stateName ?? "",
+    });
 
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
+      data: updateState,
       message: "State updated",
     });
   }),

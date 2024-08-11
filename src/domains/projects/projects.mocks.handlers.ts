@@ -54,6 +54,7 @@ export const projectsHandlers = [
 
     return HttpResponse.json({
       data: newProject,
+      message: "Project created",
     });
   }),
 

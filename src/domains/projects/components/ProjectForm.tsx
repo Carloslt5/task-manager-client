@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { ModalForm } from "@/shared/components/ModalForm";
 
@@ -14,7 +14,7 @@ interface Props {
 export const ProjectForm = ({ modalTitle, onClose }: Props) => {
   const { handleProjectCreate } = useProjectsControllers();
 
-  const projectForm = useForm<Partial<Project>>({
+  const projectForm = useForm<Project>({
     defaultValues: {
       title: "",
     },
@@ -22,7 +22,7 @@ export const ProjectForm = ({ modalTitle, onClose }: Props) => {
 
   const { register, handleSubmit } = projectForm;
 
-  const submitHandler = async (newProjectData: Partial<Project>) => {
+  const submitHandler: SubmitHandler<Project> = async (newProjectData) => {
     handleProjectCreate(newProjectData);
     onClose();
   };

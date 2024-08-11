@@ -1,9 +1,8 @@
 import { useCallback } from "react";
 
-import { EditContent } from "@/shared/components/ChangeTitle";
-
 import { useFetchTodos } from "./useFetchTodos";
 import { useUpdateTodos } from "./useUpdateTodos";
+import { Todo } from "../todos.types";
 
 export const useTodosContollers = (ticketId: string) => {
   //Get todos
@@ -12,8 +11,8 @@ export const useTodosContollers = (ticketId: string) => {
   // Update todo
   const updateTodosMutation = useUpdateTodos(ticketId!);
   const handleUpdateTodos = useCallback(
-    (newStateData: EditContent) => {
-      updateTodosMutation.mutate(newStateData);
+    (newTodoData: Todo) => {
+      updateTodosMutation.mutate(newTodoData);
     },
     [updateTodosMutation],
   );
