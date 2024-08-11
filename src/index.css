@@ -60,6 +60,6 @@
   }
 
   .modal__form {
-    @apply flex flex-col gap-2 max-w-[80%] min-w-[80%] p-6 bg__color rounded;
+    @apply flex flex-col w-full gap-2 p-6 rounded bg__color;
   }
 }

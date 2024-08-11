@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 import { ConfirmationModal } from "./ConfirmationModal";
-import { ModalForm } from "./ModalForm";
 import { useModalHook } from "../hooks/useModalHook";
 
 interface SettingModalProps {
@@ -34,13 +33,11 @@ const SettingModal: React.FC<SettingModalProps> = ({ textData, deleteEntity }) =
         </div>
       )}
       {modalProps.open && (
-        <ModalForm>
-          <ConfirmationModal
-            message="Are you SURE you want to DELETE ALL PROJECT?"
-            onConfirm={deleteEntity}
-            {...modalProps}
-          />
-        </ModalForm>
+        <ConfirmationModal
+          message="Are you SURE you want to DELETE ALL PROJECT?"
+          onConfirm={deleteEntity}
+          {...modalProps}
+        />
       )}
     </div>
   );

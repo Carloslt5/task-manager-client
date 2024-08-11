@@ -3,7 +3,6 @@ import AddIcon from "@mui/icons-material/Add";
 import { ProjectForm } from "@/domains/projects/components/ProjectForm";
 import { ProjectList } from "@/domains/projects/components/ProjectList";
 import { ActionButton } from "@/shared/components/ActionButton";
-import { ModalForm } from "@/shared/components/ModalForm";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
 export const DashboardPage = () => {
@@ -18,11 +17,7 @@ export const DashboardPage = () => {
 
       <ProjectList />
 
-      {modalProps.open && (
-        <ModalForm>
-          <ProjectForm modalTitle="Insert New Project" {...modalProps} />
-        </ModalForm>
-      )}
+      {modalProps.open && <ProjectForm modalTitle="Insert New Project" {...modalProps} />}
     </>
   );
 };

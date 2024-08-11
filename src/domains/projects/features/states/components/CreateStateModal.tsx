@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 
+import { ModalForm } from "@/shared/components/ModalForm";
+
 import { useStateForm } from "../hooks/useStateForm";
 
 type Props = {
@@ -17,7 +19,7 @@ export const CreateStateModal = ({ modalTitle, onClose }: Props) => {
   });
 
   return (
-    <>
+    <ModalForm onClose={onClose}>
       <div className="modal__form">
         <div className="flex justify-between">
           <h1 className="text-2xl text-white ">{modalTitle}</h1>
@@ -42,6 +44,6 @@ export const CreateStateModal = ({ modalTitle, onClose }: Props) => {
           </div>
         </form>
       </div>
-    </>
+    </ModalForm>
   );
 };

@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import { ConfirmationModal } from "@/shared/components/ConfirmationModal";
-import { ModalForm } from "@/shared/components/ModalForm";
 import { useEditing } from "@/shared/hooks/useEditingHook";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
@@ -58,13 +57,11 @@ const EachState = ({ state }: Props) => {
       </div>
 
       {modalProps.open && (
-        <ModalForm>
-          <ConfirmationModal
-            message="Are you SURE you want to DELETE this STATE?"
-            onConfirm={() => handleDeleteStates(state.id)}
-            {...modalProps}
-          />
-        </ModalForm>
+        <ConfirmationModal
+          message="Are you SURE you want to DELETE this STATE?"
+          onConfirm={() => handleDeleteStates(state.id)}
+          {...modalProps}
+        />
       )}
     </>
   );

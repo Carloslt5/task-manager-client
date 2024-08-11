@@ -4,7 +4,6 @@ import AddIcon from "@mui/icons-material/Add";
 
 import { ActionButton } from "@/shared/components/ActionButton";
 import { ChangeTitle } from "@/shared/components/ChangeTitle";
-import { ModalForm } from "@/shared/components/ModalForm";
 import SettingModal from "@/shared/components/SettingModal";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
@@ -37,11 +36,7 @@ export const ProjectPage = () => {
 
       <StatesContainer />
 
-      {modalProps.open && (
-        <ModalForm>
-          <CreateStateModal modalTitle="Insert New State" {...modalProps} />
-        </ModalForm>
-      )}
+      {modalProps.open && <CreateStateModal modalTitle="Insert New State" {...modalProps} />}
     </>
   );
 };

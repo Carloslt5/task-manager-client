@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 
 import AddIcon from "@mui/icons-material/Add";
 
-import { ModalForm } from "@/shared/components/ModalForm";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
 import EachState from "./EachState";
@@ -55,11 +54,7 @@ export const ColumnState = ({ state }: Props) => {
         </article>
       </li>
 
-      {modalProps.open && (
-        <ModalForm>
-          <CreateTicketModal stateId={state.id} {...modalProps} />
-        </ModalForm>
-      )}
+      {modalProps.open && <CreateTicketModal stateId={state.id} {...modalProps} />}
     </>
   );
 };
