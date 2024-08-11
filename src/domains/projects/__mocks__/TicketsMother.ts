@@ -5,13 +5,13 @@ import { Ticket } from "../features/tickets/tickets.type";
 export class TicketMother {
   private static currentId = 1;
 
-  static getRandomTicket(stateId: string, projectId: string, ticket?: Partial<Ticket>): Ticket {
+  static getRandomTicket(stateId: string, projectId: string, ticket?: Ticket): Ticket {
     const newTicket = {
       id: (this.currentId++).toString(),
       stateId,
       projectId,
       priority: faker.helpers.arrayElement(["low", "medium", "high"]),
-      name: faker.lorem.words(3),
+      title: faker.lorem.words(3),
       description: faker.lorem.paragraph(),
       ...ticket,
     } as Ticket;

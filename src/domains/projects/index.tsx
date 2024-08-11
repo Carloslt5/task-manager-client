@@ -9,6 +9,7 @@ import { projectsHandlers } from "./projects.mocks.handlers";
 
 import "./features/states";
 import "./features/tickets";
+import "./features/todos";
 
 const routes: RouteObject[] = [
   {

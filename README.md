@@ -95,3 +95,10 @@ Ticket
   - Priority
   - name
   - description
+
+Todo
+  - id
+  - title
+  - completed
+  - Ticket id
+

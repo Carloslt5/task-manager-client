@@ -13,6 +13,6 @@ export interface Ticket {
   stateId: string;
   projectId: string;
   priority: PrioriryName;
-  name: string;
+  title: string;
   description: string;
 }

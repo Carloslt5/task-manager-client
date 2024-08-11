@@ -4,11 +4,11 @@
 
 @layer components {
   .bg__color {
-    @apply bg-blue-chill-400 dark:bg-zinc-950;
+    @apply bg-blue-chill-600 dark:bg-zinc-950;
   }
 
   .bg__color-hover {
-    @apply hover:bg-blue-chill-500 dark:hover:bg-zinc-800;
+    @apply hover:bg-blue-chill-400 dark:hover:bg-zinc-800;
   }
 
   .bg__gradient {
@@ -20,7 +20,7 @@
   }
 
   .input__standard {
-    @apply flex items-center w-full px-1 py-2 text-lg rounded text-blue-chill-400 dark:text-blue-chill-800;
+    @apply flex items-center w-full px-1 py-2 text-lg text-white rounded dark:text-white focus:text-blue-chill-500 focus:dark:text-zinc-950;
   }
 
   .btn {
@@ -44,7 +44,7 @@
   }
 
   .title__primary {
-    @apply w-full text-5xl font-extrabold text-blue-chill-600 dark:text-white;
+    @apply w-full text-4xl font-bold text-blue-chill-600 dark:text-white;
   }
 
   .title__input {
@@ -52,7 +52,7 @@
   }
 
   .edit__title {
-    @apply flex items-center rounded dark:text-white dark:hover:bg-zinc-500 text-blue-chill-400 hover:bg-blue-chill-200;
+    @apply flex items-center rounded dark:text-white dark:hover:bg-zinc-500 text-blue-chill-500 hover:bg-blue-chill-200;
   }
 
   .card__primary {

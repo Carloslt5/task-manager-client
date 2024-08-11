@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
 
+import { Ticket } from "@/domains/projects/features/tickets/tickets.type";
+import { Todo } from "@/domains/projects/features/todos/todos.types";
 import { Project } from "@/domains/projects/projects.type";
 
 import { useEditing } from "../hooks/useEditingHook";
@@ -13,7 +15,7 @@ export interface EditContent {
 }
 
 interface ChangeTitleProps {
-  readonly data: Project;
+  readonly data: Project | Ticket | Todo;
   readonly variant?: "title-page";
   readonly updateData: (editedContent: EditContent) => void;
 }
