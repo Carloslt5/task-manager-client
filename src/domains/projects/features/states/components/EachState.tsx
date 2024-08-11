@@ -35,7 +35,7 @@ const EachState = ({ state }: Props) => {
     <>
       <div className="flex items-center justify-between gap-2 ">
         {!isEditing ? (
-          <h2 className="w-full px-1 font-bold 2xl" onClick={handlerEditClick}>
+          <h2 className="w-full px-1 font-bold cursor-pointer 2xl" onClick={handlerEditClick}>
             {stateName}
           </h2>
         ) : (

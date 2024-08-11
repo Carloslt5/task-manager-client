@@ -30,9 +30,7 @@ export const StatesContainer = () => {
       <ul className="flex flex-row items-stretch max-h-full gap-4 pb-2 mb-3 overflow-y-auto text-white">
         {renderContent}
       </ul>
-      <p className="mt-2 text-sm text-center text-slate-500 dark:text-zinc-500">
-        Drag and Drop ticket to change status
-      </p>
+      <p className="mt-2 text-sm text-center text-slate-500 dark:text-zinc-500">Drag and Drop ticket to change state</p>
     </section>
   );
 };

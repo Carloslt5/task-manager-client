@@ -8,7 +8,7 @@
   }
 
   .bg__color-hover {
-    @apply hover:bg-blue-chill-500 dark:hover:bg-zinc-700;
+    @apply hover:bg-blue-chill-500 dark:hover:bg-zinc-800;
   }
 
   .bg__gradient {
@@ -32,11 +32,11 @@
   }
 
   .btn__add {
-    @apply text-white rounded bg__gradient;
+    @apply text-white rounded bg-blue-chill-500 dark:bg-zinc-700 bg__color-hover;
   }
 
   .btn__cancel {
-    @apply border border-blue-chill-700 bg-blue-chill-600 text-blue-chill-500 hover:border-red-500 hover:text-red-500 hover:bg-blue-chill-900 dark:text-blue-chill-800;
+    @apply text-white border hover:border-red-500 hover:text-red-500;
   }
 
   .form {
@@ -52,7 +52,7 @@
   }
 
   .edit__title {
-    @apply flex items-center rounded text-blue-chill-500 hover:bg-blue-chill-50 dark:text-blue-chill-500;
+    @apply flex items-center rounded dark:text-white dark:hover:bg-zinc-500 text-blue-chill-400 hover:bg-blue-chill-200;
   }
 
   .card__primary {
@@ -60,6 +60,6 @@
   }
 
   .modal__form {
-    @apply flex flex-col gap-2 max-w-[80%] min-w-[80%] p-4 bg-blue-chill-300 dark:bg-blue-chill-600 border border-blue-chill-100 rounded;
+    @apply flex flex-col gap-2 max-w-[80%] min-w-[80%] p-6 bg__color rounded;
   }
 }
