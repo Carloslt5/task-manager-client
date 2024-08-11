@@ -1,18 +1,18 @@
-/* eslint-disable no-console */
 import React from "react";
 
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
-import { ChangeTitle } from "@/shared/components/ChangeTitle";
+import { ChangeTitle, EditContent } from "@/shared/components/ChangeTitle";
 
 import { Todo } from "../todos.types";
 
 interface Props {
   readonly todo: Todo;
+  readonly handleUpdateTodos: (newStateData: EditContent) => void;
 }
 
-export const EachTodo: React.FC<Props> = ({ todo }) => {
+export const EachTodo: React.FC<Props> = ({ todo, handleUpdateTodos }) => {
   const { completed } = todo;
 
   return (
@@ -24,7 +24,7 @@ export const EachTodo: React.FC<Props> = ({ todo }) => {
           {completed && <CheckIcon />}
         </button>
         <article className={`${completed && "line-through"} w-full`}>
-          <ChangeTitle data={todo} updateData={(data) => console.log("---", data)} />
+          <ChangeTitle data={todo} updateData={handleUpdateTodos} />
         </article>
       </div>
       <div className="flex gap-2 cursor-pointer">

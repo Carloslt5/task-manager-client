@@ -9,7 +9,7 @@ type Props = {
 };
 
 export const TodosList: React.FC<Props> = ({ ticketId }) => {
-  const { todos, isLoadingTodos, isErrorTodos } = useTodosContollers(ticketId);
+  const { todos, isLoadingTodos, isErrorTodos, handleUpdateTodos } = useTodosContollers(ticketId);
 
   const sortedTodos = useMemo(() => {
     return todos?.data.sort(sortByTitle).sort(sortByCompletion);
@@ -29,12 +29,12 @@ export const TodosList: React.FC<Props> = ({ ticketId }) => {
       <ul className="flex flex-col gap-1 overflow-scroll">
         {sortedTodos?.map((todo) => (
           <li key={todo.id}>
-            <EachTodo todo={todo} />
+            <EachTodo todo={todo} handleUpdateTodos={handleUpdateTodos} />
           </li>
         ))}
       </ul>
     );
-  }, [isLoadingTodos, isErrorTodos, todos?.data.length, sortedTodos]);
+  }, [isLoadingTodos, todos?.data.length, isErrorTodos, sortedTodos, handleUpdateTodos]);
 
   return (
     <article className="flex flex-col w-full p-2 overflow-y-scroll text-white rounded bg-blue-chill-400 dark:bg-zinc-800">
