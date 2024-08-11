@@ -1,11 +1,22 @@
-import { useState } from "react";
+import React, { useMemo } from "react";
+
+export type ModalProps = {
+  onClose: () => void;
+  open: boolean;
+};
 
 export const useModalHook = () => {
-  const [showModal, setShowModal] = useState(false);
-  const toggleModal = () => setShowModal(!showModal);
+  const [open, setOpen] = React.useState(false);
 
-  return {
-    showModal,
-    toggleModal,
-  };
+  return useMemo(() => {
+    const modalProps: ModalProps = {
+      onClose: () => setOpen(false),
+      open,
+    };
+    return {
+      openModal: () => setOpen(true),
+      closeModal: () => setOpen(false),
+      modalProps,
+    };
+  }, [open, setOpen]);
 };

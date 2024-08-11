@@ -1,14 +1,12 @@
-import { Ticket } from "../tickets.type";
-
-export const TICKET_PRIORITY = ["Low", "Medium", "High"];
+import { Ticket, Priority } from "../tickets.type";
 
 export const getPriorityColor = (priority: Ticket["priority"]): string => {
   switch (priority) {
-    case "high":
+    case Priority.HIGH:
       return "bg-red-500";
-    case "medium":
+    case Priority.MEDIUM:
       return "bg-orange-500";
-    case "low":
+    case Priority.LOW:
       return "bg-yellow-500";
     default:
       return "bg-yellow-500";

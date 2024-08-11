@@ -4,15 +4,16 @@ import { useStateForm } from "../hooks/useStateForm";
 
 type Props = {
   readonly modalTitle: string;
-  readonly onCancel: () => void;
+  readonly open: boolean;
+  readonly onClose: () => void;
 };
 
-export const CreateStateModal = ({ modalTitle, onCancel }: Props) => {
+export const CreateStateModal = ({ modalTitle, onClose }: Props) => {
   const { id: projectId } = useParams();
 
   const { register, handleSubmit, submitHandler } = useStateForm({
     projectId: projectId!,
-    onClose: onCancel,
+    onClose: onClose,
   });
 
   return (
@@ -35,7 +36,7 @@ export const CreateStateModal = ({ modalTitle, onCancel }: Props) => {
             <button className="flex items-center btn btn__add">
               <span>Add State</span>
             </button>
-            <button className="btn btn__cancel" onClick={onCancel}>
+            <button className="btn btn__cancel" onClick={onClose}>
               <span>Cancel</span>
             </button>
           </div>

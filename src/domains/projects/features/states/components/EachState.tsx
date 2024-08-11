@@ -18,7 +18,7 @@ type Props = {
 const EachState = ({ state }: Props) => {
   const { id: projectId } = useParams();
 
-  const { showModal, toggleModal } = useModalHook();
+  const { modalProps, openModal } = useModalHook();
   const { isEditing, handlerEditClick } = useEditing();
 
   const { handleDeleteStates } = useStatesControllers(projectId!);
@@ -52,17 +52,17 @@ const EachState = ({ state }: Props) => {
           </form>
         )}
 
-        <button className="hover:text-red-500" onClick={toggleModal}>
+        <button className="hover:text-red-500" onClick={openModal}>
           <DeleteForeverIcon fontSize="small" />
         </button>
       </div>
 
-      {showModal && (
+      {modalProps.open && (
         <ModalForm>
           <ConfirmationModal
             message="Are you SURE you want to DELETE this STATE?"
             onConfirm={() => handleDeleteStates(state.id)}
-            onCancel={toggleModal}
+            {...modalProps}
           />
         </ModalForm>
       )}

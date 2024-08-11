@@ -14,7 +14,7 @@ import { useProjectsControllers } from "../hooks/useProjectsControllers";
 
 export const ProjectPage = () => {
   const { id: projectId } = useParams();
-  const { showModal, toggleModal } = useModalHook();
+  const { modalProps, openModal } = useModalHook();
 
   const { project, isLoading, isError, handleProjectUpdate, handleProjectDelete } = useProjectsControllers(projectId!);
 
@@ -32,14 +32,14 @@ export const ProjectPage = () => {
         <ChangeTitle data={project?.data} variant="title-page" updateData={handleProjectUpdate} />
         <SettingModal textData="Delete Project" deleteEntity={() => handleProjectDelete(projectId!)} />
       </header>
-      <ActionButton icon={<AddIcon />} ctaText="Add State" onClick={toggleModal} />
+      <ActionButton icon={<AddIcon />} ctaText="Add State" onClick={openModal} />
       <p>Owner: {project?.data.ownerId}</p>
 
       <StatesContainer />
 
-      {showModal && (
+      {modalProps.open && (
         <ModalForm>
-          <CreateStateModal modalTitle="Insert New State" onCancel={toggleModal} />
+          <CreateStateModal modalTitle="Insert New State" {...modalProps} />
         </ModalForm>
       )}
     </>

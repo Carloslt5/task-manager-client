@@ -5,10 +5,11 @@ import { Project } from "../projects.type";
 
 interface Props {
   readonly modalTitle: string;
-  readonly onCancel: () => void;
+  readonly open: boolean;
+  readonly onClose: () => void;
 }
 
-export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
+export const ProjectForm = ({ modalTitle, onClose }: Props) => {
   const { handleProjectCreate } = useProjectsControllers();
 
   const projectForm = useForm<Partial<Project>>({
@@ -21,7 +22,7 @@ export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
 
   const submitHandler = async (newProjectData: Partial<Project>) => {
     handleProjectCreate(newProjectData);
-    onCancel();
+    onClose();
   };
 
   return (
@@ -43,7 +44,7 @@ export const ProjectForm = ({ modalTitle, onCancel }: Props) => {
           <button className="flex items-center btn btn__add">
             <span>Add Project</span>
           </button>
-          <button className="btn btn__cancel" onClick={onCancel}>
+          <button className="btn btn__cancel" onClick={onClose}>
             <span>Cancel</span>
           </button>
         </div>
