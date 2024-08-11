@@ -11,15 +11,32 @@ export const ticketsHandlers = [
     const { projectId } = params;
 
     const tickets = [];
-    for (const state of MOCK_TICKETS_LIST) {
-      if (state.projectId === projectId) {
-        tickets.push(state);
+    for (const ticket of MOCK_TICKETS_LIST) {
+      if (ticket.projectId === projectId) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { description, ...ticketWithoutDescription } = ticket;
+        tickets.push(ticketWithoutDescription);
       }
     }
 
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
       data: tickets,
+    });
+  }),
+
+  http.get(`/api/ticket/getTicketDetails/:ticketId`, async ({ params }) => {
+    const { ticketId } = params;
+
+    const ticket = MOCK_TICKETS_LIST.find((ticket) => ticket.id === ticketId);
+
+    if (!ticket) {
+      return HttpResponse.json({ message: "Ticket not found" }, { status: 404 });
+    }
+
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      data: ticket,
     });
   }),
 
@@ -33,6 +50,26 @@ export const ticketsHandlers = [
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
       message: "Ticket created",
+    });
+  }),
+
+  http.post(`/api/ticket/updateTicketDetails/:ticketId`, async ({ request, params }) => {
+    const { ticketId } = params;
+    const requestBody = await request.json();
+    const { priority } = requestBody as Ticket;
+
+    const ticketIndex = MOCK_TICKETS_LIST.findIndex((ticket) => ticket.id === ticketId);
+
+    if (ticketIndex === -1) {
+      return HttpResponse.json({ message: "Ticket not found" }, { status: 404 });
+    }
+
+    MOCK_TICKETS_LIST[ticketIndex].priority = priority;
+
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      message: "Ticket priority updated",
+      data: MOCK_TICKETS_LIST[ticketIndex],
     });
   }),
 ];

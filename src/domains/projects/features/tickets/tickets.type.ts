@@ -6,7 +6,7 @@ export enum Priority {
 
 export const PRIORITY_ARRAY = [Priority.LOW, Priority.MEDIUM, Priority.HIGH] as const;
 
-type PrioriryName = (typeof PRIORITY_ARRAY)[number];
+export type PrioriryName = (typeof PRIORITY_ARRAY)[number];
 
 export interface Ticket {
   id: string;
