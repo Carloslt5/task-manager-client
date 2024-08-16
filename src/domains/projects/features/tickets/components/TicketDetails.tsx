@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useMemo } from "react";
 
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -6,6 +5,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { ChangeTitle } from "@/shared/components/ChangeTitle";
 import { ModalForm } from "@/shared/components/ModalForm";
 
+import { ChangeDetails } from "./ChangeDetails";
 import { ChangePriority } from "./ChangePriority";
 import { CreateTodo } from "../../todos/components/CreateTodo";
 import { TodosList } from "../../todos/components/TodosList";
@@ -18,17 +18,19 @@ type Props = {
 };
 
 export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
-  const { ticketDetails, isLoadingTicketsDetails, isErrorTicketsDetails, handleUpdatePriorityTickets } =
-    useTicketsContollers(ticket.projectId, ticket.id);
+  const { ticketDetails, isLoadingTicketsDetails, isErrorTicketsDetails, handleUpdateTickets } = useTicketsContollers(
+    ticket.projectId,
+    ticket.id,
+  );
 
   const renderTicketDetails = useMemo(() => {
     if (isLoadingTicketsDetails) {
       return <h1 className="text-white">Loading...</h1>;
     }
-    if (isErrorTicketsDetails) {
+    if (isErrorTicketsDetails || !ticketDetails?.data) {
       return <h1>Not found ticket details...</h1>;
     }
-    return <p>{ticketDetails?.data.description}</p>;
+    return <ChangeDetails data={ticketDetails?.data} />;
   }, [isLoadingTicketsDetails, isErrorTicketsDetails, ticketDetails]);
 
   return (
@@ -36,13 +38,13 @@ export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
       <div className="max-h-full modal__form">
         <section>
           <header className="flex justify-between gap-2 pb-3 mb-2 border-b">
-            <ChangeTitle data={ticket} updateData={(data) => console.log("---", data)} />
+            <ChangeTitle data={ticket} updateData={handleUpdateTickets} />
             <button className="p-2 font-bold bg-red-500 rounded btn hover:bg-red-700">
               <DeleteForeverIcon />
             </button>
           </header>
           <section className="flex flex-col items-stretch gap-2 mb-2">
-            <ChangePriority data={ticket} updatePriority={handleUpdatePriorityTickets} />
+            <ChangePriority data={ticket} handleUpdateTickets={handleUpdateTickets} />
             {renderTicketDetails}
           </section>
         </section>

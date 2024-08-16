@@ -20,8 +20,8 @@ export function createTicket(projectId: string, ticket: Ticket) {
     .then((res) => res.data);
 }
 
-export function updatePriorityTicket(ticketId: string, priority: string) {
+export function updateTickets(newTicketsData: Partial<Ticket>) {
   return axios
-    .post<Ticket>(getEndpoint() + `/ticket/updateTicketDetails/${ticketId}`, { priority })
+    .post<Ticket>(getEndpoint() + `/ticket/updateTicketDetails/${newTicketsData.id}`, newTicketsData)
     .then((res) => res.data);
 }

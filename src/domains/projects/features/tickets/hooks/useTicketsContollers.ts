@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { useCreateTickets } from "./useCreateTickets";
 import { useFetchTickets } from "./useFetchTickets";
 import { useFetchTicketsDetails } from "./useFetchTicketsDetails";
-import { useUpdatePriorityTickets } from "./useUpdatePriorityTickets";
+import { useUpdateTickets } from "./useUpdatePriorityTickets";
 import { Ticket } from "../tickets.type";
 
 export const useTicketsContollers = (projectId: string, ticketId?: string) => {
@@ -27,12 +27,12 @@ export const useTicketsContollers = (projectId: string, ticketId?: string) => {
   );
 
   // Update ticket priority
-  const updatePriorityTicketsMutation = useUpdatePriorityTickets(projectId!);
-  const handleUpdatePriorityTickets = useCallback(
-    (ticketId: string, newPriority: string) => {
-      updatePriorityTicketsMutation.mutate({ ticketId, priority: newPriority });
+  const updateTicketsMutation = useUpdateTickets(projectId!);
+  const handleUpdateTickets = useCallback(
+    (newTicketData: Partial<Ticket>) => {
+      updateTicketsMutation.mutate(newTicketData);
     },
-    [updatePriorityTicketsMutation],
+    [updateTicketsMutation],
   );
 
   return {
@@ -43,6 +43,6 @@ export const useTicketsContollers = (projectId: string, ticketId?: string) => {
     isErrorTickets,
     isErrorTicketsDetails,
     handleCreateTickets,
-    handleUpdatePriorityTickets,
+    handleUpdateTickets,
   };
 };

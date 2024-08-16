@@ -56,7 +56,7 @@ export const ticketsHandlers = [
   http.post(`/api/ticket/updateTicketDetails/:ticketId`, async ({ request, params }) => {
     const { ticketId } = params;
     const requestBody = await request.json();
-    const { priority } = requestBody as Ticket;
+    const newTicketsData = requestBody as Partial<Ticket>;
 
     const ticketIndex = MOCK_TICKETS_LIST.findIndex((ticket) => ticket.id === ticketId);
 
@@ -64,8 +64,10 @@ export const ticketsHandlers = [
       return HttpResponse.json({ message: "Ticket not found" }, { status: 404 });
     }
 
-    MOCK_TICKETS_LIST[ticketIndex].priority = priority;
-
+    MOCK_TICKETS_LIST[ticketIndex] = {
+      ...MOCK_TICKETS_LIST[ticketIndex],
+      ...newTicketsData,
+    };
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
       message: "Ticket priority updated",

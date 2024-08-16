@@ -5,10 +5,10 @@ import { getPriorityColor } from "../utils/getPriorityColor";
 
 interface ChangeDetails {
   data: Ticket;
-  updatePriority: (ticketID: string, newPriority: string) => void;
+  handleUpdateTickets: (newTicketData: Partial<Ticket>) => void;
 }
 
-export const ChangePriority: React.FC<ChangeDetails> = ({ data, updatePriority }) => {
+export const ChangePriority: React.FC<ChangeDetails> = ({ data, handleUpdateTickets }) => {
   const [selectedPriority, setSelectedPriority] = useState(data.priority);
 
   const handlePriorityChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -16,7 +16,7 @@ export const ChangePriority: React.FC<ChangeDetails> = ({ data, updatePriority }
     setSelectedPriority(newPriority);
 
     try {
-      await updatePriority(data.id, newPriority);
+      await handleUpdateTickets({ id: data.id, priority: newPriority });
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

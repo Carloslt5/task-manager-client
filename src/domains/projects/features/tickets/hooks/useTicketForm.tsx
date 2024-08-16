@@ -11,7 +11,7 @@ type UseStateFormProps = {
 };
 
 export const useTicketForm = ({ stateId, projectId, onClose, ticket }: UseStateFormProps) => {
-  const { handleCreateTickets } = useTicketsContollers(projectId);
+  const { handleCreateTickets, handleUpdateTickets } = useTicketsContollers(projectId);
 
   const { register, handleSubmit, reset } = useForm<Ticket>({
     defaultValues: ticket || {
@@ -25,7 +25,7 @@ export const useTicketForm = ({ stateId, projectId, onClose, ticket }: UseStateF
 
   const submitHandler = (data: Ticket) => {
     if (ticket) {
-      //
+      handleUpdateTickets(data);
     } else {
       handleCreateTickets(data);
     }

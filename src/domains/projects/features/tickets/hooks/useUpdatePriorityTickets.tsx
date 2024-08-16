@@ -1,18 +1,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { QUERY_KEY_TICKETS } from "../tickets.constants";
-import { updatePriorityTicket } from "../tickets.services";
+import { QUERY_KEY_TICKET_DETAILS, QUERY_KEY_TICKETS } from "../tickets.constants";
+import { updateTickets } from "../tickets.services";
+import { Ticket } from "../tickets.type";
 
-export const useUpdatePriorityTickets = (projectId: string) => {
+export const useUpdateTickets = (projectId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ ticketId, priority }: { ticketId: string; priority: string }) => {
-      return updatePriorityTicket(ticketId, priority);
+    mutationFn: (newTicketsData: Partial<Ticket>) => {
+      return updateTickets(newTicketsData);
     },
-    onSuccess: () => {
+    onSuccess: (_, variables) => {
+      const ticketId = variables.id;
+
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY_TICKETS, projectId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY_TICKET_DETAILS, ticketId],
       });
     },
   });
