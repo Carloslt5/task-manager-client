@@ -34,7 +34,7 @@ export const CreateTicketModal: React.FC<Props> = ({ stateId, onClose }) => {
             className="input-standard text-zinc-700 dark:text-zinc-700"
             type="text"
             placeholder="Insert title..."
-            {...register("name")}
+            {...register("title")}
             required
           />
           <textarea

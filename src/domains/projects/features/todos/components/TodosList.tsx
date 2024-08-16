@@ -37,8 +37,8 @@ export const TodosList: React.FC<Props> = ({ ticketId }) => {
   }, [isLoadingTodos, todos?.data.length, isErrorTodos, sortedTodos, handleUpdateTodos, handleDeleteTodo]);
 
   return (
-    <article className="flex flex-col w-full p-2 overflow-y-scroll text-white rounded bg-blue-chill-400 dark:bg-zinc-800">
-      <ul className="flex flex-col gap-1 overflow-scroll">{renderTodoList}</ul>
+    <article className="flex flex-col w-full p-2 mb-2 overflow-y-scroll text-white rounded  max-h-[550px] bg-blue-chill-400 dark:bg-zinc-800">
+      {renderTodoList}
     </article>
   );
 };

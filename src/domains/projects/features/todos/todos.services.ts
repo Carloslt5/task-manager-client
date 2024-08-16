@@ -8,6 +8,10 @@ export function fetchTodos(ticketId: string) {
   return axios.get<AxiosResponse<Todo[]>>(getEndpoint() + `/todos/getTodos/${ticketId}`).then((res) => res.data);
 }
 
+export function createTodos(newTodo: Todo) {
+  return axios.post<AxiosResponse<Todo>>(getEndpoint() + `/todos/createTodos`, newTodo).then((res) => res.data);
+}
+
 export function updateTodo(todoId: string, updatedTodo: Todo) {
   return axios
     .post<AxiosResponse<Todo>>(getEndpoint() + `/todos/updateTodo/${todoId}`, updatedTodo)

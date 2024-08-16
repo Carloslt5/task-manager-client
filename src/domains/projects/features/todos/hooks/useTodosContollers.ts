@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 
+import { useCreateTodos } from "./useCreateTodos";
 import { useDeleteTodos } from "./useDeleteTodo";
 import { useFetchTodos } from "./useFetchTodos";
 import { useUpdateTodos } from "./useUpdateTodos";
@@ -8,6 +9,15 @@ import { Todo } from "../todos.types";
 export const useTodosContollers = (ticketId: string) => {
   //Get todos
   const { data: todos, isLoading: isLoadingTodos, isError: isErrorTodos } = useFetchTodos(ticketId!);
+
+  // Create todo
+  const createTodoMutation = useCreateTodos(ticketId!);
+  const handleCreateTodos = useCallback(
+    (newTodo: Todo) => {
+      createTodoMutation.mutate(newTodo);
+    },
+    [createTodoMutation],
+  );
 
   // Update todo
   const updateTodosMutation = useUpdateTodos(ticketId!);
@@ -31,6 +41,7 @@ export const useTodosContollers = (ticketId: string) => {
     todos,
     isLoadingTodos,
     isErrorTodos,
+    handleCreateTodos,
     handleUpdateTodos,
     handleDeleteTodo,
   };

@@ -7,6 +7,7 @@ import { ChangeTitle } from "@/shared/components/ChangeTitle";
 import { ModalForm } from "@/shared/components/ModalForm";
 
 import { ChangePriority } from "./ChangePriority";
+import { CreateTodo } from "../../todos/components/CreateTodo";
 import { TodosList } from "../../todos/components/TodosList";
 import { useTicketsContollers } from "../hooks/useTicketsContollers";
 import { Ticket } from "../tickets.type";
@@ -49,6 +50,8 @@ export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
         <header className="pb-3 text-xl border-b">
           <h2>Bullet Points</h2>
         </header>
+
+        <CreateTodo ticketId={ticket.id} />
         <TodosList ticketId={ticket.id} />
 
         <section className="flex items-center justify-end w-full gap-3">

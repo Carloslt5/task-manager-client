@@ -4,8 +4,37 @@ import { DEFAULT_DELAY } from "@/mock-server/constants";
 
 import { Todo } from "./todos.types";
 import { MOCK_TODOS_LIST } from "../../__mocks__/MockData";
+import { TodoMother } from "../../__mocks__/TodoMother";
 
 export const todosHandlers = [
+  http.post(`/api/todos/createTodos`, async ({ request }) => {
+    const requestBody = await request.json();
+    const newTodo = requestBody as Partial<Todo>;
+
+    if (!newTodo.title || !newTodo.ticketId) {
+      return HttpResponse.json(
+        {
+          code: 400,
+          message: "Title and ticketId are required",
+        },
+        { status: 400 },
+      );
+    }
+
+    const createdTodo = TodoMother.getRandomTodo(newTodo.ticketId, {
+      title: newTodo.title,
+      completed: newTodo.completed,
+      ticketId: newTodo.ticketId,
+    });
+
+    MOCK_TODOS_LIST.push(createdTodo);
+
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      data: newTodo,
+    });
+  }),
+
   http.get(`/api/todos/getTodos/:ticketId`, async ({ params }) => {
     const { ticketId } = params;
 

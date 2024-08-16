@@ -18,7 +18,7 @@ export const useTicketForm = ({ stateId, projectId, onClose, ticket }: UseStateF
       stateId: stateId,
       projectId: projectId,
       priority: Priority.LOW,
-      name: "",
+      title: "",
       description: "",
     },
   });
