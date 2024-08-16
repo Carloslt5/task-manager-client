@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 
+import { useDeleteTodos } from "./useDeleteTodo";
 import { useFetchTodos } from "./useFetchTodos";
 import { useUpdateTodos } from "./useUpdateTodos";
 import { Todo } from "../todos.types";
@@ -17,10 +18,20 @@ export const useTodosContollers = (ticketId: string) => {
     [updateTodosMutation],
   );
 
+  // Delete todo
+  const deleteTodoMutation = useDeleteTodos(ticketId!);
+  const handleDeleteTodo = useCallback(
+    (todoId: string) => {
+      deleteTodoMutation.mutate(todoId);
+    },
+    [deleteTodoMutation],
+  );
+
   return {
     todos,
     isLoadingTodos,
     isErrorTodos,
     handleUpdateTodos,
+    handleDeleteTodo,
   };
 };

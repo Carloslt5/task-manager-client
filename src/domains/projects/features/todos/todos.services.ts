@@ -8,8 +8,12 @@ export function fetchTodos(ticketId: string) {
   return axios.get<AxiosResponse<Todo[]>>(getEndpoint() + `/todos/getTodos/${ticketId}`).then((res) => res.data);
 }
 
-export function updateTodos(todoId: string, updatedTodo: Todo) {
+export function updateTodo(todoId: string, updatedTodo: Todo) {
   return axios
     .post<AxiosResponse<Todo>>(getEndpoint() + `/todos/updateTodo/${todoId}`, updatedTodo)
     .then((res) => res.data);
+}
+
+export function deleteTodo(todoId: string) {
+  return axios.delete<AxiosResponse<Todo>>(getEndpoint() + `/todos/deleteTodo/${todoId}`).then((res) => res.data);
 }

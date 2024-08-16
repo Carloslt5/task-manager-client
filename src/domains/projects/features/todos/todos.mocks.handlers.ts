@@ -56,4 +56,27 @@ export const todosHandlers = [
       data: MOCK_TODOS_LIST[todoIndex],
     });
   }),
+
+  http.delete(`/api/todos/deleteTodo/:todoId`, async ({ params }) => {
+    const { todoId } = params;
+
+    const todoIndex = MOCK_TODOS_LIST.findIndex((todo) => todo.id === todoId);
+
+    if (todoIndex === -1) {
+      return HttpResponse.json(
+        {
+          code: 404,
+          message: "Todo not found",
+        },
+        { status: 404 },
+      );
+    }
+
+    MOCK_TODOS_LIST.splice(todoIndex, 1);
+
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      message: "To do deleted",
+    });
+  }),
 ];
