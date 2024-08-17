@@ -9,7 +9,7 @@ export const AdminLayout = ({ children }: Props) => {
   return (
     <div className="flex">
       <Sidebar />
-      <main className="flex-1 p-4 bg-blue-chill-200 dark:bg-dark-100 text-blue-chill-50 ">
+      <main className="w-screen h-screen p-4 overflow-hidden bg-blue-chill-100 dark:bg-dark-100 text-blue-chill-50">
         <Outlet />
         {children}
       </main>

@@ -1,31 +1,31 @@
-/* eslint-disable no-console */
-import { useForm } from "react-hook-form";
+import { useParams } from "react-router-dom";
+
+import { ModalForm } from "@/shared/components/ModalForm";
+
+import { useStateForm } from "../hooks/useStateForm";
 
 type Props = {
   readonly modalTitle: string;
-  readonly onCancel: () => void;
+  readonly open: boolean;
+  readonly onClose: () => void;
 };
 
-type FormValues = {
-  stateName: string;
-};
+export const CreateStateModal = ({ modalTitle, onClose }: Props) => {
+  const { id: projectId } = useParams();
 
-export const CreateStateForm = ({ modalTitle, onCancel }: Props) => {
-  const handleCancel = () => onCancel();
-
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit = async (data: FormValues) => {
-    console.log("🚀 --------- data", data);
-  };
+  const { register, handleSubmit, submitHandler } = useStateForm({
+    projectId: projectId!,
+    onClose: onClose,
+  });
 
   return (
-    <>
+    <ModalForm onClose={onClose}>
       <div className="modal__form">
         <div className="flex justify-between">
           <h1 className="text-2xl text-white ">{modalTitle}</h1>
         </div>
         <hr className="my-4" />
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit(submitHandler)}>
           <input
             autoFocus
             className="mb-4 input__standard text-slate-700 dark:text-zinc-700"
@@ -38,12 +38,12 @@ export const CreateStateForm = ({ modalTitle, onCancel }: Props) => {
             <button className="flex items-center btn btn__add">
               <span>Add State</span>
             </button>
-            <button className="btn btn__cancel" onClick={handleCancel}>
+            <button className="btn btn__cancel" onClick={onClose}>
               <span>Cancel</span>
             </button>
           </div>
         </form>
       </div>
-    </>
+    </ModalForm>
   );
 };

@@ -4,11 +4,11 @@ import { QUERY_KEY_PROJECTS } from "../projects.constants";
 import { createProject } from "../projects.services";
 import { Project } from "../projects.type";
 
-export function useProjectCreate() {
+export function useCreateProject() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (newProjectData: Partial<Project>) => {
+    mutationFn: (newProjectData: Project) => {
       return createProject(newProjectData);
     },
     onSuccess: () => {

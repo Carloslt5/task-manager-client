@@ -1,9 +1,13 @@
+import { useParams } from "react-router-dom";
+
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
+import { ConfirmationModal } from "@/shared/components/ConfirmationModal";
 import { useEditing } from "@/shared/hooks/useEditingHook";
 import { useModalHook } from "@/shared/hooks/useModalHook";
 
 import { useStateForm } from "../hooks/useStateForm";
+import { useStatesControllers } from "../hooks/useStatesControllers";
 import { State } from "../states.type";
 
 type Props = {
@@ -11,10 +15,18 @@ type Props = {
 };
 
 const EachState = ({ state }: Props) => {
-  const { isEditing, handlerEditClick } = useEditing();
-  const { toggleModal } = useModalHook();
+  const { id: projectId } = useParams();
 
-  const { handleSubmit, submitHandler, register } = useStateForm(state);
+  const { modalProps, openModal } = useModalHook();
+  const { isEditing, handlerEditClick } = useEditing();
+
+  const { handleDeleteStates } = useStatesControllers(projectId!);
+
+  const { register, handleSubmit, submitHandler } = useStateForm({
+    state,
+    projectId: projectId!,
+    onClose: handlerEditClick,
+  });
 
   const { stateName } = state;
 
@@ -22,7 +34,7 @@ const EachState = ({ state }: Props) => {
     <>
       <div className="flex items-center justify-between gap-2 ">
         {!isEditing ? (
-          <h2 className="w-full px-1 font-bold 2xl" onClick={handlerEditClick}>
+          <h2 className="w-full px-1 font-bold cursor-pointer 2xl" onClick={handlerEditClick}>
             {stateName}
           </h2>
         ) : (
@@ -39,11 +51,18 @@ const EachState = ({ state }: Props) => {
           </form>
         )}
 
-        <button onClick={toggleModal} className="hover:text-red-500 ">
+        <button className="hover:text-red-500" onClick={openModal}>
           <DeleteForeverIcon fontSize="small" />
         </button>
       </div>
-      <hr />
+
+      {modalProps.open && (
+        <ConfirmationModal
+          message="Are you SURE you want to DELETE this STATE?"
+          onConfirm={() => handleDeleteStates(state.id)}
+          {...modalProps}
+        />
+      )}
     </>
   );
 };

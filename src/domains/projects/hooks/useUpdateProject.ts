@@ -1,16 +1,15 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { EditContent } from "@/shared/components/ChangeTitle";
-
 import { QUERY_KEY_PROJECT } from "../projects.constants";
 import { updateProject } from "../projects.services";
+import { Project } from "../projects.type";
 
-export function useProjectUpdate() {
+export function useUpdateProject() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (updateData: EditContent) => {
-      return updateProject(updateData);
+    mutationFn: (updateProjectData: Project) => {
+      return updateProject(updateProjectData);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({

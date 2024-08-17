@@ -1,7 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
 import { getEndpoint } from "@/app/api";
-import { EditContent } from "@/shared/components/ChangeTitle";
 
 import { Project } from "./projects.type";
 
@@ -15,14 +14,20 @@ export function fetchOneProject(projectId: string) {
     .then((res) => res.data);
 }
 
-export function createProject(projectData: Partial<Project>) {
+export function createProject(projectData: Project) {
   return axios
     .post<AxiosResponse<Project>>(getEndpoint() + "/project/createProject", projectData)
     .then((res) => res.data);
 }
 
-export function updateProject(editContent: EditContent) {
+export function updateProject(updateProjectData: Project) {
   return axios
-    .put<AxiosResponse<Project>>(getEndpoint() + `/project/updateProject/${editContent.id}`, editContent)
+    .put<AxiosResponse<Project>>(getEndpoint() + `/project/updateProject/${updateProjectData.id}`, updateProjectData)
+    .then((res) => res.data);
+}
+
+export function deleteProject(projectId: string) {
+  return axios
+    .delete<AxiosResponse<Project>>(getEndpoint() + `/project/deleteProject/${projectId}`)
     .then((res) => res.data);
 }

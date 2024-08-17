@@ -19,10 +19,10 @@ export const Sidebar = () => {
 
   return (
     <nav
-      className={`bg-blue-chill-400 dark:bg-blue-chill-800 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? "w-60" : "w-16"}`}
+      className={`bg-blue-chill-400 dark:bg-zinc-950 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? "w-60" : "w-16"}`}
     >
       <div
-        className="absolute flex items-center justify-center p-1 border border-white rounded-full cursor-pointer text-blue-chill-50 bg-blue-chill-600 dark:bg-blue-chill-950 top-3 -right-3"
+        className="absolute flex items-center justify-center p-1 text-white border border-white rounded-full cursor-pointer bg__color top-3 -right-3"
         onClick={toggleMenu}
       >
         {toggleMenuOpen ? (
@@ -33,10 +33,7 @@ export const Sidebar = () => {
       </div>
 
       <Link to={"/"}>
-        <div
-          className="flex items-center rounded bg-blue-chill-600 dark:bg-blue-chill-950 gap-x-2"
-          title={APP_GLOBAL_NAME}
-        >
+        <div className="flex items-center rounded bg__color bg__color-hover gap-x-2" title={APP_GLOBAL_NAME}>
           <span>
             <Logo />
           </span>

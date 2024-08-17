@@ -44,7 +44,7 @@ export const SignInPage = () => {
           <div className="flex items-center justify-between">
             <h5>
               Don't have an account?
-              <Link to="#" className="ml-2 underline text-blue-chill-950 dark:text-blue-chill-400" aria-current="page">
+              <Link to="#" className="ml-2 text-white underline" aria-current="page">
                 Sign up
               </Link>
             </h5>
