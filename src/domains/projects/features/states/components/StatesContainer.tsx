@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 
 import { ColumnState } from "./ColumnState";
@@ -9,7 +8,7 @@ export const StatesContainer = () => {
 
   const { states, isLoadingStates, isErrorStates } = useStatesControllers(projectId!);
 
-  const renderContent = useMemo(() => {
+  const renderContent = () => {
     if (isLoadingStates) {
       return <p className="text-center text-slate-500 dark:text-zinc-500">Loading states...</p>;
     }
@@ -23,12 +22,12 @@ export const StatesContainer = () => {
     }
 
     return <p className="text-center text-slate-500 dark:text-zinc-500">Add your first state</p>;
-  }, [isLoadingStates, isErrorStates, states]);
+  };
 
   return (
     <section className="h-[75%] mt-2">
       <ul className="flex flex-row items-stretch max-h-full gap-4 pb-2 mb-3 overflow-y-auto text-white">
-        {renderContent}
+        {renderContent()}
       </ul>
       <p className="mt-2 text-sm text-center text-slate-500 dark:text-zinc-500">Drag and Drop ticket to change state</p>
     </section>

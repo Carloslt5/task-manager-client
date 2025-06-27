@@ -1,5 +1,7 @@
+import { useRef, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import AddIcon from "@mui/icons-material/Add";
 
 import { useModalHook } from "@/shared/hooks/useModalHook";
@@ -18,7 +20,41 @@ export const ColumnState = ({ state }: Props) => {
   const { id: projectId } = useParams();
   const { modalProps, openModal } = useModalHook();
 
-  const { tickets, isLoadingTickets, isErrorTickets } = useTicketsContollers(projectId!);
+  const columnRef = useRef<HTMLElement>(null);
+  const [isOver, setIsOver] = useState(false);
+
+  const { tickets, isLoadingTickets, isErrorTickets, handleUpdateTickets } = useTicketsContollers(projectId!);
+
+  useEffect(() => {
+    const element = columnRef.current;
+    if (!element) return;
+
+    const dropConfig = {
+      element,
+      getData() {
+        return { stateId: state.id };
+      },
+      onDragEnter() {
+        setIsOver(true);
+      },
+      onDragLeave() {
+        setIsOver(false);
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onDrop({ source }: any) {
+        setIsOver(false);
+        const sourceTicket = source.data.ticket;
+        if (sourceTicket && sourceTicket.stateId !== state.id) {
+          handleUpdateTickets({
+            id: sourceTicket.id,
+            stateId: state.id,
+          });
+        }
+      },
+    };
+
+    return dropTargetForElements(dropConfig);
+  }, [state.id, handleUpdateTickets]);
 
   if (isLoadingTickets) {
     return <p>Loading...</p>;
@@ -33,7 +69,12 @@ export const ColumnState = ({ state }: Props) => {
   return (
     <>
       <li>
-        <article className="flex flex-col gap-2 p-2 bg-blue-chill-400 dark:bg-zinc-950 min-w-[300px] rounded max-h-[100%]">
+        <article
+          ref={columnRef}
+          className={`flex flex-col gap-2 p-2 bg-blue-chill-400 dark:bg-zinc-950 min-w-[300px] rounded max-h-[100%] transition-colors duration-200 ${
+            isOver ? "bg-blue-chill-300 dark:bg-zinc-500" : ""
+          }`}
+        >
           <EachState state={state} />
           <article className={`py-2 overflow-y-scroll rounded `}>
             <ul className="flex flex-col gap-2 overflow-y-hidden">
