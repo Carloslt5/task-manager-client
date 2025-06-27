@@ -1,10 +1,10 @@
-// import { useModalHook } from "@/shared/hooks/useModalHook";
-
-// import { TicketDetails } from "./TicketDetails";
 import { useEffect, useRef, useState } from "react";
 
 import { draggable } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 
+import { useModalHook } from "@/shared/hooks/useModalHook";
+
+import { TicketDetails } from "./TicketDetails";
 import { Ticket } from "../tickets.type";
 import { getPriorityColor } from "../utils/getPriorityColor";
 
@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const EachTicket: React.FC<Props> = ({ ticket }) => {
-  // const { modalProps, openModal } = useModalHook();
+  const { modalProps, openModal } = useModalHook();
 
   const priorityColor = getPriorityColor(ticket.priority);
 
@@ -43,7 +43,7 @@ export const EachTicket: React.FC<Props> = ({ ticket }) => {
   return (
     <>
       <li
-        // onClick={openModal}
+        onClick={openModal}
         ref={ref}
         className={`flex justify-start items-stretch gap-2 bg-blue-chill-600 dark:text-white overflow-hidden rounded cursor-pointer hover:bg-blue-chill-500 dark:bg-zinc-800 dark:hover:bg-zinc-700 h-20 ${
           isDragging ? "opacity-50" : ""
@@ -54,7 +54,7 @@ export const EachTicket: React.FC<Props> = ({ ticket }) => {
         <p className="py-2">{ticket.title}</p>
       </li>
 
-      {/* {modalProps.open && <TicketDetails {...modalProps} ticket={ticket} />} */}
+      {modalProps.open && <TicketDetails {...modalProps} ticket={ticket} />}
     </>
   );
 };
