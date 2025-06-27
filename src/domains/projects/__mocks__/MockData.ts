@@ -5,7 +5,7 @@ import { TodoMother } from "./TodoMother";
 
 const projects = ProjectMother.getRandomList();
 const states = projects.flatMap((project) =>
-  StateMother.getRandomList(project.id, 2),
+  StateMother.getRandomList(project.id, 3),
 );
 const tickets = states.flatMap((state) =>
   TicketMother.getRandomList(state.id, state.projectId, 5),

@@ -36,20 +36,21 @@ export const statesHandlers = [
     `/api/state/createState/:projectId`,
     async ({ params, request }) => {
       const { projectId } = params;
-
       const requestBody = await request.json();
-      const newStateData = requestBody as State;
+      const newStateData = requestBody as Pick<State, "stateName">;
 
-      const newState = StateMother.getRandomState(
-        projectId as string,
-        newStateData,
-      );
+      const newState: State = {
+        id: StateMother.getNextId(),
+        stateName: newStateData.stateName,
+        projectId: projectId as string,
+      };
+
       MOCK_STATES_LIST.push(newState);
 
       await delay(DEFAULT_DELAY);
       return HttpResponse.json({
         data: newState,
-        message: "Stated created",
+        message: "State created",
       });
     },
   ),
