@@ -1,4 +1,4 @@
-import { delay, http, HttpResponse } from "msw";
+import { delay, HttpResponse, http } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 
@@ -47,7 +47,9 @@ export const projectsHandlers = [
       );
     }
 
-    const newProject = ProjectMother.getRandomProject(newProjectData as Project);
+    const newProject = ProjectMother.getRandomProject(
+      newProjectData as Project,
+    );
 
     await delay(DEFAULT_DELAY);
     MOCK_PROJECTS_LIST.push(newProject);
@@ -58,35 +60,48 @@ export const projectsHandlers = [
     });
   }),
 
-  http.put("/api/project/updateProject/:projectId", async ({ params, request }) => {
-    const { projectId } = params;
-    const updatedProjectData = await request.json();
+  http.put(
+    "/api/project/updateProject/:projectId",
+    async ({ params, request }) => {
+      const { projectId } = params;
+      const updatedProjectData = await request.json();
 
-    const projectIndex = MOCK_PROJECTS_LIST.findIndex((p) => p.id === projectId);
-
-    if (typeof updatedProjectData !== "object" || updatedProjectData === null) {
-      return HttpResponse.json(
-        {
-          code: 400,
-          message: "Project not found",
-        },
-        { status: 400 },
+      const projectIndex = MOCK_PROJECTS_LIST.findIndex(
+        (p) => p.id === projectId,
       );
-    }
 
-    const updatedProject = { ...MOCK_PROJECTS_LIST[projectIndex], ...updatedProjectData };
-    MOCK_PROJECTS_LIST[projectIndex] = updatedProject;
+      if (
+        typeof updatedProjectData !== "object" ||
+        updatedProjectData === null
+      ) {
+        return HttpResponse.json(
+          {
+            code: 400,
+            message: "Project not found",
+          },
+          { status: 400 },
+        );
+      }
 
-    await delay(DEFAULT_DELAY);
+      const updatedProject = {
+        ...MOCK_PROJECTS_LIST[projectIndex],
+        ...updatedProjectData,
+      };
+      MOCK_PROJECTS_LIST[projectIndex] = updatedProject;
 
-    return HttpResponse.json({
-      data: updatedProject,
-    });
-  }),
+      await delay(DEFAULT_DELAY);
+
+      return HttpResponse.json({
+        data: updatedProject,
+      });
+    },
+  ),
 
   http.delete("/api/project/deleteProject/:projectId", async ({ params }) => {
     const { projectId } = params;
-    const projectIndex = MOCK_PROJECTS_LIST.findIndex((p) => p.id === projectId);
+    const projectIndex = MOCK_PROJECTS_LIST.findIndex(
+      (p) => p.id === projectId,
+    );
 
     if (projectIndex === -1) {
       return HttpResponse.json(

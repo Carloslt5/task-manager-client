@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
-
-import { useTicketsContollers } from "./useTicketsContollers";
 import { Priority, Ticket } from "../tickets.type";
+import { useTicketsContollers } from "./useTicketsContollers";
 
 type UseStateFormProps = {
   stateId: string;
@@ -10,8 +9,14 @@ type UseStateFormProps = {
   onClose: () => void;
 };
 
-export const useTicketForm = ({ stateId, projectId, onClose, ticket }: UseStateFormProps) => {
-  const { handleCreateTickets, handleUpdateTickets } = useTicketsContollers(projectId);
+export const useTicketForm = ({
+  stateId,
+  projectId,
+  onClose,
+  ticket,
+}: UseStateFormProps) => {
+  const { handleCreateTickets, handleUpdateTickets } =
+    useTicketsContollers(projectId);
 
   const { register, handleSubmit, reset } = useForm<Ticket>({
     defaultValues: ticket || {

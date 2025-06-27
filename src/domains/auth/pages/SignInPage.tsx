@@ -12,7 +12,10 @@ export const SignInPage = () => {
       <div className="flex items-center justify-center h-full max-w-screen-sm mx-auto ">
         <form className="form bg__color" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
-            <label className="block mb-2 text-xs font-bold tracking-wide uppercase" htmlFor="grid-email">
+            <label
+              className="block mb-2 text-xs font-bold tracking-wide uppercase"
+              htmlFor="grid-email"
+            >
               Email
             </label>
             <input
@@ -24,7 +27,10 @@ export const SignInPage = () => {
             />
           </div>
           <div className="mb-6">
-            <label className="block mb-2 text-xs font-bold tracking-wide uppercase" htmlFor="grid-password">
+            <label
+              className="block mb-2 text-xs font-bold tracking-wide uppercase"
+              htmlFor="grid-password"
+            >
               Password
             </label>
             <input
@@ -44,7 +50,11 @@ export const SignInPage = () => {
           <div className="flex items-center justify-between">
             <h5>
               Don't have an account?
-              <Link to="#" className="ml-2 text-white underline" aria-current="page">
+              <Link
+                to="#"
+                className="ml-2 text-white underline"
+                aria-current="page"
+              >
                 Sign up
               </Link>
             </h5>

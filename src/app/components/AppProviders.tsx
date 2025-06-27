@@ -8,7 +8,10 @@ type Props = {
   readonly queryClient?: QueryClient;
 };
 
-export function AppProviders({ children, queryClient = defaultQueryClient }: Props) {
+export function AppProviders({
+  children,
+  queryClient = defaultQueryClient,
+}: Props) {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProviderWrapper>{children}</ThemeProviderWrapper>

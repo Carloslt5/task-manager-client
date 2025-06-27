@@ -3,7 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 import { getAllowedMenuItems } from "@/app/module-orquestator/modules.helpers";
 import { useLoggedUser } from "@/domains/auth/hooks/useLoggedUser";
 
-export const AdminMenuItems = ({ toggleMenuOpen }: { toggleMenuOpen: boolean }) => {
+export const AdminMenuItems = ({
+  toggleMenuOpen,
+}: {
+  toggleMenuOpen: boolean;
+}) => {
   const { user } = useLoggedUser();
   const location = useLocation();
 
@@ -20,7 +24,9 @@ export const AdminMenuItems = ({ toggleMenuOpen }: { toggleMenuOpen: boolean }) 
       >
         <Link to={`${menuItem.path}`} className="flex items-center gap-3">
           <span>{menuItem.icon}</span>
-          <p className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && "scale-0"}`}>
+          <p
+            className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && "scale-0"}`}
+          >
             {menuItem.title}
           </p>
         </Link>

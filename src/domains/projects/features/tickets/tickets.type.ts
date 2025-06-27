@@ -4,7 +4,11 @@ export enum Priority {
   HIGH = "high",
 }
 
-export const PRIORITY_ARRAY = [Priority.LOW, Priority.MEDIUM, Priority.HIGH] as const;
+export const PRIORITY_ARRAY = [
+  Priority.LOW,
+  Priority.MEDIUM,
+  Priority.HIGH,
+] as const;
 
 export type PrioriryName = (typeof PRIORITY_ARRAY)[number];
 

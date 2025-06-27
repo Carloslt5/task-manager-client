@@ -1,4 +1,11 @@
-import { ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 export interface ThemeContextType {
   darkMode: boolean;
@@ -9,7 +16,11 @@ const initialThemeMode = localStorage.getItem("theme") === "dark";
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
-export function ThemeProviderWrapper({ children }: { readonly children: ReactNode }) {
+export function ThemeProviderWrapper({
+  children,
+}: {
+  readonly children: ReactNode;
+}) {
   const [darkMode, setDarkMode] = useState(initialThemeMode);
 
   const setThemeMode = useCallback((darkMode: boolean) => {
@@ -32,7 +43,9 @@ export function ThemeProviderWrapper({ children }: { readonly children: ReactNod
 
   const value = { darkMode, toggleThemeHandler };
 
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -40,7 +53,9 @@ export const useThemeContext = (): ThemeContextType => {
   const themeContext = useContext(ThemeContext);
 
   if (!themeContext) {
-    throw new Error("useThemeContext must be used within a ThemeProviderWrapper");
+    throw new Error(
+      "useThemeContext must be used within a ThemeProviderWrapper",
+    );
   }
 
   return themeContext;

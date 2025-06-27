@@ -13,11 +13,17 @@ export const DashboardPage = () => {
       <header className="py-3">
         <h1 className="title__primary">My Boards</h1>
       </header>
-      <ActionButton icon={<AddIcon />} ctaText="Add Project" onClick={openModal} />
+      <ActionButton
+        icon={<AddIcon />}
+        ctaText="Add Project"
+        onClick={openModal}
+      />
 
       <ProjectList />
 
-      {modalProps.open && <ProjectForm modalTitle="Insert New Project" {...modalProps} />}
+      {modalProps.open && (
+        <ProjectForm modalTitle="Insert New Project" {...modalProps} />
+      )}
     </>
   );
 };

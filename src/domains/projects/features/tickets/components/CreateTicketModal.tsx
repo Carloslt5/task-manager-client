@@ -28,7 +28,10 @@ export const CreateTicketModal: React.FC<Props> = ({ stateId, onClose }) => {
           <h1 className="text-2xl text-white ">New Ticket</h1>
         </div>
         <hr className="mb-4" />
-        <form className="flex flex-col gap-2 text-slate-500 " onSubmit={handleSubmit(submitHandler)}>
+        <form
+          className="flex flex-col gap-2 text-slate-500 "
+          onSubmit={handleSubmit(submitHandler)}
+        >
           <input
             autoFocus
             className="input-standard text-zinc-700 dark:text-zinc-700"
@@ -47,8 +50,16 @@ export const CreateTicketModal: React.FC<Props> = ({ stateId, onClose }) => {
             <p>Priority:</p>
             {PRIORITY_ARRAY.map((el, index) => (
               <li key={index}>
-                <input id={`checkbox${index}`} type="radio" value={el} {...register("priority")} />
-                <label className="inline-block pl-[0.15rem] hover:cursor-pointer" htmlFor={`checkbox${index}`}>
+                <input
+                  id={`checkbox${index}`}
+                  type="radio"
+                  value={el}
+                  {...register("priority")}
+                />
+                <label
+                  className="inline-block pl-[0.15rem] hover:cursor-pointer"
+                  htmlFor={`checkbox${index}`}
+                >
                   {el}
                 </label>
               </li>

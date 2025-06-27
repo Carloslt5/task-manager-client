@@ -7,7 +7,11 @@ interface ConfirmationModalProps {
   onClose: () => void;
 }
 
-export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ message, onConfirm, onClose }) => {
+export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
+  message,
+  onConfirm,
+  onClose,
+}) => {
   return (
     <ModalForm onClose={onClose}>
       <div className="modal__form">

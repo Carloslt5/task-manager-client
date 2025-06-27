@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom";
-
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 import { QUERY_KEY_PROJECT } from "../projects.constants";
 import { deleteProject } from "../projects.services";

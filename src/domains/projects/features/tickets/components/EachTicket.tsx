@@ -1,12 +1,10 @@
+import { draggable } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import { useEffect, useRef, useState } from "react";
 
-import { draggable } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
-
 import { useModalHook } from "@/shared/hooks/useModalHook";
-
-import { TicketDetails } from "./TicketDetails";
 import { Ticket } from "../tickets.type";
 import { getPriorityColor } from "../utils/getPriorityColor";
+import { TicketDetails } from "./TicketDetails";
 
 type Props = {
   ticket: Ticket;

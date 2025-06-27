@@ -1,14 +1,17 @@
 import { useCallback } from "react";
-
+import { State } from "../states.type";
 import { useCreateStates } from "./useCreateStates";
 import { useDeleteStates } from "./useDeleteStates";
 import { useFetchStates } from "./useFetchStates";
 import { useUpdateStates } from "./useUpdateStates";
-import { State } from "../states.type";
 
 export const useStatesControllers = (projectId?: string) => {
   //Get states in project
-  const { data: states, isLoading: isLoadingStates, isError: isErrorStates } = useFetchStates(projectId!);
+  const {
+    data: states,
+    isLoading: isLoadingStates,
+    isError: isErrorStates,
+  } = useFetchStates(projectId!);
 
   // Add state in project
   const addStateMutation = useCreateStates(projectId!);

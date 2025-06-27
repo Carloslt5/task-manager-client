@@ -1,9 +1,9 @@
-import React from "react";
+import type React from "react";
 
 import { useEditing } from "@/shared/hooks/useEditingHook";
 
 import { useTicketForm } from "../hooks/useTicketForm";
-import { Ticket } from "../tickets.type";
+import type { Ticket } from "../tickets.type";
 
 type Props = {
   readonly data: Ticket;

@@ -1,7 +1,6 @@
-import React from "react";
-
 import CheckIcon from "@mui/icons-material/Check";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import React from "react";
 
 import { ChangeTitle } from "@/shared/components/ChangeTitle";
 
@@ -13,7 +12,11 @@ interface Props {
   readonly handleDeleteTodo: (todoId: string) => void;
 }
 
-export const EachTodo: React.FC<Props> = ({ todo, handleUpdateTodos, handleDeleteTodo }) => {
+export const EachTodo: React.FC<Props> = ({
+  todo,
+  handleUpdateTodos,
+  handleDeleteTodo,
+}) => {
   const { completed, ...restTodoData } = todo;
 
   const toggleCompleted = () => {
@@ -37,7 +40,10 @@ export const EachTodo: React.FC<Props> = ({ todo, handleUpdateTodos, handleDelet
         </article>
       </div>
       <div className="flex gap-2 cursor-pointer">
-        <button className="p-1 font-bold bg-red-500 rounded hover:bg-red-700" onClick={() => handleDeleteTodo(todo.id)}>
+        <button
+          className="p-1 font-bold bg-red-500 rounded hover:bg-red-700"
+          onClick={() => handleDeleteTodo(todo.id)}
+        >
           <DeleteForeverIcon />
         </button>
       </div>

@@ -18,7 +18,9 @@ export const getModules = () => {
 };
 
 export const getAllRoutes = () => {
-  return modules.filter((module) => !!module.routes).flatMap((module) => module.routes) as RouteObject[];
+  return modules
+    .filter((module) => !!module.routes)
+    .flatMap((module) => module.routes) as RouteObject[];
 };
 
 export const getAllowedMenuItems = (user: User) => () => {
@@ -30,7 +32,9 @@ export const getAllowedMenuItems = (user: User) => () => {
 };
 
 export const getAllMockHandlers = () => {
-  return modules.filter((module) => !!module.mockHandlers).flatMap((module) => module.mockHandlers ?? []);
+  return modules
+    .filter((module) => !!module.mockHandlers)
+    .flatMap((module) => module.mockHandlers ?? []);
 };
 
 export function registerModule(module: Module) {

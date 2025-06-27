@@ -1,4 +1,4 @@
-import { Ticket, Priority } from "../tickets.type";
+import { Priority, Ticket } from "../tickets.type";
 
 export const getPriorityColor = (priority: Ticket["priority"]): string => {
   switch (priority) {

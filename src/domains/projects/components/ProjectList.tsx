@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-
-import { ProjectCard } from "./ProjectCard";
 import { useProjectsControllers } from "../hooks/useProjectsControllers";
+import { ProjectCard } from "./ProjectCard";
 
 export const ProjectList = () => {
   const { projects, isLoading } = useProjectsControllers();

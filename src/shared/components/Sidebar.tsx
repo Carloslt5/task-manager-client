@@ -1,14 +1,12 @@
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
 import { APP_GLOBAL_NAME } from "@/app/app.constants";
-
+import { Logo } from "../icons/Logo";
 import { AdminMenuItems } from "./AdminMenuItems";
 import { ThemeToggleButton } from "./ThemeToggleButton";
-import { Logo } from "../icons/Logo";
 
 export const Sidebar = () => {
   const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
@@ -33,7 +31,10 @@ export const Sidebar = () => {
       </div>
 
       <Link to={"/"}>
-        <div className="flex items-center rounded bg__color bg__color-hover gap-x-2" title={APP_GLOBAL_NAME}>
+        <div
+          className="flex items-center rounded bg__color bg__color-hover gap-x-2"
+          title={APP_GLOBAL_NAME}
+        >
           <span>
             <Logo />
           </span>

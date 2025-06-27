@@ -1,14 +1,17 @@
 import { useCallback } from "react";
-
+import { Ticket } from "../tickets.type";
 import { useCreateTickets } from "./useCreateTickets";
 import { useFetchTickets } from "./useFetchTickets";
 import { useFetchTicketsDetails } from "./useFetchTicketsDetails";
 import { useUpdateTickets } from "./useUpdatePriorityTickets";
-import { Ticket } from "../tickets.type";
 
 export const useTicketsContollers = (projectId: string, ticketId?: string) => {
   //Get tickets
-  const { data: tickets, isLoading: isLoadingTickets, isError: isErrorTickets } = useFetchTickets(projectId!);
+  const {
+    data: tickets,
+    isLoading: isLoadingTickets,
+    isError: isErrorTickets,
+  } = useFetchTickets(projectId!);
 
   //Get tickets details
   const {

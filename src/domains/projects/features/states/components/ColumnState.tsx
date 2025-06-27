@@ -1,16 +1,14 @@
-import { useRef, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
 import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import AddIcon from "@mui/icons-material/Add";
+import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { useModalHook } from "@/shared/hooks/useModalHook";
-
-import EachState from "./EachState";
 import { CreateTicketModal } from "../../tickets/components/CreateTicketModal";
 import { EachTicket } from "../../tickets/components/EachTicket";
 import { useTicketsContollers } from "../../tickets/hooks/useTicketsContollers";
 import { State } from "../states.type";
+import EachState from "./EachState";
 
 type Props = {
   readonly state: State;
@@ -23,7 +21,8 @@ export const ColumnState = ({ state }: Props) => {
   const columnRef = useRef<HTMLElement>(null);
   const [isOver, setIsOver] = useState(false);
 
-  const { tickets, isLoadingTickets, isErrorTickets, handleUpdateTickets } = useTicketsContollers(projectId!);
+  const { tickets, isLoadingTickets, isErrorTickets, handleUpdateTickets } =
+    useTicketsContollers(projectId!);
 
   useEffect(() => {
     const element = columnRef.current;
@@ -40,7 +39,7 @@ export const ColumnState = ({ state }: Props) => {
       onDragLeave() {
         setIsOver(false);
       },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // biome-ignore lint/suspicious/noExplicitAny: the drag-and-drop library does not provide types for the ‘source’ object <explanation>
       onDrop({ source }: any) {
         setIsOver(false);
         const sourceTicket = source.data.ticket;
@@ -64,7 +63,9 @@ export const ColumnState = ({ state }: Props) => {
     return <p>Error loading tickets</p>;
   }
 
-  const ticketsInState = (tickets?.data ?? []).filter((ticket) => ticket.stateId === state.id);
+  const ticketsInState = (tickets?.data ?? []).filter(
+    (ticket) => ticket.stateId === state.id,
+  );
 
   return (
     <>
@@ -81,7 +82,9 @@ export const ColumnState = ({ state }: Props) => {
               {ticketsInState.length === 0 ? (
                 <p>No tickets available</p>
               ) : (
-                ticketsInState.map((ticket) => <EachTicket ticket={ticket} key={ticket.id} />)
+                ticketsInState.map((ticket) => (
+                  <EachTicket ticket={ticket} key={ticket.id} />
+                ))
               )}
             </ul>
           </article>
@@ -95,7 +98,9 @@ export const ColumnState = ({ state }: Props) => {
         </article>
       </li>
 
-      {modalProps.open && <CreateTicketModal stateId={state.id} {...modalProps} />}
+      {modalProps.open && (
+        <CreateTicketModal stateId={state.id} {...modalProps} />
+      )}
     </>
   );
 };

@@ -1,6 +1,5 @@
-import { RouteObject } from "react-router-dom";
-
 import { RequestHandler } from "msw";
+import { RouteObject } from "react-router-dom";
 
 import { User } from "@/domains/auth/auth.types";
 
@@ -9,7 +8,10 @@ export enum Locale {
   ES = "es",
 }
 
-export type LocaleResources = Record<Locale, { translation: Record<string, string> }>;
+export type LocaleResources = Record<
+  Locale,
+  { translation: Record<string, string> }
+>;
 
 export interface MenuItem {
   title: string;

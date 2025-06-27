@@ -1,10 +1,9 @@
-import { delay, http, HttpResponse } from "msw";
+import { delay, HttpResponse, http } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
-
-import { Todo } from "./todos.types";
 import { MOCK_TODOS_LIST } from "../../__mocks__/MockData";
 import { TodoMother } from "../../__mocks__/TodoMother";
+import { Todo } from "./todos.types";
 
 export const todosHandlers = [
   http.post(`/api/todos/createTodos`, async ({ request }) => {
@@ -78,7 +77,10 @@ export const todosHandlers = [
       );
     }
 
-    MOCK_TODOS_LIST[todoIndex] = { ...MOCK_TODOS_LIST[todoIndex], ...updatedTodo };
+    MOCK_TODOS_LIST[todoIndex] = {
+      ...MOCK_TODOS_LIST[todoIndex],
+      ...updatedTodo,
+    };
 
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({

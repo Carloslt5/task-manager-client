@@ -25,7 +25,10 @@ export const CreateStateModal = ({ modalTitle, onClose }: Props) => {
           <h1 className="text-2xl text-white ">{modalTitle}</h1>
         </div>
         <hr className="my-4" />
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit(submitHandler)}>
+        <form
+          className="flex flex-col gap-2"
+          onSubmit={handleSubmit(submitHandler)}
+        >
           <input
             autoFocus
             className="mb-4 input__standard text-slate-700 dark:text-zinc-700"

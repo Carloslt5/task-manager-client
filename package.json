@@ -7,8 +7,8 @@
     "dev": "vite",
     "start": "npm run dev",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "npm run lint -- --fix",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "types:check": "tsc --noEmit",
     "git:pre-commit": "npm run types:check && lint-staged",
     "preview": "vite preview",
@@ -16,7 +16,7 @@
   },
   "lint-staged": {
     "(src)/**/*.(ts|tsx)": [
-      "npm run lint"
+      "npm run lint:fix"
     ]
   },
   "dependencies": {
@@ -32,22 +32,14 @@
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.0.6",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
     "@faker-js/faker": "^8.4.1",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.13.1",
-    "@typescript-eslint/parser": "^7.13.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.19",
-    "eslint": "^8.57.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
     "husky": "^9.0.11",
     "install": "^0.13.0",
     "lint-staged": "^15.2.7",

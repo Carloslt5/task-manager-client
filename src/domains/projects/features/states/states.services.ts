@@ -5,19 +5,33 @@ import { getEndpoint } from "@/app/api";
 import { State } from "./states.type";
 
 export function fetchStatesInProject(projectId: string) {
-  return axios.get<AxiosResponse<State[]>>(getEndpoint() + `/state/getState/${projectId}`).then((res) => res.data);
+  return axios
+    .get<AxiosResponse<State[]>>(getEndpoint() + `/state/getState/${projectId}`)
+    .then((res) => res.data);
 }
 
 export function createStateInProject(projectId: string, newStateData: State) {
   return axios
-    .post<AxiosResponse<State>>(getEndpoint() + `/state/createState/${projectId}`, newStateData)
+    .post<AxiosResponse<State>>(
+      getEndpoint() + `/state/createState/${projectId}`,
+      newStateData,
+    )
     .then((res) => res.data);
 }
 
 export function updateStateInProject(newStateData: State) {
-  return axios.post<AxiosResponse<State>>(getEndpoint() + `/state/editState`, newStateData).then((res) => res.data);
+  return axios
+    .post<AxiosResponse<State>>(
+      getEndpoint() + `/state/editState`,
+      newStateData,
+    )
+    .then((res) => res.data);
 }
 
 export function deleteStateInProject(stateId: string) {
-  return axios.delete<AxiosResponse<void>>(`${getEndpoint()}/state/deleteState/${stateId}`).then((res) => res.data);
+  return axios
+    .delete<AxiosResponse<void>>(
+      `${getEndpoint()}/state/deleteState/${stateId}`,
+    )
+    .then((res) => res.data);
 }

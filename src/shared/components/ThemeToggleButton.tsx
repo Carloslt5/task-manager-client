@@ -3,7 +3,11 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 import { useThemeContext } from "@/app/contexts/theme.context";
 
-export const ThemeToggleButton = ({ toggleMenuOpen }: { readonly toggleMenuOpen?: boolean }) => {
+export const ThemeToggleButton = ({
+  toggleMenuOpen,
+}: {
+  readonly toggleMenuOpen?: boolean;
+}) => {
   const { darkMode, toggleThemeHandler } = useThemeContext();
 
   return (

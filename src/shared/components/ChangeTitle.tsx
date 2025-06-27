@@ -1,7 +1,6 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useEditing } from "../hooks/useEditingHook";
 
@@ -16,7 +15,11 @@ type ChangeTitleProps<T extends FormValues> = {
   readonly updateData: (editedContent: T) => void;
 };
 
-export function ChangeTitle<T extends FormValues>({ data, variant, updateData }: ChangeTitleProps<T>) {
+export function ChangeTitle<T extends FormValues>({
+  data,
+  variant,
+  updateData,
+}: ChangeTitleProps<T>) {
   const { isEditing, handlerEditClick } = useEditing();
 
   const { register, handleSubmit } = useForm<FormValues>({
@@ -31,8 +34,10 @@ export function ChangeTitle<T extends FormValues>({ data, variant, updateData }:
     handlerEditClick();
   };
 
-  const titleClassName = variant === "title-page" ? "title__primary" : "input__standard";
-  const inputClassName = variant === "title-page" ? "input__primary" : "input__standard";
+  const titleClassName =
+    variant === "title-page" ? "title__primary" : "input__standard";
+  const inputClassName =
+    variant === "title-page" ? "input__primary" : "input__standard";
   const buttonClassName = variant === "title-page" ? "p-6" : "p-2";
 
   return (
@@ -43,7 +48,10 @@ export function ChangeTitle<T extends FormValues>({ data, variant, updateData }:
             {data.title}
           </h1>
         ) : (
-          <form className="flex w-full text-2xl" onSubmit={handleSubmit(submitHandler)}>
+          <form
+            className="flex w-full text-2xl"
+            onSubmit={handleSubmit(submitHandler)}
+          >
             <input
               autoFocus
               type="text"

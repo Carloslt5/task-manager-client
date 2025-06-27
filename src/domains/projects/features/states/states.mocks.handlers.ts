@@ -1,10 +1,9 @@
-import { delay, http, HttpResponse } from "msw";
+import { delay, HttpResponse, http } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
-
-import { State } from "./states.type";
 import { MOCK_STATES_LIST } from "../../__mocks__/MockData";
 import { StateMother } from "../../__mocks__/StatesMother";
+import { State } from "./states.type";
 
 export const statesHandlers = [
   http.get(`/api/state/getState/:projectId`, async ({ params }) => {
@@ -33,27 +32,35 @@ export const statesHandlers = [
     });
   }),
 
-  http.post(`/api/state/createState/:projectId`, async ({ params, request }) => {
-    const { projectId } = params;
+  http.post(
+    `/api/state/createState/:projectId`,
+    async ({ params, request }) => {
+      const { projectId } = params;
 
-    const requestBody = await request.json();
-    const newStateData = requestBody as State;
+      const requestBody = await request.json();
+      const newStateData = requestBody as State;
 
-    const newState = StateMother.getRandomState(projectId as string, newStateData);
-    MOCK_STATES_LIST.push(newState);
+      const newState = StateMother.getRandomState(
+        projectId as string,
+        newStateData,
+      );
+      MOCK_STATES_LIST.push(newState);
 
-    await delay(DEFAULT_DELAY);
-    return HttpResponse.json({
-      data: newState,
-      message: "Stated created",
-    });
-  }),
+      await delay(DEFAULT_DELAY);
+      return HttpResponse.json({
+        data: newState,
+        message: "Stated created",
+      });
+    },
+  ),
 
   http.post(`/api/state/editState`, async ({ request }) => {
     const requestBody = await request.json();
     const { id: stateId, stateName } = requestBody as State;
 
-    const stateIndex = MOCK_STATES_LIST.findIndex((state) => state.id === stateId);
+    const stateIndex = MOCK_STATES_LIST.findIndex(
+      (state) => state.id === stateId,
+    );
     if (stateIndex === -1) {
       return HttpResponse.json(
         {
@@ -79,7 +86,9 @@ export const statesHandlers = [
   http.delete(`/api/state/deleteState/:stateId`, async ({ params }) => {
     const { stateId } = params;
 
-    const stateIndex = MOCK_STATES_LIST.findIndex((state) => state.id === stateId);
+    const stateIndex = MOCK_STATES_LIST.findIndex(
+      (state) => state.id === stateId,
+    );
     if (stateIndex === -1) {
       return HttpResponse.json(
         {

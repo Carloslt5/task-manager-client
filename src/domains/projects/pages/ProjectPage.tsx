@@ -1,6 +1,5 @@
-import { useParams } from "react-router-dom";
-
 import AddIcon from "@mui/icons-material/Add";
+import { useParams } from "react-router-dom";
 
 import { ActionButton } from "@/shared/components/ActionButton";
 import { ChangeTitle } from "@/shared/components/ChangeTitle";
@@ -15,7 +14,13 @@ export const ProjectPage = () => {
   const { id: projectId } = useParams();
   const { modalProps, openModal } = useModalHook();
 
-  const { project, isLoading, isError, handleProjectUpdate, handleProjectDelete } = useProjectsControllers(projectId!);
+  const {
+    project,
+    isLoading,
+    isError,
+    handleProjectUpdate,
+    handleProjectDelete,
+  } = useProjectsControllers(projectId!);
 
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -28,15 +33,28 @@ export const ProjectPage = () => {
   return (
     <>
       <header className="flex items-stretch justify-between gap-2 pb-3">
-        <ChangeTitle data={project?.data} variant="title-page" updateData={handleProjectUpdate} />
-        <SettingModal textData="Delete Project" deleteEntity={() => handleProjectDelete(projectId!)} />
+        <ChangeTitle
+          data={project?.data}
+          variant="title-page"
+          updateData={handleProjectUpdate}
+        />
+        <SettingModal
+          textData="Delete Project"
+          deleteEntity={() => handleProjectDelete(projectId!)}
+        />
       </header>
-      <ActionButton icon={<AddIcon />} ctaText="Add State" onClick={openModal} />
+      <ActionButton
+        icon={<AddIcon />}
+        ctaText="Add State"
+        onClick={openModal}
+      />
       <p>Owner: {project?.data.ownerId}</p>
 
       <StatesContainer />
 
-      {modalProps.open && <CreateStateModal modalTitle="Insert New State" {...modalProps} />}
+      {modalProps.open && (
+        <CreateStateModal modalTitle="Insert New State" {...modalProps} />
+      )}
     </>
   );
 };

@@ -18,5 +18,5 @@ export const useModalHook = () => {
       closeModal: () => setOpen(false),
       modalProps,
     };
-  }, [open, setOpen]);
+  }, [open]);
 };
