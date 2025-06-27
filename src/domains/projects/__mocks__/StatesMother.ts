@@ -31,4 +31,8 @@ export class StateMother {
       this.getOrderedState(projectId!, i),
     );
   }
+
+  static getNextId(): string {
+    return (this.currentId++).toString();
+  }
 }
