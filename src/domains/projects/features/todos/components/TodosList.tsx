@@ -51,7 +51,7 @@ export const TodosList: React.FC<Props> = ({ ticketId }) => {
   ]);
 
   return (
-    <article className="flex flex-col w-full p-2 mb-2 overflow-y-scroll text-white rounded  max-h-[550px] bg-blue-chill-400 dark:bg-zinc-800">
+    <article className="flex flex-col w-full mt-2 mb-6 overflow-y-scroll text-white rounded  max-h-[550px] ">
       {renderTodoList}
     </article>
   );

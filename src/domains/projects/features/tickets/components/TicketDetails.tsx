@@ -52,7 +52,7 @@ export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
           </section>
         </section>
 
-        <header className="pb-3 text-xl border-b">
+        <header className="pb-3 text-xl border-b mt-3">
           <h2>Bullet Points</h2>
         </header>
 

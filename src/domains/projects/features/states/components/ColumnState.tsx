@@ -13,6 +13,7 @@ import { EmptyTicket } from "../../tickets/components/EmptyTicket";
 import { useTicketsContollers } from "../../tickets/hooks/useTicketsContollers";
 import { Ticket } from "../../tickets/tickets.type";
 import { State } from "../states.type";
+import { ColumnPlaceholder } from "./ColumnPlaceholder";
 import EachState from "./EachState";
 
 type Props = {
@@ -63,7 +64,7 @@ export const ColumnState = ({ state }: Props) => {
   }, [state.id, handleUpdateTickets]);
 
   if (isLoadingTickets) {
-    return <p>Loading...</p>;
+    return <ColumnPlaceholder />;
   }
 
   if (isErrorTickets) {
@@ -79,9 +80,8 @@ export const ColumnState = ({ state }: Props) => {
       <li>
         <article
           ref={columnRef}
-          className={`flex flex-col gap-2 p-2 bg-blue-chill-400 dark:bg-zinc-950 min-w-[300px] rounded max-h-[100%] transition-colors duration-200 ${
-            isOver ? "bg-blue-chill-800 dark:bg-zinc-600" : ""
-          }`}
+          className={`flex flex-col gap-2 p-2 min-w-[300px] rounded max-h-[100%] transition-all duration-200
+          ${isOver ? "bg-blue-chill-800 dark:bg-zinc-700" : "bg-blue-chill-400 dark:bg-zinc-950"}`}
         >
           <EachState state={state} />
           <article className={`py-2 overflow-y-scroll rounded `}>
