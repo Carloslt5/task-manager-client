@@ -21,7 +21,7 @@ export const TodosList: React.FC<Props> = ({ ticketId }) => {
     }
     if ((todos?.data ?? []).length === 0) {
       return (
-        <p className="p-1 rounded-sm bg-slate-600 dark:bg-zinc-700 dark:text-white">
+        <p className="p-1 rounded-xs bg-slate-600 dark:bg-zinc-700 dark:text-white">
           No pending todos 👍
         </p>
       );
@@ -51,7 +51,7 @@ export const TodosList: React.FC<Props> = ({ ticketId }) => {
   ]);
 
   return (
-    <article className="flex flex-col w-full mt-2 mb-6 overflow-y-scroll text-white rounded  max-h-[550px] ">
+    <article className="flex flex-col w-full mt-2 mb-6 overflow-y-scroll text-white rounded-sm  max-h-[550px] ">
       {renderTodoList}
     </article>
   );

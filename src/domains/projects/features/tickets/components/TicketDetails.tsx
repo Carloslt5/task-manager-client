@@ -39,7 +39,7 @@ export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
         <section>
           <header className="flex justify-between gap-2 pb-3 mb-2 border-b">
             <ChangeTitle data={ticket} updateData={handleUpdateTickets} />
-            <button className="p-2 font-bold bg-red-500 rounded btn hover:bg-red-700">
+            <button className="p-2 font-bold bg-red-500 rounded-sm btn hover:bg-red-700">
               <DeleteForeverIcon />
             </button>
           </header>

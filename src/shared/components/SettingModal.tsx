@@ -26,7 +26,7 @@ const SettingModal: React.FC<SettingModalProps> = ({
       </button>
       {settingModal && (
         <div
-          className="absolute right-0 w-32 py-2 mt-1 rounded bg__color top-16 "
+          className="absolute right-0 w-32 py-2 mt-1 rounded-sm bg__color top-16 "
           onClick={toggleSettingModal}
         >
           <ul className="flex flex-col items-stretch w-full cursor-pointer justify-stretch">

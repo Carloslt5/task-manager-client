@@ -32,7 +32,7 @@ export const Sidebar = () => {
 
       <Link to={"/"}>
         <div
-          className="flex items-center rounded bg__color bg__color-hover gap-x-2"
+          className="flex items-center rounded-sm bg__color bg__color-hover gap-x-2"
           title={APP_GLOBAL_NAME}
         >
           <span>

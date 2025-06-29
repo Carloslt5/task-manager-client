@@ -80,11 +80,11 @@ export const ColumnState = ({ state }: Props) => {
       <li>
         <article
           ref={columnRef}
-          className={`flex flex-col gap-2 p-2 min-w-[300px] rounded max-h-[100%] transition-all duration-200
+          className={`flex flex-col gap-2 p-2 min-w-[300px] rounded max-h-full transition-all duration-200
           ${isOver ? "bg-blue-chill-800 dark:bg-zinc-700" : "bg-blue-chill-400 dark:bg-zinc-950"}`}
         >
           <EachState state={state} />
-          <article className={`py-2 overflow-y-scroll rounded `}>
+          <article className={`py-2 overflow-y-scroll rounded-sm `}>
             <ul className="flex flex-col gap-2 overflow-y-hidden">
               {ticketsInState.length === 0 ? (
                 <EmptyTicket stateId={state.id} />
@@ -96,7 +96,7 @@ export const ColumnState = ({ state }: Props) => {
             </ul>
           </article>
           <button
-            className="flex items-center w-full gap-2 p-1 rounded h-fit hover:bg-blue-chill-500 dark:hover:bg-zinc-800 focus-outline-none"
+            className="flex items-center w-full gap-2 p-1 rounded-sm h-fit hover:bg-blue-chill-500 dark:hover:bg-zinc-800 focus-outline-none"
             onClick={openModal}
           >
             <AddIcon />

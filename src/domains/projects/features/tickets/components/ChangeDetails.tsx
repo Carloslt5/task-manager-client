@@ -22,7 +22,7 @@ export const ChangeDetails: React.FC<Props> = ({ data }) => {
   return (
     <>
       {!isEditing ? (
-        <article className="p-2 text-white border border-gray-400 rounded bg-slate-500 dark:bg-zinc-800">
+        <article className="p-2 text-white border border-gray-400 rounded-sm bg-slate-500 dark:bg-zinc-800">
           <p onClick={handlerEditClick}>{data.description}</p>
         </article>
       ) : (

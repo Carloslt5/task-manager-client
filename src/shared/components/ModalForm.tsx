@@ -9,7 +9,7 @@ export const ModalForm: React.FC<Props> = ({ children, onClose }) => {
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 top-0 left-0 right-0 flex items-start justify-center max-w-full max-h-full p-4 overflow-hidden bg-opacity-50 bg-slate-900 dark:bg-zinc-900 dark:bg-opacity-50"
+      className="fixed inset-0 top-0 left-0 right-0 flex items-start justify-center max-w-full max-h-full p-4 overflow-hidden  bg-slate-900/70 dark:bg-zinc-900/70 backdrop-blur-xs"
     >
       <div
         onClick={(e) => e.stopPropagation()}

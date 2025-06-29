@@ -35,7 +35,7 @@ export const ChangePriority: React.FC<ChangeDetails> = ({
       <p>Priority:</p>
       <div className={`${priorityColor} h-4 w-4 rounded-full`} />
       <select
-        className="text-slate-500"
+        className="text-slate-500 bg-blue-chill-50 dark:bg-zinc-50"
         value={selectedPriority}
         onChange={handlePriorityChange}
       >

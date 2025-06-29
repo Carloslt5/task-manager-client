@@ -15,7 +15,7 @@ export const CreateTodo: React.FC<Props> = ({ ticketId }) => {
       onSubmit={handleSubmit(submitHandler)}
     >
       <input
-        className="input__standard text-slate-700 dark:text-zinc-800"
+        className="input__standard bg-blue-chill-50 text-blue-chill-800"
         type="text"
         placeholder="Insert Task..."
         {...register("title")}

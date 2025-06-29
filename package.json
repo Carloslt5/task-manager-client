@@ -15,7 +15,9 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "(src)/**/*.(ts|tsx)": ["npm run lint:fix"]
+    "(src)/**/*.(ts|tsx)": [
+      "npm run lint:fix"
+    ]
   },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.4",
@@ -34,21 +36,23 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@faker-js/faker": "^9.8.0",
+    "@tailwindcss/vite": "^4.1.11",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react-swc": "^3.10.2",
-    "autoprefixer": "^10.4.21",
     "husky": "^9.1.7",
     "install": "^0.13.0",
     "lint-staged": "^16.1.2",
     "msw": "^2.10.2",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.4",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
     "vite": "^7.0.0",
     "vite-plugin-checker": "^0.9.3"
   },
   "msw": {
-    "workerDirectory": ["public"]
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
