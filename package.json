@@ -15,9 +15,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "(src)/**/*.(ts|tsx)": [
-      "npm run lint:fix"
-    ]
+    "(src)/**/*.(ts|tsx)": ["npm run lint:fix"]
   },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.4",
@@ -51,8 +49,6 @@
     "vite-plugin-checker": "^0.9.3"
   },
   "msw": {
-    "workerDirectory": [
-      "public"
-    ]
+    "workerDirectory": ["public"]
   }
 }
