@@ -19,7 +19,7 @@ export const SignInPage = () => {
               Email
             </label>
             <input
-              className="input__standard "
+              className="input__standard bg-blue-chill-50 dark:bg-zinc-50 dark:text-zinc-700 text-blue-chill-700"
               id="email"
               type="email"
               placeholder="Your Email"
@@ -34,7 +34,7 @@ export const SignInPage = () => {
               Password
             </label>
             <input
-              className="input__standard "
+              className="input__standard bg-blue-chill-50 dark:bg-zinc-50 dark:text-zinc-700 text-blue-chill-700 "
               id="password"
               type="password"
               placeholder="******************"
@@ -42,7 +42,10 @@ export const SignInPage = () => {
             />
           </div>
           <div className="flex items-center justify-between">
-            <button className="btn btn__primary" type="submit">
+            <button
+              className="btn__primary bg-blue-chill-400 dark:bg-zinc-700"
+              type="submit"
+            >
               Log in
             </button>
           </div>
