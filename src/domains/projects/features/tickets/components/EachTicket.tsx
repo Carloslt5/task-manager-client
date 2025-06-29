@@ -43,13 +43,15 @@ export const EachTicket: React.FC<Props> = ({ ticket }) => {
       <li
         onClick={openModal}
         ref={ref}
-        className={`flex justify-start items-stretch gap-2 bg-blue-chill-600 dark:text-white overflow-hidden rounded cursor-pointer hover:bg-blue-chill-500 dark:bg-zinc-800 dark:hover:bg-zinc-700 h-20 ${
+        className={`flex  justify-start items-stretch gap-2 bg-blue-chill-600 dark:text-white overflow-hidden rounded cursor-pointer hover:bg-blue-chill-500 dark:bg-zinc-800 dark:hover:bg-zinc-700 h-20 ${
           isDragging ? "opacity-50" : ""
         }`}
       >
         <div className={`${priorityColor} w-3`} />
-        <p className="py-2">{ticket.id}</p>
-        <p className="py-2">{ticket.title}</p>
+        <article className="flex flex-col justify-start p-2 w-full">
+          <p>Ticket ID: {ticket.id}</p>
+          <p>{ticket.title}</p>
+        </article>
       </li>
 
       {modalProps.open && <TicketDetails {...modalProps} ticket={ticket} />}
