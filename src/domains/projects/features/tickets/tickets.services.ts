@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 import { getEndpoint } from "@/app/api";
 
-import { Ticket } from "./tickets.type";
+import { ReorderTicketsPayload, Ticket } from "./tickets.type";
 
 export function fetchTickets(projectId: string) {
   return axios
@@ -35,5 +35,11 @@ export function updateTickets(newTicketsData: Partial<Ticket>) {
       getEndpoint() + `/ticket/updateTicketDetails/${newTicketsData.id}`,
       newTicketsData,
     )
+    .then((res) => res.data);
+}
+
+export function reorderTickets(payload: ReorderTicketsPayload) {
+  return axios
+    .post(getEndpoint() + `/ticket/reorder`, payload)
     .then((res) => res.data);
 }

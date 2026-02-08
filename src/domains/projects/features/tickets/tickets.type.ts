@@ -19,4 +19,10 @@ export interface Ticket {
   priority: PrioriryName;
   title: string;
   description: string;
+  position: number;
+}
+
+export interface ReorderTicketsPayload {
+  projectId: string;
+  updates: Array<{ id: string; stateId: string; position: number }>;
 }

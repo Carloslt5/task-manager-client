@@ -25,6 +25,7 @@ export const useTicketForm = ({
       priority: Priority.LOW,
       title: "",
       description: "",
+      position: 0,
     },
   });
 

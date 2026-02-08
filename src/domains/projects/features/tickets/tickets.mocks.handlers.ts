@@ -3,7 +3,7 @@ import { delay, HttpResponse, http } from "msw";
 import { DEFAULT_DELAY } from "@/mock-server/constants";
 import { MOCK_TICKETS_LIST } from "../../__mocks__/MockData";
 import { TicketMother } from "../../__mocks__/TicketsMother";
-import { Ticket } from "./tickets.type";
+import { ReorderTicketsPayload, Ticket } from "./tickets.type";
 
 export const ticketsHandlers = [
   http.get(`/api/ticket/getTicket/:projectId`, async ({ params }) => {
@@ -17,6 +17,8 @@ export const ticketsHandlers = [
         tickets.push(ticketWithoutDescription);
       }
     }
+
+    tickets.sort((a, b) => a.position - b.position);
 
     await delay(DEFAULT_DELAY);
     return HttpResponse.json({
@@ -46,10 +48,18 @@ export const ticketsHandlers = [
     const requestBody = await request.json();
     const newTicketData: Ticket = requestBody as Ticket;
 
+    const ticketsInSameState = MOCK_TICKETS_LIST.filter(
+      (t) =>
+        t.stateId === newTicketData.stateId &&
+        t.projectId === newTicketData.projectId,
+    );
+    const position = ticketsInSameState.length;
+
     const newTicket = TicketMother.getRandomTicket(
       newTicketData.stateId,
       newTicketData.projectId,
       newTicketData,
+      position,
     );
     MOCK_TICKETS_LIST.push(newTicket);
 
@@ -88,4 +98,27 @@ export const ticketsHandlers = [
       });
     },
   ),
+
+  http.post(`/api/ticket/reorder`, async ({ request }) => {
+    const requestBody = await request.json();
+    const { updates } = requestBody as ReorderTicketsPayload;
+
+    for (const update of updates) {
+      const ticketIndex = MOCK_TICKETS_LIST.findIndex(
+        (t) => t.id === update.id,
+      );
+      if (ticketIndex !== -1) {
+        MOCK_TICKETS_LIST[ticketIndex] = {
+          ...MOCK_TICKETS_LIST[ticketIndex],
+          stateId: update.stateId,
+          position: update.position,
+        };
+      }
+    }
+
+    await delay(DEFAULT_DELAY);
+    return HttpResponse.json({
+      message: "Tickets reordered",
+    });
+  }),
 ];

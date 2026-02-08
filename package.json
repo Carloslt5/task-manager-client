@@ -15,10 +15,13 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "(src)/**/*.(ts|tsx)": ["biome check --write ."]
+    "(src)/**/*.(ts|tsx)": [
+      "biome check --write ."
+    ]
   },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.4",
+    "@atlaskit/pragmatic-drag-and-drop-hitbox": "^1.1.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.1.2",
@@ -48,6 +51,8 @@
     "vite-plugin-checker": "^0.9.3"
   },
   "msw": {
-    "workerDirectory": ["public"]
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

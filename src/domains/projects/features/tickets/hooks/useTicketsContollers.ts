@@ -1,8 +1,9 @@
 import { useCallback } from "react";
-import { Ticket } from "../tickets.type";
+import { ReorderTicketsPayload, Ticket } from "../tickets.type";
 import { useCreateTickets } from "./useCreateTickets";
 import { useFetchTickets } from "./useFetchTickets";
 import { useFetchTicketsDetails } from "./useFetchTicketsDetails";
+import { useReorderTickets } from "./useReorderTickets";
 import { useUpdateTickets } from "./useUpdatePriorityTickets";
 
 export const useTicketsContollers = (projectId: string, ticketId?: string) => {
@@ -38,6 +39,15 @@ export const useTicketsContollers = (projectId: string, ticketId?: string) => {
     [updateTicketsMutation],
   );
 
+  // Reorder tickets
+  const reorderTicketsMutation = useReorderTickets(projectId!);
+  const handleReorderTickets = useCallback(
+    (payload: ReorderTicketsPayload) => {
+      reorderTicketsMutation.mutate(payload);
+    },
+    [reorderTicketsMutation],
+  );
+
   return {
     tickets,
     ticketDetails,
@@ -47,5 +57,6 @@ export const useTicketsContollers = (projectId: string, ticketId?: string) => {
     isErrorTicketsDetails,
     handleCreateTickets,
     handleUpdateTickets,
+    handleReorderTickets,
   };
 };

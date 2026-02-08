@@ -9,6 +9,7 @@ export class TicketMother {
     stateId: string,
     projectId: string,
     ticket?: Ticket,
+    position = 0,
   ): Ticket {
     const newTicket = {
       id: (this.currentId++).toString(),
@@ -17,6 +18,7 @@ export class TicketMother {
       priority: faker.helpers.arrayElement(["low", "medium", "high"]),
       title: faker.lorem.words(3),
       description: faker.lorem.paragraph(),
+      position,
       ...ticket,
     } as Ticket;
 
@@ -28,8 +30,8 @@ export class TicketMother {
     projectId: string,
     length = 2,
   ): Ticket[] {
-    return Array.from({ length }, () =>
-      this.getRandomTicket(stateId, projectId),
+    return Array.from({ length }, (_, index) =>
+      this.getRandomTicket(stateId, projectId, undefined, index),
     );
   }
 }

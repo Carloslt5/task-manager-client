@@ -1,7 +1,5 @@
-import {
-  dropTargetForElements,
-  ElementDragPayload,
-} from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
+import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
+import { extractClosestEdge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge";
 import AddIcon from "@mui/icons-material/Add";
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,6 +10,10 @@ import { EachTicket } from "../../tickets/components/EachTicket";
 import { EmptyTicket } from "../../tickets/components/EmptyTicket";
 import { useTicketsContollers } from "../../tickets/hooks/useTicketsContollers";
 import { Ticket } from "../../tickets/tickets.type";
+import {
+  moveBetweenColumns,
+  reorderWithinColumn,
+} from "../../tickets/utils/reorderUtils";
 import { State } from "../states.type";
 import { ColumnPlaceholder } from "./ColumnPlaceholder";
 import EachState from "./EachState";
@@ -27,14 +29,16 @@ export const ColumnState = ({ state }: Props) => {
   const columnRef = useRef<HTMLElement>(null);
   const [isOver, setIsOver] = useState(false);
 
-  const { tickets, isLoadingTickets, isErrorTickets, handleUpdateTickets } =
+  const { tickets, isLoadingTickets, isErrorTickets, handleReorderTickets } =
     useTicketsContollers(projectId!);
+
+  const allTickets = tickets?.data ?? [];
 
   useEffect(() => {
     const element = columnRef.current;
     if (!element) return;
 
-    const dropConfig = {
+    return dropTargetForElements({
       element,
       getData() {
         return { stateId: state.id };
@@ -45,23 +49,65 @@ export const ColumnState = ({ state }: Props) => {
       onDragLeave() {
         setIsOver(false);
       },
-      onDragStart() {
-        setIsOver(true);
-      },
-      onDrop({ source }: { source: ElementDragPayload }) {
+      onDrop({ source, location }) {
         setIsOver(false);
         const sourceTicket = (source.data as { ticket: Ticket }).ticket;
-        if (sourceTicket && sourceTicket.stateId !== state.id) {
-          handleUpdateTickets({
-            id: sourceTicket.id,
-            stateId: state.id,
-          });
+        if (!sourceTicket) return;
+
+        const dropTargets = location.current.dropTargets;
+
+        // Find if we dropped on a ticket (innermost target)
+        const ticketTarget = dropTargets.find(
+          (target) => (target.data as { ticket?: Ticket }).ticket != null,
+        );
+        const targetTicket = ticketTarget
+          ? (ticketTarget.data as { ticket: Ticket }).ticket
+          : null;
+        const edge = ticketTarget
+          ? extractClosestEdge(ticketTarget.data)
+          : null;
+
+        const sourceColumnTickets = allTickets.filter(
+          (t) => t.stateId === sourceTicket.stateId,
+        );
+
+        if (sourceTicket.stateId === state.id) {
+          // Reorder within the same column
+          if (!targetTicket || !edge) return;
+          if (targetTicket.id === sourceTicket.id) return;
+
+          const updates = reorderWithinColumn(
+            sourceColumnTickets,
+            sourceTicket.id,
+            targetTicket.id,
+            edge,
+          );
+
+          if (updates.length > 0) {
+            handleReorderTickets({ projectId: projectId!, updates });
+          }
+        } else {
+          // Move between columns
+          const destColumnTickets = allTickets.filter(
+            (t) => t.stateId === state.id,
+          );
+
+          const updates = moveBetweenColumns(
+            sourceColumnTickets,
+            destColumnTickets,
+            sourceTicket.id,
+            state.id,
+            targetTicket?.id ?? null,
+            edge,
+          );
+
+          if (updates.length > 0) {
+            handleReorderTickets({ projectId: projectId!, updates });
+          }
         }
       },
-    };
-
-    return dropTargetForElements(dropConfig);
-  }, [state.id, handleUpdateTickets]);
+    });
+  }, [state.id, handleReorderTickets, allTickets, projectId]);
 
   if (isLoadingTickets) {
     return <ColumnPlaceholder />;
@@ -71,9 +117,9 @@ export const ColumnState = ({ state }: Props) => {
     return <p>Error loading tickets</p>;
   }
 
-  const ticketsInState = (tickets?.data ?? []).filter(
-    (ticket) => ticket.stateId === state.id,
-  );
+  const ticketsInState = allTickets
+    .filter((ticket) => ticket.stateId === state.id)
+    .sort((a, b) => a.position - b.position);
 
   return (
     <>
