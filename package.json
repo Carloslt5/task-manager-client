@@ -15,9 +15,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "(src)/**/*.(ts|tsx)": [
-      "biome check --write ."
-    ]
+    "src/**/*.{ts,tsx}": ["biome check --write --no-errors-on-unmatched"]
   },
   "dependencies": {
     "@atlaskit/pragmatic-drag-and-drop": "^1.7.4",
@@ -42,7 +40,6 @@
     "@types/react-dom": "^19.1.6",
     "@vitejs/plugin-react-swc": "^3.10.2",
     "husky": "^9.1.7",
-    "install": "^0.13.0",
     "lint-staged": "^16.1.2",
     "msw": "^2.10.2",
     "tailwindcss": "^4.1.11",
@@ -51,8 +48,6 @@
     "vite-plugin-checker": "^0.9.3"
   },
   "msw": {
-    "workerDirectory": [
-      "public"
-    ]
+    "workerDirectory": ["public"]
   }
 }

@@ -2,12 +2,11 @@
   "compilerOptions": {
     /* aliases */
     "paths": {
-      "*": ["@types/*"],
-      "@/*": ["src/*"],
-      "#/*": ["test/*"]
+      "*": ["./@types/*"],
+      "@/*": ["./src/*"],
+      "#/*": ["./test/*"]
     },
     /* Base */
-    "baseUrl": ".",
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable"],

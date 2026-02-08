@@ -5,7 +5,7 @@ import { ThemeToggleButton } from "@/shared/components/ThemeToggleButton";
 import { useLogin } from "../hooks/useLogin";
 
 export const SignInPage = () => {
-  const { register, handleSubmit, onSubmit } = useLogin();
+  const { register, handleSubmit, onSubmit, isPending } = useLogin();
 
   return (
     <div className="bg-blue-chill-200 dark:bg-dark-100 h-svh text-blue-chill-50">
@@ -45,8 +45,9 @@ export const SignInPage = () => {
             <button
               className="btn__primary bg-blue-chill-400 dark:bg-zinc-700"
               type="submit"
+              disabled={isPending}
             >
-              Log in
+              {isPending ? "Logging in..." : "Log in"}
             </button>
           </div>
           <hr className="my-8" />
