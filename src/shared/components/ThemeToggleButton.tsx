@@ -12,7 +12,7 @@ export const ThemeToggleButton = ({
 
   return (
     <span
-      className={`w-8 p-2 flex ${toggleMenuOpen ? "justify-start" : "justify-center"}  mt-auto text-white rounded-sm cursor-pointer`}
+      className={`w-8 p-2 flex ${toggleMenuOpen ? "justify-start" : "justify-center"} text-white rounded-sm cursor-pointer`}
       title="Theme Mode"
       onClick={toggleThemeHandler}
     >

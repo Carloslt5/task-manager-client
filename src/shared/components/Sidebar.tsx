@@ -1,18 +1,27 @@
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { APP_GLOBAL_NAME } from "@/app/app.constants";
+import { useAuthContext } from "@/app/contexts/auth.context";
 import { Logo } from "../icons/Logo";
 import { AdminMenuItems } from "./AdminMenuItems";
 import { ThemeToggleButton } from "./ThemeToggleButton";
 
 export const Sidebar = () => {
   const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
+  const { logout } = useAuthContext();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setToggleMenuOpen(!toggleMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   return (
@@ -49,6 +58,20 @@ export const Sidebar = () => {
         <AdminMenuItems toggleMenuOpen={toggleMenuOpen} />
       </aside>
 
+      <div
+        className="mt-auto flex items-center gap-3 p-1 text-white rounded-sm cursor-pointer hover:opacity-75"
+        title="Logout"
+        onClick={handleLogout}
+      >
+        <span>
+          <LogoutIcon />
+        </span>
+        <p
+          className={`origin-left duration-300 whitespace-nowrap ${!toggleMenuOpen && "scale-0"}`}
+        >
+          Logout
+        </p>
+      </div>
       <ThemeToggleButton toggleMenuOpen={toggleMenuOpen} />
     </nav>
   );

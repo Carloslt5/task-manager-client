@@ -43,7 +43,7 @@ export const SignInPage = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="btn__primary bg-blue-chill-400 dark:bg-zinc-700"
+              className="btn__primary bg-blue-chill-400 dark:bg-zinc-700 cursor-pointer"
               type="submit"
               disabled={isPending}
             >

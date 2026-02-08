@@ -11,6 +11,8 @@ export const AdminMenuItems = ({
   const { user } = useLoggedUser();
   const location = useLocation();
 
+  if (!user) return null;
+
   return getAllowedMenuItems(user)().map((menuItem) => {
     const isActive = location.pathname.startsWith(menuItem.path!);
 
