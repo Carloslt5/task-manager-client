@@ -44,7 +44,7 @@ const EachState = ({ state }: Props) => {
             <input
               autoFocus
               type="text"
-              className="w-full px-1 text-gray-900 rounded-sm outline-hidden bg-gray-50 dark:focus:ring-2 dark:focus:ring-teal-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full px-1 text-gray-900 rounded-sm outline-hidden bg-gray-50 dark:bg-zinc-800 dark:text-zinc-100 dark:focus:ring-2 dark:focus:ring-teal-500 focus:ring-2 focus:ring-blue-500"
               placeholder={stateName}
               {...register("stateName")}
               onBlur={handlerEditClick}

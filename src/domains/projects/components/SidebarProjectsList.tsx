@@ -16,7 +16,7 @@ export const SidebarProjectsList = ({
   return (
     <div className="mt-4">
       <p
-        className={`text-xs uppercase text-blue-chill-200 dark:text-zinc-400 mb-2 origin-left duration-300 ${!toggleMenuOpen && "scale-0"}`}
+        className={`text-xs uppercase text-blue-chill-100 dark:text-zinc-400 mb-2 origin-left duration-300 ${!toggleMenuOpen && "scale-0"}`}
       >
         Projects
       </p>
@@ -29,8 +29,8 @@ export const SidebarProjectsList = ({
             <li className="list-none" key={project.id} title={project.title}>
               <Link
                 to={path}
-                className={`bg__color rounded cursor-pointer flex items-center gap-3 p-1 text-blue-chill-50 ${
-                  isActive ? "bg-blue-chill-500 dark:bg-zinc-700" : ""
+                className={`rounded cursor-pointer flex items-center gap-3 p-1 text-blue-chill-50 hover:bg-blue-chill-500 dark:hover:bg-zinc-800 ${
+                  isActive ? "bg-blue-chill-600 dark:bg-zinc-800" : ""
                 }`}
               >
                 <span>

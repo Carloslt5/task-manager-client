@@ -38,7 +38,7 @@
 }
 
 @utility input__standard {
-  @apply flex items-center w-full px-1 py-2 text-lg rounded-sm focus:bg-blue-chill-50 focus:text-blue-chill-700 dark:text-zinc-100 dark:focus:text-zinc-950;
+  @apply flex items-center w-full px-1 py-2 text-lg rounded-sm focus:bg-blue-chill-50 focus:text-blue-chill-700 dark:text-zinc-100 dark:focus:bg-zinc-700 dark:focus:text-zinc-100;
 }
 
 /* BUTTON */
@@ -55,7 +55,7 @@
 }
 
 @utility btn__cancel {
-  @apply btn text-white border hover:border-red-500 hover:text-red-500;
+  @apply btn text-white border hover:border-red-500 hover:text-red-500 dark:border-zinc-600 dark:hover:border-red-500 dark:hover:text-red-400;
 }
 
 /* FORM */
@@ -77,7 +77,7 @@
 }
 
 @utility edit__title {
-  @apply flex items-center rounded-sm text-blue-chill-50 hover:bg-blue-chill-200 dark:text-white dark:hover:bg-zinc-500;
+  @apply flex items-center rounded-sm text-blue-chill-700 hover:bg-blue-chill-200 dark:text-white dark:hover:bg-zinc-500;
 }
 
 /* CARD */

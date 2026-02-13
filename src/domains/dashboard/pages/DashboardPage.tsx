@@ -15,19 +15,19 @@ export const DashboardPage = () => {
         <h2 className="text-xl font-semibold">User Info</h2>
         <div className="flex flex-col gap-3">
           <div className="flex gap-2">
-            <h3 className="text-sm text-gray-500 dark:text-gray-400 w-14 shrink-0">
+            <h3 className="text-sm text-gray-500 dark:text-gray-300 w-14 shrink-0">
               Name:
             </h3>
             <p className="font-medium text-sm">{user.name}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="text-sm text-gray-500 dark:text-gray-400 w-14 shrink-0">
+            <h3 className="text-sm text-gray-500 dark:text-gray-300 w-14 shrink-0">
               Email:
             </h3>
             <p className="font-medium text-sm">{user.email}</p>
           </div>
           <div className="flex gap-2">
-            <h3 className="text-sm text-gray-500 dark:text-gray-400 w-14 shrink-0">
+            <h3 className="text-sm text-gray-500 dark:text-gray-300 w-14 shrink-0">
               Roles:
             </h3>
             <p className="font-medium text-sm capitalize">

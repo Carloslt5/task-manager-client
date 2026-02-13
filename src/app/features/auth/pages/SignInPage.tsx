@@ -8,7 +8,7 @@ export const SignInPage = () => {
   const { register, handleSubmit, onSubmit, isPending } = useLogin();
 
   return (
-    <div className="bg-blue-chill-200 dark:bg-dark-100 h-svh text-blue-chill-50">
+    <div className="bg-blue-chill-200 dark:bg-dark-100 h-svh text-blue-chill-900 dark:text-white">
       <div className="flex items-center justify-center h-full max-w-(--breakpoint-sm) mx-auto ">
         <form className="form bg__color" onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
@@ -19,7 +19,7 @@ export const SignInPage = () => {
               Email
             </label>
             <input
-              className="input__standard bg-blue-chill-50 dark:bg-zinc-50 dark:text-zinc-700 text-blue-chill-700"
+              className="input__standard bg-blue-chill-50 dark:bg-zinc-800 dark:text-zinc-100 text-blue-chill-700"
               id="email"
               type="email"
               placeholder="Your Email"
@@ -34,7 +34,7 @@ export const SignInPage = () => {
               Password
             </label>
             <input
-              className="input__standard bg-blue-chill-50 dark:bg-zinc-50 dark:text-zinc-700 text-blue-chill-700 "
+              className="input__standard bg-blue-chill-50 dark:bg-zinc-800 dark:text-zinc-100 text-blue-chill-700 "
               id="password"
               type="password"
               placeholder="******************"

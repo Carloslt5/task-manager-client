@@ -84,7 +84,7 @@ export const EachTicket: React.FC<Props> = ({ ticket }) => {
         }`}
       >
         {closestEdge === "top" && (
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-blue-500" />
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400" />
         )}
         <div className={`${priorityColor} w-3`} />
         <article className="flex flex-col justify-start p-2 w-full">
@@ -92,7 +92,7 @@ export const EachTicket: React.FC<Props> = ({ ticket }) => {
           <p>{ticket.title}</p>
         </article>
         {closestEdge === "bottom" && (
-          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
+          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 dark:bg-blue-400" />
         )}
       </li>
 

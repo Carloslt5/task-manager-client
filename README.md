@@ -1,30 +1,11 @@
-# Task Manager Client
+# Kanban Manager
+
 ![Version 2 - In Progress](https://img.shields.io/badge/V.2.0-progress-yellow)
-
-This project is a task list application that uses a Kanban layout to organize tasks and allows drag-and-drop functionality for an intuitive user experience.
-
-### Deploy
-![v.1 - Deploy](https://img.shields.io/badge/V.1.0-is%20deploy-green)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3cf7b717-bb14-4d3b-8222-15e262f69310/deploy-status)](https://app.netlify.com/sites/kanban-manager-app/deploys)
 
-https://kanban-manager-app.netlify.app
+Kanban-style task management app built with React + TypeScript. Features drag-and-drop ticket ordering, light/dark theming, and a fully mocked API server for frontend-only development.
 
-### User Test
-You can also register [sign up](https://kanban-todo-app.netlify.app/signup) 👍
-
-1. User:
-
-```
-02@email.com
-```
-
-2. Password:
-
-```
-1234
-```
-
-## Getting Started
+## Quick Start
 
 ### Prerequisites
 
@@ -33,72 +14,35 @@ You can also register [sign up](https://kanban-todo-app.netlify.app/signup) 👍
 
 ### Installation
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/Carloslt5/task-manager-client.git
-   cd task-manager-client
-   ```
-
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
-
-### Development
-
-To start the development server:
-
 ```sh
+git clone https://github.com/Carloslt5/task-manager-client.git
+cd kanban-manager
+npm install
 npm start
 ```
 
-This will start the Vite development server and open the application in your default web browser.
+## Documentation
 
-## Features
+| Topic | Description |
+| ----- | ----------- |
+| [Architecture](docs/architecture.md) | Project structure, module system, feature patterns |
+| [Data Model](docs/data-model.md) | Entities, relationships, TypeScript interfaces |
+| [Drag & Drop](docs/drag-and-drop.md) | DnD implementation with pragmatic-drag-and-drop |
+| [Theming](docs/theming.md) | Tailwind CSS v4 theme system, dark mode, custom utilities |
+| [Mock Server](docs/mock-server.md) | MSW setup, Mother pattern, mock data generation |
+| [Auth](docs/auth.md) | Authentication context, login flow, test credentials |
 
-- **User session with JWT**
-- **Drag-and-Drop:** Easily move tasks ✅ .
-- **Tailwind:** Theme Light 🌞 and Dark 🌚
+## Tech Stack
 
-## Technologies
+- **Framework:** React 18 + TypeScript
+- **Build:** Vite
+- **Server State:** TanStack React Query
+- **Forms:** react-hook-form
+- **Drag & Drop:** @atlaskit/pragmatic-drag-and-drop
+- **Styling:** Tailwind CSS v4
+- **Mock API:** MSW (Mock Service Worker) + Faker.js
+- **Linting:** Biome
 
-- React
-- React DOM
-- React Router DOM
-- TypeScript
-- Vite
-- Mock Service Worker (MSW) to development
-- Axios
-- Hooks-form
-- Toastify
-- ESLint (with plugins for TypeScript, React, and Prettier)
+## Links
 
-## Rest API
-
-https://github.com/Carloslt5/task-manager-server
-
-## DDBB
-Project
-  - id
-  - title
-  - ownerId
-
-State
-  - id
-  - title
-  - Project ID
-
-Ticket
-  - id
-  - State ID
-  - Project ID
-  - Priority
-  - name
-  - description
-
-Todo
-  - id
-  - title
-  - completed
-  - Ticket id
-
+- **Deploy (v1):** <https://kanban-manager-app.netlify.app>
