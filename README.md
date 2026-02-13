@@ -1,6 +1,6 @@
 # Kanban Manager
 
-![Version 2 - In Progress](https://img.shields.io/badge/V.2.0-progress-yellow)
+![Version 2 - Deploy](https://img.shields.io/badge/V.2.0-deploy-brightgreen)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3cf7b717-bb14-4d3b-8222-15e262f69310/deploy-status)](https://app.netlify.com/sites/kanban-manager-app/deploys)
 
 Kanban-style task management app built with React + TypeScript. Features drag-and-drop ticket ordering, light/dark theming, and a fully mocked API server for frontend-only development.
