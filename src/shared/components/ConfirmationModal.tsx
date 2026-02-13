@@ -1,3 +1,4 @@
+import { ModalContent } from "./ModalContent";
 import { ModalForm } from "./ModalForm";
 
 interface ConfirmationModalProps {
@@ -14,7 +15,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
 }) => {
   return (
     <ModalForm onClose={onClose}>
-      <div className="modal__form">
+      <ModalContent>
         <div className="flex flex-col items-center justify-center gap-2 p-6">
           <div className="flex flex-col items-center justify-center gap-6">
             <p className="text-white">{message}</p>
@@ -22,7 +23,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
               <button
                 onClick={onClose}
                 type="button"
-                className="px-3 py-2 text-sm text-gray-500 bg-white rounded-sm hover:bg-gray-100 focus:ring-2 focus:outline-hidden focus:ring-primary-300 hover:text-gray-900 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                className="px-3 py-2 text-sm text-neutral-500 bg-white rounded-sm hover:bg-neutral-100 focus:ring-2 focus:outline-hidden focus:ring-primary-300 hover:text-neutral-900 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-500 dark:hover:text-white dark:hover:bg-neutral-600 dark:focus:ring-neutral-600"
               >
                 No, cancel
               </button>
@@ -36,7 +37,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </ModalContent>
     </ModalForm>
   );
 };

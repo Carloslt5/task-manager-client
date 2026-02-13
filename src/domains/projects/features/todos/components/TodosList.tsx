@@ -2,6 +2,7 @@ import { useMemo } from "react";
 
 import { useTodosContollers } from "../hooks/useTodosContollers";
 import { EachTodo } from "./EachTodo";
+import { TodosListSkeleton } from "./TodosListSkeleton";
 
 type Props = {
   ticketId: string;
@@ -18,11 +19,11 @@ export const TodosList: React.FC<Props> = ({ ticketId }) => {
 
   const renderTodoList = useMemo(() => {
     if (isLoadingTodos) {
-      return <h1 className="text-white">Loading...</h1>;
+      return <TodosListSkeleton />;
     }
     if ((todos?.data ?? []).length === 0) {
       return (
-        <p className="p-1 rounded-xs bg-slate-600 dark:bg-zinc-700 dark:text-white">
+        <p className="p-1 rounded-xs bg-neutral-600 dark:bg-neutral-700 dark:text-white">
           No pending todos 👍
         </p>
       );

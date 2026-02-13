@@ -3,84 +3,31 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --color-blue-chill-50: #f2f9f9;
-  --color-blue-chill-100: #ddeff0;
-  --color-blue-chill-200: #bfe0e2;
-  --color-blue-chill-300: #92cace;
-  --color-blue-chill-400: #5faab1;
-  --color-blue-chill-500: #438e96;
-  --color-blue-chill-600: #3b757f;
-  --color-blue-chill-700: #356169;
-  --color-blue-chill-800: #325158;
-  --color-blue-chill-900: #2d464c;
-  --color-blue-chill-950: #1a2c32;
+  /* Primary palette light  */
+  --color-primary-50: #f2f9f9;
+  --color-primary-100: #ddeff0;
+  --color-primary-200: #bfe0e2;
+  --color-primary-300: #92cace;
+  --color-primary-400: #5faab1;
+  --color-primary-500: #438e96;
+  --color-primary-600: #3b757f;
+  --color-primary-700: #356169;
+  --color-primary-800: #325158;
+  --color-primary-900: #2d464c;
+  --color-primary-950: #1a2c32;
+
+  /* Neutral palette dark */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #09090b;
 
   --color-dark-100: #18181b;
   --color-dark-200: #0e0e11;
-}
-
-/* BACKGROUND */
-@utility bg__color {
-  @apply bg-blue-chill-600 dark:bg-zinc-950;
-}
-
-@utility bg__color-hover {
-  @apply hover:bg-blue-chill-400 dark:hover:bg-zinc-800;
-}
-
-@utility bg__gradient {
-  @apply hover:bg-gradient-to-b from-blue-chill-400 to-blue-chill-500 dark:from-zinc-500 dark:to-zinc-700 bg-blue-chill-400 dark:bg-zinc-700;
-}
-
-/* INPUT */
-@utility input__primary {
-  @apply w-full py-1 text-4xl font-extrabold text-blue-chill-500;
-}
-
-@utility input__standard {
-  @apply flex items-center w-full px-1 py-2 text-lg rounded-sm focus:bg-blue-chill-50 focus:text-blue-chill-700 dark:text-zinc-100 dark:focus:bg-zinc-700 dark:focus:text-zinc-100;
-}
-
-/* BUTTON */
-@utility btn {
-  @apply flex items-center justify-center flex-1 px-4 py-2 rounded-sm;
-}
-
-@utility btn__primary {
-  @apply btn text-white bg-blue-chill-600 dark:bg-zinc-800 bg__color-hover;
-}
-
-@utility btn__add {
-  @apply btn text-white bg-blue-chill-500 dark:bg-zinc-700 bg__color-hover;
-}
-
-@utility btn__cancel {
-  @apply btn text-white border hover:border-red-500 hover:text-red-500 dark:border-zinc-600 dark:hover:border-red-500 dark:hover:text-red-400;
-}
-
-/* FORM */
-@utility form {
-  @apply w-full p-4 mx-auto rounded-sm;
-}
-
-@utility modal__form {
-  @apply flex flex-col w-full gap-2 p-6 rounded-sm bg__color;
-}
-
-/* TITLE */
-@utility title__primary {
-  @apply w-full text-4xl font-bold text-blue-chill-600 dark:text-white;
-}
-
-@utility title__input {
-  @apply w-full py-1 text-5xl font-extrabold text-transparent uppercase border border-transparent dark:text-blue-chill-700;
-}
-
-@utility edit__title {
-  @apply flex items-center rounded-sm text-blue-chill-700 hover:bg-blue-chill-200 dark:text-white dark:hover:bg-zinc-500;
-}
-
-/* CARD */
-@utility card__primary {
-  @apply flex items-center justify-center p-4 text-center text-white rounded-sm min-h-32 bg__gradient;
 }

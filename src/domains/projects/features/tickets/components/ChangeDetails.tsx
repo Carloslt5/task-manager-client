@@ -1,5 +1,7 @@
 import type React from "react";
 
+import { Button } from "@/shared/components/Button";
+import { TextArea } from "@/shared/components/Input";
 import { useEditing } from "@/shared/hooks/useEditingHook";
 
 import { useTicketForm } from "../hooks/useTicketForm";
@@ -22,26 +24,27 @@ export const ChangeDetails: React.FC<Props> = ({ data }) => {
   return (
     <>
       {!isEditing ? (
-        <article className="p-2 text-white border border-gray-400 rounded-sm bg-slate-500 dark:bg-zinc-800">
+        <article className="p-2 text-white border border-neutral-400 rounded-sm bg-neutral-500 dark:bg-neutral-800">
           <p onClick={handlerEditClick}>{data.description}</p>
         </article>
       ) : (
         <form onSubmit={handleSubmit(submitHandler)}>
-          <textarea
+          <TextArea
             autoFocus
-            className="p-2 mb-2 text-base border-none max-h-40 input__standard dark:text-zinc-700 "
+            variant="form"
+            className="p-2 mb-2 text-base border-none max-h-40"
             placeholder={data.description}
             {...register("description")}
             required
           />
 
           <section className="flex flex-row-reverse items-center justify-start w-full gap-3">
-            <button type="submit" className="btn btn__add ">
+            <Button type="submit" variant="add">
               Save Description
-            </button>
-            <button className="btn btn__cancel" onClick={handlerEditClick}>
+            </Button>
+            <Button variant="cancel" onClick={handlerEditClick}>
               Cancel
-            </button>
+            </Button>
           </section>
         </form>
       )}

@@ -20,14 +20,17 @@ const SettingModal: React.FC<SettingModalProps> = ({
 
   return (
     <div className="relative">
-      <button className="p-6 edit__title" onClick={toggleSettingModal}>
+      <button
+        className="p-6 flex items-center rounded-sm text-primary-700 hover:bg-primary-200 dark:text-white dark:hover:bg-neutral-500"
+        onClick={toggleSettingModal}
+      >
         <span>
           <SettingsIcon />
         </span>
       </button>
       {settingModal && (
         <div
-          className="absolute right-0 w-32 py-2 mt-1 rounded-sm bg__color top-16 "
+          className="absolute right-0 w-32 py-2 mt-1 rounded-sm bg-primary-600 dark:bg-neutral-950 top-16 "
           onClick={toggleSettingModal}
         >
           <ul className="flex flex-col items-stretch w-full cursor-pointer justify-stretch">

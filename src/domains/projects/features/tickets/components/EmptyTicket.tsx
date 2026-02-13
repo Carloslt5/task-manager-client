@@ -33,7 +33,7 @@ export const EmptyTicket: React.FC<Props> = ({ stateId }) => {
 
   return (
     <ol
-      className={`p-4 flex flex-col gap-4 rounded-sm ${aboutToDrop ? "bg-blue-chill-600 dark:bg-zinc-800" : ""}`}
+      className={`p-4 flex flex-col gap-4 rounded-sm ${aboutToDrop ? "bg-primary-600 dark:bg-neutral-800" : ""}`}
       data-test-id={stateId}
       ref={ref}
     >

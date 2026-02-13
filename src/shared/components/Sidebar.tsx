@@ -12,7 +12,7 @@ import { AdminMenuItems } from "./AdminMenuItems";
 import { ThemeToggleButton } from "./ThemeToggleButton";
 
 export const Sidebar = () => {
-  const [toggleMenuOpen, setToggleMenuOpen] = useState(false);
+  const [toggleMenuOpen, setToggleMenuOpen] = useState(true);
   const { logout } = useAuthContext();
   const navigate = useNavigate();
 
@@ -27,10 +27,10 @@ export const Sidebar = () => {
 
   return (
     <nav
-      className={`bg-blue-chill-400 dark:bg-zinc-950 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? "w-60" : "w-16"}`}
+      className={`bg-primary-400 dark:bg-neutral-950 min-h-screen flex flex-col p-4 py-8 relative duration-300  ${toggleMenuOpen ? "w-60" : "w-16"}`}
     >
       <div
-        className="absolute flex items-center justify-center p-1 text-white border border-white rounded-full cursor-pointer bg__color top-3 -right-3"
+        className="absolute flex items-center justify-center p-1 text-white border border-white rounded-full cursor-pointer bg-primary-600 dark:bg-neutral-950 top-3 -right-3"
         onClick={toggleMenu}
       >
         {toggleMenuOpen ? (
@@ -42,7 +42,7 @@ export const Sidebar = () => {
 
       <Link to={"/admin/dashboard"}>
         <div
-          className="flex items-center rounded-sm bg__color bg__color-hover gap-x-2"
+          className="flex items-center rounded-sm bg-primary-600 dark:bg-neutral-950 hover:bg-primary-400 dark:hover:bg-neutral-800 gap-x-2"
           title={APP_GLOBAL_NAME}
         >
           <span>

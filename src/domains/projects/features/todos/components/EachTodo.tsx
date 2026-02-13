@@ -27,10 +27,10 @@ export const EachTodo: React.FC<Props> = ({
   };
 
   return (
-    <article className="flex items-center justify-between gap-2 p-2 rounded-sm bg-blue-chill-300 dark:bg-zinc-700 dark:text-white">
+    <article className="flex items-center justify-between gap-2 p-2 rounded-sm bg-primary-300 dark:bg-neutral-700 dark:text-white">
       <div className="flex items-center w-full gap-2">
         <button
-          className={`rounded-full h-6 w-6 p-1 aspect-square flex flex-nowrap border bg-slate-200 dark:bg-zinc-900 ${completed && "border flex justify-center items-center bg-linear-to-b from-emerald-200 from-10% to-emerald-500 to-90% dark:from-emerald-600 dark:from-10% dark:to-emerald-400 dark:to-90% cursor-pointer"}`}
+          className={`rounded-full h-6 w-6 p-1 aspect-square flex flex-nowrap border bg-neutral-200 dark:bg-neutral-900 ${completed && "border flex justify-center items-center bg-linear-to-b from-emerald-200 from-10% to-emerald-500 to-90% dark:from-emerald-600 dark:from-10% dark:to-emerald-400 dark:to-90% cursor-pointer"}`}
           onClick={toggleCompleted}
         >
           {completed && <CheckIcon />}

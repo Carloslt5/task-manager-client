@@ -1,5 +1,7 @@
 import React, { JSX } from "react";
 
+import { Button } from "./Button";
+
 type ActionButtonProps = {
   readonly ctaText: string;
   readonly icon: JSX.Element;
@@ -12,12 +14,9 @@ export const ActionButton: React.FC<ActionButtonProps> = ({
   onClick,
 }) => {
   return (
-    <button
-      className="flex items-center gap-1 mt-3 mb-6 btn btn__add"
-      onClick={onClick}
-    >
+    <Button variant="add" className="gap-1 mt-3 mb-6" onClick={onClick}>
       {icon}
       <span>{ctaText}</span>
-    </button>
+    </Button>
   );
 };

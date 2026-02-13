@@ -1,5 +1,8 @@
 import React from "react";
 
+import { Button } from "@/shared/components/Button";
+import { Input } from "@/shared/components/Input";
+
 import { useTodosForm } from "../hooks/useTodosForm";
 
 type Props = {
@@ -14,15 +17,15 @@ export const CreateTodo: React.FC<Props> = ({ ticketId }) => {
       className="flex flex-col gap-3 my-2 md:flex-row"
       onSubmit={handleSubmit(submitHandler)}
     >
-      <input
-        className="input__standard bg-blue-chill-50 text-blue-chill-800"
+      <Input
+        variant="form"
         type="text"
         placeholder="Insert Task..."
         {...register("title")}
       />
-      <button className="btn btn__add" type="submit">
+      <Button variant="add" type="submit">
         Add
-      </button>
+      </Button>
     </form>
   );
 };

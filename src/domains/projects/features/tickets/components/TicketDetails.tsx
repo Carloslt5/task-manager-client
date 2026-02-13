@@ -1,7 +1,9 @@
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import React, { useMemo } from "react";
 
+import { Button } from "@/shared/components/Button";
 import { ChangeTitle } from "@/shared/components/ChangeTitle";
+import { ModalContent } from "@/shared/components/ModalContent";
 import { ModalForm } from "@/shared/components/ModalForm";
 
 import { CreateTodo } from "../../todos/components/CreateTodo";
@@ -10,6 +12,7 @@ import { useTicketsContollers } from "../hooks/useTicketsContollers";
 import { Ticket } from "../tickets.type";
 import { ChangeDetails } from "./ChangeDetails";
 import { ChangePriority } from "./ChangePriority";
+import { TicketDetailsSkeleton } from "./TicketDetailsSkeleton";
 
 type Props = {
   readonly ticket: Ticket;
@@ -26,7 +29,7 @@ export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
 
   const renderTicketDetails = useMemo(() => {
     if (isLoadingTicketsDetails) {
-      return <h1 className="text-white">Loading...</h1>;
+      return <TicketDetailsSkeleton />;
     }
     if (isErrorTicketsDetails || !ticketDetails?.data) {
       return <h1>Not found ticket details...</h1>;
@@ -36,13 +39,13 @@ export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
 
   return (
     <ModalForm onClose={onClose}>
-      <div className="max-h-full modal__form">
+      <ModalContent className="max-h-full">
         <section>
           <header className="flex justify-between gap-2 pb-3 mb-2 border-b">
             <ChangeTitle data={ticket} updateData={handleUpdateTickets} />
-            <button className="p-2 font-bold bg-red-500 rounded-sm btn hover:bg-red-700">
+            <Button variant="danger" className="p-2 font-bold">
               <DeleteForeverIcon />
-            </button>
+            </Button>
           </header>
           <section className="flex flex-col items-stretch gap-2 mb-2">
             <ChangePriority
@@ -61,14 +64,14 @@ export const TicketDetails: React.FC<Props> = ({ ticket, onClose }) => {
         <TodosList ticketId={ticket.id} />
 
         <section className="flex items-center justify-end w-full gap-3">
-          <button className="btn btn__cancel" onClick={onClose}>
+          <Button variant="cancel" onClick={onClose}>
             <span>Close</span>
-          </button>
-          <button className="btn btn__add" onClick={onClose}>
+          </Button>
+          <Button variant="add" onClick={onClose}>
             <span>Accept</span>
-          </button>
+          </Button>
         </section>
-      </div>
+      </ModalContent>
     </ModalForm>
   );
 };

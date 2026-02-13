@@ -1,5 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import { Button } from "@/shared/components/Button";
+import { Input } from "@/shared/components/Input";
+import { ModalContent } from "@/shared/components/ModalContent";
 import { ModalForm } from "@/shared/components/ModalForm";
 
 import { useProjectsControllers } from "../hooks/useProjectsControllers";
@@ -29,7 +32,7 @@ export const ProjectForm = ({ modalTitle, onClose }: Props) => {
 
   return (
     <ModalForm onClose={onClose}>
-      <div className="modal__form">
+      <ModalContent>
         <div className="flex justify-between">
           <h1 className="text-2xl text-white ">{modalTitle}</h1>
         </div>
@@ -38,24 +41,25 @@ export const ProjectForm = ({ modalTitle, onClose }: Props) => {
           className="flex flex-col gap-2"
           onSubmit={handleSubmit(submitHandler)}
         >
-          <input
+          <Input
             autoFocus
-            className="mb-4 input__standard text-slate-700 dark:text-zinc-700"
+            variant="form"
+            className="mb-4"
             type="text"
             placeholder="Insert title..."
             {...register("title")}
             required
           />
           <div className="flex flex-row-reverse items-center gap-2 items-strech">
-            <button className="flex items-center btn btn__add">
+            <Button variant="add">
               <span>Add Project</span>
-            </button>
-            <button className="btn btn__cancel" onClick={onClose}>
+            </Button>
+            <Button variant="cancel" onClick={onClose}>
               <span>Cancel</span>
-            </button>
+            </Button>
           </div>
         </form>
-      </div>
+      </ModalContent>
     </ModalForm>
   );
 };

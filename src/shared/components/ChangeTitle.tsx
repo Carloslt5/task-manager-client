@@ -3,6 +3,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { useEditing } from "../hooks/useEditingHook";
+import { Input } from "./Input";
+import { PageTitle } from "./PageTitle";
 
 type FormValues = {
   id: string;
@@ -34,36 +36,36 @@ export function ChangeTitle<T extends FormValues>({
     handlerEditClick();
   };
 
-  const titleClassName =
-    variant === "title-page" ? "title__primary" : "input__standard";
-  const inputClassName =
-    variant === "title-page" ? "input__primary" : "input__standard";
+  const inputVariant =
+    variant === "title-page" ? ("title" as const) : ("standard" as const);
   const buttonClassName = variant === "title-page" ? "p-6" : "p-2";
 
   return (
     <article className="flex flex-col w-full">
       <div className="flex items-center justify-between w-full gap-2">
         {!isEditing ? (
-          <h1 className={titleClassName} onClick={handlerEditClick}>
-            {data.title}
-          </h1>
+          variant === "title-page" ? (
+            <PageTitle onClick={handlerEditClick}>{data.title}</PageTitle>
+          ) : (
+            <h1 onClick={handlerEditClick}>{data.title}</h1>
+          )
         ) : (
           <form
             className="flex w-full text-2xl"
             onSubmit={handleSubmit(submitHandler)}
           >
-            <input
+            <Input
               autoFocus
+              variant={inputVariant}
               type="text"
               {...register("title", { required: true })}
-              className={inputClassName}
               placeholder="Enter title"
               onBlur={handlerEditClick}
               required
             />
           </form>
         )}
-        <div className="edit__title">
+        <div className="flex items-center rounded-sm text-primary-700 hover:bg-primary-200 dark:text-white dark:hover:bg-neutral-500">
           <button className={buttonClassName} onClick={handlerEditClick}>
             {isEditing ? <CloseIcon /> : <EditIcon />}
           </button>

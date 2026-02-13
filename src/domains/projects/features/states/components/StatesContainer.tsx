@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 
 import { useStatesControllers } from "../hooks/useStatesControllers";
+import { ColumnPlaceholder } from "./ColumnPlaceholder";
 import { ColumnState } from "./ColumnState";
 
 export const StatesContainer = () => {
@@ -13,9 +14,11 @@ export const StatesContainer = () => {
   const renderContent = () => {
     if (isLoadingStates) {
       return (
-        <p className="text-center text-slate-500 dark:text-zinc-500">
-          Loading states...
-        </p>
+        <>
+          <ColumnPlaceholder />
+          <ColumnPlaceholder />
+          <ColumnPlaceholder />
+        </>
       );
     }
 
@@ -34,7 +37,7 @@ export const StatesContainer = () => {
     }
 
     return (
-      <p className="text-center text-slate-500 dark:text-zinc-500">
+      <p className="text-center text-neutral-500 dark:text-neutral-500">
         Add your first state
       </p>
     );
@@ -45,7 +48,7 @@ export const StatesContainer = () => {
       <ul className="flex flex-row items-stretch max-h-full gap-4 pb-2 mb-3 overflow-y-auto text-white">
         {renderContent()}
       </ul>
-      <p className="mt-2 text-sm text-center text-slate-500 dark:text-zinc-500">
+      <p className="mt-2 text-sm text-center text-neutral-500 dark:text-neutral-500">
         Drag and Drop ticket to change state
       </p>
     </section>

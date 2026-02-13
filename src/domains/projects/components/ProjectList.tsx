@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 
 import { useProjectsControllers } from "../hooks/useProjectsControllers";
 import { ProjectCard } from "./ProjectCard";
+import { ProjectListSkeleton } from "./ProjectListSkeleton";
 
 export const ProjectList = () => {
   const { projects, isLoading } = useProjectsControllers();
 
   if (isLoading) {
-    return <h1>Loading</h1>;
+    return <ProjectListSkeleton />;
   }
 
   return (

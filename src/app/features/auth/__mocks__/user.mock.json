@@ -1,6 +1,6 @@
 {
   "login": "john",
-  "email": "john@test.com",
+  "email": "demo@mock.com",
   "name": "John Doe",
   "userId": "userId1",
   "roles": ["admin", "staff"],
@@ -10,7 +10,7 @@
     "employeeNumber": 2301232,
     "id": "userId1",
     "login": "john",
-    "mail": "john@test.com",
+    "mail": "demo@mock.com",
     "name": "John Doe"
   }
 }

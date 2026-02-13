@@ -79,7 +79,7 @@ export const EachTicket: React.FC<Props> = ({ ticket }) => {
       <li
         onClick={openModal}
         ref={ref}
-        className={`relative flex justify-start items-stretch gap-2 bg-blue-chill-600 dark:text-white overflow-hidden rounded cursor-pointer hover:bg-blue-chill-500 dark:bg-zinc-800 dark:hover:bg-zinc-700 h-20 ${
+        className={`relative flex justify-start items-stretch gap-2 bg-primary-600 dark:text-white overflow-hidden rounded cursor-pointer hover:bg-primary-500 dark:bg-neutral-800 dark:hover:bg-neutral-700 h-20 ${
           isDragging ? "opacity-50" : ""
         }`}
       >

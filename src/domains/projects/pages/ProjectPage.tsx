@@ -22,26 +22,28 @@ export const ProjectPage = () => {
     handleProjectDelete,
   } = useProjectsControllers(projectId!);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (!project || isError) {
+  if (!isLoading && (!project || isError)) {
     return <h1>Producto no encontrado</h1>;
   }
 
   return (
     <>
       <header className="flex items-stretch justify-between gap-2 pb-3">
-        <ChangeTitle
-          data={project?.data}
-          variant="title-page"
-          updateData={handleProjectUpdate}
-        />
-        <SettingModal
-          textData="Delete Project"
-          deleteEntity={() => handleProjectDelete(projectId!)}
-        />
+        {isLoading ? (
+          <div className="h-10 w-64 rounded-sm animate-pulse bg-primary-400/30 dark:bg-neutral-800" />
+        ) : (
+          <>
+            <ChangeTitle
+              data={project!.data}
+              variant="title-page"
+              updateData={handleProjectUpdate}
+            />
+            <SettingModal
+              textData="Delete Project"
+              deleteEntity={() => handleProjectDelete(projectId!)}
+            />
+          </>
+        )}
       </header>
       <ActionButton
         icon={<AddIcon />}

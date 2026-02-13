@@ -20,8 +20,8 @@ export const AdminMenuItems = ({ toggleMenuOpen }: AdminMenuItemsProps) => {
       <li className="list-none" key={menuItem.path} title={menuItem.title}>
         <Link
           to={`${menuItem.path}`}
-          className={`rounded cursor-pointer flex items-center gap-3 p-1 text-blue-chill-50 hover:bg-blue-chill-500 dark:hover:bg-zinc-800 ${
-            isActive ? "bg-blue-chill-600 dark:bg-zinc-800" : ""
+          className={`rounded cursor-pointer flex items-center gap-3 p-1 text-primary-50 hover:bg-primary-500 dark:hover:bg-neutral-800 ${
+            isActive ? "bg-primary-600 dark:bg-neutral-800" : ""
           }`}
         >
           <span>{menuItem.icon}</span>
