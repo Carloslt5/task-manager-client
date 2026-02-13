@@ -53,6 +53,7 @@ Mock data is generated using factory classes ("Mothers") with `@faker-js/faker`:
 | `TodoMother` | `src/domains/projects/__mocks__/TodoMother.ts` | Todos with faker sentence titles, random completion status |
 
 Each Mother class provides:
+
 - A method to create a single random entity (e.g., `getRandomTicket()`)
 - A method to create a list of N entities (e.g., `getRandomList(n)`)
 - Auto-incrementing IDs
@@ -63,7 +64,7 @@ Source: `src/domains/projects/__mocks__/MockData.ts`
 
 Generates a full relational dataset at import time:
 
-```
+```test
 Projects (N)
   └── States (3 per project)
        └── Tickets (5 per state)
