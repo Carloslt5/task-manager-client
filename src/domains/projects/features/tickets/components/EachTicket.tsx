@@ -11,6 +11,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 
 import { useModalHook } from "@/shared/hooks/useModalHook";
+
 import { Ticket } from "../tickets.type";
 import { getPriorityColor } from "../utils/getPriorityColor";
 import { TicketDetails } from "./TicketDetails";

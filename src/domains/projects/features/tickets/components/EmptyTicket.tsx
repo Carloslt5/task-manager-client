@@ -1,5 +1,6 @@
 import { dropTargetForElements } from "@atlaskit/pragmatic-drag-and-drop/element/adapter";
 import { useEffect, useRef, useState } from "react";
+
 import { State } from "../../states/states.type";
 
 type Props = {

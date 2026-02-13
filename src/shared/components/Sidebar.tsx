@@ -5,7 +5,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { APP_GLOBAL_NAME } from "@/app/app.constants";
-import { useAuthContext } from "@/app/contexts/auth.context";
+import { useAuthContext } from "@/app/features/auth/auth.context";
+
 import { Logo } from "../icons/Logo";
 import { AdminMenuItems } from "./AdminMenuItems";
 import { ThemeToggleButton } from "./ThemeToggleButton";
@@ -39,7 +40,7 @@ export const Sidebar = () => {
         )}
       </div>
 
-      <Link to={"/"}>
+      <Link to={"/admin/dashboard"}>
         <div
           className="flex items-center rounded-sm bg__color bg__color-hover gap-x-2"
           title={APP_GLOBAL_NAME}
@@ -54,7 +55,7 @@ export const Sidebar = () => {
           </h1>
         </div>
       </Link>
-      <aside className="mt-10">
+      <aside className="mt-10 gap-1 flex flex-col">
         <AdminMenuItems toggleMenuOpen={toggleMenuOpen} />
       </aside>
 

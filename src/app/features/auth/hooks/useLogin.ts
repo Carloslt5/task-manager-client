@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { useAuthContext } from "@/app/contexts/auth.context";
+import { useAuthContext } from "../auth.context";
 import { login } from "../auth.services";
 import { User } from "../auth.types";
 

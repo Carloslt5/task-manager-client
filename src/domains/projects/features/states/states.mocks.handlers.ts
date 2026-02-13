@@ -1,6 +1,7 @@
 import { delay, HttpResponse, http } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
+
 import { MOCK_STATES_LIST } from "../../__mocks__/MockData";
 import { StateMother } from "../../__mocks__/StatesMother";
 import { State } from "./states.type";

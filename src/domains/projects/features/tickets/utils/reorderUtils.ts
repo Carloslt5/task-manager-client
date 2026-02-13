@@ -1,4 +1,5 @@
 import type { Edge } from "@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge";
+
 import { Ticket } from "../tickets.type";
 
 type TicketUpdate = { id: string; stateId: string; position: number };

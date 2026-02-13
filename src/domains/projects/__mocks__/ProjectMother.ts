@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 
 import { API_DEFAULT_LIMIT } from "@/app/api";
-import { UserMother } from "@/domains/auth/__mocks__/UserMother";
+import { UserMother } from "@/app/features/auth/__mocks__/UserMother";
 
 import { Project } from "../projects.type";
 

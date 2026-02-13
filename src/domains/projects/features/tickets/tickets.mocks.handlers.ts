@@ -1,6 +1,7 @@
 import { delay, HttpResponse, http } from "msw";
 
 import { DEFAULT_DELAY } from "@/mock-server/constants";
+
 import { MOCK_TICKETS_LIST } from "../../__mocks__/MockData";
 import { TicketMother } from "../../__mocks__/TicketsMother";
 import { ReorderTicketsPayload, Ticket } from "./tickets.type";

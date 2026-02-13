@@ -16,7 +16,7 @@ export function useDeleteProject() {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEY_PROJECT],
       });
-      navigate("/admin/dashboard");
+      navigate("/admin/projects");
     },
   });
 }

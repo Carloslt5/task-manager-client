@@ -82,5 +82,5 @@
 
 /* CARD */
 @utility card__primary {
-  @apply flex items-center justify-center h-full p-4 text-center text-white rounded-sm min-h-32 bg__gradient;
+  @apply flex items-center justify-center p-4 text-center text-white rounded-sm min-h-32 bg__gradient;
 }

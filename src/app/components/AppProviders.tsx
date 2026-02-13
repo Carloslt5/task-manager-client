@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { AuthProvider } from "../contexts/auth.context";
 import { ThemeProviderWrapper } from "../contexts/theme.context";
+import { AuthProvider } from "../features/auth/auth.context";
 import { queryClient as defaultQueryClient } from "../libs/queryClient";
 
 type Props = {

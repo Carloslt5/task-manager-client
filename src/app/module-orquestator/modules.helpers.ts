@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 
-import { User } from "@/domains/auth/auth.types";
+import { User } from "@/app/features/auth/auth.types";
 
 import { MenuItem, Module } from "../app.types";
 

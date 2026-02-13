@@ -48,7 +48,6 @@ export const ProjectPage = () => {
         ctaText="Add State"
         onClick={openModal}
       />
-      <p>Owner: {project?.data.ownerId}</p>
 
       <StatesContainer />
 

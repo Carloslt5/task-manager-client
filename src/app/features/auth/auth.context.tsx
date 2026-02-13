@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 
-import { User } from "@/domains/auth/auth.types";
+import { User } from "./auth.types";
 
 const STORAGE_KEY = "auth_user";
 
